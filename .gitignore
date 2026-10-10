@@ -1,0 +1,11 @@
+# Artefatos de compilação
+build/
+CMakeCache.txt
+CMakeFiles/
+
+# Saídas de simulação pesadas
+results/
+
+# Configurações locais de IDE e SO
+.vscode/
+.DS_Store
