@@ -1,11 +1,14 @@
 #pragma once
 
 #include <algorithm>
+#include <chrono>
 #include <cmath>
+#include <exception>
 #include <filesystem>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
+#include <memory>
 #include <numeric>
 #include <optional>
 #include <random>
@@ -14,7 +17,14 @@
 #include <stdexcept>
 #include <string>
 #include <type_traits>
+#include <utility>
 #include <vector>
+
+
+/**
+ * @brief Small constant used to prevent exact zero values in random generation.
+ */
+const double ZERO = 1e-13;
 
 /**
  * @brief Provides basic file I/O operations specifically for CSV files.
@@ -146,9 +156,7 @@ namespace file_manager::csv {
         return count;
     }
 
-} 
-
-namespace csv = file_manager::csv; // Alias for easier access
+} namespace csv = file_manager::csv; // Alias for easier access
 
 namespace convert {
     
