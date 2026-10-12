@@ -60,7 +60,7 @@ namespace heuristic {
             }
 
             auto end_chrono = std::chrono::high_resolution_clock::now();
-            metrics_ptr->outputs.execution_time_sec = std::chrono::duration<double>(end_chrono - start_chrono).count();
+            metrics_ptr->outputs.execution_time = std::chrono::duration<double>(end_chrono - start_chrono).count();
         }
     
         /**
@@ -86,7 +86,7 @@ namespace heuristic {
             for (size_t d = 1; d < devices.size(); d++) {
                 core::Device& device = devices[d];
 
-                int i = random::random_number<int>(1, static_cast<int>(servers.size() - 1));
+                int i = randomness::random_number<int>(1, static_cast<int>(servers.size() - 1));
                 core::Server& server = servers[i];
 
                 if (server.can_serve(device)) {
@@ -95,7 +95,7 @@ namespace heuristic {
             }
 
             auto end_chrono = std::chrono::high_resolution_clock::now();
-            metrics_ptr->outputs.execution_time_sec = std::chrono::duration<double>(end_chrono - start_chrono).count();
+            metrics_ptr->outputs.execution_time = std::chrono::duration<double>(end_chrono - start_chrono).count();
         }
     }
 
@@ -109,9 +109,9 @@ namespace heuristic {
     inline void boot(metrics::Result& state) {
         if (!state.stats) return;
 
-        if (metrics::Algorithm::greedy_cost_benefit == state.stats->algorithm_name) {
+        if (metrics::Algorithm::greedy_cost_benefit == state.stats->algorithm) {
             greedy_cost_benefit(state);
-        } else if (metrics::Algorithm::greedy_random == state.stats->algorithm_name) {
+        } else if (metrics::Algorithm::greedy_random == state.stats->algorithm) {
             greedy_random(state);
         } else {
             std::cerr << "Error: Unknown heuristic algorithm type.\n";

@@ -41,19 +41,19 @@ namespace metaheuristic {
          */
         inline Move apply_neighbor(core::Devices& devices, core::Servers& servers) {
             Move move;
-            move.device_idx = random::random_number<int>(1, static_cast<int>(devices.size() - 1));
+            move.device_idx = randomness::random_number<int>(1, static_cast<int>(devices.size() - 1));
             core::Device& device = devices[move.device_idx];
 
             move.old_server_idx = device.id_server;
 
-            if (device.served && random::random_number<double>(0.0, 1.0) < 0.5) {
+            if (device.served && randomness::random_number<double>(0.0, 1.0) < 0.5) {
                 servers[move.old_server_idx].rmv_service(device);
                 move.new_server_idx = -1; 
                 move.delta_penalty = device.cost; 
                 return move;
             }
 
-            auto servers_shuffled = random::shuffled_range<int>(1, static_cast<int>(servers.size() - 1));
+            auto servers_shuffled = randomness::shuffled_range<int>(1, static_cast<int>(servers.size() - 1));
             for (int s_idx : servers_shuffled) {
                 if (s_idx == device.id_server) continue;
                 
@@ -134,7 +134,7 @@ namespace metaheuristic {
                     double neighbor_cost = current_cost + move.delta_penalty;
                     double delta = neighbor_cost - current_cost;
 
-                    if (delta < 0 || (random::random_number(0.0, 1.0) < std::exp(-delta / T))) {
+                    if (delta < 0 || (randomness::random_number(0.0, 1.0) < std::exp(-delta / T))) {
                         current_cost = neighbor_cost;
                         if (current_cost < best_cost) {
                             best_cost = current_cost;
@@ -152,7 +152,7 @@ namespace metaheuristic {
             state.servers = std::move(best_servers);
 
             auto end_chrono = std::chrono::high_resolution_clock::now();
-            metrics_ptr->outputs.execution_time_sec += std::chrono::duration<double>(end_chrono - start_chrono).count();
+            metrics_ptr->outputs.execution_time += std::chrono::duration<double>(end_chrono - start_chrono).count();
         }   
     }
 
@@ -175,7 +175,7 @@ namespace metaheuristic {
         metrics::Result initial_state = state;
         initial_state.stats = std::make_shared<metrics::HeuristicMetrics>(
             metrics_ptr->heuristic, 
-            metrics_ptr->run_number, 
+            metrics_ptr->run_id, 
             metrics_ptr->inputs.devices_count, 
             metrics_ptr->inputs.servers_ec_count, 
             metrics_ptr->inputs.servers_cc_count
@@ -186,7 +186,7 @@ namespace metaheuristic {
         state.devices = initial_state.devices;
         state.servers = initial_state.servers;
 
-        if (metrics_ptr->algorithm_name == metrics::Algorithm::simulated_annealing) {
+        if (metrics_ptr->algorithm == metrics::Algorithm::simulated_annealing) {
             simulated_annealing(state);
         } else {
             std::cerr << "Error: Unknown metaheuristic algorithm type.\n";

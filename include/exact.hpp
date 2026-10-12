@@ -131,13 +131,16 @@ namespace exact {
                 cplex.setParam(IloCplex::Param::MIP::Tolerances::Integrality, ZERO);
 
                 std::filesystem::path run_dir = metrics_ptr->get_base_directory_path();
-                std::filesystem::path log_dir = run_dir / "Logs";
-                std::filesystem::path model_dir = run_dir / "Models";
+                std::filesystem::path log_dir = run_dir / "log";
+                std::filesystem::path model_dir = run_dir / "model";
                 
                 std::filesystem::create_directories(log_dir);
                 std::filesystem::create_directories(model_dir);
                 
-                std::string file_name = metrics_ptr->get_run_file_name();
+                std::string file_name = "Devices" + std::to_string(metrics_ptr->inputs.devices_count) + 
+                                        "_EC" + std::to_string(metrics_ptr->inputs.servers_ec_count) + 
+                                        "_CC" + std::to_string(metrics_ptr->inputs.servers_cc_count);
+                
                 std::filesystem::path log_path = log_dir / (file_name + ".log");
                 std::filesystem::path model_path = model_dir / (file_name + ".lp");
 
@@ -154,7 +157,7 @@ namespace exact {
                 cplex.solve();
                 auto end_chrono = std::chrono::high_resolution_clock::now();
                 
-                metrics_ptr->outputs.execution_time_sec = std::chrono::duration<double>(end_chrono - start_chrono).count();
+                metrics_ptr->outputs.execution_time = std::chrono::duration<double>(end_chrono - start_chrono).count();
 
                 std::stringstream status;
                 status << cplex.getStatus();
@@ -207,7 +210,7 @@ namespace exact {
     inline void boot(metrics::Result& state, int time_limit_sec = 3600) {
         if (!state.stats) return;
 
-        if (metrics::Algorithm::solver_minimum_cost == state.stats->algorithm_name) {
+        if (metrics::Algorithm::solver_minimum_cost == state.stats->algorithm) {
             solver_minimum_cost(state, time_limit_sec);
         } else {
             std::cerr << "Error: Unknown mathematical model algorithm type.\n";

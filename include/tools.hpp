@@ -233,7 +233,7 @@ namespace convert {
     }
 }
 
-namespace random {
+namespace randomness {
 
     /**
      * @brief Provides a singleton instance of a high-quality random number engine.
