@@ -3,15 +3,15 @@
 #include "tools.hpp"
 
 // Aliases type definitions replacing C-style macros
-using ii_pair = std::pair<int, int>;       
+using ii_pair = std::pair<int, int>;
+using id_pair = std::pair<int, double>;       
 using i_vector = std::vector<int>;         
 using s_vector = std::vector<std::string>; 
 using ii_pair_vector = std::vector<ii_pair>;
-using id_pair_vector = std::vector<std::pair<int, double>>;
+using id_pair_vector = std::vector<id_pair>;
 using i_matrix = std::vector<i_vector>;
 using s_matrix = std::vector<s_vector>;
-using i_set = std::set<int>;       
-
+using i_set = std::set<int>;  
 
 namespace core {
 
@@ -24,7 +24,7 @@ namespace core {
         int tasks;
         int service;
         bool served = false;
-        int id_server = -1;
+        int server_id = -1;
 
         Device() : id(0), cost(0.0), cpu(0.0), mem(0.0), sto(0.0), tasks(0), service(0) {}
         Device(int id_, double cost_, double cpu_, double mem_, double sto_, int tasks_, int service_)
@@ -38,6 +38,7 @@ namespace core {
         double cpu = 0.0;
         double mem = 0.0;
         double sto = 0.0;
+        double free = 0.0;
         i_set devices;
 
         Supply() : cost(0.0), cpu(0.0), mem(0.0), sto(0.0) {}
@@ -80,12 +81,14 @@ namespace core {
             if (!result.second) return false;
             
             device.served = true;
-            device.id_server = id;
+            device.server_id = id;
             
             supply.cost += device.cost;
             supply.cpu += device.cpu;
             supply.mem += device.mem;
             supply.sto += device.sto;
+
+            calculate_free();
             
             return true;
         }
@@ -99,18 +102,50 @@ namespace core {
             if (supply.devices.erase(device.id) == 0) return false;
             
             device.served = false;
-            device.id_server = -1;
+            device.server_id = -1;
             
             supply.cost -= device.cost;
             supply.cpu -= device.cpu;
             supply.mem -= device.mem;
             supply.sto -= device.sto;
 
+            calculate_free();
+            
             return true;
+        }
+
+        inline void calculate_free() {
+            supply.free = (1 - supply.cpu/cpu) + (1 - supply.mem/mem) + (1 - supply.sto/sto);
         }
     };
 
     using Servers = std::vector<Server>;   
+
+    /**
+     * @brief Functor to compare server pairs based on free resources (descending).
+     */
+    struct CompareFree {
+        inline bool operator()(const std::pair<int, double>& a, const std::pair<int, double>& b) const {
+            if (a.second != b.second) return a.second > b.second; 
+            return a.first < b.first; 
+        }
+    };
+    
+    inline id_pair_vector sort_servers_by_free(const core::Servers& servers) {
+        id_pair_vector ids;
+        ids.reserve(servers.size() - 1);
+        
+        for (size_t i = 1; i < servers.size(); i++) {
+            ids.push_back({static_cast<int>(i), servers[i].supply.free});
+        }
+
+        std::sort(ids.begin(), ids.end(), [](const std::pair<int, double>& a, const std::pair<int, double>& b) {
+            if (a.second != b.second) return a.second > b.second; 
+            return a.first < b.first; 
+        });
+
+        return ids;
+    }
 }
 
 namespace data::generate {
@@ -140,10 +175,10 @@ namespace data::generate {
 
         for (int i = 1; i <= num_services; i++) {
             int tsk = randomness::random_number(1, 4);
-            double cpu = 0.0, mem = 0.0, sto = 0.0, cos = 0.0;
+            double cpu = 0.0, mem = 0.0, sto = 0.0, cos = 1.0;
 
             for (int j = 0; j < tsk; j++) {
-                cos += randomness::random_number(ZERO, 2.5);
+                //cos += randomness::random_number(ZERO, 2.5);
                 cpu += randomness::random_number(ZERO, 2.5);
                 mem += randomness::random_number(ZERO, 2.5);
                 sto += randomness::random_number(ZERO, 15.0);
@@ -228,9 +263,10 @@ namespace data::generate {
                 mem = randomness::random_number(2.5, 125.0);
                 sto = randomness::random_number(15.0, 1000.0);
             } else {
-                cpu = randomness::random_number(100000.0, 200000.0);
-                mem = randomness::random_number(51200.0, 102800.0);
-                sto = randomness::random_number(500000.0, 1000000.0);
+                double factor = 4.0;
+                cpu = randomness::random_number(100000.0/factor, 200000.0/factor);
+                mem = randomness::random_number(51200.0/factor, 102800.0/factor);
+                sto = randomness::random_number(500000.0/factor, 1000000.0/factor);
             }
 
             servers.push_back({
@@ -407,6 +443,8 @@ namespace metrics {
             int servers_ec_count = 0;
             int servers_cc_count = 0;
             int max_penalty_cost = 0;
+
+            Inputs& operator=(const Inputs& other) = default;
         } inputs;
 
         struct Outputs {
@@ -418,6 +456,8 @@ namespace metrics {
             int    servers_used_ec_count = 0;
             int    servers_used_cc_count = 0;
             double total_penalty_cost = 0.0; 
+
+            Outputs& operator=(const Outputs& other) = default; 
         } outputs;
 
         Metrics(Paradigm paradigm_, Algorithm algorithm_name_, int run_id) 
@@ -630,9 +670,10 @@ namespace metrics {
      * @brief Encapsulates the complete state and tracked metrics for a single simulation run.
      */
     struct Result {
-        core::Devices devices;           ///< @brief System state containing all devices.
-        core::Servers servers;           ///< @brief System state containing all servers.
-        std::shared_ptr<Metrics> stats;  ///< @brief Holds the final compiled output metrics.
+        core::Devices devices;          ///< @brief System state containing all devices.
+        core::Servers servers;          ///< @brief System state containing all servers.
+        std::shared_ptr<Metrics> stats; ///< @brief Holds the final compiled output metrics.
+        i_vector device_served;         ///< @brief List of device IDs that were successfully served.
         
         Result(core::Devices d, core::Servers s)
             : devices(std::move(d)), servers(std::move(s)) {}
@@ -696,8 +737,8 @@ namespace metrics {
             const auto& device = state.devices[d];
             if (device.served) {
                 out.devices_served_count++;
-                if (device.id_server != -1) {
-                    if (state.servers[device.id_server].type == 'E') {
+                if (device.server_id != -1) {
+                    if (state.servers[device.server_id].type == 'E') {
                         out.devices_served_ec_count++;
                     } else {
                         out.devices_served_cc_count++;
@@ -725,7 +766,7 @@ namespace metrics {
      * @brief Saves the final calculated metrics and generated diagrams to the file system.
      * @param state The simulation result structure to be saved.
      */
-    inline void save_results(const Result& state);
+    inline void save_results(const Result& state, bool show_servers_usage = false);
 }
 
 /**
@@ -748,7 +789,7 @@ namespace display {
                   << "  - State (Served):     " << (device.served ? "Yes" : "No") << "\n";
 
         if (device.served) {
-            std::cout << "  - Assigned Server ID:   " << device.id_server << "\n";
+            std::cout << "  - Assigned Server ID:   " << device.server_id << "\n";
         } else {
             std::cout << "  - Assigned Server ID:   None\n";
         }
@@ -918,9 +959,9 @@ namespace display {
     }
 }
 
-inline void metrics::save_results(const Result& state) {
+inline void metrics::save_results(const Result& state, bool show_servers_usage) {
     if (!state.stats) return;
     state.stats->save_to_file();
     display::show_metrics(state.stats);
-    display::show_servers_usage(state.servers);
+    if (show_servers_usage) display::show_servers_usage(state.servers);
 }

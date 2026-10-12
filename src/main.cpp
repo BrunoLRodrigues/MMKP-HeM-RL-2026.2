@@ -5,7 +5,7 @@
 
 int SERVICES = 100;
 int DEVICES_START = 10000; 
-int DEVICES_STEP = 100;  
+int DEVICES_STEP = 1000;  
 int DEVICES_END = 10000;  
 int EC_LENGTH = 99;      
 int CC_LENGTH = 1;       
@@ -81,7 +81,7 @@ int main() {
         metrics::Result base_state(devices_length, SERVICES, EC_LENGTH, CC_LENGTH);
 
         for (int run = 1; run <= MAX_RUNS; run++) {
-            for (int option = 1; option <= 3; option++) {
+            for (int option = 4; option <= 4; option++) {
                 if (run > 1 && (option <= 1)) continue;
                 run_simulation(base_state, option, run);
             }

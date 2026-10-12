@@ -19,17 +19,18 @@ namespace heuristic {
          * @param state The unified simulation result state containing devices, servers, and metrics.
          */
         inline void greedy_cost_benefit(metrics::Result& state) {
-            core::Devices& devices = state.devices;
-            core::Servers& servers = state.servers;
-
+            
             auto metrics_ptr = std::dynamic_pointer_cast<metrics::HeuristicMetrics>(state.stats);
             if (!metrics_ptr) {
                 std::cerr << "Error: Invalid metrics type for heuristic solver.\n";
                 return;
             }
-
+            
+            core::Devices& devices = state.devices;
+            core::Servers& servers = state.servers;
+            
             auto start_chrono = std::chrono::high_resolution_clock::now();
-
+           
             for (size_t i = 1; i < servers.size(); i++) {
                 core::Server& server = servers[i];
 
@@ -72,17 +73,17 @@ namespace heuristic {
          * @param state The unified simulation result state containing devices, servers, and metrics.
          */
         inline void greedy_random(metrics::Result& state) {
-            core::Devices& devices = state.devices;
-            core::Servers& servers = state.servers;
-
             auto metrics_ptr = std::dynamic_pointer_cast<metrics::HeuristicMetrics>(state.stats);
             if (!metrics_ptr) {
                 std::cerr << "Error: Invalid metrics type for heuristic solver.\n";
                 return;
             }
 
+            core::Devices& devices = state.devices;
+            core::Servers& servers = state.servers;
+            
             auto start_chrono = std::chrono::high_resolution_clock::now();
-
+           
             for (size_t d = 1; d < devices.size(); d++) {
                 core::Device& device = devices[d];
 
@@ -107,9 +108,6 @@ namespace heuristic {
          * @param state The unified simulation result state containing devices, servers, and metrics.
          */
         inline void greedy_random_fallback(metrics::Result& state) {
-            core::Devices& devices = state.devices;
-            core::Servers& servers = state.servers;
-
             auto metrics_ptr = std::dynamic_pointer_cast<metrics::HeuristicMetrics>(state.stats);
             if (!metrics_ptr) {
                 std::cerr << "Error: Invalid metrics type for heuristic solver.\n";
@@ -119,8 +117,11 @@ namespace heuristic {
             int ec_count = metrics_ptr->inputs.servers_ec_count;
             int cc_count = metrics_ptr->inputs.servers_cc_count;
 
-            auto start_chrono = std::chrono::high_resolution_clock::now();
+            core::Devices& devices = state.devices;
+            core::Servers& servers = state.servers;
 
+            auto start_chrono = std::chrono::high_resolution_clock::now();
+            
             for (size_t d = 1; d < devices.size(); d++) {
                 core::Device& device = devices[d];
 
@@ -131,8 +132,8 @@ namespace heuristic {
                     server.add_service(device);
                 } else {
                     i = randomness::random_number<int>(ec_count + 1, static_cast<int>(ec_count + cc_count));
-                    server = servers[i];
-
+                    core::Server& server = servers[i];
+                    
                     if (server.can_serve(device)) {
                         server.add_service(device);
                     }
