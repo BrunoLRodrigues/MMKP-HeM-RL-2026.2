@@ -35,77 +35,85 @@ namespace metaheuristic {
             double delta_cost = 0.0; ///< @brief The change in total penalty cost.
         };
 
-        inline Move apply_neighbor(core::Devices& devices, core::Servers& servers, const id_pair_vector& sorted_servers, const i_vector& devices_served, int tries = 5) {
+        inline Move apply_neighbor(core::Devices& devices, core::Servers& servers, const id_pair_vector& sorted_servers, int tries = 10) {
             Move move;
             
-            if (randomness::random_number<double>(0.0, 1.0) < 0.5) {
-                // ==========================================
-                // ACTION 1: SHIFT
-                // ==========================================
-                move.type = 1;
-                move.device1_id = randomness::random_number<int>(1, static_cast<int>(devices.size() - 1));
+            // ==========================================
+            // ACTION 1: SHIFT
+            // ==========================================
+            move.type = 1;
+            move.device1_id = randomness::random_number<int>(1, static_cast<int>(devices.size() - 1));
+            
+            core::Device& device = devices[move.device1_id];
+            move.old_server1_id = device.server_id;
+
+            bool overloaded = false;
+            if (sorted_servers[0].second <= 0.5) {
+                overloaded = true;
+            }
+
+            int count = 0;
+            while(count <= tries) {
+                int i = count;
+                count++;
+
+                if (overloaded) i = randomness::random_number<int>(0, static_cast<int>(sorted_servers.size() - 1));
+                if (i == device.server_id) continue;
                 
-                core::Device& device = devices[move.device1_id];
-                move.old_server1_id = device.server_id;
-
-                bool overloaded = false;
-                if (sorted_servers[0].second <= 0.5) {
-                    overloaded = true;
-                }
-
-                int count = 0;
-                while(count <= tries) {
-                    int i = count;
-                    count++;
-
-                    if (overloaded) i = randomness::random_number<int>(0, static_cast<int>(sorted_servers.size() - 1));
-                    if (i == device.server_id) continue;
-                    
-                    int target_server_id = sorted_servers[i].first;
-                    if (target_server_id == device.server_id) continue;
-                    core::Server& new_server = servers[target_server_id];
-                    
-                    if (new_server.can_serve(device)) {
-                        if (device.served) {
-                            servers[move.old_server1_id].rmv_service(device);
-                            move.delta_cost = 0.0;
-                        } else {
-                            move.delta_cost = -device.cost;
-                        }
-                        
-                        new_server.add_service(device);
-                        move.new_server1_id = target_server_id;
-                        return move;
+                int target_server_id = sorted_servers[i].first;
+                if (target_server_id == device.server_id) continue;
+                core::Server& new_server = servers[target_server_id];
+                
+                if (new_server.can_serve(device)) {
+                    if (device.served) {
+                        servers[move.old_server1_id].rmv_service(device);
+                        move.delta_cost = 0.0;
+                    } else {
+                        move.delta_cost = -device.cost;
                     }
+                    
+                    new_server.add_service(device);
+                    move.new_server1_id = target_server_id;
+                    return move;
                 }
+            }
 
-                move.type = 0; 
-                return move;
-                
-            } else {
+            move.type = 0; 
+            return move;
+
+            /*
+            if (randomness::random_number<double>(0.0, 1.0) < 0.5) {
+            } else 
                 // ==========================================
                 // ACTION 2: SWAP
                 // ==========================================
                 move.type = 2;
 
-                if (devices_served.size() < 2) {
-                    move.type = 0;
-                    return move;
-                }
+                int random_id1, random_id2;
+                int count = 0;
+                i_vector devices_skipped;
+                devices_skipped.push_back(0);
+                do {
+                    random_id1 = randomness::random_number<int>(1, static_cast<int>(devices.size() - 1), devices_skipped);
+                    random_id2 = randomness::random_number<int>(1, static_cast<int>(devices.size() - 1), devices_skipped);
 
-                int rand_idx1 = randomness::random_number<int>(0, static_cast<int>(devices_served.size() - 1));
-                int rand_idx2 = randomness::random_number<int>(0, static_cast<int>(devices_served.size() - 1));
+                    count++;
+
+                    if (count <= tries) {
+                        move.type = 0; 
+                        return move;
+                    }
+
+                } while(!(
+                    (devices[random_id1].served == true && devices[random_id2].served == true) && 
+                    (devices[random_id1].server_id != devices[random_id2].server_id) &&
+                    (random_id1 != random_id2)));
                 
-                move.device1_id = devices_served[rand_idx1];
-                move.device2_id = devices_served[rand_idx2];
+                move.device1_id = random_id1;
+                move.device2_id = random_id2;
                 
                 core::Device& d1 = devices[move.device1_id];
                 core::Device& d2 = devices[move.device2_id];
-
-                if (d1.id == d2.id || d1.server_id == d2.server_id) {
-                    move.type = 0; 
-                    return move;
-                }
 
                 move.old_server1_id = d1.server_id;
                 move.old_server2_id = d2.server_id;
@@ -133,7 +141,7 @@ namespace metaheuristic {
                     move.delta_cost = 0.0;
                     return move;
                 }
-            }
+            */              
         }
     
         /**
@@ -197,13 +205,7 @@ namespace metaheuristic {
                 for (int i = 0; i < LOOP; i++) { 
                     id_pair_vector sorted_servers = core::sort_servers_by_free(state.servers);
 
-                    i_vector devices_served;
-                    devices_served.reserve(state.devices.size());
-                    for(const auto& d : state.devices) {
-                        if(d.served) devices_served.push_back(d.id);
-                    }
-
-                    Move move = apply_neighbor(state.devices, state.servers, sorted_servers, devices_served);
+                    Move move = apply_neighbor(state.devices, state.servers, sorted_servers);
                     if (move.type == 0) continue;
 
                     double neighbor_cost = current_cost + move.delta_cost;
@@ -253,14 +255,14 @@ namespace metaheuristic {
         initial_state.stats = std::make_shared<metrics::HeuristicMetrics>(
             metrics_ptr->heuristic, 
             metrics_ptr->run_id, 
-            metrics_ptr->inputs.devices_count, 
-            metrics_ptr->inputs.servers_ec_count, 
-            metrics_ptr->inputs.servers_cc_count
+            state.stats
         );
 
         heuristic::boot(initial_state);
         metrics::calculate_metrics(initial_state);
-        metrics::save_results(initial_state, false);
+        if (metrics_ptr->heuristic != metrics::Algorithm::greedy_cost_benefit || metrics_ptr->run_id == 1) {
+            metrics::save_results(initial_state, false);
+        }
 
         state.devices = initial_state.devices;
         state.servers = initial_state.servers;

@@ -483,26 +483,14 @@ namespace metrics {
               
         virtual ~Metrics() = default;
         
-        /**
-         * @brief Creates a deep copy of the current Metrics object.
-         * @return Shared pointer to the new Metrics object.
-         */
         virtual std::shared_ptr<Metrics> clone() const {
             return std::shared_ptr<Metrics>(new Metrics(*this));
         }
 
-        /**
-         * @brief Constructs the base directory path for storing results based on the Paradigm.
-         * @return std::filesystem::path containing the result base directory.
-         */
         virtual std::filesystem::path get_base_directory_path() const {
             return RESULTS_PATH / to_string(this->paradigm);
         }
 
-        /**
-         * @brief Compiles a list of metric entries formatting all statistical outputs for console display.
-         * @return A vector of formatted MetricEntry structures.
-         */
         virtual std::vector<MetricEntry> build_metrics() const {
             int current_total = inputs.devices_count;
             int total_servers = inputs.servers_ec_count + inputs.servers_cc_count;
@@ -521,16 +509,16 @@ namespace metrics {
             m.push_back({"SERVERS", "SUsedEC", "  - Used EC", convert::to_percentage_string(outputs.servers_used_ec_count, inputs.servers_ec_count), std::to_string(outputs.servers_used_ec_count) + " (" + convert::to_percentage_string(outputs.servers_used_ec_count, inputs.servers_ec_count) + "% of EC)"});
             m.push_back({"SERVERS", "SUsedCC", "  - Used CC", convert::to_percentage_string(outputs.servers_used_cc_count, inputs.servers_cc_count), std::to_string(outputs.servers_used_cc_count) + " (" + convert::to_percentage_string(outputs.servers_used_cc_count, inputs.servers_cc_count) + "% of CC)"});
 
+            m.push_back({"COSTS", "MaxCost", "MAX PENALTY COST", convert::to_string(inputs.max_penalty_cost), convert::to_string(inputs.max_penalty_cost)});
             m.push_back({"COSTS", "PenaltyCost", "PENALTY COST", convert::to_string(outputs.total_penalty_cost, 6), convert::to_string(outputs.total_penalty_cost, 6)});
 
             return m;
         }
 
         /**
-         * @brief Gets the CSV header line mapped exactly to the required output standard.
-         * @return A vector of header strings.
+         * @brief Gets the CSV header line. Now explicitly virtual for overrides.
          */
-        std::vector<std::string> get_header() const {
+        virtual std::vector<std::string> get_header() const {
             return {
                 "Paradigm", "Algorithm", "Run", "Devices", "Servers_EC", "Servers_CC", 
                 "Max_cost", "Execution_time", "Devices_served", "Devices_served_ec", 
@@ -539,10 +527,9 @@ namespace metrics {
         }
 
         /**
-         * @brief Collects the metric values specifically ordered to match the CSV header.
-         * @return A vector of data strings.
+         * @brief Collects the metric values dynamically. Now explicitly virtual for overrides.
          */
-        std::vector<std::string> data() const {
+        virtual std::vector<std::string> data() const {
             return {
                 to_string(paradigm),
                 to_string(algorithm),
@@ -562,11 +549,7 @@ namespace metrics {
             };
         }
 
-        /**
-         * @brief Appends the metrics data to the specific algorithm's text file inside its paradigm directory.
-         */
         inline void save_to_file() const {
-            
             std::filesystem::path dir_path = this->get_base_directory_path();
             std::filesystem::path result_path = dir_path / (to_string(this->algorithm) + ".txt");
             
@@ -583,9 +566,9 @@ namespace metrics {
      * @brief Extends Metrics struct to include variables specific to exact mathematical models.
      */
     struct ExactMetrics : public Metrics {
-        std::string status = "Unknown"; ///< @brief Status of the CPLEX solver.
-        double objective_function = 0.0;///< @brief Objective Function value.
-        double gap = 1.0;               ///< @brief Final MIP relative gap.
+        std::string status = "Unknown";
+        double objective_function = 0.0;
+        double gap = 1.0;               
 
         ExactMetrics(Algorithm algorithm_name_, int run_id_, const std::shared_ptr<Metrics>& base) 
             : Metrics(Paradigm::EXACT, algorithm_name_, run_id_, base) {
@@ -608,6 +591,23 @@ namespace metrics {
             m.push_back({"SOLVER STATS", "OF", "Objective Function (OF)", convert::to_string(objective_function, 6), convert::to_string(objective_function, 6)});
             m.push_back({"SOLVER STATS", "GAP", "MIP Gap", convert::to_string(gap, 6), convert::to_percentage_string(gap, 1.0) + "%"});
             return m;
+        }
+
+        // Adicionando o override para o arquivo texto (CSV) do Solver Exato
+        std::vector<std::string> get_header() const override {
+            auto h = Metrics::get_header();
+            h.push_back("Status");
+            h.push_back("Obj_Function");
+            h.push_back("Gap");
+            return h;
+        }
+
+        std::vector<std::string> data() const override {
+            auto d = Metrics::data();
+            d.push_back(status);
+            d.push_back(convert::to_string(objective_function, 6));
+            d.push_back(convert::to_string(gap, 6));
+            return d;
         }
     };
 
@@ -635,12 +635,12 @@ namespace metrics {
      * @brief Extends Metrics struct to include parameters required by meta-heuristic algorithms.
      */
     struct MetaHeuristicMetrics : public Metrics {
-        Algorithm heuristic = Algorithm::NONE; ///< @brief The starting heuristic solution approach.
-        double temperature = 0.0;              ///< @brief Initial simulated annealing temperature.
-        double alpha = 0.0;                    ///< @brief Cooling rate.
+        Algorithm heuristic = Algorithm::NONE; 
+        double temperature = 0.0;              
+        double alpha = 0.0;                    
 
         MetaHeuristicMetrics(Algorithm algorithm_name_, int run_id_, const std::shared_ptr<Metrics>& base, double temperature_, double alpha_, Algorithm heuristic_) 
-            : Metrics(Paradigm::EXACT, algorithm_name_, run_id_, base), temperature(temperature_), alpha(alpha_), heuristic(heuristic_) {
+            : Metrics(Paradigm::METAHEURISTIC, algorithm_name_, run_id_, base), temperature(temperature_), alpha(alpha_), heuristic(heuristic_) {
                 if (base) inputs = base->inputs;
             }
 
@@ -654,8 +654,6 @@ namespace metrics {
             return std::shared_ptr<MetaHeuristicMetrics>(new MetaHeuristicMetrics(*this));
         }
 
-        // CORREÇÃO: Função get_base_directory_path() removida para usar o diretório padrão da base (results/Paradigm)
-
         std::vector<MetricEntry> build_metrics() const override {
             auto m = Metrics::build_metrics();
             std::string cat = to_string(algorithm) + " PARAMETERS";
@@ -664,16 +662,32 @@ namespace metrics {
             m.push_back({cat, "Alpha", "Alpha (Cooling Rate)", convert::to_string(alpha, 2), convert::to_string(alpha, 2)});
             return m;
         }
+
+        // Adicionando o override para o arquivo texto (CSV) do SA
+        std::vector<std::string> get_header() const override {
+            auto h = Metrics::get_header();
+            h.push_back("Initial_Heuristic");
+            h.push_back("Temperature");
+            h.push_back("Alpha");
+            return h;
+        }
+
+        std::vector<std::string> data() const override {
+            auto d = Metrics::data();
+            d.push_back(to_string(heuristic));
+            d.push_back(convert::to_string(temperature, 2));
+            d.push_back(convert::to_string(alpha, 2));
+            return d;
+        }
     };
 
     /**
      * @brief Encapsulates the complete state and tracked metrics for a single simulation run.
      */
     struct Result {
-        core::Devices devices;          ///< @brief System state containing all devices.
-        core::Servers servers;          ///< @brief System state containing all servers.
-        std::shared_ptr<Metrics> stats; ///< @brief Holds the final compiled output metrics.
-        i_vector device_served;         ///< @brief List of device IDs that were successfully served.
+        core::Devices devices;          
+        core::Servers servers;          
+        std::shared_ptr<Metrics> stats; 
         
         Result(core::Devices d, core::Servers s)
             : devices(std::move(d)), servers(std::move(s)) {}
@@ -774,10 +788,6 @@ namespace metrics {
  */
 namespace display {
 
-    /**
-     * @brief Prints device characteristics and allocation status to the console.
-     * @param device The device to evaluate and display.
-     */
     inline void show_device(const core::Device& device) {
         std::cout << "========== Device ID: "  << device.id << " ==========\n"
                   << "  - Cost Penalty:       " << device.cost << "\n"
@@ -796,10 +806,6 @@ namespace display {
         std::cout << "====================================\n" << std::endl;
     }
 
-    /**
-     * @brief Batch prints an array list of all devices sequentially.
-     * @param devices The reference to a vector of Devices.
-     */
     inline void show_devices(const core::Devices& devices) {
         std::cout << "\n--- Displaying " << (devices.size() > 0 ? devices.size() - 1 : 0) << " Devices ---\n";
         for (const auto& device : devices) {
@@ -808,10 +814,6 @@ namespace display {
         }
     }
 
-    /**
-     * @brief Prints server capacities, demands, and served connections to the console.
-     * @param server The server to evaluate and display.
-     */
     inline void show_server(const core::Server& server) {
         std::cout << "========== Server ID: " << server.id << " (Type: " << server.type << ") ==========\n"
                   << "  --- Capacity ---\n"
@@ -833,10 +835,6 @@ namespace display {
         std::cout << "===============================================\n" << std::endl;
     }
 
-    /**
-     * @brief Batch prints an array list of all servers sequentially.
-     * @param servers The reference to a vector of Servers.
-     */
     inline void show_servers(const core::Servers& servers) {
         std::cout << "\n--- Displaying " << (servers.size() > 0 ? servers.size() - 1 : 0) << " Servers ---\n";
         for (const auto& server : servers) {
@@ -873,11 +871,6 @@ namespace display {
         }
     }
 
-    /**
-     * @brief Organizes structured metrics objects into human-readable visual layouts directed at an output stream.
-     * @param metrics The metrics tracker entity struct.
-     * @param out Standard output or filestream reference.
-     */
     inline void show_metrics_console_or_file(const metrics::Metrics& metrics, std::ostream& out) {
         out << "\n";
         details::print_header(out);
@@ -907,10 +900,6 @@ namespace display {
         details::print_header(out);
     }
 
-    /**
-     * @brief Triggers the generation of console and text-based diagrams for generic tracking.
-     * @param ptr The metrics instance pointer wrapper.
-     */
     inline void show_metrics(const std::shared_ptr<metrics::Metrics>& ptr) {
         if (!ptr) return;
 
@@ -919,7 +908,6 @@ namespace display {
         std::filesystem::path base_dir = ptr->get_base_directory_path(); 
         std::filesystem::create_directories(base_dir);
         
-        // Define base name using D_S configuration format
         std::string config_name = "D" + std::to_string(ptr->inputs.devices_count) + 
                                   "_S" + std::to_string(ptr->inputs.servers_ec_count + ptr->inputs.servers_cc_count);
         
@@ -933,19 +921,14 @@ namespace display {
         }
     }
 
-    /**
-     * @brief Prints the resource usage percentage (CPU, MEM, STO) of each server.
-     * @param servers The reference to a vector of Servers.
-     */
     inline void show_servers_usage(const core::Servers& servers) {
         std::cout << "\n+------------------------------------------------------------+\n";
         std::cout << "| SERVERS RESOURCE USAGE                                     |\n";
         std::cout << "+------------------------------------------------------------+\n";
         
         for (const auto& server : servers) {
-            if (server.id == 0) continue; // Ignora o índice 0
+            if (server.id == 0) continue; 
 
-            // Utiliza o convert::to_percentage_string do tools.hpp com precisão 0
             std::string cpu_pct = convert::to_percentage_string(server.supply.cpu, server.cpu, 0);
             std::string mem_pct = convert::to_percentage_string(server.supply.mem, server.mem, 0);
             std::string sto_pct = convert::to_percentage_string(server.supply.sto, server.sto, 0);
@@ -959,6 +942,11 @@ namespace display {
     }
 }
 
+/**
+ * @brief Saves the final calculated metrics and generated diagrams to the file system.
+ * @param state The simulation result structure to be saved.
+ * @param show_servers_usage Flag to indicate if server usage should be displayed.
+ */
 inline void metrics::save_results(const Result& state, bool show_servers_usage) {
     if (!state.stats) return;
     state.stats->save_to_file();

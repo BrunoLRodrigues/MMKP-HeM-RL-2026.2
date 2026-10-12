@@ -9,7 +9,7 @@ int DEVICES_STEP = 1000;
 int DEVICES_END = 10000;  
 int EC_LENGTH = 99;      
 int CC_LENGTH = 1;       
-int MAX_RUNS = 1;       
+int MAX_RUNS = 20;       
 
 double CPLEX_TIME_LIMIT = 3600; 
 double TEMPERATURE = 1000;      

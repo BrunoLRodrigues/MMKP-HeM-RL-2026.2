@@ -260,6 +260,7 @@ namespace randomness {
         if (min > max) {
             throw std::invalid_argument("Error in random_number: min cannot be greater than max.");
         }
+
         if constexpr (std::is_integral_v<T>) {
             std::uniform_int_distribution<T> distribution(min, max);
             return distribution(get_engine());
@@ -269,7 +270,48 @@ namespace randomness {
         }
     }
 
-     /**
+    /**
+     * @brief Generates a random number within a specified inclusive interval, excluding values from a vector.
+     * @details The generated number is automatically appended to the exclusion vector to prevent future duplicates.
+     * @tparam T The numeric type (must be arithmetic).
+     * @param min The lower bound of the interval (inclusive).
+     * @param max The upper bound of the interval (inclusive).
+     * @param exclude A reference to a vector containing values to be excluded.
+     * @return A random number within the specified range.
+     * @throws std::invalid_argument If min is greater than max, or if all possible integral values are excluded.
+     */
+    template<typename T>
+    inline T random_number(T min, T max, std::vector<T>& exclude) {
+        static_assert(std::is_arithmetic_v<T>, "T must be an arithmetic type.");
+        
+        if (min > max) {
+            throw std::invalid_argument("Error in random_number: min cannot be greater than max.");
+        }
+        
+        if constexpr (std::is_integral_v<T>) {
+            if (exclude.size() >= static_cast<size_t>(max - min + 1)) {
+                throw std::invalid_argument("Error in random_number: all possible values are excluded causing infinite loop.");
+            }
+        }
+
+        T result;
+        if constexpr (std::is_integral_v<T>) {
+            std::uniform_int_distribution<T> distribution(min, max);
+            do {
+                result = distribution(get_engine());
+            } while (std::find(exclude.begin(), exclude.end(), result) != exclude.end());
+        } else {
+            std::uniform_real_distribution<T> distribution(min, max);
+            do {
+                result = distribution(get_engine());
+            } while (std::find(exclude.begin(), exclude.end(), result) != exclude.end());
+        }
+        
+        exclude.push_back(result);
+        return result;
+    }
+
+    /**
      * @brief Creates a vector of unique integers in random order within an inclusive range.
      * @tparam T The integral type for the range.
      * @param min The lower bound of the range (inclusive).
@@ -385,6 +427,19 @@ namespace structure {
         std::set<T> result = s1;
         result.insert(s2.begin(), s2.end());
         return result;
+    }
+
+    /**
+     * @brief Retrieves the first N elements from a std::set.
+     * @tparam T The type of the elements in the set.
+     * @param input_set The source set.
+     * @param k The number of elements to retrieve.
+     * @return A std::vector containing the first K elements.
+     */
+    template <typename T>
+    inline std::vector<T> get_first_k_elements(const std::set<T>& input_set, size_t k) {
+        size_t limit = std::min(k, input_set.size());
+        return std::vector<T>(input_set.begin(), std::next(input_set.begin(), limit));
     }
 }
 
