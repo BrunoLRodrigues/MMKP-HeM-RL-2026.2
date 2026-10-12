@@ -365,6 +365,7 @@ namespace metrics {
         solver_minimum_cost,
         greedy_cost_benefit,
         greedy_random,
+        greedy_random_fallback,
         simulated_annealing
     };
 
@@ -373,11 +374,12 @@ namespace metrics {
      */
     inline std::string to_string(Algorithm algorithm) {
         switch (algorithm) {
-            case Algorithm::solver_minimum_cost: return "EXACT";
-            case Algorithm::greedy_cost_benefit: return "GREEDY_CB";    
-            case Algorithm::greedy_random:       return "GREEDY_RANDOM";
-            case Algorithm::simulated_annealing: return "SA";
-            default:                             return "NONE";
+            case Algorithm::solver_minimum_cost:    return "EXACT";
+            case Algorithm::greedy_cost_benefit:    return "GREEDY_CB";    
+            case Algorithm::greedy_random:          return "GREEDY_RANDOM";
+            case Algorithm::greedy_random_fallback: return "GREEDY_RANDOM_FALLBACK";
+            case Algorithm::simulated_annealing:    return "SA";
+            default:                                return "NONE";
         }
     }
 
@@ -641,8 +643,8 @@ namespace metrics {
                 stats = other.stats->clone();
             }
         }
-        Result(int num_devices, int num_ec, int num_cc)
-            : devices(data::load::devices(num_devices)), servers(data::load::servers(num_ec, num_cc)) {
+        Result(int num_devices, int num_services, int num_ec, int num_cc)
+            : devices(data::load::devices(num_devices, num_services)), servers(data::load::servers(num_ec, num_cc)) {
             
             if (devices.size() <= 1 || servers.size() <= 1) {
                 std::cerr << "Error: Data failed to load.\n";
@@ -889,10 +891,36 @@ namespace display {
             std::cerr << "Error: Could not save drawing to " << file_path << "\n";
         }
     }
+
+    /**
+     * @brief Prints the resource usage percentage (CPU, MEM, STO) of each server.
+     * @param servers The reference to a vector of Servers.
+     */
+    inline void show_servers_usage(const core::Servers& servers) {
+        std::cout << "\n+------------------------------------------------------------+\n";
+        std::cout << "| SERVERS RESOURCE USAGE                                     |\n";
+        std::cout << "+------------------------------------------------------------+\n";
+        
+        for (const auto& server : servers) {
+            if (server.id == 0) continue; // Ignora o índice 0
+
+            // Utiliza o convert::to_percentage_string do tools.hpp com precisão 0
+            std::string cpu_pct = convert::to_percentage_string(server.supply.cpu, server.cpu, 0);
+            std::string mem_pct = convert::to_percentage_string(server.supply.mem, server.mem, 0);
+            std::string sto_pct = convert::to_percentage_string(server.supply.sto, server.sto, 0);
+
+            std::cout << "  ID: " << std::left << std::setw(4) << server.id 
+                      << "CPU: "  << std::right << std::setw(3) << cpu_pct << "%   "
+                      << "MEM: "  << std::right << std::setw(3) << mem_pct << "%   "
+                      << "STO: "  << std::right << std::setw(3) << sto_pct << "%\n";
+        }
+        std::cout << "+------------------------------------------------------------+\n\n";
+    }
 }
 
 inline void metrics::save_results(const Result& state) {
     if (!state.stats) return;
     state.stats->save_to_file();
     display::show_metrics(state.stats);
+    display::show_servers_usage(state.servers);
 }

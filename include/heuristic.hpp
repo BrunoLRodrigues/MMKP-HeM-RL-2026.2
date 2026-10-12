@@ -97,6 +97,51 @@ namespace heuristic {
             auto end_chrono = std::chrono::high_resolution_clock::now();
             metrics_ptr->outputs.execution_time = std::chrono::duration<double>(end_chrono - start_chrono).count();
         }
+
+        /**
+         * @brief Executes a fast random baseline resource allocation.
+         * @details Iterates through all devices and attempts to assign each one to a 
+         * single randomly selected server. If the selected server lacks capacity, 
+         * the device remains unserved. Metric calculation is deferred.
+         * 
+         * @param state The unified simulation result state containing devices, servers, and metrics.
+         */
+        inline void greedy_random_fallback(metrics::Result& state) {
+            core::Devices& devices = state.devices;
+            core::Servers& servers = state.servers;
+
+            auto metrics_ptr = std::dynamic_pointer_cast<metrics::HeuristicMetrics>(state.stats);
+            if (!metrics_ptr) {
+                std::cerr << "Error: Invalid metrics type for heuristic solver.\n";
+                return;
+            }
+
+            int ec_count = metrics_ptr->inputs.servers_ec_count;
+            int cc_count = metrics_ptr->inputs.servers_cc_count;
+
+            auto start_chrono = std::chrono::high_resolution_clock::now();
+
+            for (size_t d = 1; d < devices.size(); d++) {
+                core::Device& device = devices[d];
+
+                int i = randomness::random_number<int>(1, static_cast<int>(ec_count));
+                core::Server& server = servers[i];
+
+                if (server.can_serve(device)) {
+                    server.add_service(device);
+                } else {
+                    i = randomness::random_number<int>(ec_count + 1, static_cast<int>(ec_count + cc_count));
+                    server = servers[i];
+
+                    if (server.can_serve(device)) {
+                        server.add_service(device);
+                    }
+                }
+            }
+
+            auto end_chrono = std::chrono::high_resolution_clock::now();
+            metrics_ptr->outputs.execution_time = std::chrono::duration<double>(end_chrono - start_chrono).count();
+        }
     }
 
     /**
@@ -113,6 +158,8 @@ namespace heuristic {
             greedy_cost_benefit(state);
         } else if (metrics::Algorithm::greedy_random == state.stats->algorithm) {
             greedy_random(state);
+        } else if (metrics::Algorithm::greedy_random_fallback == state.stats->algorithm) {
+            greedy_random_fallback(state);
         } else {
             std::cerr << "Error: Unknown heuristic algorithm type.\n";
         }

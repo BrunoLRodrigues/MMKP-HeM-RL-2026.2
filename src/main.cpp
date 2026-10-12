@@ -3,9 +3,10 @@
 #include "heuristic.hpp"
 #include "metaheuristic.hpp"
 
-int DEVICES_START = 100; 
+int SERVICES = 100;
+int DEVICES_START = 10000; 
 int DEVICES_STEP = 100;  
-int DEVICES_END = 1000;  
+int DEVICES_END = 10000;  
 int EC_LENGTH = 99;      
 int CC_LENGTH = 1;       
 int MAX_RUNS = 1;       
@@ -13,7 +14,6 @@ int MAX_RUNS = 1;
 double CPLEX_TIME_LIMIT = 3600; 
 double TEMPERATURE = 1000;      
 double ALPHA = 0.95;
-
 
 /**
  * @brief Executes a specific algorithm configuration for the network resource allocation simulation.
@@ -35,13 +35,20 @@ void run_simulation(const metrics::Result& base, int option, int run_id) {
         paradigm = metrics::Paradigm::HEURISTIC;
         algorithm = metrics::Algorithm::greedy_random;
     } else if (option == 3) {
-        paradigm = metrics::Paradigm::METAHEURISTIC;
-        algorithm = metrics::Algorithm::simulated_annealing;
-        initial_heuristic = metrics::Algorithm::greedy_cost_benefit;
+        paradigm = metrics::Paradigm::HEURISTIC;
+        algorithm = metrics::Algorithm::greedy_random_fallback;
     } else if (option == 4) {
         paradigm = metrics::Paradigm::METAHEURISTIC;
         algorithm = metrics::Algorithm::simulated_annealing;
+        initial_heuristic = metrics::Algorithm::greedy_cost_benefit;
+    } else if (option == 5) {
+        paradigm = metrics::Paradigm::METAHEURISTIC;
+        algorithm = metrics::Algorithm::simulated_annealing;
         initial_heuristic = metrics::Algorithm::greedy_random;
+    } else if (option == 6) {
+        paradigm = metrics::Paradigm::METAHEURISTIC;
+        algorithm = metrics::Algorithm::simulated_annealing;
+        initial_heuristic = metrics::Algorithm::greedy_random_fallback;
     } else {
         std::cerr << "Error: Invalid option selected for simulation.\n";
         return;
@@ -70,11 +77,11 @@ void run_simulation(const metrics::Result& base, int option, int run_id) {
 }
 
 int main() {
-    for (int size = DEVICES_START; size <= DEVICES_END; size += DEVICES_STEP) {
-        metrics::Result base_state(size, EC_LENGTH, CC_LENGTH);
+    for (int devices_length = DEVICES_START; devices_length <= DEVICES_END; devices_length += DEVICES_STEP) {
+        metrics::Result base_state(devices_length, SERVICES, EC_LENGTH, CC_LENGTH);
 
         for (int run = 1; run <= MAX_RUNS; run++) {
-            for (int option = 1; option <= 2; option++) {
+            for (int option = 1; option <= 3; option++) {
                 if (run > 1 && (option <= 1)) continue;
                 run_simulation(base_state, option, run);
             }
