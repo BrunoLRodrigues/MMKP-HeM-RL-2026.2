@@ -25,123 +25,49 @@ namespace metaheuristic {
          * @brief Represents a state transition within the neighborhood search.
          */
         struct Move {
-            int type = 0;            ///< @brief 0: Invalid, 1: Shift, 2: Swap.
-            int device1_id = -1;     ///< @brief ID of the primary device.
-            int device2_id = -1;     ///< @brief ID of the secondary device (for swaps).
-            int old_server1_id = -1; ///< @brief Original server of device 1.
-            int old_server2_id = -1; ///< @brief Original server of device 2 (for swaps).
-            int new_server1_id = -1; ///< @brief New server for device 1.
-            int new_server2_id = -1; ///< @brief New server for device 2.
+            bool valid = false;      ///< @brief Indicates if the move was successfully applied.
+            int device_id = -1;      ///< @brief ID of the primary device.
+            int old_server_id = -1;  ///< @brief Original server of device 1.
+            int new_server_id = -1;  ///< @brief New server for device 1.
             double delta_cost = 0.0; ///< @brief The change in total penalty cost.
         };
 
-        inline Move apply_neighbor(core::Devices& devices, core::Servers& servers, const id_pair_vector& sorted_servers, int tries = 10) {
+        inline Move apply_neighbor(core::Devices& devices, core::Servers& servers, int tries = 10) {
             Move move;
             
             // ==========================================
             // ACTION 1: SHIFT
             // ==========================================
-            move.type = 1;
-            move.device1_id = randomness::random_number<int>(1, static_cast<int>(devices.size() - 1));
+            move.device_id = randomness::random_number<int>(1, static_cast<int>(devices.size() - 1));
             
-            core::Device& device = devices[move.device1_id];
-            move.old_server1_id = device.server_id;
-
-            bool overloaded = false;
-            if (sorted_servers[0].second <= 0.5) {
-                overloaded = true;
-            }
+            core::Device& device = devices[move.device_id];
+            move.old_server_id = device.server_id;
 
             int count = 0;
-            while(count <= tries) {
-                int i = count;
-                count++;
-
-                if (overloaded) i = randomness::random_number<int>(0, static_cast<int>(sorted_servers.size() - 1));
-                if (i == device.server_id) continue;
+            while(count < tries) {
+                int i = randomness::random_number<int>(1, static_cast<int>(servers.size() - 1));
                 
-                int target_server_id = sorted_servers[i].first;
-                if (target_server_id == device.server_id) continue;
-                core::Server& new_server = servers[target_server_id];
+                if (i == device.server_id) continue;
+                count++;
+                
+                core::Server& new_server = servers[i];
                 
                 if (new_server.can_serve(device)) {
                     if (device.served) {
-                        servers[move.old_server1_id].rmv_service(device);
+                        servers[move.old_server_id].rmv_service(device);
                         move.delta_cost = 0.0;
                     } else {
                         move.delta_cost = -device.cost;
                     }
                     
                     new_server.add_service(device);
-                    move.new_server1_id = target_server_id;
+                    move.new_server_id = i;
+                    move.valid = true;
                     return move;
                 }
             }
 
-            move.type = 0; 
-            return move;
-
-            /*
-            if (randomness::random_number<double>(0.0, 1.0) < 0.5) {
-            } else 
-                // ==========================================
-                // ACTION 2: SWAP
-                // ==========================================
-                move.type = 2;
-
-                int random_id1, random_id2;
-                int count = 0;
-                i_vector devices_skipped;
-                devices_skipped.push_back(0);
-                do {
-                    random_id1 = randomness::random_number<int>(1, static_cast<int>(devices.size() - 1), devices_skipped);
-                    random_id2 = randomness::random_number<int>(1, static_cast<int>(devices.size() - 1), devices_skipped);
-
-                    count++;
-
-                    if (count <= tries) {
-                        move.type = 0; 
-                        return move;
-                    }
-
-                } while(!(
-                    (devices[random_id1].served == true && devices[random_id2].served == true) && 
-                    (devices[random_id1].server_id != devices[random_id2].server_id) &&
-                    (random_id1 != random_id2)));
-                
-                move.device1_id = random_id1;
-                move.device2_id = random_id2;
-                
-                core::Device& d1 = devices[move.device1_id];
-                core::Device& d2 = devices[move.device2_id];
-
-                move.old_server1_id = d1.server_id;
-                move.old_server2_id = d2.server_id;
-
-                core::Server& s1 = servers[move.old_server1_id];
-                core::Server& s2 = servers[move.old_server2_id];
-
-                s1.rmv_service(d1);
-                s2.rmv_service(d2);
-
-                if (s1.can_serve(d2) && s2.can_serve(d1)) {
-                    s1.add_service(d2);
-                    s2.add_service(d1);
-                    
-                    move.new_server1_id = s2.id;
-                    move.new_server2_id = s1.id;
-                    move.delta_cost = 0.0; 
-                    
-                    return move;
-                } else {
-                    s1.add_service(d1);
-                    s2.add_service(d2);
-                    
-                    move.type = 0;
-                    move.delta_cost = 0.0;
-                    return move;
-                }
-            */              
+            return move;          
         }
     
         /**
@@ -151,27 +77,13 @@ namespace metaheuristic {
          * @param move The Move structure containing the transition details.
          */
         inline void revert_neighbor(core::Devices& devices, core::Servers& servers, const Move& move) {
-            if (move.type == 0) return;
-
-            if (move.type == 1) { 
-                core::Device& device = devices[move.device1_id];
+            core::Device& device = devices[move.device_id];
                 
-                if (move.new_server1_id != -1) {
-                    servers[move.new_server1_id].rmv_service(device);
-                }
-                if (move.old_server1_id != -1) {
-                    servers[move.old_server1_id].add_service(device);
-                }
-            } 
-            else if (move.type == 2) { 
-                core::Device& d1 = devices[move.device1_id];
-                core::Device& d2 = devices[move.device2_id];
-                
-                servers[move.new_server1_id].rmv_service(d1);
-                servers[move.new_server2_id].rmv_service(d2);
-                
-                servers[move.old_server1_id].add_service(d1);
-                servers[move.old_server2_id].add_service(d2);
+            if (move.new_server_id != -1) {
+                servers[move.new_server_id].rmv_service(device);
+            }
+            if (move.old_server_id != -1) {
+                servers[move.old_server_id].add_service(device);
             }
         }
 
@@ -203,11 +115,9 @@ namespace metaheuristic {
 
             while (T > ZERO) {
                 for (int i = 0; i < LOOP; i++) { 
-                    id_pair_vector sorted_servers = core::sort_servers_by_free(state.servers);
-
-                    Move move = apply_neighbor(state.devices, state.servers, sorted_servers);
-                    if (move.type == 0) continue;
-
+                    Move move = apply_neighbor(state.devices, state.servers);
+                    if (!move.valid) continue;
+                    
                     double neighbor_cost = current_cost + move.delta_cost;
                     double delta = neighbor_cost - current_cost;
 

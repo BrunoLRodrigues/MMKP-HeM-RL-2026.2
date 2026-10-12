@@ -128,7 +128,7 @@ namespace exact {
                 IloCplex cplex(model);
                 cplex.setParam(IloCplex::Param::Threads, 1);
                 cplex.setParam(IloCplex::Param::TimeLimit, time_limit_sec);
-                cplex.setParam(IloCplex::Param::MIP::Tolerances::Integrality, ZERO);
+                //cplex.setParam(IloCplex::Param::MIP::Tolerances::Integrality, ZERO);
 
                 std::filesystem::path run_dir = metrics_ptr->get_base_directory_path();
                 std::filesystem::path log_dir = run_dir / "log";

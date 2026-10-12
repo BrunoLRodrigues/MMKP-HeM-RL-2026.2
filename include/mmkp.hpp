@@ -38,7 +38,7 @@ namespace core {
         double cpu = 0.0;
         double mem = 0.0;
         double sto = 0.0;
-        double free = 0.0;
+        //double free = 0.0;
         i_set devices;
 
         Supply() : cost(0.0), cpu(0.0), mem(0.0), sto(0.0) {}
@@ -88,7 +88,7 @@ namespace core {
             supply.mem += device.mem;
             supply.sto += device.sto;
 
-            calculate_free();
+            //calculate_free();
             
             return true;
         }
@@ -109,43 +109,19 @@ namespace core {
             supply.mem -= device.mem;
             supply.sto -= device.sto;
 
-            calculate_free();
+            //calculate_free();
             
             return true;
         }
-
+        
+        /*
         inline void calculate_free() {
             supply.free = (1 - supply.cpu/cpu) + (1 - supply.mem/mem) + (1 - supply.sto/sto);
         }
+        */
     };
 
     using Servers = std::vector<Server>;   
-
-    /**
-     * @brief Functor to compare server pairs based on free resources (descending).
-     */
-    struct CompareFree {
-        inline bool operator()(const std::pair<int, double>& a, const std::pair<int, double>& b) const {
-            if (a.second != b.second) return a.second > b.second; 
-            return a.first < b.first; 
-        }
-    };
-    
-    inline id_pair_vector sort_servers_by_free(const core::Servers& servers) {
-        id_pair_vector ids;
-        ids.reserve(servers.size() - 1);
-        
-        for (size_t i = 1; i < servers.size(); i++) {
-            ids.push_back({static_cast<int>(i), servers[i].supply.free});
-        }
-
-        std::sort(ids.begin(), ids.end(), [](const std::pair<int, double>& a, const std::pair<int, double>& b) {
-            if (a.second != b.second) return a.second > b.second; 
-            return a.first < b.first; 
-        });
-
-        return ids;
-    }
 }
 
 namespace data::generate {
@@ -263,7 +239,7 @@ namespace data::generate {
                 mem = randomness::random_number(2.5, 125.0);
                 sto = randomness::random_number(15.0, 1000.0);
             } else {
-                double factor = 4.0;
+                double factor = 5.0;
                 cpu = randomness::random_number(100000.0/factor, 200000.0/factor);
                 mem = randomness::random_number(51200.0/factor, 102800.0/factor);
                 sto = randomness::random_number(500000.0/factor, 1000000.0/factor);
@@ -386,10 +362,10 @@ namespace metrics {
      */
     inline std::string to_string(Paradigm paradigm) {
         switch (paradigm) {
-            case Paradigm::EXACT:         return "Exact";
-            case Paradigm::HEURISTIC:     return "Heuristic";
-            case Paradigm::METAHEURISTIC: return "Metaheuristic";
-            default:                       return "UnknownType";
+            case Paradigm::EXACT:         return "EXACT";
+            case Paradigm::HEURISTIC:     return "HEURISTIC";
+            case Paradigm::METAHEURISTIC: return "METAHEURISTIC";
+            default:                       return "NONE";
         }
     }
 
@@ -410,7 +386,7 @@ namespace metrics {
      */
     inline std::string to_string(Algorithm algorithm) {
         switch (algorithm) {
-            case Algorithm::solver_minimum_cost:    return "EXACT";
+            case Algorithm::solver_minimum_cost:    return "SOLVER_MINIMUM_COST";
             case Algorithm::greedy_cost_benefit:    return "GREEDY_CB";    
             case Algorithm::greedy_random:          return "GREEDY_RANDOM";
             case Algorithm::greedy_random_fallback: return "GREEDY_RANDOM_FALLBACK";
@@ -658,8 +634,8 @@ namespace metrics {
             auto m = Metrics::build_metrics();
             std::string cat = to_string(algorithm) + " PARAMETERS";
             m.push_back({cat, "Heuristic", "Initial Solution", to_string(heuristic), to_string(heuristic)});
-            m.push_back({cat, "Temperature", "Initial Temperature", convert::to_string(temperature, 2), convert::to_string(temperature, 2)});
-            m.push_back({cat, "Alpha", "Alpha (Cooling Rate)", convert::to_string(alpha, 2), convert::to_string(alpha, 2)});
+            m.push_back({cat, "Temperature", "Initial Temperature", convert::to_string(temperature, 3), convert::to_string(temperature, 2)});
+            m.push_back({cat, "Alpha", "Alpha (Cooling Rate)", convert::to_string(alpha, 5), convert::to_string(alpha, 2)});
             return m;
         }
 
@@ -675,8 +651,8 @@ namespace metrics {
         std::vector<std::string> data() const override {
             auto d = Metrics::data();
             d.push_back(to_string(heuristic));
-            d.push_back(convert::to_string(temperature, 2));
-            d.push_back(convert::to_string(alpha, 2));
+            d.push_back(convert::to_string(temperature, 3));
+            d.push_back(convert::to_string(alpha, 5));
             return d;
         }
     };

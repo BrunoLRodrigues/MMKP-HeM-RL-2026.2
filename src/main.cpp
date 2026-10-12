@@ -4,16 +4,16 @@
 #include "metaheuristic.hpp"
 
 int SERVICES = 100;
-int DEVICES_START = 10000; 
-int DEVICES_STEP = 1000;  
-int DEVICES_END = 10000;  
+int DEVICES_START = 6500; 
+int DEVICES_STEP = 100;  
+int DEVICES_END = 6900;  
 int EC_LENGTH = 99;      
 int CC_LENGTH = 1;       
-int MAX_RUNS = 20;       
+int MAX_RUNS = 1;       
 
 double CPLEX_TIME_LIMIT = 3600; 
-double TEMPERATURE = 1000;      
-double ALPHA = 0.95;
+double TEMPERATURE = 1000.0;      
+double ALPHA = 0.9999;
 
 /**
  * @brief Executes a specific algorithm configuration for the network resource allocation simulation.
@@ -73,7 +73,7 @@ void run_simulation(const metrics::Result& base, int option, int run_id) {
     }
 
     metrics::calculate_metrics(state);
-    metrics::save_results(state);
+    metrics::save_results(state, false);
 }
 
 int main() {

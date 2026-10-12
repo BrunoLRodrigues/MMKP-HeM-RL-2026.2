@@ -3,6 +3,12 @@
 # Interrompe o script imediatamente se ocorrer algum erro
 set -e
 
+# Configurações do CPLEX IBM (Baseado no tasks.json)
+CPLEX_INCLUDE="/opt/ibm/ILOG/CPLEX_Studio126/cplex/include"
+CONCERT_INCLUDE="/opt/ibm/ILOG/CPLEX_Studio126/concert/include"
+CPLEX_LIB="/opt/ibm/ILOG/CPLEX_Studio126/cplex/lib/x86-64_linux/static_pic"
+CONCERT_LIB="/opt/ibm/ILOG/CPLEX_Studio126/concert/lib/x86-64_linux/static_pic"
+
 # Variáveis de controle para limpeza (false por padrão)
 CLEAN_DATA=false
 CLEAN_RESULTS=false
@@ -20,7 +26,7 @@ while [[ "$#" -gt 0 ]]; do
     shift
 done
 
-# Esvazia o conteúdo dentro da pasta data (caminho corrigido para a raiz)
+# Esvazia o conteúdo dentro da pasta data
 if [ "$CLEAN_DATA" = true ]; then
     echo "=== Limpando o conteúdo da pasta data/ ==="
     if [ -d "data" ]; then
@@ -28,7 +34,7 @@ if [ "$CLEAN_DATA" = true ]; then
     fi
 fi
 
-# Esvazia o conteúdo dentro da pasta results (caminho corrigido para a raiz)
+# Esvazia o conteúdo dentro da pasta results
 if [ "$CLEAN_RESULTS" = true ]; then
     echo "=== Limpando o conteúdo da pasta results/ ==="
     if [ -d "results" ]; then
@@ -44,19 +50,17 @@ fi
 
 echo "=== Configurando o diretório build ==="
 mkdir -p build
-cd build
 
-echo "=== Configurando o projeto com o CMake ==="
-cmake ..
-
-echo "=== Compilando o projeto ==="
-make -j$(nproc)
-
-# Retorna para a raiz do projeto ANTES de executar o binário
-cd ..
+echo "=== Compilando o projeto com G++ (CPLEX + Heuristics) ==="
+# Executa a linha de compilação direta do G++ espelhando o formato do tasks.json
+/usr/bin/g++ -O -fPIC -fexceptions -DNDEBUG -DIL_STD \
+    -I$CPLEX_INCLUDE -I$CONCERT_INCLUDE -Iinclude \
+    -g src/*.cpp -o build/solver_model \
+    -L$CPLEX_LIB -lilocplex -lcplex \
+    -L$CONCERT_LIB -lconcert -lm -lpthread -w
 
 echo "=== Build concluído com sucesso! Executando a simulação... ==="
 echo "------------------------------------------------------------"
 
-# Executa o binário chamando-o a partir da raiz
-./build/MMKP_IoT-EC-CC
+# Executa o binário final a partir da raiz (mantendo o Current Working Directory correto)
+./build/solver_model
