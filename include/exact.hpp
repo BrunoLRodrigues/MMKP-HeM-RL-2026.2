@@ -16,25 +16,25 @@ typedef IloArray<NumVar2D> NumVar3D;
 
 /**
  * @brief Contains mathematical programming models for exact optimization.
- * @details This namespace utilizes the IBM ILOG CPLEX optimizer to solve the network 
- * resource allocation problem to optimality or within a specified time limit, providing 
- * an exact baseline for cost minimization.
+ * @details Utilizes the IBM ILOG CPLEX optimizer to solve the network resource 
+ * allocation problem to optimality or within a specified time limit, providing 
+ * an exact baseline by maximizing avoided non-service penalties.
  */
 namespace exact {
     
     namespace {
 
         /**
-         * @brief Formulates and solves the exact Min-Cost network resource allocation model using CPLEX.
-         * @details Sets up decision variables for device assignment. Defines the objective function 
-         * to minimize total non-service penalties. Applies constraints to ensure devices are assigned 
-         * to at most one server and that server resource capacities (CPU, MEM, STO) are not exceeded. 
-         * Parses the optimized variable values back into the simulation state.
+         * @brief Formulates and solves the exact ILP resource allocation model using CPLEX.
+         * @details Defines binary decision variables for device service status and server 
+         * assignment. Maximizes the total utility of served devices (avoided SLA penalties) 
+         * subject to single-server assignment and multidimensional resource capacity 
+         * constraints (CPU, MEM, STO).
          * 
-         * @param state The unified simulation result state containing devices, servers, and metrics.
-         * @param time_limit_sec The maximum execution time allowed for the CPLEX solver in seconds.
+         * @param state The unified simulation state containing devices, servers, and metrics.
+         * @param time_limit_sec The maximum execution time allowed for the solver in seconds.
          */
-        inline void solver_minimum_cost(metrics::Result& state, int time_limit_sec = 3600) {
+        inline void solver_maximum_cost(metrics::Result& state, int time_limit_sec = 3600) {
             core::Devices& devices = state.devices;
             core::Servers& servers = state.servers;
             
@@ -53,7 +53,7 @@ namespace exact {
                 // 1. VARIABLE DECLARATION
                 //=========================================================================
 
-                // w_{d}: 1 if device d is NOT served, 0 otherwise.
+                // w_{d}: 1 if device d is served, 0 otherwise.
                 IloNumVarArray w(env, devices.size(), 0, 1, ILOBOOL);
                 for (size_t d = 1; d < devices.size(); d++) {
                     std::string name = "w_d(" + std::to_string(d) + ")";
@@ -74,14 +74,14 @@ namespace exact {
                 #pragma region ObjectiveFunction
                 //=========================================================================
                 // 2. OBJECTIVE FUNCTION
-                // Minimize total cost: non-service penalties only.
+                // Maximize total utility: avoided non-service penalties.
                 //=========================================================================
 
                 IloExpr obj(env);
                 for (size_t d = 1; d < devices.size(); d++) {
                     obj += devices[d].cost * w[d];
                 }
-                model.add(IloMinimize(env, obj));
+                model.add(IloMaximize(env, obj));
                 obj.end();
                 #pragma endregion
 
@@ -96,7 +96,7 @@ namespace exact {
                     for (size_t i = 1; i < servers.size(); i++) {
                         c1 += x[i][d];
                     }
-                    model.add(c1 == (1 - w[d]));
+                    model.add(c1 == w[d]);
                     c1.end();
                 }
 
@@ -173,12 +173,11 @@ namespace exact {
 
                 if (cplex.getStatus() == IloAlgorithm::Optimal || cplex.getStatus() == IloAlgorithm::Feasible) {
                     
-                    metrics_ptr->objective_function = (double)cplex.getObjValue();
-                    metrics_ptr->outputs.total_penalty_cost = metrics_ptr->objective_function;
+                    metrics_ptr->objective_function = static_cast<double>(cplex.getObjValue());
                     metrics_ptr->gap = cplex.getMIPRelativeGap();
 
                     for (size_t d = 1; d < devices.size(); d++) {
-                        if (cplex.getValue(w[d]) < 0.5) { // Device is served
+                        if (cplex.getValue(w[d]) > 0.5) { // Device is served
                             for (size_t i = 1; i < servers.size(); i++) {
                                 if (cplex.getValue(x[i][d]) > 0.5) {
                                     servers[i].add_service(devices[d]);
@@ -210,8 +209,8 @@ namespace exact {
     inline void boot(metrics::Result& state, int time_limit_sec = 3600) {
         if (!state.stats) return;
 
-        if (metrics::Algorithm::solver_minimum_cost == state.stats->algorithm) {
-            solver_minimum_cost(state, time_limit_sec);
+        if (metrics::Algorithm::solver_maximum_cost == state.stats->algorithm) {
+            solver_maximum_cost(state, time_limit_sec);
         } else {
             std::cerr << "Error: Unknown mathematical model algorithm type.\n";
         }

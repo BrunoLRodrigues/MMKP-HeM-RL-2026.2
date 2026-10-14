@@ -19,7 +19,7 @@ namespace metaheuristic {
 
     namespace {
 
-        int LOOP = 10;
+        constexpr int LOOP = 10;
 
         /**
          * @brief Represents a state transition within the neighborhood search.
@@ -27,25 +27,37 @@ namespace metaheuristic {
         struct Move {
             bool valid = false;      ///< @brief Indicates if the move was successfully applied.
             int device_id = -1;      ///< @brief ID of the primary device.
-            int old_server_id = -1;  ///< @brief Original server of device 1.
-            int new_server_id = -1;  ///< @brief New server for device 1.
+            int old_server_id = -1;  ///< @brief Original server of the primary device.
+            int new_server_id = -1;  ///< @brief New server of the primary device.
+            int swapped_id = -1;     ///< @brief ID of the secondary device removed in a swap.
             double delta_cost = 0.0; ///< @brief The change in total penalty cost.
         };
 
+        /**
+         * @brief Applies a shift, insert, or swap neighborhood move to the current state.
+         * @details Selects a random device and attempts to allocate or shift it across random 
+         * servers (including a fallback check on the last server for unserved devices). If direct 
+         * allocation fails for an unserved device, attempts a 1-for-1 swap with a served device.
+         * 
+         * @param devices The global state vector of devices.
+         * @param servers The global state vector of servers.
+         * @param tries The maximum number of server selection attempts.
+         * @return Move A structure containing the applied transition details.
+         */
         inline Move apply_neighbor(core::Devices& devices, core::Servers& servers, int tries = 10) {
             Move move;
-            
-            // ==========================================
-            // ACTION 1: SHIFT
-            // ==========================================
-            move.device_id = randomness::random_number<int>(1, static_cast<int>(devices.size() - 1));
-            
+            const int max_dev = static_cast<int>(devices.size() - 1);
+            const int max_srv = static_cast<int>(servers.size() - 1);
+
+            move.device_id = randomness::random_number<int>(1, max_dev);
             core::Device& device = devices[move.device_id];
             move.old_server_id = device.server_id;
 
             int count = 0;
-            while(count < tries) {
-                int i = randomness::random_number<int>(1, static_cast<int>(servers.size() - 1));
+            while (count < tries) {
+                int i = (!device.served && count == tries - 1) 
+                        ? max_srv 
+                        : randomness::random_number<int>(1, max_srv);
                 
                 if (i == device.server_id) continue;
                 count++;
@@ -67,6 +79,28 @@ namespace metaheuristic {
                 }
             }
 
+            if (!device.served) {
+                for (int t = 0; t < tries; t++) {
+                    int cand_id = randomness::random_number<int>(1, max_dev);
+                    core::Device& cand = devices[cand_id];
+                    if (!cand.served) continue;
+
+                    int srv_id = cand.server_id;
+                    core::Server& target_server = servers[srv_id];
+
+                    target_server.rmv_service(cand);
+                    if (target_server.can_serve(device)) {
+                        target_server.add_service(device);
+                        move.new_server_id = srv_id;
+                        move.swapped_id = cand_id;
+                        move.delta_cost = cand.cost - device.cost;
+                        move.valid = true;
+                        return move;
+                    }
+                    target_server.add_service(cand);
+                }
+            }
+
             return move;          
         }
     
@@ -81,6 +115,9 @@ namespace metaheuristic {
                 
             if (move.new_server_id != -1) {
                 servers[move.new_server_id].rmv_service(device);
+            }
+            if (move.swapped_id != -1) {
+                servers[move.new_server_id].add_service(devices[move.swapped_id]);
             }
             if (move.old_server_id != -1) {
                 servers[move.old_server_id].add_service(device);
@@ -107,13 +144,14 @@ namespace metaheuristic {
             
             double best_cost = metrics_ptr->outputs.total_penalty_cost;
             double current_cost = best_cost;
+            bool is_best_synced = true;
             
             double T = metrics_ptr->temperature;
             double alpha = metrics_ptr->alpha;
             
             auto start_chrono = std::chrono::high_resolution_clock::now();
 
-            while (T > ZERO) {
+            while (T > 1e-3) {
                 for (int i = 0; i < LOOP; i++) { 
                     Move move = apply_neighbor(state.devices, state.servers);
                     if (!move.valid) continue;
@@ -121,14 +159,29 @@ namespace metaheuristic {
                     double neighbor_cost = current_cost + move.delta_cost;
                     double delta = neighbor_cost - current_cost;
 
-                    if (delta < 0 || (randomness::random_number(0.0, 1.0) < std::exp(-delta / T))) {
-                        current_cost = neighbor_cost;
-
-                        if (current_cost < best_cost) {
-                            i = 0;
-                            best_cost = current_cost;
+                    if (delta < 0.0 || (randomness::random_number(0.0, 1.0) < std::exp(-delta / T))) {
+                        if (delta > 0.0 && !is_best_synced) {
+                            revert_neighbor(state.devices, state.servers, move);
                             best_devices = state.devices;
                             best_servers = state.servers;
+                            is_best_synced = true;
+                            if (move.swapped_id != -1) {
+                                state.servers[move.new_server_id].rmv_service(state.devices[move.swapped_id]);
+                            }
+                            if (move.old_server_id != -1) {
+                                state.servers[move.old_server_id].rmv_service(state.devices[move.device_id]);
+                            }
+                            if (move.new_server_id != -1) {
+                                state.servers[move.new_server_id].add_service(state.devices[move.device_id]);
+                            }
+                        }
+
+                        current_cost = neighbor_cost;
+
+                        if (current_cost < best_cost - ZERO) {
+                            i = 0;
+                            best_cost = current_cost;
+                            is_best_synced = false;
                         }
                     } else {
                         revert_neighbor(state.devices, state.servers, move);
@@ -137,12 +190,14 @@ namespace metaheuristic {
                 T *= alpha;
             }
             
-            state.devices = std::move(best_devices);
-            state.servers = std::move(best_servers);
+            if (is_best_synced) {
+                state.devices = std::move(best_devices);
+                state.servers = std::move(best_servers);
+            }
 
             auto end_chrono = std::chrono::high_resolution_clock::now();
             metrics_ptr->outputs.execution_time += std::chrono::duration<double>(end_chrono - start_chrono).count();
-        }   
+        } 
     }
 
     /**

@@ -161,8 +161,8 @@ namespace data::generate {
             }
             
             services.push_back({
-                convert::to_string(i), convert::to_string(cos),
-                convert::to_string(cpu), convert::to_string(mem), convert::to_string(sto),
+                convert::to_string(i), convert::to_string(cos, DECIMAL_PLACES),
+                convert::to_string(cpu, DECIMAL_PLACES), convert::to_string(mem, DECIMAL_PLACES), convert::to_string(sto, DECIMAL_PLACES),
                 convert::to_string(tsk)
             });
         }
@@ -239,7 +239,7 @@ namespace data::generate {
                 mem = randomness::random_number(2.5, 125.0);
                 sto = randomness::random_number(15.0, 1000.0);
             } else {
-                double factor = 5.0;
+                double factor = 1.0;
                 cpu = randomness::random_number(100000.0/factor, 200000.0/factor);
                 mem = randomness::random_number(51200.0/factor, 102800.0/factor);
                 sto = randomness::random_number(500000.0/factor, 1000000.0/factor);
@@ -248,9 +248,9 @@ namespace data::generate {
             servers.push_back({
                     convert::to_string(it),        // IDX  
                     (it <= ec_length) ? "E" : "C", // TYPE
-                    convert::to_string(cpu),       // CPU   
-                    convert::to_string(mem),       // MEM 
-                    convert::to_string(sto)        // STO
+                    convert::to_string(cpu, DECIMAL_PLACES),       // CPU   
+                    convert::to_string(mem, DECIMAL_PLACES),       // MEM 
+                    convert::to_string(sto, DECIMAL_PLACES)        // STO
                 });
         }
 
@@ -346,7 +346,7 @@ namespace metrics {
     const std::filesystem::path RESULTS_PATH = std::filesystem::current_path() / "results";
 
     /**
-     * @brief Enumerates the types of simulations available.
+     * @brief Enumerates the paradigms of simulations available.
      */
     enum class Paradigm {
         NONE,
@@ -374,7 +374,7 @@ namespace metrics {
      */
     enum class Algorithm {
         NONE,
-        solver_minimum_cost,
+        solver_maximum_cost,
         greedy_cost_benefit,
         greedy_random,
         greedy_random_fallback,
@@ -386,7 +386,7 @@ namespace metrics {
      */
     inline std::string to_string(Algorithm algorithm) {
         switch (algorithm) {
-            case Algorithm::solver_minimum_cost:    return "SOLVER_MINIMUM_COST";
+            case Algorithm::solver_maximum_cost:    return "SOLVER_MAXIMUM_COST";
             case Algorithm::greedy_cost_benefit:    return "GREEDY_CB";    
             case Algorithm::greedy_random:          return "GREEDY_RANDOM";
             case Algorithm::greedy_random_fallback: return "GREEDY_RANDOM_FALLBACK";
@@ -418,7 +418,7 @@ namespace metrics {
             int devices_count = 0;
             int servers_ec_count = 0;
             int servers_cc_count = 0;
-            int max_penalty_cost = 0;
+            double max_penalty_cost = 0;
 
             Inputs& operator=(const Inputs& other) = default;
         } inputs;
@@ -473,7 +473,7 @@ namespace metrics {
 
             std::vector<MetricEntry> m;
 
-            m.push_back({"GENERAL", "ExeTime", "Execution Time (s)", convert::to_string(outputs.execution_time, 6), convert::to_string(outputs.execution_time, 6)});
+            m.push_back({"GENERAL", "ExeTime", "Execution Time (s)", convert::to_string(outputs.execution_time, DECIMAL_PLACES), convert::to_string(outputs.execution_time, DECIMAL_PLACES)});
             
             m.push_back({"DEVICES", "Devices", "Total", convert::to_string(current_total), std::to_string(current_total)});
             m.push_back({"DEVICES", "DServed", "Served", convert::to_percentage_string(outputs.devices_served_count, current_total), std::to_string(outputs.devices_served_count) + " (" + convert::to_percentage_string(outputs.devices_served_count, current_total) + "%)"});
@@ -485,8 +485,8 @@ namespace metrics {
             m.push_back({"SERVERS", "SUsedEC", "  - Used EC", convert::to_percentage_string(outputs.servers_used_ec_count, inputs.servers_ec_count), std::to_string(outputs.servers_used_ec_count) + " (" + convert::to_percentage_string(outputs.servers_used_ec_count, inputs.servers_ec_count) + "% of EC)"});
             m.push_back({"SERVERS", "SUsedCC", "  - Used CC", convert::to_percentage_string(outputs.servers_used_cc_count, inputs.servers_cc_count), std::to_string(outputs.servers_used_cc_count) + " (" + convert::to_percentage_string(outputs.servers_used_cc_count, inputs.servers_cc_count) + "% of CC)"});
 
-            m.push_back({"COSTS", "MaxCost", "MAX PENALTY COST", convert::to_string(inputs.max_penalty_cost), convert::to_string(inputs.max_penalty_cost)});
-            m.push_back({"COSTS", "PenaltyCost", "PENALTY COST", convert::to_string(outputs.total_penalty_cost, 6), convert::to_string(outputs.total_penalty_cost, 6)});
+            m.push_back({"COSTS", "MaxCost", "MAX PENALTY COST", convert::to_string(inputs.max_penalty_cost, DECIMAL_PLACES), convert::to_string(inputs.max_penalty_cost, DECIMAL_PLACES)});
+            m.push_back({"COSTS", "PenaltyCost", "PENALTY COST", convert::to_string(outputs.total_penalty_cost, DECIMAL_PLACES), convert::to_string(outputs.total_penalty_cost, DECIMAL_PLACES)});
 
             return m;
         }
@@ -513,18 +513,21 @@ namespace metrics {
                 std::to_string(inputs.devices_count),
                 std::to_string(inputs.servers_ec_count),
                 std::to_string(inputs.servers_cc_count),
-                std::to_string(inputs.max_penalty_cost),
-                convert::to_string(outputs.execution_time, 6),
+                convert::to_string(inputs.max_penalty_cost, DECIMAL_PLACES),
+                convert::to_string(outputs.execution_time, DECIMAL_PLACES),
                 std::to_string(outputs.devices_served_count),
                 std::to_string(outputs.devices_served_ec_count),
                 std::to_string(outputs.devices_served_cc_count),
                 std::to_string(outputs.servers_used_count),
                 std::to_string(outputs.servers_used_ec_count),
                 std::to_string(outputs.servers_used_cc_count),
-                convert::to_string(outputs.total_penalty_cost, 6)
+                convert::to_string(outputs.total_penalty_cost, DECIMAL_PLACES)
             };
         }
 
+        /**
+         * @brief Appends the current simulation metrics to the corresponding algorithm CSV file.
+         */
         inline void save_to_file() const {
             std::filesystem::path dir_path = this->get_base_directory_path();
             std::filesystem::path result_path = dir_path / (to_string(this->algorithm) + ".txt");
@@ -564,12 +567,11 @@ namespace metrics {
         std::vector<MetricEntry> build_metrics() const override {
             auto m = Metrics::build_metrics();
             m.push_back({"SOLVER STATS", "Status", "Solver Status", status, status});
-            m.push_back({"SOLVER STATS", "OF", "Objective Function (OF)", convert::to_string(objective_function, 6), convert::to_string(objective_function, 6)});
-            m.push_back({"SOLVER STATS", "GAP", "MIP Gap", convert::to_string(gap, 6), convert::to_percentage_string(gap, 1.0) + "%"});
+            m.push_back({"SOLVER STATS", "OF", "Objective Function (OF)", convert::to_string(objective_function, DECIMAL_PLACES), convert::to_string(objective_function, DECIMAL_PLACES)});
+            m.push_back({"SOLVER STATS", "GAP", "MIP Gap", convert::to_string(gap, DECIMAL_PLACES), convert::to_percentage_string(gap, 1.0) + "%"});
             return m;
         }
 
-        // Adicionando o override para o arquivo texto (CSV) do Solver Exato
         std::vector<std::string> get_header() const override {
             auto h = Metrics::get_header();
             h.push_back("Status");
@@ -581,8 +583,8 @@ namespace metrics {
         std::vector<std::string> data() const override {
             auto d = Metrics::data();
             d.push_back(status);
-            d.push_back(convert::to_string(objective_function, 6));
-            d.push_back(convert::to_string(gap, 6));
+            d.push_back(convert::to_string(objective_function, DECIMAL_PLACES));
+            d.push_back(convert::to_string(gap, DECIMAL_PLACES));
             return d;
         }
     };
@@ -634,12 +636,11 @@ namespace metrics {
             auto m = Metrics::build_metrics();
             std::string cat = to_string(algorithm) + " PARAMETERS";
             m.push_back({cat, "Heuristic", "Initial Solution", to_string(heuristic), to_string(heuristic)});
-            m.push_back({cat, "Temperature", "Initial Temperature", convert::to_string(temperature, 3), convert::to_string(temperature, 2)});
-            m.push_back({cat, "Alpha", "Alpha (Cooling Rate)", convert::to_string(alpha, 5), convert::to_string(alpha, 2)});
+            m.push_back({cat, "Temperature", "Initial Temperature", convert::to_string(temperature, DECIMAL_PLACES), convert::to_string(temperature, DECIMAL_PLACES)});
+            m.push_back({cat, "Alpha", "Alpha (Cooling Rate)", convert::to_string(alpha, DECIMAL_PLACES), convert::to_string(alpha, DECIMAL_PLACES)});
             return m;
         }
 
-        // Adicionando o override para o arquivo texto (CSV) do SA
         std::vector<std::string> get_header() const override {
             auto h = Metrics::get_header();
             h.push_back("Initial_Heuristic");
@@ -651,8 +652,8 @@ namespace metrics {
         std::vector<std::string> data() const override {
             auto d = Metrics::data();
             d.push_back(to_string(heuristic));
-            d.push_back(convert::to_string(temperature, 3));
-            d.push_back(convert::to_string(alpha, 5));
+            d.push_back(convert::to_string(temperature, DECIMAL_PLACES));
+            d.push_back(convert::to_string(alpha, DECIMAL_PLACES));
             return d;
         }
     };
@@ -692,7 +693,7 @@ namespace metrics {
             for (size_t d = 1; d < this->devices.size(); ++d) {
                 total_cost += this->devices[d].cost;
             }
-            stats->inputs.max_penalty_cost = static_cast<int>(total_cost);
+            stats->inputs.max_penalty_cost = static_cast<double>(total_cost);
         }
 
         Result& operator=(const Result& other) {
@@ -764,6 +765,10 @@ namespace metrics {
  */
 namespace display {
 
+    /**
+     * @brief Displays detailed information of a single device to standard output.
+     * @param device The device instance to display.
+     */
     inline void show_device(const core::Device& device) {
         std::cout << "========== Device ID: "  << device.id << " ==========\n"
                   << "  - Cost Penalty:       " << device.cost << "\n"
@@ -782,6 +787,10 @@ namespace display {
         std::cout << "====================================\n" << std::endl;
     }
 
+    /**
+     * @brief Displays detailed information for all devices in the vector.
+     * @param devices The vector of devices to display.
+     */
     inline void show_devices(const core::Devices& devices) {
         std::cout << "\n--- Displaying " << (devices.size() > 0 ? devices.size() - 1 : 0) << " Devices ---\n";
         for (const auto& device : devices) {
@@ -790,6 +799,10 @@ namespace display {
         }
     }
 
+    /**
+     * @brief Displays capacity and current demand of a single server.
+     * @param server The server instance to display.
+     */
     inline void show_server(const core::Server& server) {
         std::cout << "========== Server ID: " << server.id << " (Type: " << server.type << ") ==========\n"
                   << "  --- Capacity ---\n"
@@ -811,6 +824,10 @@ namespace display {
         std::cout << "===============================================\n" << std::endl;
     }
 
+    /**
+     * @brief Displays capacity and demand information for all servers.
+     * @param servers The vector of servers to display.
+     */
     inline void show_servers(const core::Servers& servers) {
         std::cout << "\n--- Displaying " << (servers.size() > 0 ? servers.size() - 1 : 0) << " Servers ---\n";
         for (const auto& server : servers) {
@@ -820,24 +837,43 @@ namespace display {
     }
 
     namespace details {
-        const int total_width = 62;
+        const int total_width = 72;
         const int label_width = 26; 
        
+        /**
+         * @brief Prints a formatted key-value row within the ASCII table.
+         * @param out The target output stream.
+         * @param label The row label string.
+         * @param value The row value string.
+         */
         inline void print_row(std::ostream& out, const std::string& label, const std::string& value) {
             out << "| " << std::left << std::setw(label_width) << label
                 << " | "<< std::left << std::setw(total_width - label_width - 7) << value
                 << " |\n";
         }
 
+        /**
+         * @brief Prints the top or bottom border of the ASCII table.
+         * @param out The target output stream.
+         */
         inline void print_header(std::ostream& out) {
             out << "+" << std::string(total_width - 2, '=') << "+\n";
         }
 
+        /**
+         * @brief Prints a section separator line within the ASCII table.
+         * @param out The target output stream.
+         */
         inline void print_middle(std::ostream& out) {
             out << "+" << std::string(label_width + 2, '-') << "+"
                 << std::string(total_width - label_width - 5, '-') << "+\n";
         }
         
+        /**
+         * @brief Prints a centered title row within the ASCII table.
+         * @param out The target output stream.
+         * @param title The title text to center.
+         */
         inline void print_title(std::ostream& out, const std::string& title) {
             int padding_total = total_width - 3 - static_cast<int>(title.length());
             int padding_left = padding_total / 2;
@@ -847,6 +883,11 @@ namespace display {
         }
     }
 
+    /**
+     * @brief Formats and writes the complete simulation metrics table to an output stream.
+     * @param metrics The metrics instance to format.
+     * @param out The target output stream.
+     */
     inline void show_metrics_console_or_file(const metrics::Metrics& metrics, std::ostream& out) {
         out << "\n";
         details::print_header(out);
@@ -876,6 +917,10 @@ namespace display {
         details::print_header(out);
     }
 
+    /**
+     * @brief Displays the metrics table on the console and appends it to a drawing file.
+     * @param ptr Shared pointer to the simulation metrics instance.
+     */
     inline void show_metrics(const std::shared_ptr<metrics::Metrics>& ptr) {
         if (!ptr) return;
 
@@ -897,6 +942,10 @@ namespace display {
         }
     }
 
+    /**
+     * @brief Prints a summary table of server resource utilization percentages.
+     * @param servers The vector of servers to summarize.
+     */
     inline void show_servers_usage(const core::Servers& servers) {
         std::cout << "\n+------------------------------------------------------------+\n";
         std::cout << "| SERVERS RESOURCE USAGE                                     |\n";

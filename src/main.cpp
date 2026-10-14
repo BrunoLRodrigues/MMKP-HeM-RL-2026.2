@@ -3,17 +3,17 @@
 #include "heuristic.hpp"
 #include "metaheuristic.hpp"
 
-int SERVICES = 100;
-int DEVICES_START = 6500; 
-int DEVICES_STEP = 100;  
-int DEVICES_END = 6900;  
-int EC_LENGTH = 99;      
-int CC_LENGTH = 1;       
-int MAX_RUNS = 1;       
+constexpr int SERVICES = 100;
+constexpr int DEVICES_START = 50000; 
+constexpr int DEVICES_STEP = 1000;  
+constexpr int DEVICES_END = 50000;  
+constexpr int EC_LENGTH = 999;      
+constexpr int CC_LENGTH = 1;       
+constexpr int MAX_RUNS = 1;       
 
-double CPLEX_TIME_LIMIT = 3600; 
-double TEMPERATURE = 1000.0;      
-double ALPHA = 0.9999;
+constexpr double CPLEX_TIME_LIMIT = 3600; 
+constexpr double TEMPERATURE = 50.0;      
+constexpr double ALPHA = 0.9995;
 
 /**
  * @brief Executes a specific algorithm configuration for the network resource allocation simulation.
@@ -22,30 +22,31 @@ double ALPHA = 0.9999;
  * @param run_id The current execution run number.
  */
 void run_simulation(const metrics::Result& base, int option, int run_id) {
-    metrics::Paradigm paradigm;
-    metrics::Algorithm algorithm, initial_heuristic;
+    metrics::Paradigm paradigm = metrics::Paradigm::NONE;
+    metrics::Algorithm algorithm = metrics::Algorithm::NONE;
+    metrics::Algorithm initial_heuristic = metrics::Algorithm::NONE;
 
     if (option == 0) {
         paradigm = metrics::Paradigm::EXACT;
-        algorithm = metrics::Algorithm::solver_minimum_cost;
-    } else if (option == 1) {
+        algorithm = metrics::Algorithm::solver_maximum_cost;
+    } else if (option == -1) {
         paradigm = metrics::Paradigm::HEURISTIC;
         algorithm = metrics::Algorithm::greedy_cost_benefit;
-    } else if (option == 2) {
+    } else if (option == -2) {
         paradigm = metrics::Paradigm::HEURISTIC;
         algorithm = metrics::Algorithm::greedy_random;
-    } else if (option == 3) {
+    } else if (option == -3) {
         paradigm = metrics::Paradigm::HEURISTIC;
         algorithm = metrics::Algorithm::greedy_random_fallback;
-    } else if (option == 4) {
+    } else if (option == 1) {
         paradigm = metrics::Paradigm::METAHEURISTIC;
         algorithm = metrics::Algorithm::simulated_annealing;
         initial_heuristic = metrics::Algorithm::greedy_cost_benefit;
-    } else if (option == 5) {
+    } else if (option == 2) {
         paradigm = metrics::Paradigm::METAHEURISTIC;
         algorithm = metrics::Algorithm::simulated_annealing;
         initial_heuristic = metrics::Algorithm::greedy_random;
-    } else if (option == 6) {
+    } else if (option == 3) {
         paradigm = metrics::Paradigm::METAHEURISTIC;
         algorithm = metrics::Algorithm::simulated_annealing;
         initial_heuristic = metrics::Algorithm::greedy_random_fallback;
@@ -76,13 +77,17 @@ void run_simulation(const metrics::Result& base, int option, int run_id) {
     metrics::save_results(state, false);
 }
 
+/**
+ * @brief Main entry point for the network resource allocation simulation benchmark.
+ * @return int Exit status code.
+ */
 int main() {
     for (int devices_length = DEVICES_START; devices_length <= DEVICES_END; devices_length += DEVICES_STEP) {
         metrics::Result base_state(devices_length, SERVICES, EC_LENGTH, CC_LENGTH);
 
         for (int run = 1; run <= MAX_RUNS; run++) {
-            for (int option = 4; option <= 4; option++) {
-                if (run > 1 && (option <= 1)) continue;
+            for (int option = 1; option <= 3; option++) {
+                if (run > 1 && (option == 0 || option == -1)) continue;
                 run_simulation(base_state, option, run);
             }
         }

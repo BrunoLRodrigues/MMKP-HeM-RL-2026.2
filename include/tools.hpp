@@ -24,7 +24,12 @@
 /**
  * @brief Small constant used to prevent exact zero values in random generation.
  */
-const double ZERO = 1e-13;
+constexpr double ZERO = 1e-13;
+
+/**
+ * @brief Global standard for decimal places in floating-point formatting.
+ */
+constexpr int DECIMAL_PLACES = 10;
 
 /**
  * @brief Provides basic file I/O operations specifically for CSV files.
@@ -169,7 +174,7 @@ namespace convert {
      * @return A string representation of the input value.
      */
     template <typename T>
-    inline std::string to_string(const T& value, int precision = 6) {
+    inline std::string to_string(const T& value, int precision = DECIMAL_PLACES) {
         std::ostringstream out;
         if constexpr (std::is_floating_point_v<T>) {
             out << std::fixed << std::setprecision(precision);
@@ -186,7 +191,7 @@ namespace convert {
      * @param precision The number of decimal places for the resulting percentage string.
      * @return A string representation of the calculated percentage.
      */
-    inline std::string to_percentage_string(double numerator, double denominator, int precision = 4) {
+    inline std::string to_percentage_string(double numerator, double denominator, int precision = DECIMAL_PLACES) {
         if (denominator == 0.0) {
             return to_string(0.0, precision);
         }
@@ -329,117 +334,6 @@ namespace randomness {
         std::iota(numbers.begin(), numbers.end(), min);
         std::shuffle(numbers.begin(), numbers.end(), get_engine());
         return numbers;
-    }
-}
-
-namespace structure {
-
-    /**
-     * @brief Slices a flat vector into a matrix (vector of vectors) based on a schedule.
-     * @details Position [0] represents an empty step. Subsequent vectors contain sequential slices of the source.
-     * @tparam T The type of elements in the source vector.
-     * @param source The flat vector containing all elements to be distributed.
-     * @param schedule A vector of integers where each value represents the number of elements for that step.
-     * @return A matrix representing the data distributed over time.
-     */
-    template <typename T>
-    inline std::vector<std::vector<T>> slice_by_schedule(const std::vector<T>& source, const std::vector<int>& schedule) {
-        std::vector<std::vector<T>> matrix;
-        matrix.reserve(schedule.size() + 1);
-
-        // t = 0: Nothing happens (Empty vector)
-        matrix.push_back(source);
-
-        auto it = source.begin();
-        for (int count : schedule) {
-            std::vector<T> batch;
-            batch.reserve(count);
-
-            // Copy 'count' elements or until source runs out
-            for (int i = 0; i < count && it != source.end(); ++i) {
-                batch.push_back(*it);
-                ++it;
-            }
-            
-            matrix.push_back(std::move(batch));
-        }
-
-        return matrix;
-    }
-
-    /**
-     * @brief Generates an increasing sequence and slices it based on a schedule.
-     * @tparam T The numeric type for the sequence (e.g., int, long).
-     * @param start The starting value of the sequence.
-     * @param end The ending value of the sequence (inclusive).
-     * @param schedule A vector of integers representing the sizes of each slice.
-     * @return A matrix representing the sliced sequence over time.
-     */
-    template <typename T>
-    inline std::vector<std::vector<T>> slice_by_schedule(T start, T end, const std::vector<int>& schedule) {
-        std::vector<T> generated_source;
-
-        if (start <= end) {
-            size_t sequence_size = static_cast<size_t>(end - start + 1);
-            generated_source.resize(sequence_size);
-            std::iota(generated_source.begin(), generated_source.end(), start);
-        }
-
-        return slice_by_schedule(generated_source, schedule);
-    }
-
-    /**
-     * @brief Appends the contents of the source vector to the destination vector.
-     * @tparam T The type of elements in the vectors.
-     * @param dest The destination vector to be modified.
-     * @param src The source vector to be appended.
-     */
-    template <typename T>
-    inline void append_vector(std::vector<T>& dest, const std::vector<T>& src) {
-        dest.insert(dest.end(), src.begin(), src.end());
-    }
-
-    /**
-     * @brief Merges two vectors into a new single vector.
-     * @tparam T The type of elements in the vectors.
-     * @param v1 The first vector.
-     * @param v2 The second vector.
-     * @return A new vector containing elements from v1 followed by v2.
-     */
-    template <typename T>
-    inline std::vector<T> merge_vectors(const std::vector<T>& v1, const std::vector<T>& v2) {
-        std::vector<T> result;
-        result.reserve(v1.size() + v2.size());
-        result.insert(result.end(), v1.begin(), v1.end());
-        result.insert(result.end(), v2.begin(), v2.end());
-        return result;
-    }
-
-    /**
-     * @brief Merges two sets into a new single set.
-     * @tparam T The type of elements in the sets.
-     * @param s1 The first set.
-     * @param s2 The second set.
-     * @return A new set containing unique elements from both s1 and s2.
-     */
-    template <typename T>
-    inline std::set<T> merge_sets(const std::set<T>& s1, const std::set<T>& s2) {
-        std::set<T> result = s1;
-        result.insert(s2.begin(), s2.end());
-        return result;
-    }
-
-    /**
-     * @brief Retrieves the first N elements from a std::set.
-     * @tparam T The type of the elements in the set.
-     * @param input_set The source set.
-     * @param k The number of elements to retrieve.
-     * @return A std::vector containing the first K elements.
-     */
-    template <typename T>
-    inline std::vector<T> get_first_k_elements(const std::set<T>& input_set, size_t k) {
-        size_t limit = std::min(k, input_set.size());
-        return std::vector<T>(input_set.begin(), std::next(input_set.begin(), limit));
     }
 }
 
