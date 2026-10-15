@@ -4,10 +4,10 @@
 set -e
 
 # Configurações do CPLEX IBM (Baseado no tasks.json)
-CPLEX_INCLUDE="/opt/ibm/ILOG/CPLEX_Studio126/cplex/include"
-CONCERT_INCLUDE="/opt/ibm/ILOG/CPLEX_Studio126/concert/include"
-CPLEX_LIB="/opt/ibm/ILOG/CPLEX_Studio126/cplex/lib/x86-64_linux/static_pic"
-CONCERT_LIB="/opt/ibm/ILOG/CPLEX_Studio126/concert/lib/x86-64_linux/static_pic"
+CPLEX_INCLUDE="/opt/ibm/ILOG/CPLEX_Studio222/cplex/include"
+CONCERT_INCLUDE="/opt/ibm/ILOG/CPLEX_Studio222/concert/include"
+CPLEX_LIB="/opt/ibm/ILOG/CPLEX_Studio222/cplex/lib/x86-64_linux/static_pic"
+CONCERT_LIB="/opt/ibm/ILOG/CPLEX_Studio222/concert/lib/x86-64_linux/static_pic"
 
 # Variáveis de controle para limpeza (false por padrão)
 CLEAN_DATA=false
@@ -53,11 +53,11 @@ mkdir -p build
 
 echo "=== Compilando o projeto com G++ (CPLEX + Heuristics) ==="
 # Executa a linha de compilação direta do G++ espelhando o formato do tasks.json
-/usr/bin/g++ -O -fPIC -fexceptions -DNDEBUG -DIL_STD \
+/usr/bin/g++ -O3 -std=c++17 -fPIC -fexceptions -DNDEBUG -DIL_STD \
     -I$CPLEX_INCLUDE -I$CONCERT_INCLUDE -Iinclude \
-    -g src/*.cpp -o build/solver_model \
-    -L$CPLEX_LIB -lilocplex -lcplex \
-    -L$CONCERT_LIB -lconcert -lm -lpthread -w
+    src/*.cpp -o build/solver_model \
+    -L$CPLEX_LIB -L$CONCERT_LIB \
+    -lilocplex -lconcert -lcplex -lm -lpthread -ldl -w
 
 echo "=== Build concluído com sucesso! Executando a simulação... ==="
 echo "------------------------------------------------------------"

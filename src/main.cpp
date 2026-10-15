@@ -4,16 +4,16 @@
 #include "metaheuristic.hpp"
 
 constexpr int SERVICES = 100;
-constexpr int DEVICES_START = 50000; 
+constexpr int DEVICES_START = 10000; 
 constexpr int DEVICES_STEP = 1000;  
-constexpr int DEVICES_END = 50000;  
-constexpr int EC_LENGTH = 999;      
+constexpr int DEVICES_END = 20000;  
+constexpr int EC_LENGTH = 499;      
 constexpr int CC_LENGTH = 1;       
 constexpr int MAX_RUNS = 1;       
 
 constexpr double CPLEX_TIME_LIMIT = 3600; 
 constexpr double TEMPERATURE = 50.0;      
-constexpr double ALPHA = 0.9995;
+constexpr double ALPHA = 0.9999;
 
 /**
  * @brief Executes a specific algorithm configuration for the network resource allocation simulation.
@@ -86,7 +86,7 @@ int main() {
         metrics::Result base_state(devices_length, SERVICES, EC_LENGTH, CC_LENGTH);
 
         for (int run = 1; run <= MAX_RUNS; run++) {
-            for (int option = 1; option <= 3; option++) {
+            for (int option = 0; option <= 3; option++) {
                 if (run > 1 && (option == 0 || option == -1)) continue;
                 run_simulation(base_state, option, run);
             }

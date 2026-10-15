@@ -239,7 +239,7 @@ namespace data::generate {
                 mem = randomness::random_number(2.5, 125.0);
                 sto = randomness::random_number(15.0, 1000.0);
             } else {
-                double factor = 1.0;
+                double factor = 2.0;
                 cpu = randomness::random_number(100000.0/factor, 200000.0/factor);
                 mem = randomness::random_number(51200.0/factor, 102800.0/factor);
                 sto = randomness::random_number(500000.0/factor, 1000000.0/factor);

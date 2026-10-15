@@ -5,23 +5,18 @@
 #include <ilcplex/ilocplex.h>
 
 /**
- * @brief Type alias for a 2D array of CPLEX numerical variables.
- */
-typedef IloArray<IloNumVarArray> NumVar2D;
-
-/**
- * @brief Type alias for a 3D array of CPLEX numerical variables.
- */
-typedef IloArray<NumVar2D> NumVar3D;
-
-/**
  * @brief Contains mathematical programming models for exact optimization.
  * @details Utilizes the IBM ILOG CPLEX optimizer to solve the network resource 
  * allocation problem to optimality or within a specified time limit, providing 
  * an exact baseline by maximizing avoided non-service penalties.
  */
 namespace exact {
-    
+
+    /**
+     * @brief Type alias for a 2D array of CPLEX numerical variables.
+     */
+    using NumVar2D = IloArray<IloNumVarArray>;
+
     namespace {
 
         /**
@@ -47,64 +42,41 @@ namespace exact {
             IloEnv env;
             try {
                 IloModel model(env);
+                const size_t num_devices = devices.size();
+                const size_t num_servers = servers.size();
                 
                 #pragma region VariableDeclaration
                 //=========================================================================
                 // 1. VARIABLE DECLARATION
                 //=========================================================================
 
-                // w_{d}: 1 if device d is served, 0 otherwise.
-                IloNumVarArray w(env, devices.size(), 0, 1, ILOBOOL);
-                for (size_t d = 1; d < devices.size(); d++) {
-                    std::string name = "w_d(" + std::to_string(d) + ")";
-                    w[d].setName(name.c_str());
-                }
-
                 // x^{i}_{d}: 1 if device d is allocated to server i, 0 otherwise.
-                NumVar2D x(env, servers.size());
-                for (size_t i = 1; i < servers.size(); i++) {
-                    x[i] = IloNumVarArray(env, devices.size(), 0, 1, ILOBOOL);
-                    for (size_t d = 1; d < devices.size(); d++) {
-                        std::string name = "x_s(" + std::to_string(i) + ")_d(" + std::to_string(d) + ")";
-                        x[i][d].setName(name.c_str());
-                    }
+                NumVar2D x(env, num_servers);
+                for (size_t i = 1; i < num_servers; i++) {
+                    x[i] = IloNumVarArray(env, num_devices, 0, 1, ILOBOOL);
                 }
                 #pragma endregion
                 
-                #pragma region ObjectiveFunction
-                //=========================================================================
-                // 2. OBJECTIVE FUNCTION
-                // Maximize total utility: avoided non-service penalties.
-                //=========================================================================
-
+                #pragma region ObjectiveFunctionAndConstraints
                 IloExpr obj(env);
-                for (size_t d = 1; d < devices.size(); d++) {
-                    obj += devices[d].cost * w[d];
-                }
-                model.add(IloMaximize(env, obj));
-                obj.end();
-                #pragma endregion
 
-                #pragma region Constraints
-                //=========================================================================
-                // 3. CONSTRAINTS
-                //=========================================================================
-
-                for (size_t d = 1; d < devices.size(); d++) {
-                    // Constraint (1): Each device is served by at most one server globally.
+                for (size_t d = 1; d < num_devices; d++) {
                     IloExpr c1(env);
-                    for (size_t i = 1; i < servers.size(); i++) {
+                    for (size_t i = 1; i < num_servers; i++) {
                         c1 += x[i][d];
+                        obj += devices[d].cost * x[i][d];
                     }
-                    model.add(c1 == w[d]);
+                    model.add(c1 <= 1);
                     c1.end();
                 }
 
-                // Constraints (2-4): Server resource capacity limits.
-                for (size_t i = 1; i < servers.size(); i++) {
+                model.add(IloMaximize(env, obj));
+                obj.end();
+
+                for (size_t i = 1; i < num_servers; i++) {
                     IloExpr c_cpu(env), c_mem(env), c_sto(env);
                     
-                    for (size_t d = 1; d < devices.size(); d++) {
+                    for (size_t d = 1; d < num_devices; d++) {
                         c_cpu += devices[d].cpu * x[i][d]; 
                         c_mem += devices[d].mem * x[i][d]; 
                         c_sto += devices[d].sto * x[i][d]; 
@@ -126,35 +98,22 @@ namespace exact {
                 //=========================================================================
 
                 IloCplex cplex(model);
+                cplex.setOut(env.getNullStream());
+                cplex.setWarning(env.getNullStream());
+                
                 cplex.setParam(IloCplex::Param::Threads, 1);
+                cplex.setParam(IloCplex::Param::ClockType, 2);
                 cplex.setParam(IloCplex::Param::TimeLimit, time_limit_sec);
-                //cplex.setParam(IloCplex::Param::MIP::Tolerances::Integrality, ZERO);
 
-                std::filesystem::path run_dir = metrics_ptr->get_base_directory_path();
-                std::filesystem::path log_dir = run_dir / "log";
-                std::filesystem::path model_dir = run_dir / "model";
-                
-                std::filesystem::create_directories(log_dir);
-                std::filesystem::create_directories(model_dir);
-                
-                std::string file_name = "Devices" + std::to_string(metrics_ptr->inputs.devices_count) + 
-                                        "_EC" + std::to_string(metrics_ptr->inputs.servers_ec_count) + 
-                                        "_CC" + std::to_string(metrics_ptr->inputs.servers_cc_count);
-                
-                std::filesystem::path log_path = log_dir / (file_name + ".log");
-                std::filesystem::path model_path = model_dir / (file_name + ".lp");
+                cplex.setParam(IloCplex::Param::WorkMem, 16384);
+                cplex.setParam(IloCplex::Param::MIP::Strategy::File, 3);
 
-                std::ofstream log_file(log_path);
-                if (log_file.is_open()) {
-                    cplex.setOut(log_file);
-                } else {
-                    cplex.setOut(env.getNullStream());
-                }
-
-                cplex.exportModel(model_path.c_str());
+                // Relative MIP gap tolerance of 1e-3 (0.001)
+                cplex.setParam(IloCplex::Param::MIP::Tolerances::MIPGap, 1e-3);
+                cplex.setParam(IloCplex::Param::Emphasis::MIP, IloCplex::MIPEmphasisBalanced);
 
                 auto start_chrono = std::chrono::high_resolution_clock::now();
-                cplex.solve();
+                const IloBool has_solution = cplex.solve();
                 auto end_chrono = std::chrono::high_resolution_clock::now();
                 
                 metrics_ptr->outputs.execution_time = std::chrono::duration<double>(end_chrono - start_chrono).count();
@@ -162,8 +121,6 @@ namespace exact {
                 std::stringstream status;
                 status << cplex.getStatus();
                 metrics_ptr->status = status.str();
-                
-                log_file.close();
                 #pragma endregion
 
                 #pragma region Result
@@ -171,26 +128,23 @@ namespace exact {
                 // 5. PARSE RESULTS
                 //=========================================================================
 
-                if (cplex.getStatus() == IloAlgorithm::Optimal || cplex.getStatus() == IloAlgorithm::Feasible) {
-                    
+                if (has_solution) {
                     metrics_ptr->objective_function = static_cast<double>(cplex.getObjValue());
-                    metrics_ptr->gap = cplex.getMIPRelativeGap();
+                    metrics_ptr->gap = static_cast<double>(cplex.getMIPRelativeGap());
 
-                    for (size_t d = 1; d < devices.size(); d++) {
-                        if (cplex.getValue(w[d]) > 0.5) { // Device is served
-                            for (size_t i = 1; i < servers.size(); i++) {
-                                if (cplex.getValue(x[i][d]) > 0.5) {
-                                    servers[i].add_service(devices[d]);
-                                    break;
-                                }
+                    for (size_t i = 1; i < num_servers; i++) {
+                        for (size_t d = 1; d < num_devices; d++) {
+                            if (cplex.isExtracted(x[i][d]) && cplex.getValue(x[i][d]) > 0.5) {
+                                servers[i].add_service(devices[d]);
                             }
-                        } 
+                        }
                     }
                 }
-                #pragma endregion
 
             } catch (const IloException& e) {
                 std::cerr << "CPLEX Error: " << e.getMessage() << "\n";
+            } catch (const std::exception& e) {
+                std::cerr << "Standard Exception: " << e.what() << "\n";
             } catch (...) {
                 std::cerr << "An unknown error occurred in the CPLEX model.\n";
             }

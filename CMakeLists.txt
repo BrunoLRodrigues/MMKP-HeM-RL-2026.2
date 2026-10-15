@@ -8,12 +8,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # --- 1. Manually define paths for CPLEX 12.6 ---
 # Header directories (.h)
-set(CPLEX_INCLUDE_DIR "/opt/ibm/ILOG/CPLEX_Studio126/cplex/include")
-set(CONCERT_INCLUDE_DIR "/opt/ibm/ILOG/CPLEX_Studio126/concert/include")
+set(CPLEX_INCLUDE_DIR "/opt/ibm/ILOG/CPLEX_Studio222/cplex/include")
+set(CONCERT_INCLUDE_DIR "/opt/ibm/ILOG/CPLEX_Studio222/concert/include")
 
 # Library directories (.a)
-set(CPLEX_LIB_DIR "/opt/ibm/ILOG/CPLEX_Studio126/cplex/lib/x86-64_linux/static_pic")
-set(CONCERT_LIB_DIR "/opt/ibm/ILOG/CPLEX_Studio126/concert/lib/x86-64_linux/static_pic")
+set(CPLEX_LIB_DIR "/opt/ibm/ILOG/CPLEX_Studio222/cplex/lib/x86-64_linux/static_pic")
+set(CONCERT_LIB_DIR "/opt/ibm/ILOG/CPLEX_Studio222/concert/lib/x86-64_linux/static_pic")
 
 # 2. Find the Threads library (for the -lpthread flag)
 find_package(Threads REQUIRED)
