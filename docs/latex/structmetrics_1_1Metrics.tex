@@ -1,0 +1,324 @@
+\doxysection{metrics\+::Metrics Struct Reference}
+\hypertarget{structmetrics_1_1Metrics}{}\label{structmetrics_1_1Metrics}\index{metrics::Metrics@{metrics::Metrics}}
+
+
+Polymorphic base structure for tracking, calculating, and saving simulation metrics.  
+
+
+
+
+{\ttfamily \#include $<$mmkp.\+hpp$>$}
+
+
+
+Inheritance diagram for metrics\+::Metrics\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structmetrics_1_1Metrics__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for metrics\+::Metrics\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structmetrics_1_1Metrics__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs}{Inputs}}
+\begin{DoxyCompactList}\small\item\em Captures the static input instance dimensions and maximum possible penalty cost. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs}{Outputs}}
+\begin{DoxyCompactList}\small\item\em Captures the resulting performance and resource utilization metrics after allocation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structmetrics_1_1Metrics_a9217a58687ba34ac1761400e68e740f4}{Metrics}} (\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}} paradigm\+\_\+, \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}} algorithm\+\_\+name\+\_\+, int \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\+\_\+id}})
+\begin{DoxyCompactList}\small\item\em Constructs a {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} object with paradigm, algorithm, and run ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmetrics_1_1Metrics_a834a73372dabe9703229d24b046a2887}{Metrics}} (\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}} paradigm\+\_\+, \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}} algorithm\+\_\+name\+\_\+, int \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\+\_\+id}}, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}} $>$ \&base)
+\begin{DoxyCompactList}\small\item\em Constructs a {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} object copying input dimensions from a base instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmetrics_1_1Metrics_a0240efd0553a3ae4803fbd8e281dae90}{Metrics}} (\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}} paradigm\+\_\+, \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}} algorithm\+\_\+name\+\_\+, int \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\+\_\+id}}, int d, int s\+\_\+ec, int s\+\_\+cc)
+\begin{DoxyCompactList}\small\item\em Constructs a {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} object with explicit instance counts. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmetrics_1_1Metrics_aea7719ee4b9b57770c7180a32673b732}{Metrics}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}} $>$ \&base, int \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\+\_\+id}})
+\begin{DoxyCompactList}\small\item\em Copy-\/like constructor initializing from an existing {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} pointer and updating {\ttfamily run\+\_\+id}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{structmetrics_1_1Metrics_aea82b1fb1a350ce2ea39b8d0c504e124}{\texorpdfstring{$\sim$}{\string~}\+Metrics}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for safe polymorphic cleanup. \end{DoxyCompactList}\item 
+virtual std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}} $>$ \mbox{\hyperlink{structmetrics_1_1Metrics_a838af45542e979996137bbcb3dffac8b}{clone}} () const
+\begin{DoxyCompactList}\small\item\em Creates a polymorphic deep copy of this {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} instance. \end{DoxyCompactList}\item 
+virtual std\+::filesystem\+::path \mbox{\hyperlink{structmetrics_1_1Metrics_a3d3c87cc48e752bab4238d3686fcf8f8}{get\+\_\+base\+\_\+directory\+\_\+path}} () const
+\begin{DoxyCompactList}\small\item\em Returns the output directory path corresponding to the current paradigm. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ \mbox{\hyperlink{structmetrics_1_1MetricEntry}{Metric\+Entry}} $>$ \mbox{\hyperlink{structmetrics_1_1Metrics_af63915d0c63b05e31be006320ce706a6}{build\+\_\+metrics}} () const
+\begin{DoxyCompactList}\small\item\em Builds the list of formatted metric entries for console and file reporting. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{structmetrics_1_1Metrics_aa0f8b0b47c23913a43fd55391100a60b}{get\+\_\+header}} () const
+\begin{DoxyCompactList}\small\item\em Returns the CSV header columns for the current metric type. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{structmetrics_1_1Metrics_aae2f001dafac22ff14300767311562b8}{data}} () const
+\begin{DoxyCompactList}\small\item\em Collects the metric values matching the columns of {\ttfamily \doxylink{structmetrics_1_1Metrics_aa0f8b0b47c23913a43fd55391100a60b}{get\+\_\+header()}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmetrics_1_1Metrics_a282b4959f016cb954aeea5a71c829032}{save\+\_\+to\+\_\+file}} () const
+\begin{DoxyCompactList}\small\item\em Appends the current simulation metrics row to the corresponding algorithm CSV file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}} \mbox{\hyperlink{structmetrics_1_1Metrics_a3826511b1490b1dc00db005abde1ec40}{paradigm}} = \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aab50339a10e1de285ac99d4c3990b8693}{Paradigm\+::\+NONE}}
+\begin{DoxyCompactList}\small\item\em Optimization paradigm of the current run. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}} \mbox{\hyperlink{structmetrics_1_1Metrics_a833606cb55a8544ef0154c0c7fa0e44f}{algorithm}} = \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11ab50339a10e1de285ac99d4c3990b8693}{Algorithm\+::\+NONE}}
+\begin{DoxyCompactList}\small\item\em Algorithm executed in the current run. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\+\_\+id}} = 0
+\begin{DoxyCompactList}\small\item\em Execution run identifier (1-\/indexed). \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs}{metrics\+::\+Metrics\+::\+Inputs}} \mbox{\hyperlink{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}{inputs}}
+\begin{DoxyCompactList}\small\item\em Instance input parameters. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs}{metrics\+::\+Metrics\+::\+Outputs}} \mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}
+\begin{DoxyCompactList}\small\item\em Simulation output metrics. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Polymorphic base structure for tracking, calculating, and saving simulation metrics. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structmetrics_1_1Metrics_a9217a58687ba34ac1761400e68e740f4}\label{structmetrics_1_1Metrics_a9217a58687ba34ac1761400e68e740f4} 
+\index{metrics::Metrics@{metrics::Metrics}!Metrics@{Metrics}}
+\index{Metrics@{Metrics}!metrics::Metrics@{metrics::Metrics}}
+\doxysubsubsection{\texorpdfstring{Metrics()}{Metrics()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily metrics\+::\+Metrics\+::\+Metrics (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}}}]{paradigm\+\_\+,  }\item[{\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}}}]{algorithm\+\_\+name\+\_\+,  }\item[{int}]{run\+\_\+id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} object with paradigm, algorithm, and run ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em paradigm\+\_\+} & Optimization paradigm. \\
+\hline
+{\em algorithm\+\_\+name\+\_\+} & Executed algorithm. \\
+\hline
+{\em run\+\_\+id} & Current run number. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structmetrics_1_1Metrics_a834a73372dabe9703229d24b046a2887}\label{structmetrics_1_1Metrics_a834a73372dabe9703229d24b046a2887} 
+\index{metrics::Metrics@{metrics::Metrics}!Metrics@{Metrics}}
+\index{Metrics@{Metrics}!metrics::Metrics@{metrics::Metrics}}
+\doxysubsubsection{\texorpdfstring{Metrics()}{Metrics()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily metrics\+::\+Metrics\+::\+Metrics (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}}}]{paradigm\+\_\+,  }\item[{\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}}}]{algorithm\+\_\+name\+\_\+,  }\item[{int}]{run\+\_\+id,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}} $>$ \&}]{base }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} object copying input dimensions from a base instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em paradigm\+\_\+} & Optimization paradigm. \\
+\hline
+{\em algorithm\+\_\+name\+\_\+} & Executed algorithm. \\
+\hline
+{\em run\+\_\+id} & Current run number. \\
+\hline
+{\em base} & Shared pointer to a base {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} instance containing input parameters. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structmetrics_1_1Metrics_a0240efd0553a3ae4803fbd8e281dae90}\label{structmetrics_1_1Metrics_a0240efd0553a3ae4803fbd8e281dae90} 
+\index{metrics::Metrics@{metrics::Metrics}!Metrics@{Metrics}}
+\index{Metrics@{Metrics}!metrics::Metrics@{metrics::Metrics}}
+\doxysubsubsection{\texorpdfstring{Metrics()}{Metrics()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily metrics\+::\+Metrics\+::\+Metrics (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}}}]{paradigm\+\_\+,  }\item[{\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}}}]{algorithm\+\_\+name\+\_\+,  }\item[{int}]{run\+\_\+id,  }\item[{int}]{d,  }\item[{int}]{s\+\_\+ec,  }\item[{int}]{s\+\_\+cc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} object with explicit instance counts. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em paradigm\+\_\+} & Optimization paradigm. \\
+\hline
+{\em algorithm\+\_\+name\+\_\+} & Executed algorithm. \\
+\hline
+{\em run\+\_\+id} & Current run number. \\
+\hline
+{\em d} & Total device count. \\
+\hline
+{\em s\+\_\+ec} & Edge server count. \\
+\hline
+{\em s\+\_\+cc} & Cloud server count. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structmetrics_1_1Metrics_aea7719ee4b9b57770c7180a32673b732}\label{structmetrics_1_1Metrics_aea7719ee4b9b57770c7180a32673b732} 
+\index{metrics::Metrics@{metrics::Metrics}!Metrics@{Metrics}}
+\index{Metrics@{Metrics}!metrics::Metrics@{metrics::Metrics}}
+\doxysubsubsection{\texorpdfstring{Metrics()}{Metrics()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily metrics\+::\+Metrics\+::\+Metrics (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}} $>$ \&}]{base,  }\item[{int}]{run\+\_\+id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Copy-\/like constructor initializing from an existing {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} pointer and updating {\ttfamily run\+\_\+id}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em base} & Shared pointer to an existing {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} object. \\
+\hline
+{\em run\+\_\+id} & New run identifier. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structmetrics_1_1Metrics_aea82b1fb1a350ce2ea39b8d0c504e124}\label{structmetrics_1_1Metrics_aea82b1fb1a350ce2ea39b8d0c504e124} 
+\index{metrics::Metrics@{metrics::Metrics}!````~Metrics@{\texorpdfstring{$\sim$}{\string~}Metrics}}
+\index{````~Metrics@{\texorpdfstring{$\sim$}{\string~}Metrics}!metrics::Metrics@{metrics::Metrics}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Metrics()}{\string~Metrics()}}
+{\footnotesize\ttfamily virtual metrics\+::\+Metrics\+::\texorpdfstring{$\sim$}{\string~}\+Metrics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+Virtual destructor for safe polymorphic cleanup. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structmetrics_1_1Metrics_af63915d0c63b05e31be006320ce706a6}\label{structmetrics_1_1Metrics_af63915d0c63b05e31be006320ce706a6} 
+\index{metrics::Metrics@{metrics::Metrics}!build\_metrics@{build\_metrics}}
+\index{build\_metrics@{build\_metrics}!metrics::Metrics@{metrics::Metrics}}
+\doxysubsubsection{\texorpdfstring{build\_metrics()}{build\_metrics()}}
+{\footnotesize\ttfamily virtual std\+::vector$<$ \mbox{\hyperlink{structmetrics_1_1MetricEntry}{Metric\+Entry}} $>$ metrics\+::\+Metrics\+::build\+\_\+metrics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Builds the list of formatted metric entries for console and file reporting. 
+
+\begin{DoxyReturn}{Returns}
+Vector of {\ttfamily \doxylink{structmetrics_1_1MetricEntry}{Metric\+Entry}} records. 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{structmetrics_1_1ExactMetrics_ae99cb9c2fa55d61fae9fa870c8241727}{metrics\+::\+Exact\+Metrics}}, and \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a2e6d0537cc0ba4d062bc79ca93591a17}{metrics\+::\+Meta\+Heuristic\+Metrics}}.
+
+\Hypertarget{structmetrics_1_1Metrics_a838af45542e979996137bbcb3dffac8b}\label{structmetrics_1_1Metrics_a838af45542e979996137bbcb3dffac8b} 
+\index{metrics::Metrics@{metrics::Metrics}!clone@{clone}}
+\index{clone@{clone}!metrics::Metrics@{metrics::Metrics}}
+\doxysubsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily virtual std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}} $>$ metrics\+::\+Metrics\+::clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Creates a polymorphic deep copy of this {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} instance. 
+
+\begin{DoxyReturn}{Returns}
+A {\ttfamily std\+::shared\+\_\+ptr\texorpdfstring{$<$}{<}\doxylink{structmetrics_1_1Metrics}{Metrics}\texorpdfstring{$>$}{>}} pointing to the cloned instance. 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{structmetrics_1_1ExactMetrics_ab1058b8e443a2c28e86128afb7d253ff}{metrics\+::\+Exact\+Metrics}}, \mbox{\hyperlink{structmetrics_1_1HeuristicMetrics_a82621204baa20252efe563f69f1bfadd}{metrics\+::\+Heuristic\+Metrics}}, and \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a50a49fe0d7c98ab584ba79af50280a37}{metrics\+::\+Meta\+Heuristic\+Metrics}}.
+
+\Hypertarget{structmetrics_1_1Metrics_aae2f001dafac22ff14300767311562b8}\label{structmetrics_1_1Metrics_aae2f001dafac22ff14300767311562b8} 
+\index{metrics::Metrics@{metrics::Metrics}!data@{data}}
+\index{data@{data}!metrics::Metrics@{metrics::Metrics}}
+\doxysubsubsection{\texorpdfstring{data()}{data()}}
+{\footnotesize\ttfamily virtual std\+::vector$<$ std\+::string $>$ metrics\+::\+Metrics\+::data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Collects the metric values matching the columns of {\ttfamily \doxylink{structmetrics_1_1Metrics_aa0f8b0b47c23913a43fd55391100a60b}{get\+\_\+header()}}. 
+
+\begin{DoxyReturn}{Returns}
+Vector of formatted string values for a single CSV row. 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{structmetrics_1_1ExactMetrics_aa164372f0ec3c9680644b3d2f55117a7}{metrics\+::\+Exact\+Metrics}}, and \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_aaa64c8b3dc34768bc87c86fd24aa3a25}{metrics\+::\+Meta\+Heuristic\+Metrics}}.
+
+\Hypertarget{structmetrics_1_1Metrics_a3d3c87cc48e752bab4238d3686fcf8f8}\label{structmetrics_1_1Metrics_a3d3c87cc48e752bab4238d3686fcf8f8} 
+\index{metrics::Metrics@{metrics::Metrics}!get\_base\_directory\_path@{get\_base\_directory\_path}}
+\index{get\_base\_directory\_path@{get\_base\_directory\_path}!metrics::Metrics@{metrics::Metrics}}
+\doxysubsubsection{\texorpdfstring{get\_base\_directory\_path()}{get\_base\_directory\_path()}}
+{\footnotesize\ttfamily virtual std\+::filesystem\+::path metrics\+::\+Metrics\+::get\+\_\+base\+\_\+directory\+\_\+path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns the output directory path corresponding to the current paradigm. 
+
+\begin{DoxyReturn}{Returns}
+Filesystem path {\ttfamily results/\texorpdfstring{$<$}{<}PARADIGM\texorpdfstring{$>$}{>}}. 
+\end{DoxyReturn}
+\Hypertarget{structmetrics_1_1Metrics_aa0f8b0b47c23913a43fd55391100a60b}\label{structmetrics_1_1Metrics_aa0f8b0b47c23913a43fd55391100a60b} 
+\index{metrics::Metrics@{metrics::Metrics}!get\_header@{get\_header}}
+\index{get\_header@{get\_header}!metrics::Metrics@{metrics::Metrics}}
+\doxysubsubsection{\texorpdfstring{get\_header()}{get\_header()}}
+{\footnotesize\ttfamily virtual std\+::vector$<$ std\+::string $>$ metrics\+::\+Metrics\+::get\+\_\+header (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns the CSV header columns for the current metric type. 
+
+\begin{DoxyReturn}{Returns}
+Vector of column header strings. 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{structmetrics_1_1ExactMetrics_a93043f660ea769becfd8105eea97860c}{metrics\+::\+Exact\+Metrics}}, and \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a47ddf6e4dab1f6f0705b86f1baf83128}{metrics\+::\+Meta\+Heuristic\+Metrics}}.
+
+\Hypertarget{structmetrics_1_1Metrics_a282b4959f016cb954aeea5a71c829032}\label{structmetrics_1_1Metrics_a282b4959f016cb954aeea5a71c829032} 
+\index{metrics::Metrics@{metrics::Metrics}!save\_to\_file@{save\_to\_file}}
+\index{save\_to\_file@{save\_to\_file}!metrics::Metrics@{metrics::Metrics}}
+\doxysubsubsection{\texorpdfstring{save\_to\_file()}{save\_to\_file()}}
+{\footnotesize\ttfamily void metrics\+::\+Metrics\+::save\+\_\+to\+\_\+file (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Appends the current simulation metrics row to the corresponding algorithm CSV file. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structmetrics_1_1Metrics_a833606cb55a8544ef0154c0c7fa0e44f}\label{structmetrics_1_1Metrics_a833606cb55a8544ef0154c0c7fa0e44f} 
+\index{metrics::Metrics@{metrics::Metrics}!algorithm@{algorithm}}
+\index{algorithm@{algorithm}!metrics::Metrics@{metrics::Metrics}}
+\doxysubsubsection{\texorpdfstring{algorithm}{algorithm}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}} metrics\+::\+Metrics\+::algorithm = \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11ab50339a10e1de285ac99d4c3990b8693}{Algorithm\+::\+NONE}}}
+
+
+
+Algorithm executed in the current run. 
+
+\Hypertarget{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}\label{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47} 
+\index{metrics::Metrics@{metrics::Metrics}!inputs@{inputs}}
+\index{inputs@{inputs}!metrics::Metrics@{metrics::Metrics}}
+\doxysubsubsection{\texorpdfstring{inputs}{inputs}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs}{metrics\+::\+Metrics\+::\+Inputs}} metrics\+::\+Metrics\+::inputs}
+
+
+
+Instance input parameters. 
+
+\Hypertarget{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}\label{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61} 
+\index{metrics::Metrics@{metrics::Metrics}!outputs@{outputs}}
+\index{outputs@{outputs}!metrics::Metrics@{metrics::Metrics}}
+\doxysubsubsection{\texorpdfstring{outputs}{outputs}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs}{metrics\+::\+Metrics\+::\+Outputs}} metrics\+::\+Metrics\+::outputs}
+
+
+
+Simulation output metrics. 
+
+\Hypertarget{structmetrics_1_1Metrics_a3826511b1490b1dc00db005abde1ec40}\label{structmetrics_1_1Metrics_a3826511b1490b1dc00db005abde1ec40} 
+\index{metrics::Metrics@{metrics::Metrics}!paradigm@{paradigm}}
+\index{paradigm@{paradigm}!metrics::Metrics@{metrics::Metrics}}
+\doxysubsubsection{\texorpdfstring{paradigm}{paradigm}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}} metrics\+::\+Metrics\+::paradigm = \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aab50339a10e1de285ac99d4c3990b8693}{Paradigm\+::\+NONE}}}
+
+
+
+Optimization paradigm of the current run. 
+
+\Hypertarget{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}\label{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8} 
+\index{metrics::Metrics@{metrics::Metrics}!run\_id@{run\_id}}
+\index{run\_id@{run\_id}!metrics::Metrics@{metrics::Metrics}}
+\doxysubsubsection{\texorpdfstring{run\_id}{run\_id}}
+{\footnotesize\ttfamily int metrics\+::\+Metrics\+::run\+\_\+id = 0}
+
+
+
+Execution run identifier (1-\/indexed). 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{mmkp_8hpp}{mmkp.\+hpp}}\end{DoxyCompactItemize}

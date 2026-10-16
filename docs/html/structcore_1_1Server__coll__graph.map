@@ -1,0 +1,5 @@
+<map id="core::Server" name="core::Server">
+<area shape="rect" id="Node000001" title="Represents an Edge Computing (EC) or Cloud Computing (CC) server node." alt="" coords="7,93,107,119"/>
+<area shape="rect" id="Node000002" href="$structcore_1_1Supply.html" title="Tracks the cumulative resource consumption and allocated device IDs on a single server." alt="" coords="5,5,108,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="59,45,59,93,54,93,54,45"/>
+</map>

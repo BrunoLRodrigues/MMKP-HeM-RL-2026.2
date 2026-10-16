@@ -1,0 +1,87 @@
+\doxysection{metrics\+::Metrics\+::Inputs Struct Reference}
+\hypertarget{structmetrics_1_1Metrics_1_1Inputs}{}\label{structmetrics_1_1Metrics_1_1Inputs}\index{metrics::Metrics::Inputs@{metrics::Metrics::Inputs}}
+
+
+Captures the static input instance dimensions and maximum possible penalty cost.  
+
+
+
+
+{\ttfamily \#include $<$mmkp.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs}{Inputs}} \& \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs_aa5721481986aecd320a74b81fd934a65}{operator=}} (const \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs}{Inputs}} \&other)=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs_a9d9c4dfecd2326830937ae54669317df}{devices\+\_\+count}} = 0
+\begin{DoxyCompactList}\small\item\em Total number of IoT devices in the instance. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs_ac142acfded6ab5b0649805d2ef2dff5d}{servers\+\_\+ec\+\_\+count}} = 0
+\begin{DoxyCompactList}\small\item\em Total number of Edge Computing (EC) servers. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs_ac19c41609f670f2c082d687bfa070804}{servers\+\_\+cc\+\_\+count}} = 0
+\begin{DoxyCompactList}\small\item\em Total number of Cloud Computing (CC) servers. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs_adf9f25a68afdd633f3cef74181ba393e}{max\+\_\+penalty\+\_\+cost}} = 0
+\begin{DoxyCompactList}\small\item\em Sum of penalty costs across all devices if none are served. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Captures the static input instance dimensions and maximum possible penalty cost. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structmetrics_1_1Metrics_1_1Inputs_aa5721481986aecd320a74b81fd934a65}\label{structmetrics_1_1Metrics_1_1Inputs_aa5721481986aecd320a74b81fd934a65} 
+\index{metrics::Metrics::Inputs@{metrics::Metrics::Inputs}!operator=@{operator=}}
+\index{operator=@{operator=}!metrics::Metrics::Inputs@{metrics::Metrics::Inputs}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs}{Inputs}} \& metrics\+::\+Metrics\+::\+Inputs\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs}{Inputs}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structmetrics_1_1Metrics_1_1Inputs_a9d9c4dfecd2326830937ae54669317df}\label{structmetrics_1_1Metrics_1_1Inputs_a9d9c4dfecd2326830937ae54669317df} 
+\index{metrics::Metrics::Inputs@{metrics::Metrics::Inputs}!devices\_count@{devices\_count}}
+\index{devices\_count@{devices\_count}!metrics::Metrics::Inputs@{metrics::Metrics::Inputs}}
+\doxysubsubsection{\texorpdfstring{devices\_count}{devices\_count}}
+{\footnotesize\ttfamily int metrics\+::\+Metrics\+::\+Inputs\+::devices\+\_\+count = 0}
+
+
+
+Total number of IoT devices in the instance. 
+
+\Hypertarget{structmetrics_1_1Metrics_1_1Inputs_adf9f25a68afdd633f3cef74181ba393e}\label{structmetrics_1_1Metrics_1_1Inputs_adf9f25a68afdd633f3cef74181ba393e} 
+\index{metrics::Metrics::Inputs@{metrics::Metrics::Inputs}!max\_penalty\_cost@{max\_penalty\_cost}}
+\index{max\_penalty\_cost@{max\_penalty\_cost}!metrics::Metrics::Inputs@{metrics::Metrics::Inputs}}
+\doxysubsubsection{\texorpdfstring{max\_penalty\_cost}{max\_penalty\_cost}}
+{\footnotesize\ttfamily double metrics\+::\+Metrics\+::\+Inputs\+::max\+\_\+penalty\+\_\+cost = 0}
+
+
+
+Sum of penalty costs across all devices if none are served. 
+
+\Hypertarget{structmetrics_1_1Metrics_1_1Inputs_ac19c41609f670f2c082d687bfa070804}\label{structmetrics_1_1Metrics_1_1Inputs_ac19c41609f670f2c082d687bfa070804} 
+\index{metrics::Metrics::Inputs@{metrics::Metrics::Inputs}!servers\_cc\_count@{servers\_cc\_count}}
+\index{servers\_cc\_count@{servers\_cc\_count}!metrics::Metrics::Inputs@{metrics::Metrics::Inputs}}
+\doxysubsubsection{\texorpdfstring{servers\_cc\_count}{servers\_cc\_count}}
+{\footnotesize\ttfamily int metrics\+::\+Metrics\+::\+Inputs\+::servers\+\_\+cc\+\_\+count = 0}
+
+
+
+Total number of Cloud Computing (CC) servers. 
+
+\Hypertarget{structmetrics_1_1Metrics_1_1Inputs_ac142acfded6ab5b0649805d2ef2dff5d}\label{structmetrics_1_1Metrics_1_1Inputs_ac142acfded6ab5b0649805d2ef2dff5d} 
+\index{metrics::Metrics::Inputs@{metrics::Metrics::Inputs}!servers\_ec\_count@{servers\_ec\_count}}
+\index{servers\_ec\_count@{servers\_ec\_count}!metrics::Metrics::Inputs@{metrics::Metrics::Inputs}}
+\doxysubsubsection{\texorpdfstring{servers\_ec\_count}{servers\_ec\_count}}
+{\footnotesize\ttfamily int metrics\+::\+Metrics\+::\+Inputs\+::servers\+\_\+ec\+\_\+count = 0}
+
+
+
+Total number of Edge Computing (EC) servers. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{mmkp_8hpp}{mmkp.\+hpp}}\end{DoxyCompactItemize}

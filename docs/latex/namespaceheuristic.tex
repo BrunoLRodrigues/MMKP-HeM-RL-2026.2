@@ -1,0 +1,42 @@
+\doxysection{heuristic Namespace Reference}
+\hypertarget{namespaceheuristic}{}\label{namespaceheuristic}\index{heuristic@{heuristic}}
+
+
+Contains constructive heuristic algorithms for network resource allocation.  
+
+
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceheuristic_1_1anonymous__namespace_02heuristic_8hpp_03}{anonymous\+\_\+namespace\{heuristic.\+hpp\}}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespaceheuristic_a49f05c0252bd2ad23bf788bdf45e79cc}{boot}} (\mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}} \&state)
+\begin{DoxyCompactList}\small\item\em Bootstraps and executes the configured constructive heuristic. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contains constructive heuristic algorithms for network resource allocation. 
+
+Implements fast, polynomial-\/time approximation strategies (Greedy Cost-\/\+Benefit, Greedy Random, and Greedy Random Fallback) prioritizing low execution times while minimizing unserved device penalty costs. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceheuristic_a49f05c0252bd2ad23bf788bdf45e79cc}\label{namespaceheuristic_a49f05c0252bd2ad23bf788bdf45e79cc} 
+\index{heuristic@{heuristic}!boot@{boot}}
+\index{boot@{boot}!heuristic@{heuristic}}
+\doxysubsubsection{\texorpdfstring{boot()}{boot()}}
+{\footnotesize\ttfamily void heuristic\+::boot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}} \&}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Bootstraps and executes the configured constructive heuristic. 
+
+Reads the specified algorithm identifier from {\ttfamily state.\+stats} and dispatches execution to the corresponding heuristic solver.
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & The unified simulation state to be processed. \\
+\hline
+\end{DoxyParams}

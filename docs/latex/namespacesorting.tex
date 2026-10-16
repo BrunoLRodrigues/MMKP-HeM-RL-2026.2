@@ -1,0 +1,87 @@
+\doxysection{sorting Namespace Reference}
+\hypertarget{namespacesorting}{}\label{namespacesorting}\index{sorting@{sorting}}
+
+
+Generic index-\/based sorting utilities for ordering 1-\/indexed entity vectors by member attributes.  
+
+
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacesorting_1_1details}{details}}
+\begin{DoxyCompactList}\small\item\em Internal implementation helpers for pointer-\/to-\/member index sorting. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$bool Ascending, typename T , typename Attribute\+Type , Attribute\+Type T\+::\texorpdfstring{$\ast$}{*} Attribute\+Ptr$>$ }\\std\+::vector$<$ int $>$ \mbox{\hyperlink{namespacesorting_a7d794c04fb04c9db129b2b3236f83223}{sort\+\_\+entities}} (const std\+::vector$<$ T $>$ \&entities)
+\begin{DoxyCompactList}\small\item\em Sorts the indices of all entities (from {\ttfamily 1} to {\ttfamily N-\/1}) by a specific struct/class attribute. \end{DoxyCompactList}\item 
+{\footnotesize template$<$bool Ascending, typename T , typename Attribute\+Type , Attribute\+Type T\+::\texorpdfstring{$\ast$}{*} Attribute\+Ptr$>$ }\\std\+::vector$<$ int $>$ \mbox{\hyperlink{namespacesorting_a009d8d26a17114c1b6731643c8dce782}{sort\+\_\+entities}} (const std\+::vector$<$ T $>$ \&entities, const std\+::vector$<$ int $>$ \&indices\+\_\+to\+\_\+sort)
+\begin{DoxyCompactList}\small\item\em Sorts a specific subset of entity indices by a struct/class member attribute. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Generic index-\/based sorting utilities for ordering 1-\/indexed entity vectors by member attributes. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacesorting_a7d794c04fb04c9db129b2b3236f83223}\label{namespacesorting_a7d794c04fb04c9db129b2b3236f83223} 
+\index{sorting@{sorting}!sort\_entities@{sort\_entities}}
+\index{sort\_entities@{sort\_entities}!sorting@{sorting}}
+\doxysubsubsection{\texorpdfstring{sort\_entities()}{sort\_entities()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$bool Ascending, typename T , typename Attribute\+Type , Attribute\+Type T\+::\texorpdfstring{$\ast$}{*} Attribute\+Ptr$>$ \\
+std\+::vector$<$ int $>$ sorting\+::sort\+\_\+entities (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{entities }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sorts the indices of all entities (from {\ttfamily 1} to {\ttfamily N-\/1}) by a specific struct/class attribute. 
+
+Does not mutate the original {\ttfamily entities} vector. Assumes 1-\/based indexing where index {\ttfamily 0} is a placeholder. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Ascending} & If {\ttfamily true}, sorts in ascending order; otherwise, descending. \\
+\hline
+{\em T} & The type of the entity. \\
+\hline
+{\em Attribute\+Type} & The data type of the member attribute. \\
+\hline
+{\em Attribute\+Ptr} & Pointer-\/to-\/member specifying the attribute for comparison. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em entities} & The constant 1-\/indexed vector of entities. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new {\ttfamily std\+::vector\texorpdfstring{$<$}{<}int\texorpdfstring{$>$}{>}} containing the sorted 1-\/based indices. 
+\end{DoxyReturn}
+\Hypertarget{namespacesorting_a009d8d26a17114c1b6731643c8dce782}\label{namespacesorting_a009d8d26a17114c1b6731643c8dce782} 
+\index{sorting@{sorting}!sort\_entities@{sort\_entities}}
+\index{sort\_entities@{sort\_entities}!sorting@{sorting}}
+\doxysubsubsection{\texorpdfstring{sort\_entities()}{sort\_entities()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$bool Ascending, typename T , typename Attribute\+Type , Attribute\+Type T\+::\texorpdfstring{$\ast$}{*} Attribute\+Ptr$>$ \\
+std\+::vector$<$ int $>$ sorting\+::sort\+\_\+entities (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{entities,  }\item[{const std\+::vector$<$ int $>$ \&}]{indices\+\_\+to\+\_\+sort }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sorts a specific subset of entity indices by a struct/class member attribute. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Ascending} & If {\ttfamily true}, sorts in ascending order; otherwise, descending. \\
+\hline
+{\em T} & The type of the entity. \\
+\hline
+{\em Attribute\+Type} & The data type of the member attribute. \\
+\hline
+{\em Attribute\+Ptr} & Pointer-\/to-\/member specifying the attribute for comparison. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em entities} & The constant 1-\/indexed vector of entities. \\
+\hline
+{\em indices\+\_\+to\+\_\+sort} & A vector of integers representing the subset of 1-\/based indices to sort. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new {\ttfamily std\+::vector\texorpdfstring{$<$}{<}int\texorpdfstring{$>$}{>}} containing the sorted subset indices. 
+\end{DoxyReturn}

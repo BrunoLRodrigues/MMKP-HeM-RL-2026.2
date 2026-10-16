@@ -1,0 +1,8 @@
+<map id="include/heuristic.hpp" name="include/heuristic.hpp">
+<area shape="rect" id="Node000001" title="Constructive heuristic algorithms for fast MMKP resource allocation." alt="" coords="89,5,246,31"/>
+<area shape="rect" id="Node000002" href="$metaheuristic_8hpp.html" title="Meta&#45;heuristic optimization algorithms and neighborhood operators for MMKP." alt="" coords="5,79,196,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="149,43,113,80,110,77,145,39"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html" title="Entry point and benchmark runner for the MMKP IoT&#45;EC&#45;CC resource allocation simulator." alt="" coords="115,152,220,177"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="191,40,209,69,213,87,211,105,197,132,181,153,177,150,193,129,206,103,208,87,204,72,186,43"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="123,113,158,150,155,154,119,116"/>
+</map>

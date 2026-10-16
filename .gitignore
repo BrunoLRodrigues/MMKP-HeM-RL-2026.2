@@ -4,8 +4,6 @@ CMakeCache.txt
 CMakeFiles/
 
 # EN: Doxygen generated output and backup files / PT: Saídas geradas pelo Doxygen e arquivos de backup
-docs/html/
-docs/latex/
 *.bak
 
 # EN: Local IDE, OS, and WSL metadata / PT: Configurações locais de IDE, SO e WSL

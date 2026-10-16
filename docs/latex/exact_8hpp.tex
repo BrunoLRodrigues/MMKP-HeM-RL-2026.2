@@ -1,0 +1,48 @@
+\doxysection{include/exact.hpp File Reference}
+\hypertarget{exact_8hpp}{}\label{exact_8hpp}\index{include/exact.hpp@{include/exact.hpp}}
+
+
+Exact Integer Linear Programming (ILP) formulations using IBM ILOG CPLEX.  
+
+
+{\ttfamily \#include "{}mmkp.\+hpp"{}}\newline
+{\ttfamily \#include $<$ilcplex/ilocplex.\+h$>$}\newline
+Include dependency graph for exact.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{exact_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{exact_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceexact}{exact}}
+\begin{DoxyCompactList}\small\item\em Contains mathematical programming models for exact optimization. \end{DoxyCompactList}\item 
+namespace \mbox{\hyperlink{namespaceexact_1_1anonymous__namespace_02exact_8hpp_03}{exact\+::anonymous\+\_\+namespace\{exact.\+hpp\}}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespaceexact_a4ba342845801f3cf0d7fcd8d496504d9}{exact\+::\+Num\+Var2D}} = Ilo\+Array$<$ Ilo\+Num\+Var\+Array $>$
+\begin{DoxyCompactList}\small\item\em Type alias for a 2D matrix of CPLEX decision variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespaceexact_1_1anonymous__namespace_02exact_8hpp_03_ae7ca96aa19f5b3b84819efcfe40a885b}{exact\+::anonymous\+\_\+namespace\{exact.\+hpp\}\+::solver\+\_\+maximum\+\_\+cost}} (\mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}} \&state, int time\+\_\+limit\+\_\+sec=3600)
+\item 
+void \mbox{\hyperlink{namespaceexact_a6aacffeeb6699d2f7d822d8d0866edbc}{exact\+::boot}} (\mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}} \&state, int time\+\_\+limit\+\_\+sec=3600)
+\begin{DoxyCompactList}\small\item\em Bootstraps and executes the configured exact mathematical model. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Exact Integer Linear Programming (ILP) formulations using IBM ILOG CPLEX. 
+
+Provides the mathematical optimization model and solver configuration to solve the Multiple Multidimensional Knapsack Problem (MMKP) for Io\+T-\/\+EC-\/\+CC resource allocation. 

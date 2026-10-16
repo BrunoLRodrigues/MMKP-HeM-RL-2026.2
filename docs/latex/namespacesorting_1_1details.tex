@@ -1,0 +1,47 @@
+\doxysection{sorting\+::details Namespace Reference}
+\hypertarget{namespacesorting_1_1details}{}\label{namespacesorting_1_1details}\index{sorting::details@{sorting::details}}
+
+
+Internal implementation helpers for pointer-\/to-\/member index sorting.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$bool Ascending, typename T , typename Attribute\+Type , Attribute\+Type T\+::\texorpdfstring{$\ast$}{*} Attribute\+Ptr$>$ }\\void \mbox{\hyperlink{namespacesorting_1_1details_adf77f33a62d55f5505c5d5d542fa226c}{sort\+\_\+indices\+\_\+impl}} (const std\+::vector$<$ T $>$ \&entities, std\+::vector$<$ int $>$ \&idxs)
+\begin{DoxyCompactList}\small\item\em Sorts a vector of indices based on a specified struct/class member attribute. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Internal implementation helpers for pointer-\/to-\/member index sorting. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacesorting_1_1details_adf77f33a62d55f5505c5d5d542fa226c}\label{namespacesorting_1_1details_adf77f33a62d55f5505c5d5d542fa226c} 
+\index{sorting::details@{sorting::details}!sort\_indices\_impl@{sort\_indices\_impl}}
+\index{sort\_indices\_impl@{sort\_indices\_impl}!sorting::details@{sorting::details}}
+\doxysubsubsection{\texorpdfstring{sort\_indices\_impl()}{sort\_indices\_impl()}}
+{\footnotesize\ttfamily template$<$bool Ascending, typename T , typename Attribute\+Type , Attribute\+Type T\+::\texorpdfstring{$\ast$}{*} Attribute\+Ptr$>$ \\
+void sorting\+::details\+::sort\+\_\+indices\+\_\+impl (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{entities,  }\item[{std\+::vector$<$ int $>$ \&}]{idxs }\end{DoxyParamCaption})}
+
+
+
+Sorts a vector of indices based on a specified struct/class member attribute. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Ascending} & Sort direction flag ({\ttfamily true} for ascending, {\ttfamily false} for descending). \\
+\hline
+{\em T} & Entity struct/class type. \\
+\hline
+{\em Attribute\+Type} & Data type of the sorted member attribute. \\
+\hline
+{\em Attribute\+Ptr} & Pointer-\/to-\/member specifying the comparison attribute. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em entities} & Constant reference to the entity vector. \\
+\hline
+{\em idxs} & Vector of 1-\/based indices to be sorted in-\/place. \\
+\hline
+\end{DoxyParams}

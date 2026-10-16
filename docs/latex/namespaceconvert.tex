@@ -1,0 +1,122 @@
+\doxysection{convert Namespace Reference}
+\hypertarget{namespaceconvert}{}\label{namespaceconvert}\index{convert@{convert}}
+
+
+Short namespace alias for {\ttfamily \doxylink{namespacefile__manager_1_1csv}{file\+\_\+manager\+::csv}}.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::string \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{to\+\_\+string}} (const T \&value, int precision=\mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\+\_\+\+PLACES}})
+\begin{DoxyCompactList}\small\item\em Converts a value of any streamable type to its string representation. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespaceconvert_a58f9ce99c0ce086862a328dbead787f5}{to\+\_\+percentage\+\_\+string}} (double numerator, double denominator, int precision=\mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\+\_\+\+PLACES}})
+\begin{DoxyCompactList}\small\item\em Calculates a percentage and converts it to a formatted string. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::string \mbox{\hyperlink{namespaceconvert_a7be8805a91cdd6ed61d3b26533d5deed}{vector\+\_\+to\+\_\+string}} (const std\+::vector$<$ T $>$ \&vec)
+\begin{DoxyCompactList}\small\item\em Converts a vector of primitive types to a bracketed array string representation. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::string \mbox{\hyperlink{namespaceconvert_a7a5be89d85cfeacfaeffd02106bba210}{set\+\_\+to\+\_\+string}} (const std\+::set$<$ T $>$ \&s)
+\begin{DoxyCompactList}\small\item\em Converts a {\ttfamily std\+::set} of primitive types to a bracketed array string representation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Short namespace alias for {\ttfamily \doxylink{namespacefile__manager_1_1csv}{file\+\_\+manager\+::csv}}. 
+
+String conversion and formatting utilities for numbers, percentages, vectors, and sets. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceconvert_a7a5be89d85cfeacfaeffd02106bba210}\label{namespaceconvert_a7a5be89d85cfeacfaeffd02106bba210} 
+\index{convert@{convert}!set\_to\_string@{set\_to\_string}}
+\index{set\_to\_string@{set\_to\_string}!convert@{convert}}
+\doxysubsubsection{\texorpdfstring{set\_to\_string()}{set\_to\_string()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::string convert\+::set\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{const std\+::set$<$ T $>$ \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Converts a {\ttfamily std\+::set} of primitive types to a bracketed array string representation. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of elements in the set. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The set to convert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string formatted as {\ttfamily "{}\mbox{[}e1,e2,...\mbox{]}"{}}. 
+\end{DoxyReturn}
+\Hypertarget{namespaceconvert_a58f9ce99c0ce086862a328dbead787f5}\label{namespaceconvert_a58f9ce99c0ce086862a328dbead787f5} 
+\index{convert@{convert}!to\_percentage\_string@{to\_percentage\_string}}
+\index{to\_percentage\_string@{to\_percentage\_string}!convert@{convert}}
+\doxysubsubsection{\texorpdfstring{to\_percentage\_string()}{to\_percentage\_string()}}
+{\footnotesize\ttfamily std\+::string convert\+::to\+\_\+percentage\+\_\+string (\begin{DoxyParamCaption}\item[{double}]{numerator,  }\item[{double}]{denominator,  }\item[{int}]{precision = {\ttfamily \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\+\_\+\+PLACES}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calculates a percentage and converts it to a formatted string. 
+
+Computes \$( $\text$\{numerator\} / $\text$\{denominator\}) $\times$ 100.\+0\$ and formats it to {\ttfamily precision} decimal places. Safely returns {\ttfamily 0.\+0} when {\ttfamily denominator == 0.\+0}. 
+\begin{DoxyParams}{Parameters}
+{\em numerator} & The value representing the part of the total. \\
+\hline
+{\em denominator} & The value representing the total. \\
+\hline
+{\em precision} & The number of decimal places for the resulting percentage string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string representation of the calculated percentage. 
+\end{DoxyReturn}
+\Hypertarget{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}\label{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e} 
+\index{convert@{convert}!to\_string@{to\_string}}
+\index{to\_string@{to\_string}!convert@{convert}}
+\doxysubsubsection{\texorpdfstring{to\_string()}{to\_string()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::string convert\+::to\+\_\+string (\begin{DoxyParamCaption}\item[{const T \&}]{value,  }\item[{int}]{precision = {\ttfamily \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\+\_\+\+PLACES}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Converts a value of any streamable type to its string representation. 
+
+Uses {\ttfamily std\+::ostringstream} for conversion, applying fixed-\/point notation with the specified precision for floating-\/point types. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The data type of the value to be converted. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value to convert. \\
+\hline
+{\em precision} & The number of decimal places for floating-\/point types. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A formatted string representation of {\ttfamily value}. 
+\end{DoxyReturn}
+\Hypertarget{namespaceconvert_a7be8805a91cdd6ed61d3b26533d5deed}\label{namespaceconvert_a7be8805a91cdd6ed61d3b26533d5deed} 
+\index{convert@{convert}!vector\_to\_string@{vector\_to\_string}}
+\index{vector\_to\_string@{vector\_to\_string}!convert@{convert}}
+\doxysubsubsection{\texorpdfstring{vector\_to\_string()}{vector\_to\_string()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::string convert\+::vector\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Converts a vector of primitive types to a bracketed array string representation. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of elements in the vector. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & The vector to convert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string formatted as {\ttfamily "{}\mbox{[}e1,e2,...\mbox{]}"{}}. 
+\end{DoxyReturn}

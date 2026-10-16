@@ -1,0 +1,99 @@
+\doxysection{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\} Namespace Reference}
+\hypertarget{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03}{}\label{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03}\index{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}@{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{Move}}
+\begin{DoxyCompactList}\small\item\em Represents a reversible state transition within the neighborhood search. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{Move}} \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a3043acb2774dc482b46e7ffc19f672a6}{apply\+\_\+neighbor}} (\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} \&devices, \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} \&servers, int tries=10)
+\begin{DoxyCompactList}\small\item\em Applies a shift, insert, or swap neighborhood move to the current state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a8a942dd816ecc741137762ec82b563a0}{revert\+\_\+neighbor}} (\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} \&devices, \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} \&servers, const \mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{Move}} \&move)
+\begin{DoxyCompactList}\small\item\em Reverts a previously applied neighborhood move in \$O( $\log$ N)\$ time. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a6297cb9a818da42479ae99fcb13ed8cf}{simulated\+\_\+annealing}} (\mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}} \&state)
+\begin{DoxyCompactList}\small\item\em Executes the Simulated Annealing (SA) optimization algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+constexpr int \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a55eda76f1c1e58ce4654833f7dee433e}{LOOP}} = 10
+\begin{DoxyCompactList}\small\item\em Number of inner-\/loop iterations (Markov chain length) executed per temperature level. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a3043acb2774dc482b46e7ffc19f672a6}\label{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a3043acb2774dc482b46e7ffc19f672a6} 
+\index{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}@{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}}!apply\_neighbor@{apply\_neighbor}}
+\index{apply\_neighbor@{apply\_neighbor}!metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}@{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}}}
+\doxysubsubsection{\texorpdfstring{apply\_neighbor()}{apply\_neighbor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{Move}} metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::apply\+\_\+neighbor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} \&}]{devices,  }\item[{\mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} \&}]{servers,  }\item[{int}]{tries = {\ttfamily 10} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Applies a shift, insert, or swap neighborhood move to the current state. 
+
+Selects a random device and attempts to allocate or shift it across random servers (including a fallback check on the last server for unserved devices). If direct allocation fails for an unserved device, attempts a 1-\/for-\/1 swap with a currently served device.
+
+
+\begin{DoxyParams}{Parameters}
+{\em devices} & The global state vector of devices. \\
+\hline
+{\em servers} & The global state vector of servers. \\
+\hline
+{\em tries} & The maximum number of random candidate attempts. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{Move} A structure containing the applied transition details and cost variation. 
+\end{DoxyReturn}
+\Hypertarget{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a8a942dd816ecc741137762ec82b563a0}\label{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a8a942dd816ecc741137762ec82b563a0} 
+\index{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}@{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}}!revert\_neighbor@{revert\_neighbor}}
+\index{revert\_neighbor@{revert\_neighbor}!metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}@{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}}}
+\doxysubsubsection{\texorpdfstring{revert\_neighbor()}{revert\_neighbor()}}
+{\footnotesize\ttfamily void metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::revert\+\_\+neighbor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} \&}]{devices,  }\item[{\mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} \&}]{servers,  }\item[{const \mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{Move}} \&}]{move }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reverts a previously applied neighborhood move in \$O( $\log$ N)\$ time. 
+
+Restores the exact server allocations and resource supplies prior to {\ttfamily apply\+\_\+neighbor}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em devices} & The global state vector of devices. \\
+\hline
+{\em servers} & The global state vector of servers. \\
+\hline
+{\em move} & The {\ttfamily \doxylink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{Move}} structure containing the transition details to undo. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a6297cb9a818da42479ae99fcb13ed8cf}\label{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a6297cb9a818da42479ae99fcb13ed8cf} 
+\index{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}@{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}}!simulated\_annealing@{simulated\_annealing}}
+\index{simulated\_annealing@{simulated\_annealing}!metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}@{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}}}
+\doxysubsubsection{\texorpdfstring{simulated\_annealing()}{simulated\_annealing()}}
+{\footnotesize\ttfamily void metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::simulated\+\_\+annealing (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}} \&}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Executes the Simulated Annealing (SA) optimization algorithm. 
+
+Iteratively explores the solution space by applying random neighborhood moves. Accepts worsening moves according to the Metropolis criterion \$ $\exp$(-\/ $\Delta$ / T)\$ to escape local optima, cooling down geometrically via factor \$ $\alpha$\$ until \$T $\le$ 10\texorpdfstring{$^\wedge$}{\string^}\{-\/3\}\$. Uses lazy synchronization for tracking the best-\/found state.
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & The unified simulation state containing devices, servers, and metrics. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a55eda76f1c1e58ce4654833f7dee433e}\label{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a55eda76f1c1e58ce4654833f7dee433e} 
+\index{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}@{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}}!LOOP@{LOOP}}
+\index{LOOP@{LOOP}!metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}@{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}}}
+\doxysubsubsection{\texorpdfstring{LOOP}{LOOP}}
+{\footnotesize\ttfamily constexpr int metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::\+LOOP = 10\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Number of inner-\/loop iterations (Markov chain length) executed per temperature level. 
+

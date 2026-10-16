@@ -1,0 +1,93 @@
+\doxysection{main.\+cpp}
+\hypertarget{main_8cpp_source}{}\label{main_8cpp_source}\index{src/main.cpp@{src/main.cpp}}
+\mbox{\hyperlink{main_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{mmkp_8hpp}{mmkp.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{exact_8hpp}{exact.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{heuristic_8hpp}{heuristic.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{metaheuristic_8hpp}{metaheuristic.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00014}\mbox{\hyperlink{main_8cpp_a97af17a128538a7283ef3d4243fe4c9f}{00014}}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a97af17a128538a7283ef3d4243fe4c9f}{SERVICES}}\ =\ 100;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00015}\mbox{\hyperlink{main_8cpp_a388d4bbd8ca214abdbc3a5e4e7cfc30d}{00015}}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a388d4bbd8ca214abdbc3a5e4e7cfc30d}{DEVICES\_START}}\ =\ 10000;\ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00016}\mbox{\hyperlink{main_8cpp_a09403595097b1f51af63092dd418f351}{00016}}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a09403595097b1f51af63092dd418f351}{DEVICES\_STEP}}\ =\ 1000;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00017}\mbox{\hyperlink{main_8cpp_aab824fb582166fcccb57753d354abeae}{00017}}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_aab824fb582166fcccb57753d354abeae}{DEVICES\_END}}\ =\ 20000;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00018}\mbox{\hyperlink{main_8cpp_a182bbb04b1b749e22fcf1db5320565bf}{00018}}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a182bbb04b1b749e22fcf1db5320565bf}{EC\_LENGTH}}\ =\ 499;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00019}\mbox{\hyperlink{main_8cpp_ac9605b81b1ba727a64be5293e7e6830d}{00019}}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_ac9605b81b1ba727a64be5293e7e6830d}{CC\_LENGTH}}\ =\ 1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00020}\mbox{\hyperlink{main_8cpp_a4dd65ede7d682789089fe5b304cb91cd}{00020}}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a4dd65ede7d682789089fe5b304cb91cd}{MAX\_RUNS}}\ =\ 50;\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00021}\mbox{\hyperlink{main_8cpp_aee3b0bf3c221f2b523053029839c7265}{00021}}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{main_8cpp_aee3b0bf3c221f2b523053029839c7265}{CPLEX\_TIME\_LIMIT}}\ =\ 3600;\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00022}\mbox{\hyperlink{main_8cpp_a6ee0d833caf468544d3742ba723e4bcf}{00022}}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{main_8cpp_a6ee0d833caf468544d3742ba723e4bcf}{TEMPERATURE}}\ =\ 50.0;\ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00023}\mbox{\hyperlink{main_8cpp_ac8d8134e0885e1c88485a079ad5d638c}{00023}}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{main_8cpp_ac8d8134e0885e1c88485a079ad5d638c}{ALPHA}}\ =\ 0.9999;\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00042}\mbox{\hyperlink{main_8cpp_ac2e90b5f462e53a2ae61c61d92846023}{00042}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8cpp_ac2e90b5f462e53a2ae61c61d92846023}{run\_simulation}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structmetrics_1_1Result}{metrics::Result}}\&\ base,\ \textcolor{keywordtype}{int}\ option,\ \textcolor{keywordtype}{int}\ run\_id)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00043}00043\ \ \ \ \ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{metrics::Paradigm}}\ paradigm\ =\ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aab50339a10e1de285ac99d4c3990b8693}{metrics::Paradigm::NONE}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00044}00044\ \ \ \ \ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{metrics::Algorithm}}\ algorithm\ =\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11ab50339a10e1de285ac99d4c3990b8693}{metrics::Algorithm::NONE}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00045}00045\ \ \ \ \ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{metrics::Algorithm}}\ initial\_heuristic\ =\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11ab50339a10e1de285ac99d4c3990b8693}{metrics::Algorithm::NONE}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00047}00047\ \ \ \ \ \textcolor{keywordflow}{if}\ (option\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ paradigm\ =\ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aac41e056424136b6e8c4e23dd6326efa1}{metrics::Paradigm::EXACT}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ algorithm\ =\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11ae6bb6feafcc4de7705a8fe1782af973e}{metrics::Algorithm::solver\_maximum\_cost}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00050}00050\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (option\ ==\ -\/1)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ paradigm\ =\ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aa589ab27e5d5232a3590c042c0dbe7818}{metrics::Paradigm::HEURISTIC}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ algorithm\ =\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11abe0511aca70b810b2ed30f6c24c4a620}{metrics::Algorithm::greedy\_cost\_benefit}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00053}00053\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (option\ ==\ -\/2)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ paradigm\ =\ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aa589ab27e5d5232a3590c042c0dbe7818}{metrics::Paradigm::HEURISTIC}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ algorithm\ =\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11aa845e2c8be77bb480b9bea73ff528829}{metrics::Algorithm::greedy\_random}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00056}00056\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (option\ ==\ -\/3)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ paradigm\ =\ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aa589ab27e5d5232a3590c042c0dbe7818}{metrics::Paradigm::HEURISTIC}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ algorithm\ =\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11a0327841700a466600166ed61b1b18200}{metrics::Algorithm::greedy\_random\_fallback}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00059}00059\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (option\ ==\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ paradigm\ =\ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aa1ef7e0df1cd1fdd87ecf432332cd8343}{metrics::Paradigm::METAHEURISTIC}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ algorithm\ =\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11a557e0f060742f44e69f44502ad2f3d71}{metrics::Algorithm::simulated\_annealing}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ initial\_heuristic\ =\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11abe0511aca70b810b2ed30f6c24c4a620}{metrics::Algorithm::greedy\_cost\_benefit}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00063}00063\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (option\ ==\ 2)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ paradigm\ =\ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aa1ef7e0df1cd1fdd87ecf432332cd8343}{metrics::Paradigm::METAHEURISTIC}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ algorithm\ =\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11a557e0f060742f44e69f44502ad2f3d71}{metrics::Algorithm::simulated\_annealing}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ initial\_heuristic\ =\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11aa845e2c8be77bb480b9bea73ff528829}{metrics::Algorithm::greedy\_random}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00067}00067\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (option\ ==\ 3)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ paradigm\ =\ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aa1ef7e0df1cd1fdd87ecf432332cd8343}{metrics::Paradigm::METAHEURISTIC}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ algorithm\ =\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11a557e0f060742f44e69f44502ad2f3d71}{metrics::Algorithm::simulated\_annealing}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ initial\_heuristic\ =\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11a0327841700a466600166ed61b1b18200}{metrics::Algorithm::greedy\_random\_fallback}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00071}00071\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Invalid\ option\ selected\ for\ simulation.\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00074}00074\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00076}00076\ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Result}{metrics::Result}}\ state\ =\ base;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00078}00078\ \ \ \ \ \textcolor{keywordflow}{if}\ (paradigm\ ==\ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aac41e056424136b6e8c4e23dd6326efa1}{metrics::Paradigm::EXACT}})\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}\ =\ std::make\_shared<metrics::ExactMetrics>(algorithm,\ run\_id,\ base.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00080}00080\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (paradigm\ ==\ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aa589ab27e5d5232a3590c042c0dbe7818}{metrics::Paradigm::HEURISTIC}})\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}\ =\ std::make\_shared<metrics::HeuristicMetrics>(algorithm,\ run\_id,\ base.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00082}00082\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (paradigm\ ==\ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aa1ef7e0df1cd1fdd87ecf432332cd8343}{metrics::Paradigm::METAHEURISTIC}})\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}\ =\ std::make\_shared<metrics::MetaHeuristicMetrics>(algorithm,\ run\_id,\ base.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}},\ \mbox{\hyperlink{main_8cpp_a6ee0d833caf468544d3742ba723e4bcf}{TEMPERATURE}},\ \mbox{\hyperlink{main_8cpp_ac8d8134e0885e1c88485a079ad5d638c}{ALPHA}},\ initial\_heuristic);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00084}00084\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00086}00086\ \ \ \ \ \textcolor{keywordflow}{if}\ (paradigm\ ==\ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aac41e056424136b6e8c4e23dd6326efa1}{metrics::Paradigm::EXACT}})\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceexact_a6aacffeeb6699d2f7d822d8d0866edbc}{exact::boot}}(state,\ \mbox{\hyperlink{main_8cpp_aee3b0bf3c221f2b523053029839c7265}{CPLEX\_TIME\_LIMIT}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00088}00088\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (paradigm\ ==\ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aa589ab27e5d5232a3590c042c0dbe7818}{metrics::Paradigm::HEURISTIC}})\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceheuristic_a49f05c0252bd2ad23bf788bdf45e79cc}{heuristic::boot}}(state);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00090}00090\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (paradigm\ ==\ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aa1ef7e0df1cd1fdd87ecf432332cd8343}{metrics::Paradigm::METAHEURISTIC}})\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacemetaheuristic_a048f6eef02905cc9184c197939c3209a}{metaheuristic::boot}}(state);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00092}00092\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00094}00094\ \ \ \ \ \mbox{\hyperlink{namespacemetrics_a49133a7a2d416aca63d85f80f34bd14c}{metrics::calculate\_metrics}}(state);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00095}00095\ \ \ \ \ \mbox{\hyperlink{namespacemetrics_a14d064c3f29627f9a59a04d5784c10f5}{metrics::save\_results}}(state,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00096}00096\ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00106}\mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{00106}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}()\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00107}00107\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ devices\_length\ =\ \mbox{\hyperlink{main_8cpp_a388d4bbd8ca214abdbc3a5e4e7cfc30d}{DEVICES\_START}};\ devices\_length\ <=\ \mbox{\hyperlink{main_8cpp_aab824fb582166fcccb57753d354abeae}{DEVICES\_END}};\ devices\_length\ +=\ \mbox{\hyperlink{main_8cpp_a09403595097b1f51af63092dd418f351}{DEVICES\_STEP}})\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Result}{metrics::Result}}\ base\_state(devices\_length,\ \mbox{\hyperlink{main_8cpp_a97af17a128538a7283ef3d4243fe4c9f}{SERVICES}},\ \mbox{\hyperlink{main_8cpp_a182bbb04b1b749e22fcf1db5320565bf}{EC\_LENGTH}},\ \mbox{\hyperlink{main_8cpp_ac9605b81b1ba727a64be5293e7e6830d}{CC\_LENGTH}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ run\ =\ 1;\ run\ <=\ \mbox{\hyperlink{main_8cpp_a4dd65ede7d682789089fe5b304cb91cd}{MAX\_RUNS}};\ run++)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ option\ =\ 0;\ option\ <=\ 3;\ option++)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (run\ >\ 1\ \&\&\ (option\ ==\ 0\ ||\ option\ ==\ -\/1))\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8cpp_ac2e90b5f462e53a2ae61c61d92846023}{run\_simulation}}(base\_state,\ option,\ run);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00116}00116\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00118}00118\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00119}00119\ \}}
+
+\end{DoxyCode}

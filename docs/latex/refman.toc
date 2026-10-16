@@ -1,0 +1,340 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\contentsline {chapter}{\numberline {1}MMKP Resource Allocation in Io\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}T-\/\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}EC-\/\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}CC Networks}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}📁 Project Structure}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}⚙️ Prerequisites}{1}{section.1.2}%
+\contentsline {section}{\numberline {1.3}🚀 How to Compile and Run}{2}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Option 1\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}: Using $<$tt$>$build.\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}sh$<$/tt$>$ (\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}Recommended)}{2}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Option 2\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}: Using CMake}{2}{subsection.1.3.2}%
+\contentsline {section}{\numberline {1.4}🧠 Implemented Algorithms}{2}{section.1.4}%
+\contentsline {section}{\numberline {1.5}🔧 Simulation Parameters}{2}{section.1.5}%
+\contentsline {section}{\numberline {1.6}📚 Documentation (\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}Doxygen)}{3}{section.1.6}%
+\contentsline {chapter}{\numberline {2}Alocação de Recursos MMKP em Redes Io\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}T-\/\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}EC-\/\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}CC}{5}{chapter.2}%
+\contentsline {section}{\numberline {2.1}📁 Estrutura do Projeto}{5}{section.2.1}%
+\contentsline {section}{\numberline {2.2}⚙️ Pré-\/requisitos}{5}{section.2.2}%
+\contentsline {section}{\numberline {2.3}🚀 Como Compilar e Executar}{6}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Opção 1\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}: Usando o script $<$tt$>$build.\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}sh$<$/tt$>$ (\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}Recomendado)}{6}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Opção 2\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}: Usando CMake}{6}{subsection.2.3.2}%
+\contentsline {section}{\numberline {2.4}🧠 Algoritmos Implementados}{6}{section.2.4}%
+\contentsline {section}{\numberline {2.5}🔧 Parâmetros da Simulação}{7}{section.2.5}%
+\contentsline {section}{\numberline {2.6}📚 Documentação (\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}Doxygen)}{7}{section.2.6}%
+\contentsline {chapter}{\numberline {3}Namespace Index}{9}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Namespace List}{9}{section.3.1}%
+\contentsline {chapter}{\numberline {4}Hierarchical Index}{11}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Class Hierarchy}{11}{section.4.1}%
+\contentsline {chapter}{\numberline {5}Class Index}{13}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Class List}{13}{section.5.1}%
+\contentsline {chapter}{\numberline {6}File Index}{15}{chapter.6}%
+\contentsline {section}{\numberline {6.1}File List}{15}{section.6.1}%
+\contentsline {chapter}{\numberline {7}Namespace Documentation}{17}{chapter.7}%
+\contentsline {section}{\numberline {7.1}convert Namespace Reference}{17}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}Detailed Description}{17}{subsection.7.1.1}%
+\contentsline {subsection}{\numberline {7.1.2}Function Documentation}{17}{subsection.7.1.2}%
+\contentsline {subsubsection}{\numberline {7.1.2.1}set\_to\_string()}{17}{subsubsection.7.1.2.1}%
+\contentsline {subsubsection}{\numberline {7.1.2.2}to\_percentage\_string()}{18}{subsubsection.7.1.2.2}%
+\contentsline {subsubsection}{\numberline {7.1.2.3}to\_string()}{18}{subsubsection.7.1.2.3}%
+\contentsline {subsubsection}{\numberline {7.1.2.4}vector\_to\_string()}{18}{subsubsection.7.1.2.4}%
+\contentsline {section}{\numberline {7.2}core Namespace Reference}{19}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}Detailed Description}{19}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Typedef Documentation}{19}{subsection.7.2.2}%
+\contentsline {subsubsection}{\numberline {7.2.2.1}Devices}{19}{subsubsection.7.2.2.1}%
+\contentsline {subsubsection}{\numberline {7.2.2.2}Servers}{19}{subsubsection.7.2.2.2}%
+\contentsline {section}{\numberline {7.3}data Namespace Reference}{19}{section.7.3}%
+\contentsline {section}{\numberline {7.4}data\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}::generate Namespace Reference}{20}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}Detailed Description}{20}{subsection.7.4.1}%
+\contentsline {subsection}{\numberline {7.4.2}Function Documentation}{20}{subsection.7.4.2}%
+\contentsline {subsubsection}{\numberline {7.4.2.1}devices()}{20}{subsubsection.7.4.2.1}%
+\contentsline {subsubsection}{\numberline {7.4.2.2}servers()}{20}{subsubsection.7.4.2.2}%
+\contentsline {subsubsection}{\numberline {7.4.2.3}services()}{21}{subsubsection.7.4.2.3}%
+\contentsline {subsection}{\numberline {7.4.3}Variable Documentation}{21}{subsection.7.4.3}%
+\contentsline {subsubsection}{\numberline {7.4.3.1}DATA\_PATH}{21}{subsubsection.7.4.3.1}%
+\contentsline {section}{\numberline {7.5}data\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}::load Namespace Reference}{21}{section.7.5}%
+\contentsline {subsection}{\numberline {7.5.1}Detailed Description}{21}{subsection.7.5.1}%
+\contentsline {subsection}{\numberline {7.5.2}Function Documentation}{21}{subsection.7.5.2}%
+\contentsline {subsubsection}{\numberline {7.5.2.1}devices()}{21}{subsubsection.7.5.2.1}%
+\contentsline {subsubsection}{\numberline {7.5.2.2}servers()}{22}{subsubsection.7.5.2.2}%
+\contentsline {section}{\numberline {7.6}display Namespace Reference}{22}{section.7.6}%
+\contentsline {subsection}{\numberline {7.6.1}Detailed Description}{22}{subsection.7.6.1}%
+\contentsline {subsection}{\numberline {7.6.2}Function Documentation}{22}{subsection.7.6.2}%
+\contentsline {subsubsection}{\numberline {7.6.2.1}show\_device()}{22}{subsubsection.7.6.2.1}%
+\contentsline {subsubsection}{\numberline {7.6.2.2}show\_devices()}{23}{subsubsection.7.6.2.2}%
+\contentsline {subsubsection}{\numberline {7.6.2.3}show\_metrics()}{23}{subsubsection.7.6.2.3}%
+\contentsline {subsubsection}{\numberline {7.6.2.4}show\_metrics\_console\_or\_file()}{23}{subsubsection.7.6.2.4}%
+\contentsline {subsubsection}{\numberline {7.6.2.5}show\_server()}{23}{subsubsection.7.6.2.5}%
+\contentsline {subsubsection}{\numberline {7.6.2.6}show\_servers()}{23}{subsubsection.7.6.2.6}%
+\contentsline {subsubsection}{\numberline {7.6.2.7}show\_servers\_usage()}{25}{subsubsection.7.6.2.7}%
+\contentsline {section}{\numberline {7.7}display\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}::details Namespace Reference}{25}{section.7.7}%
+\contentsline {subsection}{\numberline {7.7.1}Detailed Description}{25}{subsection.7.7.1}%
+\contentsline {subsection}{\numberline {7.7.2}Function Documentation}{25}{subsection.7.7.2}%
+\contentsline {subsubsection}{\numberline {7.7.2.1}print\_header()}{25}{subsubsection.7.7.2.1}%
+\contentsline {subsubsection}{\numberline {7.7.2.2}print\_middle()}{26}{subsubsection.7.7.2.2}%
+\contentsline {subsubsection}{\numberline {7.7.2.3}print\_row()}{26}{subsubsection.7.7.2.3}%
+\contentsline {subsubsection}{\numberline {7.7.2.4}print\_title()}{26}{subsubsection.7.7.2.4}%
+\contentsline {subsection}{\numberline {7.7.3}Variable Documentation}{26}{subsection.7.7.3}%
+\contentsline {subsubsection}{\numberline {7.7.3.1}label\_width}{26}{subsubsection.7.7.3.1}%
+\contentsline {subsubsection}{\numberline {7.7.3.2}total\_width}{26}{subsubsection.7.7.3.2}%
+\contentsline {section}{\numberline {7.8}exact Namespace Reference}{26}{section.7.8}%
+\contentsline {subsection}{\numberline {7.8.1}Detailed Description}{27}{subsection.7.8.1}%
+\contentsline {subsection}{\numberline {7.8.2}Typedef Documentation}{27}{subsection.7.8.2}%
+\contentsline {subsubsection}{\numberline {7.8.2.1}NumVar2D}{27}{subsubsection.7.8.2.1}%
+\contentsline {subsection}{\numberline {7.8.3}Function Documentation}{27}{subsection.7.8.3}%
+\contentsline {subsubsection}{\numberline {7.8.3.1}boot()}{27}{subsubsection.7.8.3.1}%
+\contentsline {section}{\numberline {7.9}exact\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}::anonymous\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}namespace\{exact.\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}hpp\} Namespace Reference}{27}{section.7.9}%
+\contentsline {subsection}{\numberline {7.9.1}Function Documentation}{27}{subsection.7.9.1}%
+\contentsline {subsubsection}{\numberline {7.9.1.1}solver\_maximum\_cost()}{27}{subsubsection.7.9.1.1}%
+\contentsline {section}{\numberline {7.10}file\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}manager Namespace Reference}{28}{section.7.10}%
+\contentsline {section}{\numberline {7.11}file\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}manager\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}::csv Namespace Reference}{28}{section.7.11}%
+\contentsline {subsection}{\numberline {7.11.1}Detailed Description}{28}{subsection.7.11.1}%
+\contentsline {subsection}{\numberline {7.11.2}Function Documentation}{28}{subsection.7.11.2}%
+\contentsline {subsubsection}{\numberline {7.11.2.1}append()}{28}{subsubsection.7.11.2.1}%
+\contentsline {subsubsection}{\numberline {7.11.2.2}count\_lines()}{29}{subsubsection.7.11.2.2}%
+\contentsline {subsubsection}{\numberline {7.11.2.3}read()}{29}{subsubsection.7.11.2.3}%
+\contentsline {subsubsection}{\numberline {7.11.2.4}write()}{29}{subsubsection.7.11.2.4}%
+\contentsline {section}{\numberline {7.12}heuristic Namespace Reference}{29}{section.7.12}%
+\contentsline {subsection}{\numberline {7.12.1}Detailed Description}{30}{subsection.7.12.1}%
+\contentsline {subsection}{\numberline {7.12.2}Function Documentation}{30}{subsection.7.12.2}%
+\contentsline {subsubsection}{\numberline {7.12.2.1}boot()}{30}{subsubsection.7.12.2.1}%
+\contentsline {section}{\numberline {7.13}heuristic\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}::anonymous\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}namespace\{heuristic.\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}hpp\} Namespace Reference}{30}{section.7.13}%
+\contentsline {subsection}{\numberline {7.13.1}Function Documentation}{30}{subsection.7.13.1}%
+\contentsline {subsubsection}{\numberline {7.13.1.1}greedy\_cost\_benefit()}{30}{subsubsection.7.13.1.1}%
+\contentsline {subsubsection}{\numberline {7.13.1.2}greedy\_random()}{30}{subsubsection.7.13.1.2}%
+\contentsline {subsubsection}{\numberline {7.13.1.3}greedy\_random\_fallback()}{31}{subsubsection.7.13.1.3}%
+\contentsline {section}{\numberline {7.14}metaheuristic Namespace Reference}{31}{section.7.14}%
+\contentsline {subsection}{\numberline {7.14.1}Detailed Description}{31}{subsection.7.14.1}%
+\contentsline {subsection}{\numberline {7.14.2}Function Documentation}{31}{subsection.7.14.2}%
+\contentsline {subsubsection}{\numberline {7.14.2.1}boot()}{31}{subsubsection.7.14.2.1}%
+\contentsline {section}{\numberline {7.15}metaheuristic\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}::anonymous\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}namespace\{metaheuristic.\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}hpp\} Namespace Reference}{32}{section.7.15}%
+\contentsline {subsection}{\numberline {7.15.1}Function Documentation}{32}{subsection.7.15.1}%
+\contentsline {subsubsection}{\numberline {7.15.1.1}apply\_neighbor()}{32}{subsubsection.7.15.1.1}%
+\contentsline {subsubsection}{\numberline {7.15.1.2}revert\_neighbor()}{32}{subsubsection.7.15.1.2}%
+\contentsline {subsubsection}{\numberline {7.15.1.3}simulated\_annealing()}{33}{subsubsection.7.15.1.3}%
+\contentsline {subsection}{\numberline {7.15.2}Variable Documentation}{33}{subsection.7.15.2}%
+\contentsline {subsubsection}{\numberline {7.15.2.1}LOOP}{33}{subsubsection.7.15.2.1}%
+\contentsline {section}{\numberline {7.16}metrics Namespace Reference}{33}{section.7.16}%
+\contentsline {subsection}{\numberline {7.16.1}Detailed Description}{34}{subsection.7.16.1}%
+\contentsline {subsection}{\numberline {7.16.2}Enumeration Type Documentation}{34}{subsection.7.16.2}%
+\contentsline {subsubsection}{\numberline {7.16.2.1}Algorithm}{34}{subsubsection.7.16.2.1}%
+\contentsline {subsubsection}{\numberline {7.16.2.2}Paradigm}{34}{subsubsection.7.16.2.2}%
+\contentsline {subsection}{\numberline {7.16.3}Function Documentation}{34}{subsection.7.16.3}%
+\contentsline {subsubsection}{\numberline {7.16.3.1}calculate\_metrics()}{34}{subsubsection.7.16.3.1}%
+\contentsline {subsubsection}{\numberline {7.16.3.2}save\_results()}{35}{subsubsection.7.16.3.2}%
+\contentsline {subsubsection}{\numberline {7.16.3.3}to\_string()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{35}{subsubsection.7.16.3.3}%
+\contentsline {subsubsection}{\numberline {7.16.3.4}to\_string()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{35}{subsubsection.7.16.3.4}%
+\contentsline {subsection}{\numberline {7.16.4}Variable Documentation}{35}{subsection.7.16.4}%
+\contentsline {subsubsection}{\numberline {7.16.4.1}RESULTS\_PATH}{35}{subsubsection.7.16.4.1}%
+\contentsline {section}{\numberline {7.17}randomness Namespace Reference}{36}{section.7.17}%
+\contentsline {subsection}{\numberline {7.17.1}Detailed Description}{36}{subsection.7.17.1}%
+\contentsline {subsection}{\numberline {7.17.2}Function Documentation}{36}{subsection.7.17.2}%
+\contentsline {subsubsection}{\numberline {7.17.2.1}get\_engine()}{36}{subsubsection.7.17.2.1}%
+\contentsline {subsubsection}{\numberline {7.17.2.2}random\_number()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{36}{subsubsection.7.17.2.2}%
+\contentsline {subsubsection}{\numberline {7.17.2.3}random\_number()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{37}{subsubsection.7.17.2.3}%
+\contentsline {subsubsection}{\numberline {7.17.2.4}shuffled\_range()}{37}{subsubsection.7.17.2.4}%
+\contentsline {section}{\numberline {7.18}sorting Namespace Reference}{37}{section.7.18}%
+\contentsline {subsection}{\numberline {7.18.1}Detailed Description}{38}{subsection.7.18.1}%
+\contentsline {subsection}{\numberline {7.18.2}Function Documentation}{38}{subsection.7.18.2}%
+\contentsline {subsubsection}{\numberline {7.18.2.1}sort\_entities()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{38}{subsubsection.7.18.2.1}%
+\contentsline {subsubsection}{\numberline {7.18.2.2}sort\_entities()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{38}{subsubsection.7.18.2.2}%
+\contentsline {section}{\numberline {7.19}sorting\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}::details Namespace Reference}{39}{section.7.19}%
+\contentsline {subsection}{\numberline {7.19.1}Detailed Description}{39}{subsection.7.19.1}%
+\contentsline {subsection}{\numberline {7.19.2}Function Documentation}{39}{subsection.7.19.2}%
+\contentsline {subsubsection}{\numberline {7.19.2.1}sort\_indices\_impl()}{39}{subsubsection.7.19.2.1}%
+\contentsline {chapter}{\numberline {8}Class Documentation}{41}{chapter.8}%
+\contentsline {section}{\numberline {8.1}core\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}::Device Struct Reference}{41}{section.8.1}%
+\contentsline {subsection}{\numberline {8.1.1}Detailed Description}{41}{subsection.8.1.1}%
+\contentsline {subsection}{\numberline {8.1.2}Constructor \& Destructor Documentation}{42}{subsection.8.1.2}%
+\contentsline {subsubsection}{\numberline {8.1.2.1}Device()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{42}{subsubsection.8.1.2.1}%
+\contentsline {subsubsection}{\numberline {8.1.2.2}Device()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{42}{subsubsection.8.1.2.2}%
+\contentsline {subsection}{\numberline {8.1.3}Member Data Documentation}{42}{subsection.8.1.3}%
+\contentsline {subsubsection}{\numberline {8.1.3.1}cost}{42}{subsubsection.8.1.3.1}%
+\contentsline {subsubsection}{\numberline {8.1.3.2}cpu}{42}{subsubsection.8.1.3.2}%
+\contentsline {subsubsection}{\numberline {8.1.3.3}id}{42}{subsubsection.8.1.3.3}%
+\contentsline {subsubsection}{\numberline {8.1.3.4}mem}{42}{subsubsection.8.1.3.4}%
+\contentsline {subsubsection}{\numberline {8.1.3.5}served}{42}{subsubsection.8.1.3.5}%
+\contentsline {subsubsection}{\numberline {8.1.3.6}server\_id}{43}{subsubsection.8.1.3.6}%
+\contentsline {subsubsection}{\numberline {8.1.3.7}service}{43}{subsubsection.8.1.3.7}%
+\contentsline {subsubsection}{\numberline {8.1.3.8}sto}{43}{subsubsection.8.1.3.8}%
+\contentsline {subsubsection}{\numberline {8.1.3.9}tasks}{43}{subsubsection.8.1.3.9}%
+\contentsline {section}{\numberline {8.2}metrics\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}::Exact\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}Metrics Struct Reference}{43}{section.8.2}%
+\contentsline {subsection}{\numberline {8.2.1}Detailed Description}{45}{subsection.8.2.1}%
+\contentsline {subsection}{\numberline {8.2.2}Constructor \& Destructor Documentation}{45}{subsection.8.2.2}%
+\contentsline {subsubsection}{\numberline {8.2.2.1}ExactMetrics()\hspace {0.1cm}{\footnotesize \ttfamily [1/3]}}{45}{subsubsection.8.2.2.1}%
+\contentsline {subsubsection}{\numberline {8.2.2.2}ExactMetrics()\hspace {0.1cm}{\footnotesize \ttfamily [2/3]}}{45}{subsubsection.8.2.2.2}%
+\contentsline {subsubsection}{\numberline {8.2.2.3}ExactMetrics()\hspace {0.1cm}{\footnotesize \ttfamily [3/3]}}{46}{subsubsection.8.2.2.3}%
+\contentsline {subsection}{\numberline {8.2.3}Member Function Documentation}{46}{subsection.8.2.3}%
+\contentsline {subsubsection}{\numberline {8.2.3.1}build\_metrics()}{46}{subsubsection.8.2.3.1}%
+\contentsline {subsubsection}{\numberline {8.2.3.2}clone()}{46}{subsubsection.8.2.3.2}%
+\contentsline {subsubsection}{\numberline {8.2.3.3}data()}{46}{subsubsection.8.2.3.3}%
+\contentsline {subsubsection}{\numberline {8.2.3.4}get\_header()}{47}{subsubsection.8.2.3.4}%
+\contentsline {subsection}{\numberline {8.2.4}Member Data Documentation}{47}{subsection.8.2.4}%
+\contentsline {subsubsection}{\numberline {8.2.4.1}gap}{47}{subsubsection.8.2.4.1}%
+\contentsline {subsubsection}{\numberline {8.2.4.2}objective\_function}{47}{subsubsection.8.2.4.2}%
+\contentsline {subsubsection}{\numberline {8.2.4.3}status}{47}{subsubsection.8.2.4.3}%
+\contentsline {section}{\numberline {8.3}metrics\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}::Heuristic\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}Metrics Struct Reference}{47}{section.8.3}%
+\contentsline {subsection}{\numberline {8.3.1}Detailed Description}{49}{subsection.8.3.1}%
+\contentsline {subsection}{\numberline {8.3.2}Constructor \& Destructor Documentation}{49}{subsection.8.3.2}%
+\contentsline {subsubsection}{\numberline {8.3.2.1}HeuristicMetrics()\hspace {0.1cm}{\footnotesize \ttfamily [1/3]}}{49}{subsubsection.8.3.2.1}%
+\contentsline {subsubsection}{\numberline {8.3.2.2}HeuristicMetrics()\hspace {0.1cm}{\footnotesize \ttfamily [2/3]}}{49}{subsubsection.8.3.2.2}%
+\contentsline {subsubsection}{\numberline {8.3.2.3}HeuristicMetrics()\hspace {0.1cm}{\footnotesize \ttfamily [3/3]}}{50}{subsubsection.8.3.2.3}%
+\contentsline {subsection}{\numberline {8.3.3}Member Function Documentation}{50}{subsection.8.3.3}%
+\contentsline {subsubsection}{\numberline {8.3.3.1}clone()}{50}{subsubsection.8.3.3.1}%
+\contentsline {section}{\numberline {8.4}metrics\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}::Metrics\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}::Inputs Struct Reference}{50}{section.8.4}%
+\contentsline {subsection}{\numberline {8.4.1}Detailed Description}{50}{subsection.8.4.1}%
+\contentsline {subsection}{\numberline {8.4.2}Member Function Documentation}{50}{subsection.8.4.2}%
+\contentsline {subsubsection}{\numberline {8.4.2.1}operator=()}{50}{subsubsection.8.4.2.1}%
+\contentsline {subsection}{\numberline {8.4.3}Member Data Documentation}{51}{subsection.8.4.3}%
+\contentsline {subsubsection}{\numberline {8.4.3.1}devices\_count}{51}{subsubsection.8.4.3.1}%
+\contentsline {subsubsection}{\numberline {8.4.3.2}max\_penalty\_cost}{51}{subsubsection.8.4.3.2}%
+\contentsline {subsubsection}{\numberline {8.4.3.3}servers\_cc\_count}{51}{subsubsection.8.4.3.3}%
+\contentsline {subsubsection}{\numberline {8.4.3.4}servers\_ec\_count}{51}{subsubsection.8.4.3.4}%
+\contentsline {section}{\numberline {8.5}metrics\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}::Meta\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}Heuristic\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}Metrics Struct Reference}{51}{section.8.5}%
+\contentsline {subsection}{\numberline {8.5.1}Detailed Description}{53}{subsection.8.5.1}%
+\contentsline {subsection}{\numberline {8.5.2}Constructor \& Destructor Documentation}{53}{subsection.8.5.2}%
+\contentsline {subsubsection}{\numberline {8.5.2.1}MetaHeuristicMetrics()\hspace {0.1cm}{\footnotesize \ttfamily [1/3]}}{53}{subsubsection.8.5.2.1}%
+\contentsline {subsubsection}{\numberline {8.5.2.2}MetaHeuristicMetrics()\hspace {0.1cm}{\footnotesize \ttfamily [2/3]}}{54}{subsubsection.8.5.2.2}%
+\contentsline {subsubsection}{\numberline {8.5.2.3}MetaHeuristicMetrics()\hspace {0.1cm}{\footnotesize \ttfamily [3/3]}}{54}{subsubsection.8.5.2.3}%
+\contentsline {subsection}{\numberline {8.5.3}Member Function Documentation}{54}{subsection.8.5.3}%
+\contentsline {subsubsection}{\numberline {8.5.3.1}build\_metrics()}{54}{subsubsection.8.5.3.1}%
+\contentsline {subsubsection}{\numberline {8.5.3.2}clone()}{54}{subsubsection.8.5.3.2}%
+\contentsline {subsubsection}{\numberline {8.5.3.3}data()}{55}{subsubsection.8.5.3.3}%
+\contentsline {subsubsection}{\numberline {8.5.3.4}get\_header()}{55}{subsubsection.8.5.3.4}%
+\contentsline {subsection}{\numberline {8.5.4}Member Data Documentation}{55}{subsection.8.5.4}%
+\contentsline {subsubsection}{\numberline {8.5.4.1}alpha}{55}{subsubsection.8.5.4.1}%
+\contentsline {subsubsection}{\numberline {8.5.4.2}heuristic}{55}{subsubsection.8.5.4.2}%
+\contentsline {subsubsection}{\numberline {8.5.4.3}temperature}{55}{subsubsection.8.5.4.3}%
+\contentsline {section}{\numberline {8.6}metrics\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}::Metric\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}Entry Struct Reference}{55}{section.8.6}%
+\contentsline {subsection}{\numberline {8.6.1}Detailed Description}{56}{subsection.8.6.1}%
+\contentsline {subsection}{\numberline {8.6.2}Member Data Documentation}{56}{subsection.8.6.2}%
+\contentsline {subsubsection}{\numberline {8.6.2.1}category}{56}{subsubsection.8.6.2.1}%
+\contentsline {subsubsection}{\numberline {8.6.2.2}console\_value}{56}{subsubsection.8.6.2.2}%
+\contentsline {subsubsection}{\numberline {8.6.2.3}file\_value}{56}{subsubsection.8.6.2.3}%
+\contentsline {subsubsection}{\numberline {8.6.2.4}header}{56}{subsubsection.8.6.2.4}%
+\contentsline {subsubsection}{\numberline {8.6.2.5}label}{56}{subsubsection.8.6.2.5}%
+\contentsline {section}{\numberline {8.7}metrics\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}::Metrics Struct Reference}{56}{section.8.7}%
+\contentsline {subsection}{\numberline {8.7.1}Detailed Description}{58}{subsection.8.7.1}%
+\contentsline {subsection}{\numberline {8.7.2}Constructor \& Destructor Documentation}{58}{subsection.8.7.2}%
+\contentsline {subsubsection}{\numberline {8.7.2.1}Metrics()\hspace {0.1cm}{\footnotesize \ttfamily [1/4]}}{58}{subsubsection.8.7.2.1}%
+\contentsline {subsubsection}{\numberline {8.7.2.2}Metrics()\hspace {0.1cm}{\footnotesize \ttfamily [2/4]}}{58}{subsubsection.8.7.2.2}%
+\contentsline {subsubsection}{\numberline {8.7.2.3}Metrics()\hspace {0.1cm}{\footnotesize \ttfamily [3/4]}}{58}{subsubsection.8.7.2.3}%
+\contentsline {subsubsection}{\numberline {8.7.2.4}Metrics()\hspace {0.1cm}{\footnotesize \ttfamily [4/4]}}{59}{subsubsection.8.7.2.4}%
+\contentsline {subsubsection}{\numberline {8.7.2.5}$\sim $Metrics()}{59}{subsubsection.8.7.2.5}%
+\contentsline {subsection}{\numberline {8.7.3}Member Function Documentation}{59}{subsection.8.7.3}%
+\contentsline {subsubsection}{\numberline {8.7.3.1}build\_metrics()}{59}{subsubsection.8.7.3.1}%
+\contentsline {subsubsection}{\numberline {8.7.3.2}clone()}{59}{subsubsection.8.7.3.2}%
+\contentsline {subsubsection}{\numberline {8.7.3.3}data()}{60}{subsubsection.8.7.3.3}%
+\contentsline {subsubsection}{\numberline {8.7.3.4}get\_base\_directory\_path()}{60}{subsubsection.8.7.3.4}%
+\contentsline {subsubsection}{\numberline {8.7.3.5}get\_header()}{60}{subsubsection.8.7.3.5}%
+\contentsline {subsubsection}{\numberline {8.7.3.6}save\_to\_file()}{60}{subsubsection.8.7.3.6}%
+\contentsline {subsection}{\numberline {8.7.4}Member Data Documentation}{60}{subsection.8.7.4}%
+\contentsline {subsubsection}{\numberline {8.7.4.1}algorithm}{60}{subsubsection.8.7.4.1}%
+\contentsline {subsubsection}{\numberline {8.7.4.2}inputs}{60}{subsubsection.8.7.4.2}%
+\contentsline {subsubsection}{\numberline {8.7.4.3}outputs}{60}{subsubsection.8.7.4.3}%
+\contentsline {subsubsection}{\numberline {8.7.4.4}paradigm}{60}{subsubsection.8.7.4.4}%
+\contentsline {subsubsection}{\numberline {8.7.4.5}run\_id}{60}{subsubsection.8.7.4.5}%
+\contentsline {section}{\numberline {8.8}metaheuristic\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}::anonymous\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}namespace\{metaheuristic.\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}hpp\}\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}::Move Struct Reference}{61}{section.8.8}%
+\contentsline {subsection}{\numberline {8.8.1}Detailed Description}{61}{subsection.8.8.1}%
+\contentsline {subsection}{\numberline {8.8.2}Member Data Documentation}{61}{subsection.8.8.2}%
+\contentsline {subsubsection}{\numberline {8.8.2.1}delta\_cost}{61}{subsubsection.8.8.2.1}%
+\contentsline {subsubsection}{\numberline {8.8.2.2}device\_id}{61}{subsubsection.8.8.2.2}%
+\contentsline {subsubsection}{\numberline {8.8.2.3}new\_server\_id}{61}{subsubsection.8.8.2.3}%
+\contentsline {subsubsection}{\numberline {8.8.2.4}old\_server\_id}{61}{subsubsection.8.8.2.4}%
+\contentsline {subsubsection}{\numberline {8.8.2.5}swapped\_id}{61}{subsubsection.8.8.2.5}%
+\contentsline {subsubsection}{\numberline {8.8.2.6}valid}{61}{subsubsection.8.8.2.6}%
+\contentsline {section}{\numberline {8.9}metrics\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}::Metrics\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}::Outputs Struct Reference}{62}{section.8.9}%
+\contentsline {subsection}{\numberline {8.9.1}Detailed Description}{62}{subsection.8.9.1}%
+\contentsline {subsection}{\numberline {8.9.2}Member Function Documentation}{62}{subsection.8.9.2}%
+\contentsline {subsubsection}{\numberline {8.9.2.1}operator=()}{62}{subsubsection.8.9.2.1}%
+\contentsline {subsection}{\numberline {8.9.3}Member Data Documentation}{62}{subsection.8.9.3}%
+\contentsline {subsubsection}{\numberline {8.9.3.1}devices\_served\_cc\_count}{62}{subsubsection.8.9.3.1}%
+\contentsline {subsubsection}{\numberline {8.9.3.2}devices\_served\_count}{62}{subsubsection.8.9.3.2}%
+\contentsline {subsubsection}{\numberline {8.9.3.3}devices\_served\_ec\_count}{62}{subsubsection.8.9.3.3}%
+\contentsline {subsubsection}{\numberline {8.9.3.4}execution\_time}{63}{subsubsection.8.9.3.4}%
+\contentsline {subsubsection}{\numberline {8.9.3.5}servers\_used\_cc\_count}{63}{subsubsection.8.9.3.5}%
+\contentsline {subsubsection}{\numberline {8.9.3.6}servers\_used\_count}{63}{subsubsection.8.9.3.6}%
+\contentsline {subsubsection}{\numberline {8.9.3.7}servers\_used\_ec\_count}{63}{subsubsection.8.9.3.7}%
+\contentsline {subsubsection}{\numberline {8.9.3.8}total\_penalty\_cost}{63}{subsubsection.8.9.3.8}%
+\contentsline {section}{\numberline {8.10}metrics\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}::Result Struct Reference}{63}{section.8.10}%
+\contentsline {subsection}{\numberline {8.10.1}Detailed Description}{63}{subsection.8.10.1}%
+\contentsline {subsection}{\numberline {8.10.2}Constructor \& Destructor Documentation}{64}{subsection.8.10.2}%
+\contentsline {subsubsection}{\numberline {8.10.2.1}Result()\hspace {0.1cm}{\footnotesize \ttfamily [1/3]}}{64}{subsubsection.8.10.2.1}%
+\contentsline {subsubsection}{\numberline {8.10.2.2}Result()\hspace {0.1cm}{\footnotesize \ttfamily [2/3]}}{64}{subsubsection.8.10.2.2}%
+\contentsline {subsubsection}{\numberline {8.10.2.3}Result()\hspace {0.1cm}{\footnotesize \ttfamily [3/3]}}{64}{subsubsection.8.10.2.3}%
+\contentsline {subsection}{\numberline {8.10.3}Member Function Documentation}{64}{subsection.8.10.3}%
+\contentsline {subsubsection}{\numberline {8.10.3.1}operator=()}{64}{subsubsection.8.10.3.1}%
+\contentsline {subsection}{\numberline {8.10.4}Member Data Documentation}{65}{subsection.8.10.4}%
+\contentsline {subsubsection}{\numberline {8.10.4.1}devices}{65}{subsubsection.8.10.4.1}%
+\contentsline {subsubsection}{\numberline {8.10.4.2}servers}{65}{subsubsection.8.10.4.2}%
+\contentsline {subsubsection}{\numberline {8.10.4.3}stats}{65}{subsubsection.8.10.4.3}%
+\contentsline {section}{\numberline {8.11}core\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}::Server Struct Reference}{65}{section.8.11}%
+\contentsline {subsection}{\numberline {8.11.1}Detailed Description}{66}{subsection.8.11.1}%
+\contentsline {subsection}{\numberline {8.11.2}Constructor \& Destructor Documentation}{66}{subsection.8.11.2}%
+\contentsline {subsubsection}{\numberline {8.11.2.1}Server()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{66}{subsubsection.8.11.2.1}%
+\contentsline {subsubsection}{\numberline {8.11.2.2}Server()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{66}{subsubsection.8.11.2.2}%
+\contentsline {subsection}{\numberline {8.11.3}Member Function Documentation}{66}{subsection.8.11.3}%
+\contentsline {subsubsection}{\numberline {8.11.3.1}add\_service()}{66}{subsubsection.8.11.3.1}%
+\contentsline {subsubsection}{\numberline {8.11.3.2}can\_serve()}{67}{subsubsection.8.11.3.2}%
+\contentsline {subsubsection}{\numberline {8.11.3.3}rmv\_service()}{67}{subsubsection.8.11.3.3}%
+\contentsline {subsection}{\numberline {8.11.4}Member Data Documentation}{67}{subsection.8.11.4}%
+\contentsline {subsubsection}{\numberline {8.11.4.1}cpu}{67}{subsubsection.8.11.4.1}%
+\contentsline {subsubsection}{\numberline {8.11.4.2}id}{67}{subsubsection.8.11.4.2}%
+\contentsline {subsubsection}{\numberline {8.11.4.3}mem}{67}{subsubsection.8.11.4.3}%
+\contentsline {subsubsection}{\numberline {8.11.4.4}sto}{67}{subsubsection.8.11.4.4}%
+\contentsline {subsubsection}{\numberline {8.11.4.5}supply}{68}{subsubsection.8.11.4.5}%
+\contentsline {subsubsection}{\numberline {8.11.4.6}type}{68}{subsubsection.8.11.4.6}%
+\contentsline {section}{\numberline {8.12}core\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}::Supply Struct Reference}{68}{section.8.12}%
+\contentsline {subsection}{\numberline {8.12.1}Detailed Description}{68}{subsection.8.12.1}%
+\contentsline {subsection}{\numberline {8.12.2}Constructor \& Destructor Documentation}{68}{subsection.8.12.2}%
+\contentsline {subsubsection}{\numberline {8.12.2.1}Supply()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{68}{subsubsection.8.12.2.1}%
+\contentsline {subsubsection}{\numberline {8.12.2.2}Supply()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{69}{subsubsection.8.12.2.2}%
+\contentsline {subsection}{\numberline {8.12.3}Member Data Documentation}{70}{subsection.8.12.3}%
+\contentsline {subsubsection}{\numberline {8.12.3.1}cost}{70}{subsubsection.8.12.3.1}%
+\contentsline {subsubsection}{\numberline {8.12.3.2}cpu}{70}{subsubsection.8.12.3.2}%
+\contentsline {subsubsection}{\numberline {8.12.3.3}devices}{70}{subsubsection.8.12.3.3}%
+\contentsline {subsubsection}{\numberline {8.12.3.4}mem}{70}{subsubsection.8.12.3.4}%
+\contentsline {subsubsection}{\numberline {8.12.3.5}sto}{70}{subsubsection.8.12.3.5}%
+\contentsline {chapter}{\numberline {9}File Documentation}{73}{chapter.9}%
+\contentsline {section}{\numberline {9.1}include/exact.hpp File Reference}{73}{section.9.1}%
+\contentsline {subsection}{\numberline {9.1.1}Detailed Description}{74}{subsection.9.1.1}%
+\contentsline {section}{\numberline {9.2}exact.\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}hpp}{74}{section.9.2}%
+\contentsline {section}{\numberline {9.3}include/heuristic.hpp File Reference}{76}{section.9.3}%
+\contentsline {subsection}{\numberline {9.3.1}Detailed Description}{76}{subsection.9.3.1}%
+\contentsline {section}{\numberline {9.4}heuristic.\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}hpp}{77}{section.9.4}%
+\contentsline {section}{\numberline {9.5}include/metaheuristic.hpp File Reference}{79}{section.9.5}%
+\contentsline {subsection}{\numberline {9.5.1}Detailed Description}{80}{subsection.9.5.1}%
+\contentsline {section}{\numberline {9.6}metaheuristic.\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}hpp}{80}{section.9.6}%
+\contentsline {section}{\numberline {9.7}include/mmkp.hpp File Reference}{82}{section.9.7}%
+\contentsline {subsection}{\numberline {9.7.1}Detailed Description}{85}{subsection.9.7.1}%
+\contentsline {subsection}{\numberline {9.7.2}Typedef Documentation}{86}{subsection.9.7.2}%
+\contentsline {subsubsection}{\numberline {9.7.2.1}i\_matrix}{86}{subsubsection.9.7.2.1}%
+\contentsline {subsubsection}{\numberline {9.7.2.2}i\_set}{86}{subsubsection.9.7.2.2}%
+\contentsline {subsubsection}{\numberline {9.7.2.3}i\_vector}{86}{subsubsection.9.7.2.3}%
+\contentsline {subsubsection}{\numberline {9.7.2.4}id\_pair}{86}{subsubsection.9.7.2.4}%
+\contentsline {subsubsection}{\numberline {9.7.2.5}id\_pair\_vector}{86}{subsubsection.9.7.2.5}%
+\contentsline {subsubsection}{\numberline {9.7.2.6}ii\_pair}{86}{subsubsection.9.7.2.6}%
+\contentsline {subsubsection}{\numberline {9.7.2.7}ii\_pair\_vector}{86}{subsubsection.9.7.2.7}%
+\contentsline {subsubsection}{\numberline {9.7.2.8}s\_matrix}{86}{subsubsection.9.7.2.8}%
+\contentsline {subsubsection}{\numberline {9.7.2.9}s\_vector}{86}{subsubsection.9.7.2.9}%
+\contentsline {section}{\numberline {9.8}mmkp.\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}hpp}{86}{section.9.8}%
+\contentsline {section}{\numberline {9.9}include/tools.hpp File Reference}{96}{section.9.9}%
+\contentsline {subsection}{\numberline {9.9.1}Detailed Description}{99}{subsection.9.9.1}%
+\contentsline {subsection}{\numberline {9.9.2}Variable Documentation}{99}{subsection.9.9.2}%
+\contentsline {subsubsection}{\numberline {9.9.2.1}DECIMAL\_PLACES}{99}{subsubsection.9.9.2.1}%
+\contentsline {subsubsection}{\numberline {9.9.2.2}ZERO}{99}{subsubsection.9.9.2.2}%
+\contentsline {section}{\numberline {9.10}tools.\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}hpp}{99}{section.9.10}%
+\contentsline {section}{\numberline {9.11}README.\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}md File Reference}{102}{section.9.11}%
+\contentsline {section}{\numberline {9.12}README.\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}pt-\/BR.\discretionary {\mbox {\scriptsize $\DOTSB \leftarrow \joinrel \rhook $}}{}{}md File Reference}{102}{section.9.12}%
+\contentsline {section}{\numberline {9.13}src/main.cpp File Reference}{102}{section.9.13}%
+\contentsline {subsection}{\numberline {9.13.1}Detailed Description}{103}{subsection.9.13.1}%
+\contentsline {subsection}{\numberline {9.13.2}Function Documentation}{104}{subsection.9.13.2}%
+\contentsline {subsubsection}{\numberline {9.13.2.1}main()}{104}{subsubsection.9.13.2.1}%
+\contentsline {subsubsection}{\numberline {9.13.2.2}run\_simulation()}{104}{subsubsection.9.13.2.2}%
+\contentsline {subsection}{\numberline {9.13.3}Variable Documentation}{104}{subsection.9.13.3}%
+\contentsline {subsubsection}{\numberline {9.13.3.1}ALPHA}{104}{subsubsection.9.13.3.1}%
+\contentsline {subsubsection}{\numberline {9.13.3.2}CC\_LENGTH}{104}{subsubsection.9.13.3.2}%
+\contentsline {subsubsection}{\numberline {9.13.3.3}CPLEX\_TIME\_LIMIT}{104}{subsubsection.9.13.3.3}%
+\contentsline {subsubsection}{\numberline {9.13.3.4}DEVICES\_END}{105}{subsubsection.9.13.3.4}%
+\contentsline {subsubsection}{\numberline {9.13.3.5}DEVICES\_START}{105}{subsubsection.9.13.3.5}%
+\contentsline {subsubsection}{\numberline {9.13.3.6}DEVICES\_STEP}{105}{subsubsection.9.13.3.6}%
+\contentsline {subsubsection}{\numberline {9.13.3.7}EC\_LENGTH}{105}{subsubsection.9.13.3.7}%
+\contentsline {subsubsection}{\numberline {9.13.3.8}MAX\_RUNS}{105}{subsubsection.9.13.3.8}%
+\contentsline {subsubsection}{\numberline {9.13.3.9}SERVICES}{105}{subsubsection.9.13.3.9}%
+\contentsline {subsubsection}{\numberline {9.13.3.10}TEMPERATURE}{105}{subsubsection.9.13.3.10}%
+\contentsline {chapter}{Index}{109}{section*.103}%

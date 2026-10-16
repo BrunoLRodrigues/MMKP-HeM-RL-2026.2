@@ -1,0 +1,294 @@
+\doxysection{tools.\+hpp}
+\hypertarget{tools_8hpp_source}{}\label{tools_8hpp_source}\index{include/tools.hpp@{include/tools.hpp}}
+\mbox{\hyperlink{tools_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <exception>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <numeric>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{tools_8hpp_acca3350a20fd52e319b79444c3137ee7}{ZERO}}\ =\ 1e-\/13;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}}\ =\ 10;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacefile__manager_1_1csv}{file\_manager::csv}}\ \{}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{inline}\ std::optional<std::vector<std::vector<std::string>>>\ \mbox{\hyperlink{namespacefile__manager_1_1csv_af48fa4ef4b9a1c06b33a77e1224e6d0f}{read}}(\textcolor{keyword}{const}\ std::string\&\ file\_path,\ \textcolor{keywordtype}{char}\ delimiter\ =\ \textcolor{charliteral}{','})\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ std::ifstream\ file(file\_path);}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.is\_open())\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Could\ not\ open\ file\ "{}}\ <<\ file\_path\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::nullopt;}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ std::vector<std::vector<std::string>>\ file\_data;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(file,\ line))\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ row;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ std::stringstream\ ss(line);}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ cell;}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(ss,\ cell,\ delimiter))\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ row.push\_back(cell);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!row.empty())\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file\_data.push\_back(row);}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ file\_data;}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacefile__manager_1_1csv_a43aa6152048eff2a39c66c4b06d266d7}{write}}(\textcolor{keyword}{const}\ std::string\&\ file\_path,\ \textcolor{keyword}{const}\ std::vector<std::vector<std::string>>\&\ \mbox{\hyperlink{namespacedata}{data}},\ \textcolor{keywordtype}{char}\ delimiter\ =\ \textcolor{charliteral}{','})\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ std::filesystem::path\ path(file\_path);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (path.has\_parent\_path())\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ std::filesystem::create\_directories(path.parent\_path());}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ std::ofstream\ file(file\_path);}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.is\_open())\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Could\ not\ create\ or\ open\ file\ "{}}\ <<\ file\_path\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{namespacedata}{data}}.size();\ ++i)\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ \mbox{\hyperlink{namespacedata}{data}}[i].size();\ ++j)\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ \mbox{\hyperlink{namespacedata}{data}}[i][j];}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (j\ <\ \mbox{\hyperlink{namespacedata}{data}}[i].size()\ -\/\ 1)\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ delimiter;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ <\ \mbox{\hyperlink{namespacedata}{data}}.size()\ -\/\ 1)\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacefile__manager_1_1csv_a005016bdfc842b4428494418b7068df8}{append}}(\textcolor{keyword}{const}\ std::string\&\ file\_path,\ \textcolor{keyword}{const}\ std::vector<std::vector<std::string>>\&\ \mbox{\hyperlink{namespacedata}{data}},\ \textcolor{keywordtype}{char}\ delimiter\ =\ \textcolor{charliteral}{','})\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ std::filesystem::path\ path(file\_path);}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (path.has\_parent\_path())\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ std::filesystem::create\_directories(path.parent\_path());}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ std::ofstream\ file(file\_path,\ std::ios::app);\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.is\_open())\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Could\ not\ create\ or\ open\ file\ for\ appending\ "{}}\ <<\ file\_path\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (file.tellp()\ >\ 0)\ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{namespacedata}{data}}.size();\ ++i)\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ \mbox{\hyperlink{namespacedata}{data}}[i].size();\ ++j)\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ \mbox{\hyperlink{namespacedata}{data}}[i][j];}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (j\ <\ \mbox{\hyperlink{namespacedata}{data}}[i].size()\ -\/\ 1)\ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ delimiter;}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ <\ \mbox{\hyperlink{namespacedata}{data}}.size()\ -\/\ 1)\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00146\ \ \ \ \ \}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacefile__manager_1_1csv_a902eade1bf9316c7a50e96f3c69b8fc0}{count\_lines}}(\textcolor{keyword}{const}\ std::string\&\ file\_path)\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!std::filesystem::exists(file\_path))\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ std::ifstream\ file(file\_path);}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.is\_open())\ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ 0;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(file,\ line))\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ count++;}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ count;}
+\DoxyCodeLine{00169\ \ \ \ \ \}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00176\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacefile__manager_1_1csv}{csv}}\ =\ \mbox{\hyperlink{namespacefile__manager_1_1csv}{file\_manager::csv}};}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00182\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceconvert}{convert}}\ \{}
+\DoxyCodeLine{00183\ \ \ \ \ }
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{to\_string}}(\textcolor{keyword}{const}\ T\&\ value,\ \textcolor{keywordtype}{int}\ precision\ =\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}})\ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ std::ostringstream\ out;}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_floating\_point\_v<T>)\ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ out\ <<\ std::fixed\ <<\ std::setprecision(precision);}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ out\ <<\ value;}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ out.str();}
+\DoxyCodeLine{00200\ \ \ \ \ \}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{namespaceconvert_a58f9ce99c0ce086862a328dbead787f5}{to\_percentage\_string}}(\textcolor{keywordtype}{double}\ numerator,\ \textcolor{keywordtype}{double}\ denominator,\ \textcolor{keywordtype}{int}\ precision\ =\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}})\ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (denominator\ ==\ 0.0)\ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{to\_string}}(0.0,\ precision);}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ percentage\ =\ (numerator\ /\ denominator)\ *\ 100.0;}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{to\_string}}(percentage,\ precision);}
+\DoxyCodeLine{00216\ \ \ \ \ \}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{namespaceconvert_a7be8805a91cdd6ed61d3b26533d5deed}{vector\_to\_string}}(\textcolor{keyword}{const}\ std::vector<T>\&\ vec)\ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vec.empty())\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}[]"{}};}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ std::string\ str\ =\ \textcolor{stringliteral}{"{}["{}};}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ vec.size();\ ++i)\ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ str\ +=\ std::to\_string(vec[i]);}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ <\ vec.size()\ -\/\ 1)\ str\ +=\ \textcolor{stringliteral}{"{},"{}};}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ str\ +=\ \textcolor{stringliteral}{"{}]"{}};}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ str;}
+\DoxyCodeLine{00234\ \ \ \ \ \}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{namespaceconvert_a7a5be89d85cfeacfaeffd02106bba210}{set\_to\_string}}(\textcolor{keyword}{const}\ std::set<T>\&\ s)\ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (s.empty())\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}[]"{}};}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ std::string\ str\ =\ \textcolor{stringliteral}{"{}["{}};}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ it\ =\ s.begin();}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (it\ !=\ s.end())\ \{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ str\ +=\ std::to\_string(*it);}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ ++it;}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (it\ !=\ s.end())\ str\ +=\ \textcolor{stringliteral}{"{},"{}};}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ str\ +=\ \textcolor{stringliteral}{"{}]"{}};}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ str;}
+\DoxyCodeLine{00254\ \ \ \ \ \}}
+\DoxyCodeLine{00255\ \}}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00261\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacerandomness}{randomness}}\ \{}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{keyword}{inline}\ std::mt19937\&\ \mbox{\hyperlink{namespacerandomness_ad50649872f82d27dda5ca55791ceb9e0}{get\_engine}}()\ \{}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ std::random\_device\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{rd}};}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ std::mt19937\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{engine}}(\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{rd}}());}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{engine}};}
+\DoxyCodeLine{00272\ \ \ \ \ \}}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{T}}\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{random\_number}}(\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{T}}\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{min}},\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{T}}\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{max}})\ \{}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_arithmetic\_v<T>,\ \textcolor{stringliteral}{"{}T\ must\ be\ an\ arithmetic\ type."{}});}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{min}}\ >\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{max}})\ \{}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Error\ in\ random\_number:\ min\ cannot\ be\ greater\ than\ max."{}});}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_integral\_v<T>)\ \{}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ std::uniform\_int\_distribution<T>\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{distribution}}(\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{min}},\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{max}});}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{distribution}}(\mbox{\hyperlink{namespacerandomness_ad50649872f82d27dda5ca55791ceb9e0}{get\_engine}}());}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ std::uniform\_real\_distribution<T>\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{distribution}}(\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{min}},\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{max}});}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{distribution}}(\mbox{\hyperlink{namespacerandomness_ad50649872f82d27dda5ca55791ceb9e0}{get\_engine}}());}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00296\ \ \ \ \ \}}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{T}}\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{random\_number}}(\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{T}}\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{min}},\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{T}}\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{max}},\ std::vector<T>\&\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{exclude}})\ \{}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_arithmetic\_v<T>,\ \textcolor{stringliteral}{"{}T\ must\ be\ an\ arithmetic\ type."{}});}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{min}}\ >\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{max}})\ \{}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Error\ in\ random\_number:\ min\ cannot\ be\ greater\ than\ max."{}});}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_integral\_v<T>)\ \{}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{exclude}}.size()\ >=\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{max}}\ -\/\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{min}}\ +\ 1))\ \{}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Error\ in\ random\_number:\ all\ possible\ values\ are\ excluded\ causing\ infinite\ loop."{}});}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00321\ }
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{T}}\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{result}};}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_integral\_v<T>)\ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ std::uniform\_int\_distribution<T>\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{distribution}}(\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{min}},\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{max}});}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ \{}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{result}}\ =\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{distribution}}(\mbox{\hyperlink{namespacerandomness_ad50649872f82d27dda5ca55791ceb9e0}{get\_engine}}());}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{while}\ (std::find(\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{exclude}}.begin(),\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{exclude}}.end(),\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{result}})\ !=\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{exclude}}.end());}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ std::uniform\_real\_distribution<T>\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{distribution}}(\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{min}},\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{max}});}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ \{}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{result}}\ =\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{distribution}}(\mbox{\hyperlink{namespacerandomness_ad50649872f82d27dda5ca55791ceb9e0}{get\_engine}}());}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{while}\ (std::find(\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{exclude}}.begin(),\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{exclude}}.end(),\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{result}})\ !=\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{exclude}}.end());}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{exclude}}.push\_back(\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{result}});}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{result}};}
+\DoxyCodeLine{00337\ \ \ \ \ \}}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00347\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00348\ \ \ \ \ \textcolor{keyword}{inline}\ std::vector<T>\ \mbox{\hyperlink{namespacerandomness_a071f542899eccfe2da500e2a96764f24}{shuffled\_range}}(\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{T}}\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{min}},\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{T}}\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{max}})\ \{}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_integral\_v<T>,\ \textcolor{stringliteral}{"{}shuffled\_range\ requires\ an\ integral\ type."{}});}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{min}}\ >\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{max}})\ \{}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Error\ in\ shuffled\_range:\ min\ cannot\ be\ greater\ than\ max."{}});}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ std::vector<T>\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{numbers}}(\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{max}}\ -\/\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{min}}\ +\ 1);}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ std::iota(\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{numbers}}.begin(),\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{numbers}}.end(),\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{min}});}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ std::shuffle(\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{numbers}}.begin(),\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{numbers}}.end(),\ \mbox{\hyperlink{namespacerandomness_ad50649872f82d27dda5ca55791ceb9e0}{get\_engine}}());}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{numbers}};}
+\DoxyCodeLine{00357\ \ \ \ \ \}}
+\DoxyCodeLine{00358\ \}}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00364\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesorting}{sorting}}\ \{}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00370\ \ \ \ \ \textcolor{keyword}{namespace\ }details\ \{}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{bool}\ Ascending,\ \textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ AttributeType,\ AttributeType\ T::*\ AttributePtr>}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacesorting_1_1details_adf77f33a62d55f5505c5d5d542fa226c}{sort\_indices\_impl}}(\textcolor{keyword}{const}\ std::vector<T>\&\ entities,\ std::vector<int>\&\ idxs)\ \{}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ std::sort(idxs.begin(),\ idxs.end(),\ [\&](\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j)\ \{}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ auto\&\ attr\_i\ =\ entities.at(i).*AttributePtr;}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ auto\&\ attr\_j\ =\ entities.at(j).*AttributePtr;}
+\DoxyCodeLine{00386\ }
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (attr\_i\ !=\ attr\_j)\ \{}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ constexpr\ (Ascending)\ \{}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ attr\_i\ <\ attr\_j;\ \textcolor{comment}{//\ Ascending\ order}}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ attr\_i\ >\ attr\_j;\ \textcolor{comment}{//\ Descending\ order}}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ i\ <\ j;\ \textcolor{comment}{//\ Tie-\/breaker}}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00397\ \ \ \ \ \}}
+\DoxyCodeLine{00398\ }
+\DoxyCodeLine{00409\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{bool}\ Ascending,\ \textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ AttributeType,\ AttributeType\ T::*\ AttributePtr>}
+\DoxyCodeLine{00410\ \ \ \ \ \textcolor{keyword}{inline}\ std::vector<int>\ \mbox{\hyperlink{namespacesorting_a7d794c04fb04c9db129b2b3236f83223}{sort\_entities}}(\textcolor{keyword}{const}\ std::vector<T>\&\ entities)\ \{}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entities.size()\ <=\ 1)\ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ std::vector<int>\ idxs(entities.size()\ -\/\ 1);}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ std::iota(idxs.begin(),\ idxs.end(),\ 1);\ \textcolor{comment}{//\ Assumes\ 1-\/based\ indexing}}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ details::sort\_indices\_impl<Ascending,\ T,\ AttributeType,\ AttributePtr>(entities,\ idxs);}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ idxs;}
+\DoxyCodeLine{00416\ \ \ \ \ \}}
+\DoxyCodeLine{00417\ }
+\DoxyCodeLine{00428\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{bool}\ Ascending,\ \textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ AttributeType,\ AttributeType\ T::*\ AttributePtr>}
+\DoxyCodeLine{00429\ \ \ \ \ \textcolor{keyword}{inline}\ std::vector<int>\ \mbox{\hyperlink{namespacesorting_a7d794c04fb04c9db129b2b3236f83223}{sort\_entities}}(\textcolor{keyword}{const}\ std::vector<T>\&\ entities,\ \textcolor{keyword}{const}\ std::vector<int>\&\ indices\_to\_sort)\ \{}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entities.empty()\ ||\ indices\_to\_sort.empty())\ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ std::vector<int>\ idxs\ =\ indices\_to\_sort;\ \textcolor{comment}{//\ Create\ a\ copy\ to\ sort}}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ details::sort\_indices\_impl<Ascending,\ T,\ AttributeType,\ AttributePtr>(entities,\ idxs);}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ idxs;}
+\DoxyCodeLine{00434\ \ \ \ \ \}}
+\DoxyCodeLine{00435\ \}}
+
+\end{DoxyCode}

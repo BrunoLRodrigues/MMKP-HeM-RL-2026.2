@@ -279,7 +279,7 @@ namespace data::generate {
     /**
      * @brief Generates or loads server infrastructure data for Edge and Cloud nodes.
      * @details Creates capacity profiles for `ec_length` Edge servers (`'E'`) and `cc_length`
-     * Cloud servers (`'C'`), saving the table to `data/servers/servers_<ec>_<cc>.txt`.
+     * Cloud servers (`'C'`), saving the table to `data/servers/servers_`<ec>`_<cc>.txt`.
      * 
      * @param ec_length The number of Edge Computing servers to generate.
      * @param cc_length The number of Cloud Computing servers to generate.
@@ -805,7 +805,7 @@ namespace metrics {
     struct MetaHeuristicMetrics : public Metrics {
         Algorithm heuristic = Algorithm::NONE; ///< @brief Constructive heuristic used to generate the initial solution.
         double temperature = 0.0;              ///< @brief Initial temperature $T_0$ for Simulated Annealing.
-        double alpha = 0.0;                    ///< @brief Cooling rate factor $\alpha$ for Simulated Annealing.
+        double alpha = 0.0;                    ///< @brief Cooling rate factor $\f$\alpha\f$$ for Simulated Annealing.
 
         /**
          * @brief Constructs a `MetaHeuristicMetrics` object copying inputs from a base instance.
@@ -813,7 +813,7 @@ namespace metrics {
          * @param run_id_ Execution run number.
          * @param base Base metrics pointer containing input parameters.
          * @param temperature_ Initial temperature $T_0$.
-         * @param alpha_ Geometric cooling factor $\alpha$.
+         * @param alpha_ Geometric cooling factor $\f$\alpha\f$$.
          * @param heuristic_ Initial constructive heuristic algorithm.
          */
         MetaHeuristicMetrics(Algorithm algorithm_name_, int run_id_, const std::shared_ptr<Metrics>& base, double temperature_, double alpha_, Algorithm heuristic_) 
@@ -829,7 +829,7 @@ namespace metrics {
          * @param s_ec Edge server count.
          * @param s_cc Cloud server count.
          * @param temperature_ Initial temperature $T_0$.
-         * @param alpha_ Geometric cooling factor $\alpha$.
+         * @param alpha_ Geometric cooling factor $\f$\alpha\f$$.
          * @param heuristic_ Initial constructive heuristic algorithm.
          */
         MetaHeuristicMetrics(Algorithm algorithm_name_, int run_id, int d, int s_ec, int s_cc, double temperature_, double alpha_, Algorithm heuristic_) :

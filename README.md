@@ -45,7 +45,7 @@ MMKP_IoT_EC_CC/
 
 * **OS:** Linux or Windows Subsystem for Linux (WSL2 - Ubuntu 24.04 recommended)
 * **Compiler:** `g++` with C++17 support
-* **Build System:** Bash (`build.sh`) or `CMake` ($\ge 3.10$)
+* **Build System:** Bash (`build.sh`) or `CMake` (>= 3.10)
 * **Solver:** IBM ILOG CPLEX Optimization Studio 22.2 installed at:
   `/opt/ibm/ILOG/CPLEX_Studio222`
 

@@ -1,0 +1,819 @@
+\doxysection{mmkp.\+hpp}
+\hypertarget{mmkp_8hpp_source}{}\label{mmkp_8hpp_source}\index{include/mmkp.hpp@{include/mmkp.hpp}}
+\mbox{\hyperlink{mmkp_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tools_8hpp}{tools.hpp}}"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ Type\ aliases\ replacing\ C-\/style\ macros}}
+\DoxyCodeLine{00014\ \textcolor{keyword}{using\ }\mbox{\hyperlink{mmkp_8hpp_a24ea7b5663260ad00fc65ed519bbf8b1}{ii\_pair}}\ =\ std::pair<int,\ int>;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{using\ }\mbox{\hyperlink{mmkp_8hpp_abdece7e039099de53cbe158d24376ff8}{id\_pair}}\ =\ std::pair<int,\ double>;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{using\ }\mbox{\hyperlink{mmkp_8hpp_a11561f2f1571eed3509f087e0a373adc}{i\_vector}}\ =\ std::vector<int>;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{using\ }\mbox{\hyperlink{mmkp_8hpp_a8611bd025a925b668051e6e08d0b4608}{s\_vector}}\ =\ std::vector<std::string>;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{using\ }\mbox{\hyperlink{mmkp_8hpp_a79e98970e41b731003aca29a0f415712}{ii\_pair\_vector}}\ =\ std::vector<ii\_pair>;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{using\ }\mbox{\hyperlink{mmkp_8hpp_a6101f686aa3d1d29e76f7158cb8c347c}{id\_pair\_vector}}\ =\ std::vector<id\_pair>;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{using\ }\mbox{\hyperlink{mmkp_8hpp_a54295524698f2887657caf7820956714}{i\_matrix}}\ =\ std::vector<i\_vector>;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{using\ }\mbox{\hyperlink{mmkp_8hpp_a97dbd67a2a456c598f22b2f229687dd9}{s\_matrix}}\ =\ std::vector<s\_vector>;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{using\ }\mbox{\hyperlink{mmkp_8hpp_a57175fad6087051ccfda3252d316f596}{i\_set}}\ =\ std::set<int>;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecore}{core}}\ \{}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structcore_1_1Device}{Device}}\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structcore_1_1Device_ac83e97cbd9fa5273e048d20efd117c78}{id}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcore_1_1Device_abcd568ad40b2da1bf96e020eb373f395}{cost}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcore_1_1Device_ac8f4ac74433e443f9a0144118539cc3d}{cpu}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcore_1_1Device_ab995063705eec1a4eeafcff73b32a7c7}{mem}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcore_1_1Device_a5b35cbc18886c7fbcc22912e64e014d1}{sto}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structcore_1_1Device_a08dbaad39cf536ab7baa6923664f3a26}{tasks}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structcore_1_1Device_a26fe603e39b21b481582171766b30ab5}{service}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structcore_1_1Device_a835d0367af9fbc3419f6fb8a114760e3}{served}}\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structcore_1_1Device_ae7592c793ae91f1c8b6c0d2b0fcc3538}{server\_id}}\ =\ -\/1;\ \ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Device_a00b0a1ee58f48471ab0b80d92a639c14}{Device}}()\ :\ \mbox{\hyperlink{structcore_1_1Device_ac83e97cbd9fa5273e048d20efd117c78}{id}}(0),\ \mbox{\hyperlink{structcore_1_1Device_abcd568ad40b2da1bf96e020eb373f395}{cost}}(0.0),\ \mbox{\hyperlink{structcore_1_1Device_ac8f4ac74433e443f9a0144118539cc3d}{cpu}}(0.0),\ \mbox{\hyperlink{structcore_1_1Device_ab995063705eec1a4eeafcff73b32a7c7}{mem}}(0.0),\ \mbox{\hyperlink{structcore_1_1Device_a5b35cbc18886c7fbcc22912e64e014d1}{sto}}(0.0),\ \mbox{\hyperlink{structcore_1_1Device_a08dbaad39cf536ab7baa6923664f3a26}{tasks}}(0),\ \mbox{\hyperlink{structcore_1_1Device_a26fe603e39b21b481582171766b30ab5}{service}}(0)\ \{\}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Device_a4912c64725d31feb93465a55d332a408}{Device}}(\textcolor{keywordtype}{int}\ id\_,\ \textcolor{keywordtype}{double}\ cost\_,\ \textcolor{keywordtype}{double}\ cpu\_,\ \textcolor{keywordtype}{double}\ mem\_,\ \textcolor{keywordtype}{double}\ sto\_,\ \textcolor{keywordtype}{int}\ tasks\_,\ \textcolor{keywordtype}{int}\ service\_)}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{structcore_1_1Device_ac83e97cbd9fa5273e048d20efd117c78}{id}}(id\_),\ \mbox{\hyperlink{structcore_1_1Device_abcd568ad40b2da1bf96e020eb373f395}{cost}}(cost\_),\ \mbox{\hyperlink{structcore_1_1Device_ac8f4ac74433e443f9a0144118539cc3d}{cpu}}(cpu\_),\ \mbox{\hyperlink{structcore_1_1Device_ab995063705eec1a4eeafcff73b32a7c7}{mem}}(mem\_),\ \mbox{\hyperlink{structcore_1_1Device_a5b35cbc18886c7fbcc22912e64e014d1}{sto}}(sto\_),\ \mbox{\hyperlink{structcore_1_1Device_a08dbaad39cf536ab7baa6923664f3a26}{tasks}}(tasks\_),\ \mbox{\hyperlink{structcore_1_1Device_a26fe603e39b21b481582171766b30ab5}{service}}(service\_)\ \{\}}
+\DoxyCodeLine{00062\ \ \ \ \ \};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{Devices}}\ =\ std::vector<Device>;\ \ \ }
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structcore_1_1Supply}{Supply}}\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcore_1_1Supply_a16f2b476b9137780bddfd39065c1f5e4}{cost}}\ =\ 0.0;\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcore_1_1Supply_aeede708c05a5c0ad4dcfeb4cab4a1e59}{cpu}}\ =\ 0.0;\ \ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcore_1_1Supply_a8d1a5cb1c6a6f613ed211d717858d432}{mem}}\ =\ 0.0;\ \ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcore_1_1Supply_af5ee55556ad0d4d3e6d2d48c7c46bbd4}{sto}}\ =\ 0.0;\ \ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{comment}{//double\ free\ =\ 0.0;}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmkp_8hpp_a57175fad6087051ccfda3252d316f596}{i\_set}}\ \mbox{\hyperlink{structcore_1_1Supply_a46c7a0e0c5ef627372a278ae76c9122f}{devices}};\ \ \ \ \ }
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Supply_a4ef05c3bf7a61c45d9e7583b0d134925}{Supply}}()\ :\ \mbox{\hyperlink{structcore_1_1Supply_a16f2b476b9137780bddfd39065c1f5e4}{cost}}(0.0),\ \mbox{\hyperlink{structcore_1_1Supply_aeede708c05a5c0ad4dcfeb4cab4a1e59}{cpu}}(0.0),\ \mbox{\hyperlink{structcore_1_1Supply_a8d1a5cb1c6a6f613ed211d717858d432}{mem}}(0.0),\ \mbox{\hyperlink{structcore_1_1Supply_af5ee55556ad0d4d3e6d2d48c7c46bbd4}{sto}}(0.0)\ \{\}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Supply_a482b2bff59f121cf5a3ecd74948717a0}{Supply}}(\textcolor{keywordtype}{double}\ cost\_,\ \ \textcolor{keywordtype}{double}\ cpu\_,\ \textcolor{keywordtype}{double}\ mem\_,\ \textcolor{keywordtype}{double}\ sto\_)}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{structcore_1_1Supply_a16f2b476b9137780bddfd39065c1f5e4}{cost}}(cost\_),\ \mbox{\hyperlink{structcore_1_1Supply_aeede708c05a5c0ad4dcfeb4cab4a1e59}{cpu}}(cpu\_),\ \mbox{\hyperlink{structcore_1_1Supply_a8d1a5cb1c6a6f613ed211d717858d432}{mem}}(mem\_),\ \mbox{\hyperlink{structcore_1_1Supply_af5ee55556ad0d4d3e6d2d48c7c46bbd4}{sto}}(sto\_)\ \{\}}
+\DoxyCodeLine{00095\ \ \ \ \ \};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structcore_1_1Server}{Server}}\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structcore_1_1Server_a0c946ea419d875d81dc5e66ca27c3d6f}{id}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structcore_1_1Server_a4309664304c6f6df68e8f1841d2649e3}{type}};\ \ \ \ \ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcore_1_1Server_aeec37b8c331e9a588304329940ce2bba}{cpu}};\ \ \ \ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcore_1_1Server_ae5e9db950a7b35a9c1045cd6096051b2}{mem}};\ \ \ \ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcore_1_1Server_a4e5ec779ca60973f6fa974a9ca3917ee}{sto}};\ \ \ \ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Supply}{Supply}}\ \mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}};\ }
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Server_a24891c28e8cfad802737d177259f0599}{Server}}()\ :\ \mbox{\hyperlink{structcore_1_1Server_a0c946ea419d875d81dc5e66ca27c3d6f}{id}}(0),\ \mbox{\hyperlink{structcore_1_1Server_a4309664304c6f6df68e8f1841d2649e3}{type}}(\textcolor{stringliteral}{'\ '}),\ \mbox{\hyperlink{structcore_1_1Server_aeec37b8c331e9a588304329940ce2bba}{cpu}}(0.0),\ \mbox{\hyperlink{structcore_1_1Server_ae5e9db950a7b35a9c1045cd6096051b2}{mem}}(0.0),\ \mbox{\hyperlink{structcore_1_1Server_a4e5ec779ca60973f6fa974a9ca3917ee}{sto}}(0.0),\ \mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}()\ \{\}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Server_a0820e531fd1a95de62dff7eab0958d53}{Server}}(\textcolor{keywordtype}{int}\ id\_,\ \textcolor{keywordtype}{char}\ type\_,\ \textcolor{keywordtype}{double}\ cpu\_,\ \textcolor{keywordtype}{double}\ mem\_,\ \textcolor{keywordtype}{double}\ sto\_)}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{structcore_1_1Server_a0c946ea419d875d81dc5e66ca27c3d6f}{id}}(id\_),\ \mbox{\hyperlink{structcore_1_1Server_a4309664304c6f6df68e8f1841d2649e3}{type}}(type\_),\ \mbox{\hyperlink{structcore_1_1Server_aeec37b8c331e9a588304329940ce2bba}{cpu}}(cpu\_),\ \mbox{\hyperlink{structcore_1_1Server_ae5e9db950a7b35a9c1045cd6096051b2}{mem}}(mem\_),\ \mbox{\hyperlink{structcore_1_1Server_a4e5ec779ca60973f6fa974a9ca3917ee}{sto}}(sto\_)\ \{\}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structcore_1_1Server_aee0071cd3e71c36a8861fbd98fad8a16}{can\_serve}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structcore_1_1Device}{Device}}\&\ device)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (device.\mbox{\hyperlink{structcore_1_1Device_ac8f4ac74433e443f9a0144118539cc3d}{cpu}}\ <=\ (\mbox{\hyperlink{structcore_1_1Server_aeec37b8c331e9a588304329940ce2bba}{cpu}}\ -\/\ \mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}.\mbox{\hyperlink{structcore_1_1Supply_aeede708c05a5c0ad4dcfeb4cab4a1e59}{cpu}}))\ \ \&\&}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (device.\mbox{\hyperlink{structcore_1_1Device_ab995063705eec1a4eeafcff73b32a7c7}{mem}}\ <=\ (\mbox{\hyperlink{structcore_1_1Server_ae5e9db950a7b35a9c1045cd6096051b2}{mem}}\ -\/\ \mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}.\mbox{\hyperlink{structcore_1_1Supply_a8d1a5cb1c6a6f613ed211d717858d432}{mem}}))\ \ \&\&}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (device.\mbox{\hyperlink{structcore_1_1Device_a5b35cbc18886c7fbcc22912e64e014d1}{sto}}\ <=\ (\mbox{\hyperlink{structcore_1_1Server_a4e5ec779ca60973f6fa974a9ca3917ee}{sto}}\ -\/\ \mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}.\mbox{\hyperlink{structcore_1_1Supply_af5ee55556ad0d4d3e6d2d48c7c46bbd4}{sto}}))}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structcore_1_1Server_a537a5e6b913db9ff0e0b1de584067990}{add\_service}}(\mbox{\hyperlink{structcore_1_1Device}{Device}}\&\ device)\ \{\ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ result\ =\ \mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}.\mbox{\hyperlink{structcore_1_1Supply_a46c7a0e0c5ef627372a278ae76c9122f}{devices}}.insert(device.\mbox{\hyperlink{structcore_1_1Device_ac83e97cbd9fa5273e048d20efd117c78}{id}});}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!result.second)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ device.\mbox{\hyperlink{structcore_1_1Device_a835d0367af9fbc3419f6fb8a114760e3}{served}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ device.\mbox{\hyperlink{structcore_1_1Device_ae7592c793ae91f1c8b6c0d2b0fcc3538}{server\_id}}\ =\ \mbox{\hyperlink{structcore_1_1Server_a0c946ea419d875d81dc5e66ca27c3d6f}{id}};}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}.\mbox{\hyperlink{structcore_1_1Supply_a16f2b476b9137780bddfd39065c1f5e4}{cost}}\ +=\ device.\mbox{\hyperlink{structcore_1_1Device_abcd568ad40b2da1bf96e020eb373f395}{cost}};}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}.\mbox{\hyperlink{structcore_1_1Supply_aeede708c05a5c0ad4dcfeb4cab4a1e59}{cpu}}\ +=\ device.\mbox{\hyperlink{structcore_1_1Device_ac8f4ac74433e443f9a0144118539cc3d}{cpu}};}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}.\mbox{\hyperlink{structcore_1_1Supply_a8d1a5cb1c6a6f613ed211d717858d432}{mem}}\ +=\ device.\mbox{\hyperlink{structcore_1_1Device_ab995063705eec1a4eeafcff73b32a7c7}{mem}};}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}.\mbox{\hyperlink{structcore_1_1Supply_af5ee55556ad0d4d3e6d2d48c7c46bbd4}{sto}}\ +=\ device.\mbox{\hyperlink{structcore_1_1Device_a5b35cbc18886c7fbcc22912e64e014d1}{sto}};}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structcore_1_1Server_ad13b43798af6d07b70393d3b7239d780}{rmv\_service}}(\mbox{\hyperlink{structcore_1_1Device}{Device}}\&\ device)\ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}.\mbox{\hyperlink{structcore_1_1Supply_a46c7a0e0c5ef627372a278ae76c9122f}{devices}}.erase(device.\mbox{\hyperlink{structcore_1_1Device_ac83e97cbd9fa5273e048d20efd117c78}{id}})\ ==\ 0)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ device.\mbox{\hyperlink{structcore_1_1Device_a835d0367af9fbc3419f6fb8a114760e3}{served}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ device.\mbox{\hyperlink{structcore_1_1Device_ae7592c793ae91f1c8b6c0d2b0fcc3538}{server\_id}}\ =\ -\/1;}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}.\mbox{\hyperlink{structcore_1_1Supply_a16f2b476b9137780bddfd39065c1f5e4}{cost}}\ -\/=\ device.\mbox{\hyperlink{structcore_1_1Device_abcd568ad40b2da1bf96e020eb373f395}{cost}};}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}.\mbox{\hyperlink{structcore_1_1Supply_aeede708c05a5c0ad4dcfeb4cab4a1e59}{cpu}}\ -\/=\ device.\mbox{\hyperlink{structcore_1_1Device_ac8f4ac74433e443f9a0144118539cc3d}{cpu}};}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}.\mbox{\hyperlink{structcore_1_1Supply_a8d1a5cb1c6a6f613ed211d717858d432}{mem}}\ -\/=\ device.\mbox{\hyperlink{structcore_1_1Device_ab995063705eec1a4eeafcff73b32a7c7}{mem}};}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}.\mbox{\hyperlink{structcore_1_1Supply_af5ee55556ad0d4d3e6d2d48c7c46bbd4}{sto}}\ -\/=\ device.\mbox{\hyperlink{structcore_1_1Device_a5b35cbc18886c7fbcc22912e64e014d1}{sto}};}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00176\ \ \ \ \ \};}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{Servers}}\ =\ std::vector<Server>;\ \ \ }
+\DoxyCodeLine{00182\ \}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00188\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacedata_1_1generate}{data::generate}}\ \{}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keyword}{const}\ std::filesystem::path\ \mbox{\hyperlink{namespacedata_1_1generate_a75e853eaa2e0c225aad26cf3607b53f8}{DATA\_PATH}}\ =\ std::filesystem::current\_path()\ /\ \textcolor{stringliteral}{"{}data"{}};}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keyword}{inline}\ std::vector<std::vector<std::string>>\ \mbox{\hyperlink{namespacedata_1_1generate_a8cf334007dfe6c39270237e4b5e1df96}{services}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ num\_services\ =\ 10)\ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ std::filesystem::path\ service\_path\ =\ \mbox{\hyperlink{namespacedata_1_1generate_a75e853eaa2e0c225aad26cf3607b53f8}{DATA\_PATH}}\ /\ \textcolor{stringliteral}{"{}Services.txt"{}};}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (std::filesystem::exists(service\_path))\ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacefile__manager_1_1csv_af48fa4ef4b9a1c06b33a77e1224e6d0f}{csv::read}}(service\_path.string(),\ \textcolor{charliteral}{';'}).value\_or(std::vector<std::vector<std::string>>\{\});}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ std::vector<std::vector<std::string>>\ \mbox{\hyperlink{namespacedata_1_1generate_a8cf334007dfe6c39270237e4b5e1df96}{services}};}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedata_1_1generate_a8cf334007dfe6c39270237e4b5e1df96}{services}}.push\_back(\{\textcolor{stringliteral}{"{}\#"{}},\ \textcolor{stringliteral}{"{}COST"{}},\ \textcolor{stringliteral}{"{}CPU"{}},\ \textcolor{stringliteral}{"{}MEM"{}},\ \textcolor{stringliteral}{"{}STO"{}},\ \textcolor{stringliteral}{"{}TSK"{}}\});}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <=\ num\_services;\ i++)\ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ tsk\ =\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{randomness::random\_number}}(1,\ 4);}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ cpu\ =\ 0.0,\ mem\ =\ 0.0,\ sto\ =\ 0.0,\ cos\ =\ 1.0;}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ tsk;\ j++)\ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//cos\ +=\ randomness::random\_number(ZERO,\ 2.5);}}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cpu\ +=\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{randomness::random\_number}}(\mbox{\hyperlink{tools_8hpp_acca3350a20fd52e319b79444c3137ee7}{ZERO}},\ 2.5);}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mem\ +=\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{randomness::random\_number}}(\mbox{\hyperlink{tools_8hpp_acca3350a20fd52e319b79444c3137ee7}{ZERO}},\ 2.5);}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sto\ +=\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{randomness::random\_number}}(\mbox{\hyperlink{tools_8hpp_acca3350a20fd52e319b79444c3137ee7}{ZERO}},\ 15.0);}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedata_1_1generate_a8cf334007dfe6c39270237e4b5e1df96}{services}}.push\_back(\{}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(i),\ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(cos,\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}}),}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(cpu,\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}}),\ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(mem,\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}}),\ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(sto,\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}}),}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(tsk)}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{namespacefile__manager_1_1csv_a43aa6152048eff2a39c66c4b06d266d7}{csv::write}}(service\_path.string(),\ \mbox{\hyperlink{namespacedata_1_1generate_a8cf334007dfe6c39270237e4b5e1df96}{services}},\ \textcolor{charliteral}{';'}))\ \{}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacedata_1_1generate_a8cf334007dfe6c39270237e4b5e1df96}{services}};}
+\DoxyCodeLine{00234\ \ \ \ \ \}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keyword}{inline}\ std::vector<std::vector<std::string>>\ \mbox{\hyperlink{namespacedata_1_1generate_af6567b345dff3a26eabcad5abd28fcdb}{devices}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ length,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ num\_services\ =\ 10)\ \{}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ std::filesystem::path\ device\_file\_path\ =\ \mbox{\hyperlink{namespacedata_1_1generate_a75e853eaa2e0c225aad26cf3607b53f8}{DATA\_PATH}}\ /\ \textcolor{stringliteral}{"{}devices"{}}\ /\ (\textcolor{stringliteral}{"{}Devices\_"{}}\ +\ std::to\_string(length)\ +\ \textcolor{stringliteral}{"{}.txt"{}});}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (std::filesystem::exists(device\_file\_path))\ \{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacefile__manager_1_1csv_af48fa4ef4b9a1c06b33a77e1224e6d0f}{csv::read}}(device\_file\_path.string(),\ \textcolor{charliteral}{';'}).value\_or(std::vector<std::vector<std::string>>\{\});}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ std::vector<std::vector<std::string>>\ data\_services\ =\ \mbox{\hyperlink{namespacedata_1_1generate_a8cf334007dfe6c39270237e4b5e1df96}{services}}(num\_services);}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (data\_services.size()\ <=\ 1)\ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ std::vector<std::vector<std::string>>\ \mbox{\hyperlink{namespacedata_1_1generate_af6567b345dff3a26eabcad5abd28fcdb}{devices}};}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedata_1_1generate_af6567b345dff3a26eabcad5abd28fcdb}{devices}}.push\_back(\{\textcolor{stringliteral}{"{}\#"{}},\ \textcolor{stringliteral}{"{}COST"{}},\ \textcolor{stringliteral}{"{}CPU"{}},\ \textcolor{stringliteral}{"{}MEM"{}},\ \textcolor{stringliteral}{"{}STO"{}},\ \textcolor{stringliteral}{"{}TSK"{}},\ \textcolor{stringliteral}{"{}SVC"{}}\});}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <=\ length;\ i++)\ \{}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ source\_service\_row\ =\ data\_services.at(\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{randomness::random\_number}}(1,\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(data\_services.size())\ -\/\ 1));}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedata_1_1generate_af6567b345dff3a26eabcad5abd28fcdb}{devices}}.push\_back(\{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(i),\ \ \ \ \textcolor{comment}{//\ \#\ }}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ source\_service\_row.at(1),\ \textcolor{comment}{//\ COST\ }}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ source\_service\_row.at(2),\ \textcolor{comment}{//\ CPU\ }}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ source\_service\_row.at(3),\ \textcolor{comment}{//\ MEM\ }}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ source\_service\_row.at(4),\ \textcolor{comment}{//\ STO\ }}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ source\_service\_row.at(5),\ \textcolor{comment}{//\ TASKS\ }}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ source\_service\_row.at(0)\ \ \textcolor{comment}{//\ SERVICE\ }}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{namespacefile__manager_1_1csv_a43aa6152048eff2a39c66c4b06d266d7}{csv::write}}(device\_file\_path.string(),\ \mbox{\hyperlink{namespacedata_1_1generate_af6567b345dff3a26eabcad5abd28fcdb}{devices}},\ \textcolor{charliteral}{';'}))\ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacedata_1_1generate_af6567b345dff3a26eabcad5abd28fcdb}{devices}};}
+\DoxyCodeLine{00277\ \ \ \ \ \}}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00288\ \ \ \ \ \textcolor{keyword}{inline}\ std::vector<std::vector<std::string>>\ \mbox{\hyperlink{namespacedata_1_1generate_a406f9158cb3dc3b05a461bc10038fae1}{servers}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ ec\_length\ =\ 99,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ cc\_length\ =\ 1)\ \{}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ std::filesystem::path\ server\_file\_path\ =\ \mbox{\hyperlink{namespacedata_1_1generate_a75e853eaa2e0c225aad26cf3607b53f8}{DATA\_PATH}}\ /\ \textcolor{stringliteral}{"{}servers"{}}\ /\ (\textcolor{stringliteral}{"{}servers\_"{}}\ +\ std::to\_string(ec\_length)\ +\ \textcolor{stringliteral}{"{}\_"{}}\ +\ std::to\_string(cc\_length)\ +\ \textcolor{stringliteral}{"{}.txt"{}});}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (std::filesystem::exists(server\_file\_path))\ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacefile__manager_1_1csv_af48fa4ef4b9a1c06b33a77e1224e6d0f}{csv::read}}(server\_file\_path.string(),\ \textcolor{charliteral}{';'}).value\_or(std::vector<std::vector<std::string>>\{\});}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ std::vector<std::vector<std::string>>\ \mbox{\hyperlink{namespacedata_1_1generate_a406f9158cb3dc3b05a461bc10038fae1}{servers}};}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedata_1_1generate_a406f9158cb3dc3b05a461bc10038fae1}{servers}}.push\_back(\{\textcolor{stringliteral}{"{}\#"{}},\ \textcolor{stringliteral}{"{}Type"{}},\ \textcolor{stringliteral}{"{}CPU"{}},\ \textcolor{stringliteral}{"{}MEM"{}},\ \textcolor{stringliteral}{"{}STO"{}}\});}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ size\ =\ ec\_length\ +\ cc\_length;}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ cpu,\ mem,\ sto;}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ it\ =\ 1;\ it\ <=\ size;\ it++)\ \{}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (it\ <=\ ec\_length)\ \{}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cpu\ =\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{randomness::random\_number}}(2.5,\ 25.0);}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mem\ =\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{randomness::random\_number}}(2.5,\ 125.0);}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sto\ =\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{randomness::random\_number}}(15.0,\ 1000.0);}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ factor\ =\ 2.0;}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cpu\ =\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{randomness::random\_number}}(100000.0/factor,\ 200000.0/factor);}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mem\ =\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{randomness::random\_number}}(51200.0/factor,\ 102800.0/factor);}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sto\ =\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{randomness::random\_number}}(500000.0/factor,\ 1000000.0/factor);}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedata_1_1generate_a406f9158cb3dc3b05a461bc10038fae1}{servers}}.push\_back(\{}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(it),\ \ \ \ \ \ \ \ \textcolor{comment}{//\ IDX\ \ }}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (it\ <=\ ec\_length)\ ?\ \textcolor{stringliteral}{"{}E"{}}\ :\ \textcolor{stringliteral}{"{}C"{}},\ \textcolor{comment}{//\ TYPE}}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(cpu,\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}}),\ \ \ \ \ \ \ \textcolor{comment}{//\ CPU\ \ \ }}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(mem,\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}}),\ \ \ \ \ \ \ \textcolor{comment}{//\ MEM\ }}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(sto,\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}})\ \ \ \ \ \ \ \ \textcolor{comment}{//\ STO}}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{namespacefile__manager_1_1csv_a43aa6152048eff2a39c66c4b06d266d7}{csv::write}}(server\_file\_path.string(),\ \mbox{\hyperlink{namespacedata_1_1generate_a406f9158cb3dc3b05a461bc10038fae1}{servers}},\ \textcolor{charliteral}{';'}))\ \{}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacedata_1_1generate_a406f9158cb3dc3b05a461bc10038fae1}{servers}};}
+\DoxyCodeLine{00324\ \ \ \ \ \}}
+\DoxyCodeLine{00325\ \}}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00331\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacedata_1_1load}{data::load}}\ \{}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00339\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core::Devices}}\ \mbox{\hyperlink{namespacedata_1_1load_a1cf3365d1111392a986685684c4ed7af}{devices}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ length,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ num\_services\ =\ 10)\ \{}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ std::vector<std::vector<std::string>>\ load\_devices\ =\ \mbox{\hyperlink{namespacedata_1_1generate_af6567b345dff3a26eabcad5abd28fcdb}{data::generate::devices}}(length,\ num\_services);}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (load\_devices.size()\ <=\ 1)\ \{}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Device\ data\ file\ not\ found\ or\ is\ empty.\(\backslash\)n"{}};}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core::Devices}}\ \mbox{\hyperlink{namespacedata_1_1load_a1cf3365d1111392a986685684c4ed7af}{devices}};}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedata_1_1load_a1cf3365d1111392a986685684c4ed7af}{devices}}.reserve(length\ +\ 1);}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedata_1_1load_a1cf3365d1111392a986685684c4ed7af}{devices}}.emplace\_back();\ \textcolor{comment}{//\ Placeholder\ for\ 1-\/based\ indexing.}}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ row\ :\ load\_devices)\ \{}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (row.at(0)\ ==\ \textcolor{stringliteral}{"{}\#"{}})\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedata_1_1load_a1cf3365d1111392a986685684c4ed7af}{devices}}.emplace\_back(}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::stoi(row.at(0)),\ \ \textcolor{comment}{//\ \#}}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::stod(row.at(1)),\ \ \textcolor{comment}{//\ COST}}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::stod(row.at(2)),\ \ \textcolor{comment}{//\ CPU}}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::stod(row.at(3)),\ \ \textcolor{comment}{//\ MEM}}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::stod(row.at(4)),\ \ \textcolor{comment}{//\ STO}}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::stoi(row.at(5)),\ \ \textcolor{comment}{//\ TASKS}}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::stoi(row.at(6))\ \ \ \textcolor{comment}{//\ SERVICE}}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::exception\&\ e)\ \{}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error\ parsing\ device\ data:\ "{}}\ <<\ e.what()\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00367\ }
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacedata_1_1load_a1cf3365d1111392a986685684c4ed7af}{devices}};}
+\DoxyCodeLine{00369\ \ \ \ \ \}}
+\DoxyCodeLine{00370\ \ \ \ \ }
+\DoxyCodeLine{00377\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core::Servers}}\ \mbox{\hyperlink{namespacedata_1_1load_ac246a8e8d760e5209660fe9bdbce70ba}{servers}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ ec\ =\ 99,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ cc\ =\ 1)\ \{}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ std::vector<std::vector<std::string>>\ load\_servers\ =\ \mbox{\hyperlink{namespacedata_1_1generate_a406f9158cb3dc3b05a461bc10038fae1}{data::generate::servers}}(ec,\ cc);}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (load\_servers.size()\ <=\ 1)\ \{}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Server\ data\ file(s)\ not\ found\ or\ are\ empty.\(\backslash\)n"{}};}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core::Servers}}\ \mbox{\hyperlink{namespacedata_1_1load_ac246a8e8d760e5209660fe9bdbce70ba}{servers}};}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedata_1_1load_ac246a8e8d760e5209660fe9bdbce70ba}{servers}}.reserve(ec\ +\ cc\ +\ 1);}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedata_1_1load_ac246a8e8d760e5209660fe9bdbce70ba}{servers}}.emplace\_back();\ \textcolor{comment}{//\ Placeholder\ for\ 1-\/based\ indexing.}}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ row\ :\ load\_servers)\ \{}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (row.at(0)\ ==\ \textcolor{stringliteral}{"{}\#"{}})\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedata_1_1load_ac246a8e8d760e5209660fe9bdbce70ba}{servers}}.emplace\_back(}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::stoi(row.at(0)),\ \ \textcolor{comment}{//\ \#}}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ row.at(1).front(),\ \ \ \ \ \textcolor{comment}{//\ TYPE\ (extracting\ char\ safely)}}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::stod(row.at(2)),\ \ \textcolor{comment}{//\ CPU}}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::stod(row.at(3)),\ \ \textcolor{comment}{//\ MEM}}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::stod(row.at(4))\ \ \ \textcolor{comment}{//\ STO}}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::exception\&\ e)\ \{}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error\ parsing\ server\ data:\ "{}}\ <<\ e.what()\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacedata_1_1load_ac246a8e8d760e5209660fe9bdbce70ba}{servers}};}
+\DoxyCodeLine{00405\ \ \ \ \ \}\ \ \ \ }
+\DoxyCodeLine{00406\ \}}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00412\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacemetrics}{metrics}}\ \{}
+\DoxyCodeLine{00413\ }
+\DoxyCodeLine{00417\ \ \ \ \ \textcolor{keyword}{const}\ std::filesystem::path\ \mbox{\hyperlink{namespacemetrics_a7f26a4cc7d54ffeeccdb8002576777cc}{RESULTS\_PATH}}\ =\ std::filesystem::current\_path()\ /\ \textcolor{stringliteral}{"{}results"{}};}
+\DoxyCodeLine{00418\ }
+\DoxyCodeLine{00423\ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}}\ \{}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aab50339a10e1de285ac99d4c3990b8693}{NONE}},\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aac41e056424136b6e8c4e23dd6326efa1}{EXACT}},\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aa589ab27e5d5232a3590c042c0dbe7818}{HEURISTIC}},\ \ \ \ \ }
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aa1ef7e0df1cd1fdd87ecf432332cd8343}{METAHEURISTIC}}\ \ }
+\DoxyCodeLine{00428\ \ \ \ \ \};}
+\DoxyCodeLine{00429\ }
+\DoxyCodeLine{00435\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{namespacemetrics_a5bb0d7248ebf1214b792666f43dc57a5}{to\_string}}(\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}}\ paradigm)\ \{}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (paradigm)\ \{}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aac41e056424136b6e8c4e23dd6326efa1}{Paradigm::EXACT}}:\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}EXACT"{}};}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aa589ab27e5d5232a3590c042c0dbe7818}{Paradigm::HEURISTIC}}:\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}HEURISTIC"{}};}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aa1ef7e0df1cd1fdd87ecf432332cd8343}{Paradigm::METAHEURISTIC}}:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}METAHEURISTIC"{}};}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}NONE"{}};}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00442\ \ \ \ \ \}}
+\DoxyCodeLine{00443\ }
+\DoxyCodeLine{00448\ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}}\ \{}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aab50339a10e1de285ac99d4c3990b8693}{NONE}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11ae6bb6feafcc4de7705a8fe1782af973e}{solver\_maximum\_cost}},\ \ \ \ }
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11abe0511aca70b810b2ed30f6c24c4a620}{greedy\_cost\_benefit}},\ \ \ \ }
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11aa845e2c8be77bb480b9bea73ff528829}{greedy\_random}},\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11a0327841700a466600166ed61b1b18200}{greedy\_random\_fallback}},\ }
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11a557e0f060742f44e69f44502ad2f3d71}{simulated\_annealing}}\ \ \ \ \ }
+\DoxyCodeLine{00455\ \ \ \ \ \};}
+\DoxyCodeLine{00456\ }
+\DoxyCodeLine{00462\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{namespacemetrics_a5bb0d7248ebf1214b792666f43dc57a5}{to\_string}}(\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}}\ algorithm)\ \{}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (algorithm)\ \{}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11ae6bb6feafcc4de7705a8fe1782af973e}{Algorithm::solver\_maximum\_cost}}:\ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}SOLVER\_MAXIMUM\_COST"{}};}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11abe0511aca70b810b2ed30f6c24c4a620}{Algorithm::greedy\_cost\_benefit}}:\ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}GREEDY\_CB"{}};\ \ \ \ }
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11aa845e2c8be77bb480b9bea73ff528829}{Algorithm::greedy\_random}}:\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}GREEDY\_RANDOM"{}};}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11a0327841700a466600166ed61b1b18200}{Algorithm::greedy\_random\_fallback}}:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}GREEDY\_RANDOM\_FALLBACK"{}};}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11a557e0f060742f44e69f44502ad2f3d71}{Algorithm::simulated\_annealing}}:\ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}SA"{}};}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}NONE"{}};}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00471\ \ \ \ \ \}}
+\DoxyCodeLine{00472\ }
+\DoxyCodeLine{00477\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structmetrics_1_1MetricEntry}{MetricEntry}}\ \{}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structmetrics_1_1MetricEntry_a512020d4c2996bc2308bedd0f6e69531}{category}};\ \ \ \ \ \ }
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structmetrics_1_1MetricEntry_a750054bbaa15403fb569b1de3829bd7a}{header}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structmetrics_1_1MetricEntry_a835aaa88d9da1d13bbc9cd294b035e66}{label}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structmetrics_1_1MetricEntry_aa6fd9875ebd583d4ea3e52130e2a0674}{file\_value}};\ \ \ \ }
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structmetrics_1_1MetricEntry_a618239a3ade4c4150d6138725d75d9f3}{console\_value}};\ }
+\DoxyCodeLine{00483\ \ \ \ \ \};}
+\DoxyCodeLine{00484\ }
+\DoxyCodeLine{00489\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}}\ \{}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}}\ \mbox{\hyperlink{structmetrics_1_1Metrics_a3826511b1490b1dc00db005abde1ec40}{paradigm}}\ =\ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aab50339a10e1de285ac99d4c3990b8693}{Paradigm::NONE}};\ \ \ \ }
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}}\ \mbox{\hyperlink{structmetrics_1_1Metrics_a833606cb55a8544ef0154c0c7fa0e44f}{algorithm}}\ =\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11ab50339a10e1de285ac99d4c3990b8693}{Algorithm::NONE}};\ }
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\_id}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00493\ }
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs}{Inputs}}\ \{}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs_a9d9c4dfecd2326830937ae54669317df}{devices\_count}}\ =\ 0;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs_ac142acfded6ab5b0649805d2ef2dff5d}{servers\_ec\_count}}\ =\ 0;\ \ \ \ }
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs_ac19c41609f670f2c082d687bfa070804}{servers\_cc\_count}}\ =\ 0;\ \ \ \ }
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs_adf9f25a68afdd633f3cef74181ba393e}{max\_penalty\_cost}}\ =\ 0;\ }
+\DoxyCodeLine{00503\ }
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs}{Inputs}}\&\ \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs_aa5721481986aecd320a74b81fd934a65}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs}{Inputs}}\&\ other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \}\ \mbox{\hyperlink{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}{inputs}};\ }
+\DoxyCodeLine{00506\ }
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs}{Outputs}}\ \{}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a368fc6ce81f784f3b6b8a75c2c0acb80}{execution\_time}}\ =\ 0.0;\ \ \ \ \ \ }
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a9f2be9a1ce7348e932fd051127e1b9a2}{devices\_served\_count}}\ =\ 0;\ \ }
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a285b2ef7b968ded5eb87885ddc3fa66f}{devices\_served\_ec\_count}}\ =\ 0;\ }
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a63504efebf41100542416f616af0feb8}{devices\_served\_cc\_count}}\ =\ 0;\ }
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a2d986cff5ef07331c9d0d7614b6887ee}{servers\_used\_count}}\ =\ 0;\ \ \ \ }
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a199faec6d0b8a5aa706bef1f88ab96ca}{servers\_used\_ec\_count}}\ =\ 0;\ }
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a03382964d564523b53111a2e2b15ec98}{servers\_used\_cc\_count}}\ =\ 0;\ }
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a4e1167a2019ff1105f6b3c7a4b24fd78}{total\_penalty\_cost}}\ =\ 0.0;\ \ }
+\DoxyCodeLine{00520\ }
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs}{Outputs}}\&\ \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a8690a985d2d7fc727fed427554b73ad5}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs}{Outputs}}\&\ other)\ =\ \textcolor{keywordflow}{default};\ }
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \}\ \mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}};\ }
+\DoxyCodeLine{00523\ }
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Metrics_a9217a58687ba34ac1761400e68e740f4}{Metrics}}(\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}}\ paradigm\_,\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}}\ algorithm\_name\_,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\_id}})\ }
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{structmetrics_1_1Metrics_a3826511b1490b1dc00db005abde1ec40}{paradigm}}(paradigm\_),\ \mbox{\hyperlink{structmetrics_1_1Metrics_a833606cb55a8544ef0154c0c7fa0e44f}{algorithm}}(algorithm\_name\_),\ \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\_id}}(\mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\_id}})\ \{\}}
+\DoxyCodeLine{00532\ }
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Metrics_a834a73372dabe9703229d24b046a2887}{Metrics}}(\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}}\ paradigm\_,\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}}\ algorithm\_name\_,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\_id}},\ \textcolor{keyword}{const}\ std::shared\_ptr<Metrics>\&\ base)\ }
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{structmetrics_1_1Metrics_a3826511b1490b1dc00db005abde1ec40}{paradigm}}(paradigm\_),\ \mbox{\hyperlink{structmetrics_1_1Metrics_a833606cb55a8544ef0154c0c7fa0e44f}{algorithm}}(algorithm\_name\_),\ \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\_id}}(\mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\_id}})\ \{}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (base)\ \mbox{\hyperlink{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}{inputs}}\ =\ base-\/>inputs;}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Metrics_a0240efd0553a3ae4803fbd8e281dae90}{Metrics}}(\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}}\ paradigm\_,\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}}\ algorithm\_name\_,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\_id}},\ \textcolor{keywordtype}{int}\ d,\ \textcolor{keywordtype}{int}\ s\_ec,\ \textcolor{keywordtype}{int}\ s\_cc)\ }
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{structmetrics_1_1Metrics_a3826511b1490b1dc00db005abde1ec40}{paradigm}}(paradigm\_),\ \mbox{\hyperlink{structmetrics_1_1Metrics_a833606cb55a8544ef0154c0c7fa0e44f}{algorithm}}(algorithm\_name\_),\ \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\_id}}(\mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\_id}}),\ \mbox{\hyperlink{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}{inputs}}(\{d,\ s\_ec,\ s\_cc,\ 0\})\ \{\}}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Metrics_aea7719ee4b9b57770c7180a32673b732}{Metrics}}(\textcolor{keyword}{const}\ std::shared\_ptr<Metrics>\&\ base,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\_id}})\ }
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{structmetrics_1_1Metrics_a3826511b1490b1dc00db005abde1ec40}{paradigm}}(base\ ?\ base-\/>\mbox{\hyperlink{structmetrics_1_1Metrics_a3826511b1490b1dc00db005abde1ec40}{paradigm}}\ :\ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}}::\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aab50339a10e1de285ac99d4c3990b8693}{NONE}}),\ }
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Metrics_a833606cb55a8544ef0154c0c7fa0e44f}{algorithm}}(base\ ?\ base-\/>\mbox{\hyperlink{structmetrics_1_1Metrics_a833606cb55a8544ef0154c0c7fa0e44f}{algorithm}}\ :\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}}::\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aab50339a10e1de285ac99d4c3990b8693}{NONE}}),\ }
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\_id}}(\mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\_id}})\ \{}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (base)\ \{}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}{inputs}}\ =\ base-\/>inputs;}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}\ =\ base-\/>outputs;}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{structmetrics_1_1Metrics_aea82b1fb1a350ce2ea39b8d0c504e124}{\string~Metrics}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00581\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ std::shared\_ptr<Metrics>\ \mbox{\hyperlink{structmetrics_1_1Metrics_a838af45542e979996137bbcb3dffac8b}{clone}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::shared\_ptr<Metrics>(\textcolor{keyword}{new}\ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}}(*\textcolor{keyword}{this}));}
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00584\ }
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ std::filesystem::path\ \mbox{\hyperlink{structmetrics_1_1Metrics_a3d3c87cc48e752bab4238d3686fcf8f8}{get\_base\_directory\_path}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacemetrics_a7f26a4cc7d54ffeeccdb8002576777cc}{RESULTS\_PATH}}\ /\ \mbox{\hyperlink{namespacemetrics_a5bb0d7248ebf1214b792666f43dc57a5}{to\_string}}(this-\/>paradigm);}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00592\ }
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ std::vector<MetricEntry>\ \mbox{\hyperlink{structmetrics_1_1Metrics_af63915d0c63b05e31be006320ce706a6}{build\_metrics}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ current\_total\ =\ \mbox{\hyperlink{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}{inputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs_a9d9c4dfecd2326830937ae54669317df}{devices\_count}};}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ total\_servers\ =\ \mbox{\hyperlink{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}{inputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs_ac142acfded6ab5b0649805d2ef2dff5d}{servers\_ec\_count}}\ +\ \mbox{\hyperlink{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}{inputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs_ac19c41609f670f2c082d687bfa070804}{servers\_cc\_count}};}
+\DoxyCodeLine{00600\ }
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<MetricEntry>\ m;}
+\DoxyCodeLine{00602\ }
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ \ \ \ \ m.push\_back(\{\textcolor{stringliteral}{"{}GENERAL"{}},\ \textcolor{stringliteral}{"{}ExeTime"{}},\ \textcolor{stringliteral}{"{}Execution\ Time\ (s)"{}},\ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a368fc6ce81f784f3b6b8a75c2c0acb80}{execution\_time}},\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}}),\ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a368fc6ce81f784f3b6b8a75c2c0acb80}{execution\_time}},\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}})\});}
+\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ \ \ \ \ m.push\_back(\{\textcolor{stringliteral}{"{}DEVICES"{}},\ \textcolor{stringliteral}{"{}Devices"{}},\ \textcolor{stringliteral}{"{}Total"{}},\ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(current\_total),\ std::to\_string(current\_total)\});}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ \ \ \ \ m.push\_back(\{\textcolor{stringliteral}{"{}DEVICES"{}},\ \textcolor{stringliteral}{"{}DServed"{}},\ \textcolor{stringliteral}{"{}Served"{}},\ \mbox{\hyperlink{namespaceconvert_a58f9ce99c0ce086862a328dbead787f5}{convert::to\_percentage\_string}}(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a9f2be9a1ce7348e932fd051127e1b9a2}{devices\_served\_count}},\ current\_total),\ std::to\_string(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a9f2be9a1ce7348e932fd051127e1b9a2}{devices\_served\_count}})\ +\ \textcolor{stringliteral}{"{}\ ("{}}\ +\ \mbox{\hyperlink{namespaceconvert_a58f9ce99c0ce086862a328dbead787f5}{convert::to\_percentage\_string}}(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a9f2be9a1ce7348e932fd051127e1b9a2}{devices\_served\_count}},\ current\_total)\ +\ \textcolor{stringliteral}{"{}\%)"{}}\});}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \ \ \ \ m.push\_back(\{\textcolor{stringliteral}{"{}DEVICES"{}},\ \textcolor{stringliteral}{"{}DServedEC"{}},\ \textcolor{stringliteral}{"{}\ \ -\/\ on\ EC"{}},\ \mbox{\hyperlink{namespaceconvert_a58f9ce99c0ce086862a328dbead787f5}{convert::to\_percentage\_string}}(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a285b2ef7b968ded5eb87885ddc3fa66f}{devices\_served\_ec\_count}},\ \mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a9f2be9a1ce7348e932fd051127e1b9a2}{devices\_served\_count}}),\ std::to\_string(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a285b2ef7b968ded5eb87885ddc3fa66f}{devices\_served\_ec\_count}})\ +\ \textcolor{stringliteral}{"{}\ ("{}}\ +\ \mbox{\hyperlink{namespaceconvert_a58f9ce99c0ce086862a328dbead787f5}{convert::to\_percentage\_string}}(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a285b2ef7b968ded5eb87885ddc3fa66f}{devices\_served\_ec\_count}},\ \mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a9f2be9a1ce7348e932fd051127e1b9a2}{devices\_served\_count}})\ +\ \textcolor{stringliteral}{"{}\%\ of\ served)"{}}\});}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ \ \ \ \ m.push\_back(\{\textcolor{stringliteral}{"{}DEVICES"{}},\ \textcolor{stringliteral}{"{}DServedCC"{}},\ \textcolor{stringliteral}{"{}\ \ -\/\ on\ CC"{}},\ \mbox{\hyperlink{namespaceconvert_a58f9ce99c0ce086862a328dbead787f5}{convert::to\_percentage\_string}}(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a63504efebf41100542416f616af0feb8}{devices\_served\_cc\_count}},\ \mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a9f2be9a1ce7348e932fd051127e1b9a2}{devices\_served\_count}}),\ std::to\_string(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a63504efebf41100542416f616af0feb8}{devices\_served\_cc\_count}})\ +\ \textcolor{stringliteral}{"{}\ ("{}}\ +\ \mbox{\hyperlink{namespaceconvert_a58f9ce99c0ce086862a328dbead787f5}{convert::to\_percentage\_string}}(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a63504efebf41100542416f616af0feb8}{devices\_served\_cc\_count}},\ \mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a9f2be9a1ce7348e932fd051127e1b9a2}{devices\_served\_count}})\ +\ \textcolor{stringliteral}{"{}\%\ of\ served)"{}}\});}
+\DoxyCodeLine{00609\ }
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \ \ \ \ m.push\_back(\{\textcolor{stringliteral}{"{}SERVERS"{}},\ \textcolor{stringliteral}{"{}Servers"{}},\ \textcolor{stringliteral}{"{}Total"{}},\ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(total\_servers),\ std::to\_string(total\_servers)\ +\ \textcolor{stringliteral}{"{}\ ("{}}\ +\ std::to\_string(\mbox{\hyperlink{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}{inputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs_ac142acfded6ab5b0649805d2ef2dff5d}{servers\_ec\_count}})\ +\ \textcolor{stringliteral}{"{}\ EC\ +\ "{}}\ +\ std::to\_string(\mbox{\hyperlink{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}{inputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs_ac19c41609f670f2c082d687bfa070804}{servers\_cc\_count}})\ +\ \textcolor{stringliteral}{"{}\ CC)"{}}\});}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ \ \ \ \ m.push\_back(\{\textcolor{stringliteral}{"{}SERVERS"{}},\ \textcolor{stringliteral}{"{}SUsed"{}},\ \textcolor{stringliteral}{"{}Used"{}},\ \mbox{\hyperlink{namespaceconvert_a58f9ce99c0ce086862a328dbead787f5}{convert::to\_percentage\_string}}(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a2d986cff5ef07331c9d0d7614b6887ee}{servers\_used\_count}},\ total\_servers),\ std::to\_string(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a2d986cff5ef07331c9d0d7614b6887ee}{servers\_used\_count}})\ +\ \textcolor{stringliteral}{"{}\ ("{}}\ +\ \mbox{\hyperlink{namespaceconvert_a58f9ce99c0ce086862a328dbead787f5}{convert::to\_percentage\_string}}(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a2d986cff5ef07331c9d0d7614b6887ee}{servers\_used\_count}},\ total\_servers)\ +\ \textcolor{stringliteral}{"{}\%)"{}}\});}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ \ \ \ \ m.push\_back(\{\textcolor{stringliteral}{"{}SERVERS"{}},\ \textcolor{stringliteral}{"{}SUsedEC"{}},\ \textcolor{stringliteral}{"{}\ \ -\/\ Used\ EC"{}},\ \mbox{\hyperlink{namespaceconvert_a58f9ce99c0ce086862a328dbead787f5}{convert::to\_percentage\_string}}(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a199faec6d0b8a5aa706bef1f88ab96ca}{servers\_used\_ec\_count}},\ \mbox{\hyperlink{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}{inputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs_ac142acfded6ab5b0649805d2ef2dff5d}{servers\_ec\_count}}),\ std::to\_string(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a199faec6d0b8a5aa706bef1f88ab96ca}{servers\_used\_ec\_count}})\ +\ \textcolor{stringliteral}{"{}\ ("{}}\ +\ \mbox{\hyperlink{namespaceconvert_a58f9ce99c0ce086862a328dbead787f5}{convert::to\_percentage\_string}}(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a199faec6d0b8a5aa706bef1f88ab96ca}{servers\_used\_ec\_count}},\ \mbox{\hyperlink{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}{inputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs_ac142acfded6ab5b0649805d2ef2dff5d}{servers\_ec\_count}})\ +\ \textcolor{stringliteral}{"{}\%\ of\ EC)"{}}\});}
+\DoxyCodeLine{00613\ \ \ \ \ \ \ \ \ \ \ \ \ m.push\_back(\{\textcolor{stringliteral}{"{}SERVERS"{}},\ \textcolor{stringliteral}{"{}SUsedCC"{}},\ \textcolor{stringliteral}{"{}\ \ -\/\ Used\ CC"{}},\ \mbox{\hyperlink{namespaceconvert_a58f9ce99c0ce086862a328dbead787f5}{convert::to\_percentage\_string}}(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a03382964d564523b53111a2e2b15ec98}{servers\_used\_cc\_count}},\ \mbox{\hyperlink{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}{inputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs_ac19c41609f670f2c082d687bfa070804}{servers\_cc\_count}}),\ std::to\_string(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a03382964d564523b53111a2e2b15ec98}{servers\_used\_cc\_count}})\ +\ \textcolor{stringliteral}{"{}\ ("{}}\ +\ \mbox{\hyperlink{namespaceconvert_a58f9ce99c0ce086862a328dbead787f5}{convert::to\_percentage\_string}}(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a03382964d564523b53111a2e2b15ec98}{servers\_used\_cc\_count}},\ \mbox{\hyperlink{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}{inputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs_ac19c41609f670f2c082d687bfa070804}{servers\_cc\_count}})\ +\ \textcolor{stringliteral}{"{}\%\ of\ CC)"{}}\});}
+\DoxyCodeLine{00614\ }
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \ \ \ \ m.push\_back(\{\textcolor{stringliteral}{"{}COSTS"{}},\ \textcolor{stringliteral}{"{}MaxCost"{}},\ \textcolor{stringliteral}{"{}MAX\ PENALTY\ COST"{}},\ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(\mbox{\hyperlink{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}{inputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs_adf9f25a68afdd633f3cef74181ba393e}{max\_penalty\_cost}},\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}}),\ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(\mbox{\hyperlink{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}{inputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs_adf9f25a68afdd633f3cef74181ba393e}{max\_penalty\_cost}},\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}})\});}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ \ \ \ \ m.push\_back(\{\textcolor{stringliteral}{"{}COSTS"{}},\ \textcolor{stringliteral}{"{}PenaltyCost"{}},\ \textcolor{stringliteral}{"{}PENALTY\ COST"{}},\ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a4e1167a2019ff1105f6b3c7a4b24fd78}{total\_penalty\_cost}},\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}}),\ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a4e1167a2019ff1105f6b3c7a4b24fd78}{total\_penalty\_cost}},\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}})\});}
+\DoxyCodeLine{00617\ }
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m;}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00620\ }
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ std::vector<std::string>\ \mbox{\hyperlink{structmetrics_1_1Metrics_aa0f8b0b47c23913a43fd55391100a60b}{get\_header}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Paradigm"{}},\ \textcolor{stringliteral}{"{}Algorithm"{}},\ \textcolor{stringliteral}{"{}Run"{}},\ \textcolor{stringliteral}{"{}Devices"{}},\ \textcolor{stringliteral}{"{}Servers\_EC"{}},\ \textcolor{stringliteral}{"{}Servers\_CC"{}},\ }
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Max\_cost"{}},\ \textcolor{stringliteral}{"{}Execution\_time"{}},\ \textcolor{stringliteral}{"{}Devices\_served"{}},\ \textcolor{stringliteral}{"{}Devices\_served\_ec"{}},\ }
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Devices\_served\_cc"{}},\ \textcolor{stringliteral}{"{}Servers\_used"{}},\ \textcolor{stringliteral}{"{}Servers\_used\_ec"{}},\ \textcolor{stringliteral}{"{}Servers\_used\_cc"{}},\ \textcolor{stringliteral}{"{}Total\_cost"{}}}
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00632\ }
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ std::vector<std::string>\ \mbox{\hyperlink{structmetrics_1_1Metrics_aae2f001dafac22ff14300767311562b8}{data}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{00639\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacemetrics_a5bb0d7248ebf1214b792666f43dc57a5}{to\_string}}(\mbox{\hyperlink{structmetrics_1_1Metrics_a3826511b1490b1dc00db005abde1ec40}{paradigm}}),}
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacemetrics_a5bb0d7248ebf1214b792666f43dc57a5}{to\_string}}(\mbox{\hyperlink{structmetrics_1_1Metrics_a833606cb55a8544ef0154c0c7fa0e44f}{algorithm}}),}
+\DoxyCodeLine{00641\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::to\_string(\mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\_id}}),}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::to\_string(\mbox{\hyperlink{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}{inputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs_a9d9c4dfecd2326830937ae54669317df}{devices\_count}}),}
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::to\_string(\mbox{\hyperlink{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}{inputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs_ac142acfded6ab5b0649805d2ef2dff5d}{servers\_ec\_count}}),}
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::to\_string(\mbox{\hyperlink{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}{inputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs_ac19c41609f670f2c082d687bfa070804}{servers\_cc\_count}}),}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(\mbox{\hyperlink{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}{inputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs_adf9f25a68afdd633f3cef74181ba393e}{max\_penalty\_cost}},\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}}),}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a368fc6ce81f784f3b6b8a75c2c0acb80}{execution\_time}},\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}}),}
+\DoxyCodeLine{00647\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::to\_string(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a9f2be9a1ce7348e932fd051127e1b9a2}{devices\_served\_count}}),}
+\DoxyCodeLine{00648\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::to\_string(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a285b2ef7b968ded5eb87885ddc3fa66f}{devices\_served\_ec\_count}}),}
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::to\_string(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a63504efebf41100542416f616af0feb8}{devices\_served\_cc\_count}}),}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::to\_string(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a2d986cff5ef07331c9d0d7614b6887ee}{servers\_used\_count}}),}
+\DoxyCodeLine{00651\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::to\_string(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a199faec6d0b8a5aa706bef1f88ab96ca}{servers\_used\_ec\_count}}),}
+\DoxyCodeLine{00652\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::to\_string(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a03382964d564523b53111a2e2b15ec98}{servers\_used\_cc\_count}}),}
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(\mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}.\mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a4e1167a2019ff1105f6b3c7a4b24fd78}{total\_penalty\_cost}},\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}})}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00656\ }
+\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structmetrics_1_1Metrics_a282b4959f016cb954aeea5a71c829032}{save\_to\_file}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ \ \ \ \ std::filesystem::path\ dir\_path\ =\ this-\/>\mbox{\hyperlink{structmetrics_1_1Metrics_a3d3c87cc48e752bab4238d3686fcf8f8}{get\_base\_directory\_path}}();}
+\DoxyCodeLine{00662\ \ \ \ \ \ \ \ \ \ \ \ \ std::filesystem::path\ result\_path\ =\ dir\_path\ /\ (\mbox{\hyperlink{namespacemetrics_a5bb0d7248ebf1214b792666f43dc57a5}{to\_string}}(this-\/>algorithm)\ +\ \textcolor{stringliteral}{"{}.txt"{}});}
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::vector<std::string>>\ content;}
+\DoxyCodeLine{00665\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!std::filesystem::exists(result\_path))\ \{}
+\DoxyCodeLine{00666\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ content.push\_back(this-\/>\mbox{\hyperlink{structmetrics_1_1Metrics_aa0f8b0b47c23913a43fd55391100a60b}{get\_header}}());}
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ \ \ \ \ content.push\_back(this-\/>\mbox{\hyperlink{structmetrics_1_1Metrics_aae2f001dafac22ff14300767311562b8}{data}}());}
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacefile__manager_1_1csv_a005016bdfc842b4428494418b7068df8}{file\_manager::csv::append}}(result\_path.string(),\ content,\ \textcolor{charliteral}{';'});}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00671\ \ \ \ \ \};}
+\DoxyCodeLine{00672\ }
+\DoxyCodeLine{00677\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structmetrics_1_1ExactMetrics}{ExactMetrics}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}}\ \{}
+\DoxyCodeLine{00678\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structmetrics_1_1ExactMetrics_ab0a45d632c0895b48baa6a39d63457b0}{status}}\ =\ \textcolor{stringliteral}{"{}Unknown"{}};\ }
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structmetrics_1_1ExactMetrics_aa7ed241daacefcfe777d52b97e4c361c}{objective\_function}}\ =\ 0.0;\ }
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structmetrics_1_1ExactMetrics_a4994502ed671d0335ece2816db855fad}{gap}}\ =\ 1.0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00681\ }
+\DoxyCodeLine{00688\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1ExactMetrics_ab4ee7c136b53c95d87c2987bebf573ee}{ExactMetrics}}(\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}}\ algorithm\_name\_,\ \textcolor{keywordtype}{int}\ run\_id\_,\ \textcolor{keyword}{const}\ std::shared\_ptr<Metrics>\&\ base)\ }
+\DoxyCodeLine{00689\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}}(\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}}::\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aac41e056424136b6e8c4e23dd6326efa1}{EXACT}},\ algorithm\_name\_,\ run\_id\_,\ base)\ \{}
+\DoxyCodeLine{00690\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (base)\ \mbox{\hyperlink{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}{inputs}}\ =\ base-\/>inputs;}
+\DoxyCodeLine{00691\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00692\ }
+\DoxyCodeLine{00701\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1ExactMetrics_adde2ad7ff074ac71b7cd717b3229280d}{ExactMetrics}}(\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}}\ algorithm\_name\_,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\_id}},\ \textcolor{keywordtype}{int}\ d,\ \textcolor{keywordtype}{int}\ s\_ec,\ \textcolor{keywordtype}{int}\ s\_cc)\ :\ }
+\DoxyCodeLine{00702\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}}(\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}}::\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aac41e056424136b6e8c4e23dd6326efa1}{EXACT}},\ algorithm\_name\_,\ \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\_id}},\ d,\ s\_ec,\ s\_cc)\ \{\}}
+\DoxyCodeLine{00703\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00709\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1ExactMetrics_a42dc3e312c1b2ccded95b993ba27cdb2}{ExactMetrics}}(\textcolor{keyword}{const}\ std::shared\_ptr<Metrics>\&\ base,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\_id}})\ :}
+\DoxyCodeLine{00710\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}}(base,\ \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\_id}})\ \{\}}
+\DoxyCodeLine{00711\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00716\ \ \ \ \ \ \ \ \ std::shared\_ptr<Metrics>\ \mbox{\hyperlink{structmetrics_1_1ExactMetrics_ab1058b8e443a2c28e86128afb7d253ff}{clone}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00717\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::shared\_ptr<ExactMetrics>(\textcolor{keyword}{new}\ \mbox{\hyperlink{structmetrics_1_1ExactMetrics}{ExactMetrics}}(*\textcolor{keyword}{this}));}
+\DoxyCodeLine{00718\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00719\ }
+\DoxyCodeLine{00724\ \ \ \ \ \ \ \ \ std::vector<MetricEntry>\ \mbox{\hyperlink{structmetrics_1_1ExactMetrics_ae99cb9c2fa55d61fae9fa870c8241727}{build\_metrics}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00725\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ m\ =\ \mbox{\hyperlink{structmetrics_1_1Metrics_af63915d0c63b05e31be006320ce706a6}{Metrics::build\_metrics}}();}
+\DoxyCodeLine{00726\ \ \ \ \ \ \ \ \ \ \ \ \ m.push\_back(\{\textcolor{stringliteral}{"{}SOLVER\ STATS"{}},\ \textcolor{stringliteral}{"{}Status"{}},\ \textcolor{stringliteral}{"{}Solver\ Status"{}},\ \mbox{\hyperlink{structmetrics_1_1ExactMetrics_ab0a45d632c0895b48baa6a39d63457b0}{status}},\ \mbox{\hyperlink{structmetrics_1_1ExactMetrics_ab0a45d632c0895b48baa6a39d63457b0}{status}}\});}
+\DoxyCodeLine{00727\ \ \ \ \ \ \ \ \ \ \ \ \ m.push\_back(\{\textcolor{stringliteral}{"{}SOLVER\ STATS"{}},\ \textcolor{stringliteral}{"{}OF"{}},\ \textcolor{stringliteral}{"{}Objective\ Function\ (OF)"{}},\ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(\mbox{\hyperlink{structmetrics_1_1ExactMetrics_aa7ed241daacefcfe777d52b97e4c361c}{objective\_function}},\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}}),\ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(\mbox{\hyperlink{structmetrics_1_1ExactMetrics_aa7ed241daacefcfe777d52b97e4c361c}{objective\_function}},\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}})\});}
+\DoxyCodeLine{00728\ \ \ \ \ \ \ \ \ \ \ \ \ m.push\_back(\{\textcolor{stringliteral}{"{}SOLVER\ STATS"{}},\ \textcolor{stringliteral}{"{}GAP"{}},\ \textcolor{stringliteral}{"{}MIP\ Gap"{}},\ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(\mbox{\hyperlink{structmetrics_1_1ExactMetrics_a4994502ed671d0335ece2816db855fad}{gap}},\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}}),\ \mbox{\hyperlink{namespaceconvert_a58f9ce99c0ce086862a328dbead787f5}{convert::to\_percentage\_string}}(\mbox{\hyperlink{structmetrics_1_1ExactMetrics_a4994502ed671d0335ece2816db855fad}{gap}},\ 1.0)\ +\ \textcolor{stringliteral}{"{}\%"{}}\});}
+\DoxyCodeLine{00729\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m;}
+\DoxyCodeLine{00730\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00731\ }
+\DoxyCodeLine{00736\ \ \ \ \ \ \ \ \ std::vector<std::string>\ \mbox{\hyperlink{structmetrics_1_1ExactMetrics_a93043f660ea769becfd8105eea97860c}{get\_header}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00737\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ h\ =\ \mbox{\hyperlink{structmetrics_1_1Metrics_aa0f8b0b47c23913a43fd55391100a60b}{Metrics::get\_header}}();}
+\DoxyCodeLine{00738\ \ \ \ \ \ \ \ \ \ \ \ \ h.push\_back(\textcolor{stringliteral}{"{}Status"{}});}
+\DoxyCodeLine{00739\ \ \ \ \ \ \ \ \ \ \ \ \ h.push\_back(\textcolor{stringliteral}{"{}Obj\_Function"{}});}
+\DoxyCodeLine{00740\ \ \ \ \ \ \ \ \ \ \ \ \ h.push\_back(\textcolor{stringliteral}{"{}Gap"{}});}
+\DoxyCodeLine{00741\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ h;}
+\DoxyCodeLine{00742\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00743\ }
+\DoxyCodeLine{00748\ \ \ \ \ \ \ \ \ std::vector<std::string>\ \mbox{\hyperlink{structmetrics_1_1ExactMetrics_aa164372f0ec3c9680644b3d2f55117a7}{data}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00749\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ d\ =\ \mbox{\hyperlink{structmetrics_1_1Metrics_aae2f001dafac22ff14300767311562b8}{Metrics::data}}();}
+\DoxyCodeLine{00750\ \ \ \ \ \ \ \ \ \ \ \ \ d.push\_back(\mbox{\hyperlink{structmetrics_1_1ExactMetrics_ab0a45d632c0895b48baa6a39d63457b0}{status}});}
+\DoxyCodeLine{00751\ \ \ \ \ \ \ \ \ \ \ \ \ d.push\_back(\mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(\mbox{\hyperlink{structmetrics_1_1ExactMetrics_aa7ed241daacefcfe777d52b97e4c361c}{objective\_function}},\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}}));}
+\DoxyCodeLine{00752\ \ \ \ \ \ \ \ \ \ \ \ \ d.push\_back(\mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(\mbox{\hyperlink{structmetrics_1_1ExactMetrics_a4994502ed671d0335ece2816db855fad}{gap}},\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}}));}
+\DoxyCodeLine{00753\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ d;}
+\DoxyCodeLine{00754\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00755\ \ \ \ \ \};}
+\DoxyCodeLine{00756\ }
+\DoxyCodeLine{00761\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structmetrics_1_1HeuristicMetrics}{HeuristicMetrics}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}}\ \{}
+\DoxyCodeLine{00768\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1HeuristicMetrics_a516b5cc83204762f87614f08c8ce4c2a}{HeuristicMetrics}}(\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}}\ algorithm\_name\_,\ \textcolor{keywordtype}{int}\ run\_id\_,\ \textcolor{keyword}{const}\ std::shared\_ptr<Metrics>\&\ base)\ :}
+\DoxyCodeLine{00769\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}}(\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}}::\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aa589ab27e5d5232a3590c042c0dbe7818}{HEURISTIC}},\ algorithm\_name\_,\ run\_id\_,\ base)\ \{}
+\DoxyCodeLine{00770\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (base)\ \mbox{\hyperlink{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}{inputs}}\ =\ base-\/>inputs;}
+\DoxyCodeLine{00771\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00772\ }
+\DoxyCodeLine{00781\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1HeuristicMetrics_a12236a9c020d02c7fb5c9ed30e90f745}{HeuristicMetrics}}(\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}}\ algorithm\_name\_,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\_id}},\ \textcolor{keywordtype}{int}\ d,\ \textcolor{keywordtype}{int}\ s\_ec,\ \textcolor{keywordtype}{int}\ s\_cc)\ :}
+\DoxyCodeLine{00782\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}}(\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}}::\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aa589ab27e5d5232a3590c042c0dbe7818}{HEURISTIC}},\ algorithm\_name\_,\ \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\_id}},\ d,\ s\_ec,\ s\_cc)\ \{\}}
+\DoxyCodeLine{00783\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00789\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1HeuristicMetrics_a97976bfa39770cc7c3c18cb6f192f230}{HeuristicMetrics}}(\textcolor{keyword}{const}\ std::shared\_ptr<Metrics>\&\ base,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\_id}})\ :}
+\DoxyCodeLine{00790\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}}(base,\ \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\_id}})\ \{\}}
+\DoxyCodeLine{00791\ }
+\DoxyCodeLine{00796\ \ \ \ \ \ \ \ \ std::shared\_ptr<Metrics>\ \mbox{\hyperlink{structmetrics_1_1HeuristicMetrics_a82621204baa20252efe563f69f1bfadd}{clone}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00797\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::shared\_ptr<HeuristicMetrics>(\textcolor{keyword}{new}\ \mbox{\hyperlink{structmetrics_1_1HeuristicMetrics}{HeuristicMetrics}}(*\textcolor{keyword}{this}));}
+\DoxyCodeLine{00798\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00799\ \ \ \ \ \};}
+\DoxyCodeLine{00800\ }
+\DoxyCodeLine{00805\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics}{MetaHeuristicMetrics}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}}\ \{}
+\DoxyCodeLine{00806\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}}\ \mbox{\hyperlink{namespaceheuristic}{heuristic}}\ =\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11ab50339a10e1de285ac99d4c3990b8693}{Algorithm::NONE}};\ }
+\DoxyCodeLine{00807\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a0426dc944bcbb90ee1b6fe2743fc2fa5}{temperature}}\ =\ 0.0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00808\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a4f77808e3eb6613175c15e1413c8fb25}{alpha}}\ =\ 0.0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00809\ }
+\DoxyCodeLine{00819\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a4577f7b12ce9db4502f95226e13188aa}{MetaHeuristicMetrics}}(\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}}\ algorithm\_name\_,\ \textcolor{keywordtype}{int}\ run\_id\_,\ \textcolor{keyword}{const}\ std::shared\_ptr<Metrics>\&\ base,\ \textcolor{keywordtype}{double}\ temperature\_,\ \textcolor{keywordtype}{double}\ alpha\_,\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}}\ heuristic\_)\ }
+\DoxyCodeLine{00820\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}}(\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}}::\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aa1ef7e0df1cd1fdd87ecf432332cd8343}{METAHEURISTIC}},\ algorithm\_name\_,\ run\_id\_,\ base),\ \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a0426dc944bcbb90ee1b6fe2743fc2fa5}{temperature}}(temperature\_),\ \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a4f77808e3eb6613175c15e1413c8fb25}{alpha}}(alpha\_),\ \mbox{\hyperlink{namespaceheuristic}{heuristic}}(heuristic\_)\ \{}
+\DoxyCodeLine{00821\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (base)\ \mbox{\hyperlink{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}{inputs}}\ =\ base-\/>inputs;}
+\DoxyCodeLine{00822\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00823\ }
+\DoxyCodeLine{00835\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_ada3d29622ef4e8b00ddace1602bc4c35}{MetaHeuristicMetrics}}(\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}}\ algorithm\_name\_,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\_id}},\ \textcolor{keywordtype}{int}\ d,\ \textcolor{keywordtype}{int}\ s\_ec,\ \textcolor{keywordtype}{int}\ s\_cc,\ \textcolor{keywordtype}{double}\ temperature\_,\ \textcolor{keywordtype}{double}\ alpha\_,\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}}\ heuristic\_)\ :}
+\DoxyCodeLine{00836\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}}(\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}}::\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aa1ef7e0df1cd1fdd87ecf432332cd8343}{METAHEURISTIC}},\ algorithm\_name\_,\ \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\_id}},\ d,\ s\_ec,\ s\_cc),\ \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a0426dc944bcbb90ee1b6fe2743fc2fa5}{temperature}}(temperature\_),\ \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a4f77808e3eb6613175c15e1413c8fb25}{alpha}}(alpha\_),\ \mbox{\hyperlink{namespaceheuristic}{heuristic}}(heuristic\_)\ \{\}}
+\DoxyCodeLine{00837\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00843\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a41e6a6d331e0c29311079533ee63e5d5}{MetaHeuristicMetrics}}(\textcolor{keyword}{const}\ std::shared\_ptr<Metrics>\&\ base,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\_id}})\ :}
+\DoxyCodeLine{00844\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}}(base,\ \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\_id}})\ \{\}\ \ \ \ }
+\DoxyCodeLine{00845\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00850\ \ \ \ \ \ \ \ \ std::shared\_ptr<Metrics>\ \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a50a49fe0d7c98ab584ba79af50280a37}{clone}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00851\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::shared\_ptr<MetaHeuristicMetrics>(\textcolor{keyword}{new}\ \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics}{MetaHeuristicMetrics}}(*\textcolor{keyword}{this}));}
+\DoxyCodeLine{00852\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00853\ }
+\DoxyCodeLine{00858\ \ \ \ \ \ \ \ \ std::vector<MetricEntry>\ \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a2e6d0537cc0ba4d062bc79ca93591a17}{build\_metrics}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00859\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ m\ =\ \mbox{\hyperlink{structmetrics_1_1Metrics_af63915d0c63b05e31be006320ce706a6}{Metrics::build\_metrics}}();}
+\DoxyCodeLine{00860\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ cat\ =\ \mbox{\hyperlink{namespacemetrics_a5bb0d7248ebf1214b792666f43dc57a5}{to\_string}}(\mbox{\hyperlink{structmetrics_1_1Metrics_a833606cb55a8544ef0154c0c7fa0e44f}{algorithm}})\ +\ \textcolor{stringliteral}{"{}\ PARAMETERS"{}};}
+\DoxyCodeLine{00861\ \ \ \ \ \ \ \ \ \ \ \ \ m.push\_back(\{cat,\ \textcolor{stringliteral}{"{}Heuristic"{}},\ \textcolor{stringliteral}{"{}Initial\ Solution"{}},\ \mbox{\hyperlink{namespacemetrics_a5bb0d7248ebf1214b792666f43dc57a5}{to\_string}}(\mbox{\hyperlink{namespaceheuristic}{heuristic}}),\ \mbox{\hyperlink{namespacemetrics_a5bb0d7248ebf1214b792666f43dc57a5}{to\_string}}(\mbox{\hyperlink{namespaceheuristic}{heuristic}})\});}
+\DoxyCodeLine{00862\ \ \ \ \ \ \ \ \ \ \ \ \ m.push\_back(\{cat,\ \textcolor{stringliteral}{"{}Temperature"{}},\ \textcolor{stringliteral}{"{}Initial\ Temperature"{}},\ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(\mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a0426dc944bcbb90ee1b6fe2743fc2fa5}{temperature}},\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}}),\ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(\mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a0426dc944bcbb90ee1b6fe2743fc2fa5}{temperature}},\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}})\});}
+\DoxyCodeLine{00863\ \ \ \ \ \ \ \ \ \ \ \ \ m.push\_back(\{cat,\ \textcolor{stringliteral}{"{}Alpha"{}},\ \textcolor{stringliteral}{"{}Alpha\ (Cooling\ Rate)"{}},\ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(\mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a4f77808e3eb6613175c15e1413c8fb25}{alpha}},\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}}),\ \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(\mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a4f77808e3eb6613175c15e1413c8fb25}{alpha}},\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}})\});}
+\DoxyCodeLine{00864\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m;}
+\DoxyCodeLine{00865\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00866\ }
+\DoxyCodeLine{00871\ \ \ \ \ \ \ \ \ std::vector<std::string>\ \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a47ddf6e4dab1f6f0705b86f1baf83128}{get\_header}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00872\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ h\ =\ \mbox{\hyperlink{structmetrics_1_1Metrics_aa0f8b0b47c23913a43fd55391100a60b}{Metrics::get\_header}}();}
+\DoxyCodeLine{00873\ \ \ \ \ \ \ \ \ \ \ \ \ h.push\_back(\textcolor{stringliteral}{"{}Initial\_Heuristic"{}});}
+\DoxyCodeLine{00874\ \ \ \ \ \ \ \ \ \ \ \ \ h.push\_back(\textcolor{stringliteral}{"{}Temperature"{}});}
+\DoxyCodeLine{00875\ \ \ \ \ \ \ \ \ \ \ \ \ h.push\_back(\textcolor{stringliteral}{"{}Alpha"{}});}
+\DoxyCodeLine{00876\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ h;}
+\DoxyCodeLine{00877\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00878\ }
+\DoxyCodeLine{00883\ \ \ \ \ \ \ \ \ std::vector<std::string>\ \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_aaa64c8b3dc34768bc87c86fd24aa3a25}{data}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00884\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ d\ =\ \mbox{\hyperlink{structmetrics_1_1Metrics_aae2f001dafac22ff14300767311562b8}{Metrics::data}}();}
+\DoxyCodeLine{00885\ \ \ \ \ \ \ \ \ \ \ \ \ d.push\_back(\mbox{\hyperlink{namespacemetrics_a5bb0d7248ebf1214b792666f43dc57a5}{to\_string}}(\mbox{\hyperlink{namespaceheuristic}{heuristic}}));}
+\DoxyCodeLine{00886\ \ \ \ \ \ \ \ \ \ \ \ \ d.push\_back(\mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(\mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a0426dc944bcbb90ee1b6fe2743fc2fa5}{temperature}},\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}}));}
+\DoxyCodeLine{00887\ \ \ \ \ \ \ \ \ \ \ \ \ d.push\_back(\mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{convert::to\_string}}(\mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a4f77808e3eb6613175c15e1413c8fb25}{alpha}},\ \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\_PLACES}}));}
+\DoxyCodeLine{00888\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ d;}
+\DoxyCodeLine{00889\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00890\ \ \ \ \ \};}
+\DoxyCodeLine{00891\ }
+\DoxyCodeLine{00896\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structmetrics_1_1Result}{Result}}\ \{}
+\DoxyCodeLine{00897\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core::Devices}}\ \mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00898\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core::Servers}}\ \mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00899\ \ \ \ \ \ \ \ \ std::shared\_ptr<Metrics>\ \mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}};\ }
+\DoxyCodeLine{00900\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00906\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Result_a8b665faf116eb8ea2d6ae73325148e1d}{Result}}(\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core::Devices}}\ d,\ \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core::Servers}}\ s)}
+\DoxyCodeLine{00907\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}}(std::move(d)),\ \mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}}(std::move(s))\ \{\}}
+\DoxyCodeLine{00908\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00913\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Result_a9d307096eecb93041812c0059da7ad7d}{Result}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structmetrics_1_1Result}{Result}}\&\ other)}
+\DoxyCodeLine{00914\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}}(other.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}}),\ \mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}}(other.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}})\ \{}
+\DoxyCodeLine{00915\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (other.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}})\ \{}
+\DoxyCodeLine{00916\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}\ =\ other.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}-\/>clone();}
+\DoxyCodeLine{00917\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00918\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00919\ }
+\DoxyCodeLine{00927\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Result_aadd048e0edb53dcd001df0674f09a764}{Result}}(\textcolor{keywordtype}{int}\ num\_devices,\ \textcolor{keywordtype}{int}\ num\_services,\ \textcolor{keywordtype}{int}\ num\_ec,\ \textcolor{keywordtype}{int}\ num\_cc)}
+\DoxyCodeLine{00928\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}}(\mbox{\hyperlink{namespacedata}{data}}::load::\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}}(num\_devices,\ num\_services)),\ \mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}}(\mbox{\hyperlink{namespacedata}{data}}::load::\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}}(num\_ec,\ num\_cc))\ \{}
+\DoxyCodeLine{00929\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00930\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}}.size()\ <=\ 1\ ||\ \mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}}.size()\ <=\ 1)\ \{}
+\DoxyCodeLine{00931\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Data\ failed\ to\ load.\(\backslash\)n"{}};}
+\DoxyCodeLine{00932\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exit(0);}
+\DoxyCodeLine{00933\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00934\ }
+\DoxyCodeLine{00935\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}\ =\ std::make\_shared<Metrics>(\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aab50339a10e1de285ac99d4c3990b8693}{Paradigm::NONE}},\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11ab50339a10e1de285ac99d4c3990b8693}{Algorithm::NONE}},\ 0);}
+\DoxyCodeLine{00936\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00937\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}-\/>inputs.devices\_count\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(this-\/>devices.size())\ -\/\ 1;}
+\DoxyCodeLine{00938\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}-\/>inputs.servers\_ec\_count\ =\ num\_ec;}
+\DoxyCodeLine{00939\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}-\/>inputs.servers\_cc\_count\ =\ num\_cc;}
+\DoxyCodeLine{00940\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00941\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ total\_cost\ =\ 0.0;}
+\DoxyCodeLine{00942\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ d\ =\ 1;\ d\ <\ this-\/>devices.size();\ ++d)\ \{}
+\DoxyCodeLine{00943\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ total\_cost\ +=\ this-\/>devices[d].cost;}
+\DoxyCodeLine{00944\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00945\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}-\/>inputs.max\_penalty\_cost\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(total\_cost);}
+\DoxyCodeLine{00946\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00947\ }
+\DoxyCodeLine{00953\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Result}{Result}}\&\ \mbox{\hyperlink{structmetrics_1_1Result_a496ee70904cbef9bf8a9e6b07f133085}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structmetrics_1_1Result}{Result}}\&\ other)\ \{}
+\DoxyCodeLine{00954\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{this}\ !=\ \&other)\ \{}
+\DoxyCodeLine{00955\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}}\ =\ other.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}};}
+\DoxyCodeLine{00956\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}}\ =\ other.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}};}
+\DoxyCodeLine{00957\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (other.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}})\ \mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}\ =\ other.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}-\/>clone();\ }
+\DoxyCodeLine{00958\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}.reset();}
+\DoxyCodeLine{00959\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00960\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00961\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00962\ \ \ \ \ \};}
+\DoxyCodeLine{00963\ }
+\DoxyCodeLine{00968\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacemetrics_a49133a7a2d416aca63d85f80f34bd14c}{calculate\_metrics}}(\mbox{\hyperlink{structmetrics_1_1Result}{Result}}\&\ state)\ \{}
+\DoxyCodeLine{00969\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00970\ }
+\DoxyCodeLine{00971\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ out\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}-\/>outputs;}
+\DoxyCodeLine{00972\ }
+\DoxyCodeLine{00973\ \ \ \ \ \ \ \ \ out.devices\_served\_count\ =\ 0;}
+\DoxyCodeLine{00974\ \ \ \ \ \ \ \ \ out.devices\_served\_ec\_count\ =\ 0;}
+\DoxyCodeLine{00975\ \ \ \ \ \ \ \ \ out.devices\_served\_cc\_count\ =\ 0;}
+\DoxyCodeLine{00976\ \ \ \ \ \ \ \ \ out.servers\_used\_count\ =\ 0;}
+\DoxyCodeLine{00977\ \ \ \ \ \ \ \ \ out.servers\_used\_ec\_count\ =\ 0;}
+\DoxyCodeLine{00978\ \ \ \ \ \ \ \ \ out.servers\_used\_cc\_count\ =\ 0;}
+\DoxyCodeLine{00979\ \ \ \ \ \ \ \ \ out.total\_penalty\_cost\ =\ 0.0;}
+\DoxyCodeLine{00980\ }
+\DoxyCodeLine{00981\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ d\ =\ 1;\ d\ <\ state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}}.size();\ ++d)\ \{}
+\DoxyCodeLine{00982\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ device\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}}[d];}
+\DoxyCodeLine{00983\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (device.served)\ \{}
+\DoxyCodeLine{00984\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out.devices\_served\_count++;}
+\DoxyCodeLine{00985\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (device.server\_id\ !=\ -\/1)\ \{}
+\DoxyCodeLine{00986\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}}[device.server\_id].type\ ==\ \textcolor{charliteral}{'E'})\ \{}
+\DoxyCodeLine{00987\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out.devices\_served\_ec\_count++;}
+\DoxyCodeLine{00988\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00989\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out.devices\_served\_cc\_count++;}
+\DoxyCodeLine{00990\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00991\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00992\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00993\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out.total\_penalty\_cost\ +=\ device.cost;}
+\DoxyCodeLine{00994\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00995\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00996\ }
+\DoxyCodeLine{00997\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ s\ =\ 1;\ s\ <\ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}}.size();\ ++s)\ \{}
+\DoxyCodeLine{00998\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ server\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}}[s];}
+\DoxyCodeLine{00999\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!server.supply.devices.empty())\ \{}
+\DoxyCodeLine{01000\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out.servers\_used\_count++;}
+\DoxyCodeLine{01001\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (server.type\ ==\ \textcolor{charliteral}{'E'})\ \{}
+\DoxyCodeLine{01002\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out.servers\_used\_ec\_count++;}
+\DoxyCodeLine{01003\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01004\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out.servers\_used\_cc\_count++;}
+\DoxyCodeLine{01005\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01006\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01007\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01008\ \ \ \ \ \}}
+\DoxyCodeLine{01009\ }
+\DoxyCodeLine{01015\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacemetrics_a14d064c3f29627f9a59a04d5784c10f5}{save\_results}}(\textcolor{keyword}{const}\ Result\&\ state,\ \textcolor{keywordtype}{bool}\ show\_servers\_usage\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01016\ \}}
+\DoxyCodeLine{01017\ }
+\DoxyCodeLine{01022\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacedisplay}{display}}\ \{}
+\DoxyCodeLine{01023\ }
+\DoxyCodeLine{01028\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacedisplay_a48688ce51b12e703f0eba7b25b2b15de}{show\_device}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structcore_1_1Device}{core::Device}}\&\ device)\ \{}
+\DoxyCodeLine{01029\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}==========\ Device\ ID:\ "{}}\ \ <<\ device.\mbox{\hyperlink{structcore_1_1Device_ac83e97cbd9fa5273e048d20efd117c78}{id}}\ <<\ \textcolor{stringliteral}{"{}\ ==========\(\backslash\)n"{}}}
+\DoxyCodeLine{01030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ \ -\/\ Cost\ Penalty:\ \ \ \ \ \ \ "{}}\ <<\ device.\mbox{\hyperlink{structcore_1_1Device_abcd568ad40b2da1bf96e020eb373f395}{cost}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{01031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ \ -\/\ Requirements\ (CPU):\ "{}}\ <<\ device.\mbox{\hyperlink{structcore_1_1Device_ac8f4ac74433e443f9a0144118539cc3d}{cpu}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{01032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ \ -\/\ Requirements\ (MEM):\ "{}}\ <<\ device.\mbox{\hyperlink{structcore_1_1Device_ab995063705eec1a4eeafcff73b32a7c7}{mem}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{01033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ \ -\/\ Requirements\ (STO):\ "{}}\ <<\ device.\mbox{\hyperlink{structcore_1_1Device_a5b35cbc18886c7fbcc22912e64e014d1}{sto}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{01034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ \ -\/\ Tasks\ Count:\ \ \ \ \ \ \ \ "{}}\ <<\ device.\mbox{\hyperlink{structcore_1_1Device_a08dbaad39cf536ab7baa6923664f3a26}{tasks}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{01035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ \ -\/\ Service\ ID:\ \ \ \ \ \ \ \ \ "{}}\ <<\ device.\mbox{\hyperlink{structcore_1_1Device_a26fe603e39b21b481582171766b30ab5}{service}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{01036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ \ -\/\ State\ (Served):\ \ \ \ \ "{}}\ <<\ (device.\mbox{\hyperlink{structcore_1_1Device_a835d0367af9fbc3419f6fb8a114760e3}{served}}\ ?\ \textcolor{stringliteral}{"{}Yes"{}}\ :\ \textcolor{stringliteral}{"{}No"{}})\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{01037\ }
+\DoxyCodeLine{01038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (device.\mbox{\hyperlink{structcore_1_1Device_a835d0367af9fbc3419f6fb8a114760e3}{served}})\ \{}
+\DoxyCodeLine{01039\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\ \ -\/\ Assigned\ Server\ ID:\ \ \ "{}}\ <<\ device.\mbox{\hyperlink{structcore_1_1Device_ae7592c793ae91f1c8b6c0d2b0fcc3538}{server\_id}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{01040\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01041\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\ \ -\/\ Assigned\ Server\ ID:\ \ \ None\(\backslash\)n"{}};}
+\DoxyCodeLine{01042\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01043\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}====================================\(\backslash\)n"{}}\ <<\ std::endl;}
+\DoxyCodeLine{01044\ \ \ \ \ \}}
+\DoxyCodeLine{01045\ }
+\DoxyCodeLine{01050\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacedisplay_ae8cf71158bd852e9ec3ecf62e3775753}{show\_devices}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core::Devices}}\&\ devices)\ \{}
+\DoxyCodeLine{01051\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/\ Displaying\ "{}}\ <<\ (devices.size()\ >\ 0\ ?\ devices.size()\ -\/\ 1\ :\ 0)\ <<\ \textcolor{stringliteral}{"{}\ Devices\ -\/-\/-\/\(\backslash\)n"{}};}
+\DoxyCodeLine{01052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ device\ :\ devices)\ \{}
+\DoxyCodeLine{01053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (device.id\ ==\ 0)\ \textcolor{keywordflow}{continue};\ }
+\DoxyCodeLine{01054\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedisplay_a48688ce51b12e703f0eba7b25b2b15de}{show\_device}}(device);}
+\DoxyCodeLine{01055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01056\ \ \ \ \ \}}
+\DoxyCodeLine{01057\ }
+\DoxyCodeLine{01062\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacedisplay_ad1ad930094e2b754d6f2df967dad099e}{show\_server}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structcore_1_1Server}{core::Server}}\&\ server)\ \{}
+\DoxyCodeLine{01063\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}==========\ Server\ ID:\ "{}}\ <<\ server.\mbox{\hyperlink{structcore_1_1Server_a0c946ea419d875d81dc5e66ca27c3d6f}{id}}\ <<\ \textcolor{stringliteral}{"{}\ (Type:\ "{}}\ <<\ server.\mbox{\hyperlink{structcore_1_1Server_a4309664304c6f6df68e8f1841d2649e3}{type}}\ <<\ \textcolor{stringliteral}{"{})\ ==========\(\backslash\)n"{}}}
+\DoxyCodeLine{01064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ \ -\/-\/-\/\ Capacity\ -\/-\/-\/\(\backslash\)n"{}}}
+\DoxyCodeLine{01065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ \ -\/\ Total\ CPU:\ \ \ \ \ \ \ \ \ \ \ "{}}\ <<\ server.\mbox{\hyperlink{structcore_1_1Server_aeec37b8c331e9a588304329940ce2bba}{cpu}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{01066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ \ -\/\ Total\ MEM:\ \ \ \ \ \ \ \ \ \ \ "{}}\ <<\ server.\mbox{\hyperlink{structcore_1_1Server_ae5e9db950a7b35a9c1045cd6096051b2}{mem}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{01067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ \ -\/\ Total\ STO:\ \ \ \ \ \ \ \ \ \ \ "{}}\ <<\ server.\mbox{\hyperlink{structcore_1_1Server_a4e5ec779ca60973f6fa974a9ca3917ee}{sto}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n\(\backslash\)n"{}}}
+\DoxyCodeLine{01068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ \ -\/-\/-\/\ Current\ Demand\ -\/-\/-\/\(\backslash\)n"{}}}
+\DoxyCodeLine{01069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ \ -\/\ Used\ CPU:\ \ \ \ \ \ \ \ \ \ \ \ "{}}\ <<\ server.\mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}.\mbox{\hyperlink{structcore_1_1Supply_aeede708c05a5c0ad4dcfeb4cab4a1e59}{cpu}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{01070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ \ -\/\ Used\ MEM:\ \ \ \ \ \ \ \ \ \ \ \ "{}}\ <<\ server.\mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}.\mbox{\hyperlink{structcore_1_1Supply_a8d1a5cb1c6a6f613ed211d717858d432}{mem}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{01071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ \ -\/\ Used\ STO:\ \ \ \ \ \ \ \ \ \ \ \ "{}}\ <<\ server.\mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}.\mbox{\hyperlink{structcore_1_1Supply_af5ee55556ad0d4d3e6d2d48c7c46bbd4}{sto}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{01072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ \ -\/\ Devices\ Served\ ("{}}\ <<\ server.\mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}.\mbox{\hyperlink{structcore_1_1Supply_a46c7a0e0c5ef627372a278ae76c9122f}{devices}}.size()\ <<\ \textcolor{stringliteral}{"{}):\ "{}};}
+\DoxyCodeLine{01073\ }
+\DoxyCodeLine{01074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (server.\mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}.\mbox{\hyperlink{structcore_1_1Supply_a46c7a0e0c5ef627372a278ae76c9122f}{devices}}.empty())\ \{}
+\DoxyCodeLine{01075\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}None\(\backslash\)n"{}};}
+\DoxyCodeLine{01076\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01077\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ device\_list\ =\ \mbox{\hyperlink{namespaceconvert_a7a5be89d85cfeacfaeffd02106bba210}{convert::set\_to\_string}}(server.\mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}.\mbox{\hyperlink{structcore_1_1Supply_a46c7a0e0c5ef627372a278ae76c9122f}{devices}});}
+\DoxyCodeLine{01078\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ device\_list\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{01079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01080\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}===============================================\(\backslash\)n"{}}\ <<\ std::endl;}
+\DoxyCodeLine{01081\ \ \ \ \ \}}
+\DoxyCodeLine{01082\ }
+\DoxyCodeLine{01087\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacedisplay_a337aacbd09f97bc5f8a0a381fe2743fb}{show\_servers}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core::Servers}}\&\ servers)\ \{}
+\DoxyCodeLine{01088\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/\ Displaying\ "{}}\ <<\ (servers.size()\ >\ 0\ ?\ servers.size()\ -\/\ 1\ :\ 0)\ <<\ \textcolor{stringliteral}{"{}\ Servers\ -\/-\/-\/\(\backslash\)n"{}};}
+\DoxyCodeLine{01089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ server\ :\ servers)\ \{}
+\DoxyCodeLine{01090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (server.id\ ==\ 0)\ \textcolor{keywordflow}{continue};\ }
+\DoxyCodeLine{01091\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedisplay_ad1ad930094e2b754d6f2df967dad099e}{show\_server}}(server);}
+\DoxyCodeLine{01092\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01093\ \ \ \ \ \}}
+\DoxyCodeLine{01094\ }
+\DoxyCodeLine{01099\ \ \ \ \ \textcolor{keyword}{namespace\ }details\ \{}
+\DoxyCodeLine{01100\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacedisplay_1_1details_a06fe5a2ba83e133d60ff8fb9412247ae}{total\_width}}\ =\ 72;\ }
+\DoxyCodeLine{01101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacedisplay_1_1details_a4f6c7b2d8be72025dc62f949bd69aaf4}{label\_width}}\ =\ 26;\ }
+\DoxyCodeLine{01102\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01109\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacedisplay_1_1details_a0bcffd5e9eca0e969003c388b5aa4456}{print\_row}}(std::ostream\&\ out,\ \textcolor{keyword}{const}\ std::string\&\ label,\ \textcolor{keyword}{const}\ std::string\&\ value)\ \{}
+\DoxyCodeLine{01110\ \ \ \ \ \ \ \ \ \ \ \ \ out\ <<\ \textcolor{stringliteral}{"{}|\ "{}}\ <<\ std::left\ <<\ std::setw(\mbox{\hyperlink{namespacedisplay_1_1details_a4f6c7b2d8be72025dc62f949bd69aaf4}{label\_width}})\ <<\ label}
+\DoxyCodeLine{01111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ |\ "{}}<<\ std::left\ <<\ std::setw(\mbox{\hyperlink{namespacedisplay_1_1details_a06fe5a2ba83e133d60ff8fb9412247ae}{total\_width}}\ -\/\ \mbox{\hyperlink{namespacedisplay_1_1details_a4f6c7b2d8be72025dc62f949bd69aaf4}{label\_width}}\ -\/\ 7)\ <<\ value}
+\DoxyCodeLine{01112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ |\(\backslash\)n"{}};}
+\DoxyCodeLine{01113\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01114\ }
+\DoxyCodeLine{01119\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacedisplay_1_1details_aba0986edbc7c6c7a57bee3ea44a80c97}{print\_header}}(std::ostream\&\ out)\ \{}
+\DoxyCodeLine{01120\ \ \ \ \ \ \ \ \ \ \ \ \ out\ <<\ \textcolor{stringliteral}{"{}+"{}}\ <<\ std::string(\mbox{\hyperlink{namespacedisplay_1_1details_a06fe5a2ba83e133d60ff8fb9412247ae}{total\_width}}\ -\/\ 2,\ \textcolor{charliteral}{'='})\ <<\ \textcolor{stringliteral}{"{}+\(\backslash\)n"{}};}
+\DoxyCodeLine{01121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01122\ }
+\DoxyCodeLine{01127\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacedisplay_1_1details_aec3d7d493a51302454a4633f5271747b}{print\_middle}}(std::ostream\&\ out)\ \{}
+\DoxyCodeLine{01128\ \ \ \ \ \ \ \ \ \ \ \ \ out\ <<\ \textcolor{stringliteral}{"{}+"{}}\ <<\ std::string(\mbox{\hyperlink{namespacedisplay_1_1details_a4f6c7b2d8be72025dc62f949bd69aaf4}{label\_width}}\ +\ 2,\ \textcolor{charliteral}{'-\/'})\ <<\ \textcolor{stringliteral}{"{}+"{}}}
+\DoxyCodeLine{01129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::string(\mbox{\hyperlink{namespacedisplay_1_1details_a06fe5a2ba83e133d60ff8fb9412247ae}{total\_width}}\ -\/\ \mbox{\hyperlink{namespacedisplay_1_1details_a4f6c7b2d8be72025dc62f949bd69aaf4}{label\_width}}\ -\/\ 5,\ \textcolor{charliteral}{'-\/'})\ <<\ \textcolor{stringliteral}{"{}+\(\backslash\)n"{}};}
+\DoxyCodeLine{01130\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01131\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01137\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacedisplay_1_1details_a82c76ec947e3458cbde5ef6c1b4fd1e5}{print\_title}}(std::ostream\&\ out,\ \textcolor{keyword}{const}\ std::string\&\ title)\ \{}
+\DoxyCodeLine{01138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ padding\_total\ =\ \mbox{\hyperlink{namespacedisplay_1_1details_a06fe5a2ba83e133d60ff8fb9412247ae}{total\_width}}\ -\/\ 3\ -\/\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(title.length());}
+\DoxyCodeLine{01139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ padding\_left\ =\ padding\_total\ /\ 2;}
+\DoxyCodeLine{01140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ padding\_right\ =\ padding\_total\ -\/\ padding\_left\ +\ 1;}
+\DoxyCodeLine{01141\ \ \ \ \ \ \ \ \ \ \ \ \ out\ <<\ \textcolor{stringliteral}{"{}|"{}}\ <<\ std::string(padding\_left,\ \textcolor{charliteral}{'\ '})\ <<\ title}
+\DoxyCodeLine{01142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::string(padding\_right,\ \textcolor{charliteral}{'\ '})\ <<\ \textcolor{stringliteral}{"{}|\(\backslash\)n"{}};}
+\DoxyCodeLine{01143\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01144\ \ \ \ \ \}}
+\DoxyCodeLine{01145\ }
+\DoxyCodeLine{01151\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacedisplay_a62e56a84fce178ee2f40199f196a7ce9}{show\_metrics\_console\_or\_file}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structmetrics_1_1Metrics}{metrics::Metrics}}\&\ \mbox{\hyperlink{namespacemetrics}{metrics}},\ std::ostream\&\ out)\ \{}
+\DoxyCodeLine{01152\ \ \ \ \ \ \ \ \ out\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{01153\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedisplay_1_1details_aba0986edbc7c6c7a57bee3ea44a80c97}{details::print\_header}}(out);}
+\DoxyCodeLine{01154\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01155\ \ \ \ \ \ \ \ \ std::string\ title\ =\ \textcolor{stringliteral}{"{}SIMULATION\ "{}}\ +\ to\_string(\mbox{\hyperlink{namespacemetrics}{metrics}}.algorithm);}
+\DoxyCodeLine{01156\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedisplay_1_1details_a82c76ec947e3458cbde5ef6c1b4fd1e5}{details::print\_title}}(out,\ title);\ }
+\DoxyCodeLine{01157\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedisplay_1_1details_aec3d7d493a51302454a4633f5271747b}{details::print\_middle}}(out);}
+\DoxyCodeLine{01158\ }
+\DoxyCodeLine{01159\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedisplay_1_1details_a0bcffd5e9eca0e969003c388b5aa4456}{details::print\_row}}(out,\ \textcolor{stringliteral}{"{}Paradigm"{}},\ to\_string(\mbox{\hyperlink{namespacemetrics}{metrics}}.paradigm));}
+\DoxyCodeLine{01160\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedisplay_1_1details_a0bcffd5e9eca0e969003c388b5aa4456}{details::print\_row}}(out,\ \textcolor{stringliteral}{"{}Algorithm"{}},\ to\_string(\mbox{\hyperlink{namespacemetrics}{metrics}}.algorithm));}
+\DoxyCodeLine{01161\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedisplay_1_1details_a0bcffd5e9eca0e969003c388b5aa4456}{details::print\_row}}(out,\ \textcolor{stringliteral}{"{}Simulation\ Run"{}},\ std::to\_string(\mbox{\hyperlink{namespacemetrics}{metrics}}.run\_id));}
+\DoxyCodeLine{01162\ }
+\DoxyCodeLine{01163\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ entries\ =\ \mbox{\hyperlink{namespacemetrics}{metrics}}.build\_metrics();}
+\DoxyCodeLine{01164\ \ \ \ \ \ \ \ \ std::string\ current\_category\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{01165\ }
+\DoxyCodeLine{01166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ entry\ :\ entries)\ \{}
+\DoxyCodeLine{01167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entry.category\ !=\ current\_category)\ \{}
+\DoxyCodeLine{01168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedisplay_1_1details_aec3d7d493a51302454a4633f5271747b}{details::print\_middle}}(out);}
+\DoxyCodeLine{01169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entry.category\ !=\ \textcolor{stringliteral}{"{}GENERAL"{}})\ \{}
+\DoxyCodeLine{01170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedisplay_1_1details_a82c76ec947e3458cbde5ef6c1b4fd1e5}{details::print\_title}}(out,\ entry.category);}
+\DoxyCodeLine{01171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedisplay_1_1details_aec3d7d493a51302454a4633f5271747b}{details::print\_middle}}(out);}
+\DoxyCodeLine{01172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ current\_category\ =\ entry.category;}
+\DoxyCodeLine{01174\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01175\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedisplay_1_1details_a0bcffd5e9eca0e969003c388b5aa4456}{details::print\_row}}(out,\ entry.label,\ entry.console\_value);}
+\DoxyCodeLine{01176\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01177\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedisplay_1_1details_aba0986edbc7c6c7a57bee3ea44a80c97}{details::print\_header}}(out);}
+\DoxyCodeLine{01178\ \ \ \ \ \}}
+\DoxyCodeLine{01179\ }
+\DoxyCodeLine{01184\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacedisplay_afca8be8f3244589f3f4078a9e4306b20}{show\_metrics}}(\textcolor{keyword}{const}\ std::shared\_ptr<metrics::Metrics>\&\ ptr)\ \{}
+\DoxyCodeLine{01185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ptr)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01186\ }
+\DoxyCodeLine{01187\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedisplay_a62e56a84fce178ee2f40199f196a7ce9}{show\_metrics\_console\_or\_file}}(*ptr,\ std::cout);}
+\DoxyCodeLine{01188\ }
+\DoxyCodeLine{01189\ \ \ \ \ \ \ \ \ std::filesystem::path\ base\_dir\ =\ ptr-\/>get\_base\_directory\_path();\ }
+\DoxyCodeLine{01190\ \ \ \ \ \ \ \ \ std::filesystem::create\_directories(base\_dir);}
+\DoxyCodeLine{01191\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01192\ \ \ \ \ \ \ \ \ std::string\ config\_name\ =\ \textcolor{stringliteral}{"{}D"{}}\ +\ std::to\_string(ptr-\/>inputs.devices\_count)\ +\ }
+\DoxyCodeLine{01193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\_S"{}}\ +\ std::to\_string(ptr-\/>inputs.servers\_ec\_count\ +\ ptr-\/>inputs.servers\_cc\_count);}
+\DoxyCodeLine{01194\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01195\ \ \ \ \ \ \ \ \ std::filesystem::path\ file\_path\ =\ base\_dir\ /\ (config\_name\ +\ \textcolor{stringliteral}{"{}\_drawing.txt"{}});}
+\DoxyCodeLine{01196\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01197\ \ \ \ \ \ \ \ \ std::ofstream\ file(file\_path,\ std::ios::app);\ }
+\DoxyCodeLine{01198\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (file.is\_open())\ \{}
+\DoxyCodeLine{01199\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedisplay_a62e56a84fce178ee2f40199f196a7ce9}{show\_metrics\_console\_or\_file}}(*ptr,\ file);}
+\DoxyCodeLine{01200\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01201\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Could\ not\ save\ drawing\ to\ "{}}\ <<\ file\_path\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{01202\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01203\ \ \ \ \ \}}
+\DoxyCodeLine{01204\ }
+\DoxyCodeLine{01209\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacedisplay_a5a95b172c89cdb8957c4ce2fbe61ae15}{show\_servers\_usage}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core::Servers}}\&\ servers)\ \{}
+\DoxyCodeLine{01210\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+\(\backslash\)n"{}};}
+\DoxyCodeLine{01211\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}|\ SERVERS\ RESOURCE\ USAGE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\(\backslash\)n"{}};}
+\DoxyCodeLine{01212\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+\(\backslash\)n"{}};}
+\DoxyCodeLine{01213\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01214\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ server\ :\ servers)\ \{}
+\DoxyCodeLine{01215\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (server.id\ ==\ 0)\ \textcolor{keywordflow}{continue};\ }
+\DoxyCodeLine{01216\ }
+\DoxyCodeLine{01217\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ cpu\_pct\ =\ \mbox{\hyperlink{namespaceconvert_a58f9ce99c0ce086862a328dbead787f5}{convert::to\_percentage\_string}}(server.supply.cpu,\ server.cpu,\ 0);}
+\DoxyCodeLine{01218\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ mem\_pct\ =\ \mbox{\hyperlink{namespaceconvert_a58f9ce99c0ce086862a328dbead787f5}{convert::to\_percentage\_string}}(server.supply.mem,\ server.mem,\ 0);}
+\DoxyCodeLine{01219\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ sto\_pct\ =\ \mbox{\hyperlink{namespaceconvert_a58f9ce99c0ce086862a328dbead787f5}{convert::to\_percentage\_string}}(server.supply.sto,\ server.sto,\ 0);}
+\DoxyCodeLine{01220\ }
+\DoxyCodeLine{01221\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\ \ ID:\ "{}}\ <<\ std::left\ <<\ std::setw(4)\ <<\ server.id\ }
+\DoxyCodeLine{01222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}CPU:\ "{}}\ \ <<\ std::right\ <<\ std::setw(3)\ <<\ cpu\_pct\ <<\ \textcolor{stringliteral}{"{}\%\ \ \ "{}}}
+\DoxyCodeLine{01223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}MEM:\ "{}}\ \ <<\ std::right\ <<\ std::setw(3)\ <<\ mem\_pct\ <<\ \textcolor{stringliteral}{"{}\%\ \ \ "{}}}
+\DoxyCodeLine{01224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}STO:\ "{}}\ \ <<\ std::right\ <<\ std::setw(3)\ <<\ sto\_pct\ <<\ \textcolor{stringliteral}{"{}\%\(\backslash\)n"{}};}
+\DoxyCodeLine{01225\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01226\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+\(\backslash\)n\(\backslash\)n"{}};}
+\DoxyCodeLine{01227\ \ \ \ \ \}}
+\DoxyCodeLine{01228\ \}}
+\DoxyCodeLine{01229\ }
+\DoxyCodeLine{01230\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacemetrics_a14d064c3f29627f9a59a04d5784c10f5}{metrics::save\_results}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structmetrics_1_1Result}{Result}}\&\ state,\ \textcolor{keywordtype}{bool}\ show\_servers\_usage)\ \{}
+\DoxyCodeLine{01231\ \ \ \ \ \textcolor{keywordflow}{if}\ (!state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01232\ \ \ \ \ state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}-\/>save\_to\_file();}
+\DoxyCodeLine{01233\ \ \ \ \ \mbox{\hyperlink{namespacedisplay_afca8be8f3244589f3f4078a9e4306b20}{display::show\_metrics}}(state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}});}
+\DoxyCodeLine{01234\ \ \ \ \ \textcolor{keywordflow}{if}\ (show\_servers\_usage)\ \mbox{\hyperlink{namespacedisplay_a5a95b172c89cdb8957c4ce2fbe61ae15}{display::show\_servers\_usage}}(state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}});}
+\DoxyCodeLine{01235\ \}}
+
+\end{DoxyCode}

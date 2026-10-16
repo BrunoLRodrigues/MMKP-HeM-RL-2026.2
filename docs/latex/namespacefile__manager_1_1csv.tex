@@ -1,0 +1,97 @@
+\doxysection{file\+\_\+manager\+::csv Namespace Reference}
+\hypertarget{namespacefile__manager_1_1csv}{}\label{namespacefile__manager_1_1csv}\index{file\_manager::csv@{file\_manager::csv}}
+
+
+Provides file I/O operations for reading, writing, and appending delimited CSV/text files.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::optional$<$ std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ $>$ \mbox{\hyperlink{namespacefile__manager_1_1csv_af48fa4ef4b9a1c06b33a77e1224e6d0f}{read}} (const std\+::string \&file\+\_\+path, char delimiter=\textquotesingle{},\textquotesingle{})
+\begin{DoxyCompactList}\small\item\em Reads a delimited CSV file into a 2D vector of strings. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacefile__manager_1_1csv_a43aa6152048eff2a39c66c4b06d266d7}{write}} (const std\+::string \&file\+\_\+path, const std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \&data, char delimiter=\textquotesingle{},\textquotesingle{})
+\begin{DoxyCompactList}\small\item\em Writes a 2D vector of strings to a CSV file, creating parent directories if needed. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacefile__manager_1_1csv_a005016bdfc842b4428494418b7068df8}{append}} (const std\+::string \&file\+\_\+path, const std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \&data, char delimiter=\textquotesingle{},\textquotesingle{})
+\begin{DoxyCompactList}\small\item\em Appends a 2D vector of strings to an existing or new CSV file. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespacefile__manager_1_1csv_a902eade1bf9316c7a50e96f3c69b8fc0}{count\+\_\+lines}} (const std\+::string \&file\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Counts the total number of lines in a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Provides file I/O operations for reading, writing, and appending delimited CSV/text files. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacefile__manager_1_1csv_a005016bdfc842b4428494418b7068df8}\label{namespacefile__manager_1_1csv_a005016bdfc842b4428494418b7068df8} 
+\index{file\_manager::csv@{file\_manager::csv}!append@{append}}
+\index{append@{append}!file\_manager::csv@{file\_manager::csv}}
+\doxysubsubsection{\texorpdfstring{append()}{append()}}
+{\footnotesize\ttfamily bool file\+\_\+manager\+::csv\+::append (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+\_\+path,  }\item[{const std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \&}]{data,  }\item[{char}]{delimiter = {\ttfamily \textquotesingle{},\textquotesingle{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Appends a 2D vector of strings to an existing or new CSV file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+path} & The full path to the output file. \\
+\hline
+{\em data} & The 2D vector of strings to append. \\
+\hline
+{\em delimiter} & The character used for separating columns (defaults to `',\textquotesingle{}{\ttfamily ). @return}true{\ttfamily if the data was appended successfully;}false\`{} otherwise. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{namespacefile__manager_1_1csv_a902eade1bf9316c7a50e96f3c69b8fc0}\label{namespacefile__manager_1_1csv_a902eade1bf9316c7a50e96f3c69b8fc0} 
+\index{file\_manager::csv@{file\_manager::csv}!count\_lines@{count\_lines}}
+\index{count\_lines@{count\_lines}!file\_manager::csv@{file\_manager::csv}}
+\doxysubsubsection{\texorpdfstring{count\_lines()}{count\_lines()}}
+{\footnotesize\ttfamily int file\+\_\+manager\+::csv\+::count\+\_\+lines (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+\_\+path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Counts the total number of lines in a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+path} & The full path to the file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The total number of lines, or {\ttfamily 0} if the file does not exist or cannot be opened. 
+\end{DoxyReturn}
+\Hypertarget{namespacefile__manager_1_1csv_af48fa4ef4b9a1c06b33a77e1224e6d0f}\label{namespacefile__manager_1_1csv_af48fa4ef4b9a1c06b33a77e1224e6d0f} 
+\index{file\_manager::csv@{file\_manager::csv}!read@{read}}
+\index{read@{read}!file\_manager::csv@{file\_manager::csv}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily std\+::optional$<$ std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ $>$ file\+\_\+manager\+::csv\+::read (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+\_\+path,  }\item[{char}]{delimiter = {\ttfamily \textquotesingle{},\textquotesingle{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reads a delimited CSV file into a 2D vector of strings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+path} & The full path to the file to be read. \\
+\hline
+{\em delimiter} & The character that separates columns (defaults to `',\textquotesingle{}{\ttfamily ). @return An}std\+::optional{\ttfamily containing the 2D vector of strings upon success, or}std\+::nullopt\`{} on failure. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{namespacefile__manager_1_1csv_a43aa6152048eff2a39c66c4b06d266d7}\label{namespacefile__manager_1_1csv_a43aa6152048eff2a39c66c4b06d266d7} 
+\index{file\_manager::csv@{file\_manager::csv}!write@{write}}
+\index{write@{write}!file\_manager::csv@{file\_manager::csv}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily bool file\+\_\+manager\+::csv\+::write (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+\_\+path,  }\item[{const std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \&}]{data,  }\item[{char}]{delimiter = {\ttfamily \textquotesingle{},\textquotesingle{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Writes a 2D vector of strings to a CSV file, creating parent directories if needed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+path} & The full path to the output file. \\
+\hline
+{\em data} & The 2D vector of strings to write. \\
+\hline
+{\em delimiter} & The character used for separating columns (defaults to `',\textquotesingle{}{\ttfamily ). @return}true{\ttfamily if the file was written successfully;}false\`{} otherwise. \\
+\hline
+\end{DoxyParams}

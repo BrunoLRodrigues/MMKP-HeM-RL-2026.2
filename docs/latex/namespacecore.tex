@@ -1,0 +1,49 @@
+\doxysection{core Namespace Reference}
+\hypertarget{namespacecore}{}\label{namespacecore}\index{core@{core}}
+
+
+Contains the fundamental domain entities for the MMKP resource allocation problem.  
+
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcore_1_1Device}{Device}}
+\begin{DoxyCompactList}\small\item\em Represents an IoT device requesting computational resources for a specific service. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structcore_1_1Server}{Server}}
+\begin{DoxyCompactList}\small\item\em Represents an Edge Computing (EC) or Cloud Computing (CC) server node. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structcore_1_1Supply}{Supply}}
+\begin{DoxyCompactList}\small\item\em Tracks the cumulative resource consumption and allocated device IDs on a single server. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{Devices}} = std\+::vector$<$ \mbox{\hyperlink{structcore_1_1Device}{Device}} $>$
+\begin{DoxyCompactList}\small\item\em Contiguous collection of {\ttfamily \doxylink{structcore_1_1Device}{Device}} instances (1-\/indexed, index 0 is a placeholder). \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{Servers}} = std\+::vector$<$ \mbox{\hyperlink{structcore_1_1Server}{Server}} $>$
+\begin{DoxyCompactList}\small\item\em Contiguous collection of {\ttfamily \doxylink{structcore_1_1Server}{Server}} instances (1-\/indexed, index 0 is a placeholder). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contains the fundamental domain entities for the MMKP resource allocation problem. 
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}\label{namespacecore_a815afea905ea8843f0cc85cb4590a3dc} 
+\index{core@{core}!Devices@{Devices}}
+\index{Devices@{Devices}!core@{core}}
+\doxysubsubsection{\texorpdfstring{Devices}{Devices}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} = typedef std\+::vector$<$\mbox{\hyperlink{structcore_1_1Device}{Device}}$>$}
+
+
+
+Contiguous collection of {\ttfamily \doxylink{structcore_1_1Device}{Device}} instances (1-\/indexed, index 0 is a placeholder). 
+
+\Hypertarget{namespacecore_ac53c64bc23d713f5e94e801d40e34803}\label{namespacecore_ac53c64bc23d713f5e94e801d40e34803} 
+\index{core@{core}!Servers@{Servers}}
+\index{Servers@{Servers}!core@{core}}
+\doxysubsubsection{\texorpdfstring{Servers}{Servers}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} = typedef std\+::vector$<$\mbox{\hyperlink{structcore_1_1Server}{Server}}$>$}
+
+
+
+Contiguous collection of {\ttfamily \doxylink{structcore_1_1Server}{Server}} instances (1-\/indexed, index 0 is a placeholder). 
+

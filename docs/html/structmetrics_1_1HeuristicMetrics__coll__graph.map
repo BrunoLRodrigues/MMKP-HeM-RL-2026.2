@@ -1,0 +1,9 @@
+<map id="metrics::HeuristicMetrics" name="metrics::HeuristicMetrics">
+<area shape="rect" id="Node000001" title="Specialization of Metrics for constructive heuristic runs." alt="" coords="103,168,288,193"/>
+<area shape="rect" id="Node000002" href="$structmetrics_1_1Metrics.html" title="Polymorphic base structure for tracking, calculating, and saving simulation metrics." alt="" coords="132,93,259,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="198,133,198,168,193,168,193,133"/>
+<area shape="rect" id="Node000003" href="$structmetrics_1_1Metrics_1_1Inputs.html" title="Captures the static input instance dimensions and maximum possible penalty cost." alt="" coords="5,5,180,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="119,38,183,91,179,95,116,42"/>
+<area shape="rect" id="Node000004" href="$structmetrics_1_1Metrics_1_1Outputs.html" title="Captures the resulting performance and resource utilization metrics after allocation." alt="" coords="205,5,391,31"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="275,42,211,95,208,91,272,38"/>
+</map>

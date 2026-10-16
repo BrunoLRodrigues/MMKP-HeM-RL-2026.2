@@ -1,0 +1,180 @@
+\doxysection{core\+::Device Struct Reference}
+\hypertarget{structcore_1_1Device}{}\label{structcore_1_1Device}\index{core::Device@{core::Device}}
+
+
+Represents an IoT device requesting computational resources for a specific service.  
+
+
+
+
+{\ttfamily \#include $<$mmkp.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structcore_1_1Device_a00b0a1ee58f48471ab0b80d92a639c14}{Device}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor initializing an empty/placeholder device. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structcore_1_1Device_a4912c64725d31feb93465a55d332a408}{Device}} (int id\+\_\+, double cost\+\_\+, double cpu\+\_\+, double mem\+\_\+, double sto\+\_\+, int tasks\+\_\+, int service\+\_\+)
+\begin{DoxyCompactList}\small\item\em Parameterized constructor initializing a device with specific resource demands. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{structcore_1_1Device_ac83e97cbd9fa5273e048d20efd117c78}{id}}
+\begin{DoxyCompactList}\small\item\em Unique 1-\/based identifier of the device. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{structcore_1_1Device_abcd568ad40b2da1bf96e020eb373f395}{cost}}
+\begin{DoxyCompactList}\small\item\em SLA penalty cost incurred if the device is not served. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{structcore_1_1Device_ac8f4ac74433e443f9a0144118539cc3d}{cpu}}
+\begin{DoxyCompactList}\small\item\em Required processing capacity (CPU). \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{structcore_1_1Device_ab995063705eec1a4eeafcff73b32a7c7}{mem}}
+\begin{DoxyCompactList}\small\item\em Required memory capacity (MEM). \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{structcore_1_1Device_a5b35cbc18886c7fbcc22912e64e014d1}{sto}}
+\begin{DoxyCompactList}\small\item\em Required storage capacity (STO). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structcore_1_1Device_a08dbaad39cf536ab7baa6923664f3a26}{tasks}}
+\begin{DoxyCompactList}\small\item\em Number of atomic tasks composing the requested service. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structcore_1_1Device_a26fe603e39b21b481582171766b30ab5}{service}}
+\begin{DoxyCompactList}\small\item\em Identifier of the service template assigned to this device. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structcore_1_1Device_a835d0367af9fbc3419f6fb8a114760e3}{served}} = false
+\begin{DoxyCompactList}\small\item\em Flag indicating whether the device is currently allocated to a server. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structcore_1_1Device_ae7592c793ae91f1c8b6c0d2b0fcc3538}{server\+\_\+id}} = -\/1
+\begin{DoxyCompactList}\small\item\em ID of the server hosting this device ({\ttfamily -\/1} if unserved). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents an IoT device requesting computational resources for a specific service. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structcore_1_1Device_a00b0a1ee58f48471ab0b80d92a639c14}\label{structcore_1_1Device_a00b0a1ee58f48471ab0b80d92a639c14} 
+\index{core::Device@{core::Device}!Device@{Device}}
+\index{Device@{Device}!core::Device@{core::Device}}
+\doxysubsubsection{\texorpdfstring{Device()}{Device()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily core\+::\+Device\+::\+Device (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor initializing an empty/placeholder device. 
+
+\Hypertarget{structcore_1_1Device_a4912c64725d31feb93465a55d332a408}\label{structcore_1_1Device_a4912c64725d31feb93465a55d332a408} 
+\index{core::Device@{core::Device}!Device@{Device}}
+\index{Device@{Device}!core::Device@{core::Device}}
+\doxysubsubsection{\texorpdfstring{Device()}{Device()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily core\+::\+Device\+::\+Device (\begin{DoxyParamCaption}\item[{int}]{id\+\_\+,  }\item[{double}]{cost\+\_\+,  }\item[{double}]{cpu\+\_\+,  }\item[{double}]{mem\+\_\+,  }\item[{double}]{sto\+\_\+,  }\item[{int}]{tasks\+\_\+,  }\item[{int}]{service\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Parameterized constructor initializing a device with specific resource demands. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id\+\_\+} & Unique identifier of the device. \\
+\hline
+{\em cost\+\_\+} & Penalty cost if unserved. \\
+\hline
+{\em cpu\+\_\+} & CPU demand. \\
+\hline
+{\em mem\+\_\+} & Memory demand. \\
+\hline
+{\em sto\+\_\+} & Storage demand. \\
+\hline
+{\em tasks\+\_\+} & Number of service tasks. \\
+\hline
+{\em service\+\_\+} & Service profile ID. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structcore_1_1Device_abcd568ad40b2da1bf96e020eb373f395}\label{structcore_1_1Device_abcd568ad40b2da1bf96e020eb373f395} 
+\index{core::Device@{core::Device}!cost@{cost}}
+\index{cost@{cost}!core::Device@{core::Device}}
+\doxysubsubsection{\texorpdfstring{cost}{cost}}
+{\footnotesize\ttfamily double core\+::\+Device\+::cost}
+
+
+
+SLA penalty cost incurred if the device is not served. 
+
+\Hypertarget{structcore_1_1Device_ac8f4ac74433e443f9a0144118539cc3d}\label{structcore_1_1Device_ac8f4ac74433e443f9a0144118539cc3d} 
+\index{core::Device@{core::Device}!cpu@{cpu}}
+\index{cpu@{cpu}!core::Device@{core::Device}}
+\doxysubsubsection{\texorpdfstring{cpu}{cpu}}
+{\footnotesize\ttfamily double core\+::\+Device\+::cpu}
+
+
+
+Required processing capacity (CPU). 
+
+\Hypertarget{structcore_1_1Device_ac83e97cbd9fa5273e048d20efd117c78}\label{structcore_1_1Device_ac83e97cbd9fa5273e048d20efd117c78} 
+\index{core::Device@{core::Device}!id@{id}}
+\index{id@{id}!core::Device@{core::Device}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily int core\+::\+Device\+::id}
+
+
+
+Unique 1-\/based identifier of the device. 
+
+\Hypertarget{structcore_1_1Device_ab995063705eec1a4eeafcff73b32a7c7}\label{structcore_1_1Device_ab995063705eec1a4eeafcff73b32a7c7} 
+\index{core::Device@{core::Device}!mem@{mem}}
+\index{mem@{mem}!core::Device@{core::Device}}
+\doxysubsubsection{\texorpdfstring{mem}{mem}}
+{\footnotesize\ttfamily double core\+::\+Device\+::mem}
+
+
+
+Required memory capacity (MEM). 
+
+\Hypertarget{structcore_1_1Device_a835d0367af9fbc3419f6fb8a114760e3}\label{structcore_1_1Device_a835d0367af9fbc3419f6fb8a114760e3} 
+\index{core::Device@{core::Device}!served@{served}}
+\index{served@{served}!core::Device@{core::Device}}
+\doxysubsubsection{\texorpdfstring{served}{served}}
+{\footnotesize\ttfamily bool core\+::\+Device\+::served = false}
+
+
+
+Flag indicating whether the device is currently allocated to a server. 
+
+\Hypertarget{structcore_1_1Device_ae7592c793ae91f1c8b6c0d2b0fcc3538}\label{structcore_1_1Device_ae7592c793ae91f1c8b6c0d2b0fcc3538} 
+\index{core::Device@{core::Device}!server\_id@{server\_id}}
+\index{server\_id@{server\_id}!core::Device@{core::Device}}
+\doxysubsubsection{\texorpdfstring{server\_id}{server\_id}}
+{\footnotesize\ttfamily int core\+::\+Device\+::server\+\_\+id = -\/1}
+
+
+
+ID of the server hosting this device ({\ttfamily -\/1} if unserved). 
+
+\Hypertarget{structcore_1_1Device_a26fe603e39b21b481582171766b30ab5}\label{structcore_1_1Device_a26fe603e39b21b481582171766b30ab5} 
+\index{core::Device@{core::Device}!service@{service}}
+\index{service@{service}!core::Device@{core::Device}}
+\doxysubsubsection{\texorpdfstring{service}{service}}
+{\footnotesize\ttfamily int core\+::\+Device\+::service}
+
+
+
+Identifier of the service template assigned to this device. 
+
+\Hypertarget{structcore_1_1Device_a5b35cbc18886c7fbcc22912e64e014d1}\label{structcore_1_1Device_a5b35cbc18886c7fbcc22912e64e014d1} 
+\index{core::Device@{core::Device}!sto@{sto}}
+\index{sto@{sto}!core::Device@{core::Device}}
+\doxysubsubsection{\texorpdfstring{sto}{sto}}
+{\footnotesize\ttfamily double core\+::\+Device\+::sto}
+
+
+
+Required storage capacity (STO). 
+
+\Hypertarget{structcore_1_1Device_a08dbaad39cf536ab7baa6923664f3a26}\label{structcore_1_1Device_a08dbaad39cf536ab7baa6923664f3a26} 
+\index{core::Device@{core::Device}!tasks@{tasks}}
+\index{tasks@{tasks}!core::Device@{core::Device}}
+\doxysubsubsection{\texorpdfstring{tasks}{tasks}}
+{\footnotesize\ttfamily int core\+::\+Device\+::tasks}
+
+
+
+Number of atomic tasks composing the requested service. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{mmkp_8hpp}{mmkp.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,260 @@
+\doxysection{include/mmkp.hpp File Reference}
+\hypertarget{mmkp_8hpp}{}\label{mmkp_8hpp}\index{include/mmkp.hpp@{include/mmkp.hpp}}
+
+
+Core data structures, synthetic dataset generators, metric trackers, and console/file display routines.  
+
+
+{\ttfamily \#include "{}tools.\+hpp"{}}\newline
+Include dependency graph for mmkp.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mmkp_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mmkp_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcore_1_1Device}{core\+::\+Device}}
+\begin{DoxyCompactList}\small\item\em Represents an IoT device requesting computational resources for a specific service. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structcore_1_1Supply}{core\+::\+Supply}}
+\begin{DoxyCompactList}\small\item\em Tracks the cumulative resource consumption and allocated device IDs on a single server. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structcore_1_1Server}{core\+::\+Server}}
+\begin{DoxyCompactList}\small\item\em Represents an Edge Computing (EC) or Cloud Computing (CC) server node. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmetrics_1_1MetricEntry}{metrics\+::\+Metric\+Entry}}
+\begin{DoxyCompactList}\small\item\em Represents a formatted key-\/value entry for displaying or exporting simulation metrics. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmetrics_1_1Metrics}{metrics\+::\+Metrics}}
+\begin{DoxyCompactList}\small\item\em Polymorphic base structure for tracking, calculating, and saving simulation metrics. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs}{metrics\+::\+Metrics\+::\+Inputs}}
+\begin{DoxyCompactList}\small\item\em Captures the static input instance dimensions and maximum possible penalty cost. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs}{metrics\+::\+Metrics\+::\+Outputs}}
+\begin{DoxyCompactList}\small\item\em Captures the resulting performance and resource utilization metrics after allocation. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmetrics_1_1ExactMetrics}{metrics\+::\+Exact\+Metrics}}
+\begin{DoxyCompactList}\small\item\em Extends {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} to include CPLEX solver status, objective value, and MIP optimality gap. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmetrics_1_1HeuristicMetrics}{metrics\+::\+Heuristic\+Metrics}}
+\begin{DoxyCompactList}\small\item\em Specialization of {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} for constructive heuristic runs. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics}{metrics\+::\+Meta\+Heuristic\+Metrics}}
+\begin{DoxyCompactList}\small\item\em Extends {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} to track Simulated Annealing hyperparameters and initial heuristic selection. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}}
+\begin{DoxyCompactList}\small\item\em Encapsulates the complete system state ({\ttfamily Devices}, {\ttfamily Servers}) and polymorphic {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} for a simulation run. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacecore}{core}}
+\begin{DoxyCompactList}\small\item\em Contains the fundamental domain entities for the MMKP resource allocation problem. \end{DoxyCompactList}\item 
+namespace \mbox{\hyperlink{namespacedata_1_1generate}{data\+::generate}}
+\begin{DoxyCompactList}\small\item\em Generates synthetic datasets for services, IoT devices, and EC/\+CC servers when files are absent. \end{DoxyCompactList}\item 
+namespace \mbox{\hyperlink{namespacedata}{data}}
+\item 
+namespace \mbox{\hyperlink{namespacedata_1_1load}{data\+::load}}
+\begin{DoxyCompactList}\small\item\em Parses raw string datasets into strongly-\/typed {\ttfamily \doxylink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} and {\ttfamily \doxylink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} vectors. \end{DoxyCompactList}\item 
+namespace \mbox{\hyperlink{namespacemetrics}{metrics}}
+\begin{DoxyCompactList}\small\item\em Provides structures and routines for tracking, formatting, and persisting simulation metrics. \end{DoxyCompactList}\item 
+namespace \mbox{\hyperlink{namespacedisplay}{display}}
+\begin{DoxyCompactList}\small\item\em Utility namespace for formatting and printing entities and ASCII metric tables to console or files. \end{DoxyCompactList}\item 
+namespace \mbox{\hyperlink{namespacedisplay_1_1details}{display\+::details}}
+\begin{DoxyCompactList}\small\item\em Internal helper routines for rendering ASCII box-\/drawing tables. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{mmkp_8hpp_a24ea7b5663260ad00fc65ed519bbf8b1}{ii\+\_\+pair}} = std\+::pair$<$ int, int $>$
+\begin{DoxyCompactList}\small\item\em Pair of two integers. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{mmkp_8hpp_abdece7e039099de53cbe158d24376ff8}{id\+\_\+pair}} = std\+::pair$<$ int, double $>$
+\begin{DoxyCompactList}\small\item\em Pair of an integer ID and a double value (e.\+g., utility). \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{mmkp_8hpp_a11561f2f1571eed3509f087e0a373adc}{i\+\_\+vector}} = std\+::vector$<$ int $>$
+\begin{DoxyCompactList}\small\item\em Vector of integers. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{mmkp_8hpp_a8611bd025a925b668051e6e08d0b4608}{s\+\_\+vector}} = std\+::vector$<$ std\+::string $>$
+\begin{DoxyCompactList}\small\item\em Vector of strings. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{mmkp_8hpp_a79e98970e41b731003aca29a0f415712}{ii\+\_\+pair\+\_\+vector}} = std\+::vector$<$ \mbox{\hyperlink{mmkp_8hpp_a24ea7b5663260ad00fc65ed519bbf8b1}{ii\+\_\+pair}} $>$
+\begin{DoxyCompactList}\small\item\em Vector of integer-\/integer pairs. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{mmkp_8hpp_a6101f686aa3d1d29e76f7158cb8c347c}{id\+\_\+pair\+\_\+vector}} = std\+::vector$<$ \mbox{\hyperlink{mmkp_8hpp_abdece7e039099de53cbe158d24376ff8}{id\+\_\+pair}} $>$
+\begin{DoxyCompactList}\small\item\em Vector of integer-\/double pairs. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{mmkp_8hpp_a54295524698f2887657caf7820956714}{i\+\_\+matrix}} = std\+::vector$<$ \mbox{\hyperlink{mmkp_8hpp_a11561f2f1571eed3509f087e0a373adc}{i\+\_\+vector}} $>$
+\begin{DoxyCompactList}\small\item\em 2D matrix of integers. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{mmkp_8hpp_a97dbd67a2a456c598f22b2f229687dd9}{s\+\_\+matrix}} = std\+::vector$<$ \mbox{\hyperlink{mmkp_8hpp_a8611bd025a925b668051e6e08d0b4608}{s\+\_\+vector}} $>$
+\begin{DoxyCompactList}\small\item\em 2D matrix of strings. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{mmkp_8hpp_a57175fad6087051ccfda3252d316f596}{i\+\_\+set}} = std\+::set$<$ int $>$
+\begin{DoxyCompactList}\small\item\em Ordered set of unique integers. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} = std\+::vector$<$ \mbox{\hyperlink{structcore_1_1Device}{Device}} $>$
+\begin{DoxyCompactList}\small\item\em Contiguous collection of {\ttfamily \doxylink{structcore_1_1Device}{Device}} instances (1-\/indexed, index 0 is a placeholder). \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} = std\+::vector$<$ \mbox{\hyperlink{structcore_1_1Server}{Server}} $>$
+\begin{DoxyCompactList}\small\item\em Contiguous collection of {\ttfamily \doxylink{structcore_1_1Server}{Server}} instances (1-\/indexed, index 0 is a placeholder). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{metrics\+::\+Paradigm}} \{ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aab50339a10e1de285ac99d4c3990b8693}{metrics\+::\+NONE}}
+, \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aac41e056424136b6e8c4e23dd6326efa1}{metrics\+::\+EXACT}}
+, \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aa589ab27e5d5232a3590c042c0dbe7818}{metrics\+::\+HEURISTIC}}
+, \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aa1ef7e0df1cd1fdd87ecf432332cd8343}{metrics\+::\+METAHEURISTIC}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumerates the optimization paradigms supported by the simulator. \end{DoxyCompactList}\item 
+enum class \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{metrics\+::\+Algorithm}} \{ \newline
+\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11ab50339a10e1de285ac99d4c3990b8693}{metrics\+::\+NONE}}
+, \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11ae6bb6feafcc4de7705a8fe1782af973e}{metrics\+::solver\+\_\+maximum\+\_\+cost}}
+, \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11abe0511aca70b810b2ed30f6c24c4a620}{metrics\+::greedy\+\_\+cost\+\_\+benefit}}
+, \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11aa845e2c8be77bb480b9bea73ff528829}{metrics\+::greedy\+\_\+random}}
+, \newline
+\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11a0327841700a466600166ed61b1b18200}{metrics\+::greedy\+\_\+random\+\_\+fallback}}
+, \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11a557e0f060742f44e69f44502ad2f3d71}{metrics\+::simulated\+\_\+annealing}}
+ \}
+\begin{DoxyCompactList}\small\item\em Identifies the specific optimization algorithm used in a simulation run. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{namespacedata_1_1generate_a8cf334007dfe6c39270237e4b5e1df96}{data\+::generate\+::services}} (const int num\+\_\+services=10)
+\begin{DoxyCompactList}\small\item\em Generates or loads network service requirement templates. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{namespacedata_1_1generate_af6567b345dff3a26eabcad5abd28fcdb}{data\+::generate\+::devices}} (const int length, const int num\+\_\+services=10)
+\begin{DoxyCompactList}\small\item\em Generates or loads device request data representing IoT network demands. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{namespacedata_1_1generate_a406f9158cb3dc3b05a461bc10038fae1}{data\+::generate\+::servers}} (const int ec\+\_\+length=99, const int cc\+\_\+length=1)
+\begin{DoxyCompactList}\small\item\em Generates or loads server infrastructure data for Edge and Cloud nodes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} \mbox{\hyperlink{namespacedata_1_1load_a1cf3365d1111392a986685684c4ed7af}{data\+::load\+::devices}} (const int length, const int num\+\_\+services=10)
+\begin{DoxyCompactList}\small\item\em Loads device data from disk (generating it if absent) into a vector of {\ttfamily \doxylink{structcore_1_1Device}{core\+::\+Device}} objects. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} \mbox{\hyperlink{namespacedata_1_1load_ac246a8e8d760e5209660fe9bdbce70ba}{data\+::load\+::servers}} (const int ec=99, const int cc=1)
+\begin{DoxyCompactList}\small\item\em Loads Edge and Cloud server data from disk (generating it if absent). \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespacemetrics_a5bb0d7248ebf1214b792666f43dc57a5}{metrics\+::to\+\_\+string}} (\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}} paradigm)
+\begin{DoxyCompactList}\small\item\em Converts a {\ttfamily Paradigm} enum value to its uppercase string representation. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespacemetrics_ab2f73cbbbd68c8c1493b792911a49ce0}{metrics\+::to\+\_\+string}} (\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}} algorithm)
+\begin{DoxyCompactList}\small\item\em Converts an {\ttfamily Algorithm} enum value to its standardized string identifier. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacemetrics_a49133a7a2d416aca63d85f80f34bd14c}{metrics\+::calculate\+\_\+metrics}} (\mbox{\hyperlink{structmetrics_1_1Result}{Result}} \&state)
+\begin{DoxyCompactList}\small\item\em Computes the final simulation metrics based on the current device-\/to-\/server allocations. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacemetrics_a14d064c3f29627f9a59a04d5784c10f5}{metrics\+::save\+\_\+results}} (const \mbox{\hyperlink{structmetrics_1_1Result}{Result}} \&state, bool show\+\_\+servers\+\_\+usage=false)
+\begin{DoxyCompactList}\small\item\em Saves the final calculated metrics and ASCII summary tables to the file system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedisplay_a48688ce51b12e703f0eba7b25b2b15de}{display\+::show\+\_\+device}} (const \mbox{\hyperlink{structcore_1_1Device}{core\+::\+Device}} \&device)
+\begin{DoxyCompactList}\small\item\em Displays detailed information of a single device to standard output. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedisplay_ae8cf71158bd852e9ec3ecf62e3775753}{display\+::show\+\_\+devices}} (const \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} \&devices)
+\begin{DoxyCompactList}\small\item\em Displays detailed information for all devices in the vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedisplay_ad1ad930094e2b754d6f2df967dad099e}{display\+::show\+\_\+server}} (const \mbox{\hyperlink{structcore_1_1Server}{core\+::\+Server}} \&server)
+\begin{DoxyCompactList}\small\item\em Displays capacity and current demand of a single server. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedisplay_a337aacbd09f97bc5f8a0a381fe2743fb}{display\+::show\+\_\+servers}} (const \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} \&servers)
+\begin{DoxyCompactList}\small\item\em Displays capacity and demand information for all servers. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedisplay_1_1details_a0bcffd5e9eca0e969003c388b5aa4456}{display\+::details\+::print\+\_\+row}} (std\+::ostream \&out, const std\+::string \&label, const std\+::string \&value)
+\begin{DoxyCompactList}\small\item\em Prints a formatted key-\/value row within the ASCII table. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedisplay_1_1details_aba0986edbc7c6c7a57bee3ea44a80c97}{display\+::details\+::print\+\_\+header}} (std\+::ostream \&out)
+\begin{DoxyCompactList}\small\item\em Prints the top or bottom border of the ASCII table. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedisplay_1_1details_aec3d7d493a51302454a4633f5271747b}{display\+::details\+::print\+\_\+middle}} (std\+::ostream \&out)
+\begin{DoxyCompactList}\small\item\em Prints a section separator line within the ASCII table. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedisplay_1_1details_a82c76ec947e3458cbde5ef6c1b4fd1e5}{display\+::details\+::print\+\_\+title}} (std\+::ostream \&out, const std\+::string \&title)
+\begin{DoxyCompactList}\small\item\em Prints a centered title row within the ASCII table. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedisplay_a62e56a84fce178ee2f40199f196a7ce9}{display\+::show\+\_\+metrics\+\_\+console\+\_\+or\+\_\+file}} (const \mbox{\hyperlink{structmetrics_1_1Metrics}{metrics\+::\+Metrics}} \&metrics, std\+::ostream \&out)
+\begin{DoxyCompactList}\small\item\em Formats and writes the complete simulation metrics table to an output stream. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedisplay_afca8be8f3244589f3f4078a9e4306b20}{display\+::show\+\_\+metrics}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structmetrics_1_1Metrics}{metrics\+::\+Metrics}} $>$ \&ptr)
+\begin{DoxyCompactList}\small\item\em Displays the metrics table on the console and appends it to a drawing file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedisplay_a5a95b172c89cdb8957c4ce2fbe61ae15}{display\+::show\+\_\+servers\+\_\+usage}} (const \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} \&servers)
+\begin{DoxyCompactList}\small\item\em Prints a summary table of server resource utilization percentages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const std\+::filesystem\+::path \mbox{\hyperlink{namespacedata_1_1generate_a75e853eaa2e0c225aad26cf3607b53f8}{data\+::generate\+::\+DATA\+\_\+\+PATH}} = std\+::filesystem\+::current\+\_\+path() / "{}data"{}
+\begin{DoxyCompactList}\small\item\em Path pointing to the root {\ttfamily data/} directory. \end{DoxyCompactList}\item 
+const std\+::filesystem\+::path \mbox{\hyperlink{namespacemetrics_a7f26a4cc7d54ffeeccdb8002576777cc}{metrics\+::\+RESULTS\+\_\+\+PATH}} = std\+::filesystem\+::current\+\_\+path() / "{}results"{}
+\begin{DoxyCompactList}\small\item\em Path pointing to the root {\ttfamily results/} directory. \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{namespacedisplay_1_1details_a06fe5a2ba83e133d60ff8fb9412247ae}{display\+::details\+::total\+\_\+width}} = 72
+\begin{DoxyCompactList}\small\item\em Total character width of the formatted ASCII table. \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{namespacedisplay_1_1details_a4f6c7b2d8be72025dc62f949bd69aaf4}{display\+::details\+::label\+\_\+width}} = 26
+\begin{DoxyCompactList}\small\item\em Character width allocated to the left-\/hand label column. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Core data structures, synthetic dataset generators, metric trackers, and console/file display routines. 
+
+Defines the domain entities ({\ttfamily Device}, {\ttfamily Server}, {\ttfamily Supply}), dataset loading/generation utilities, polymorphic metric collection classes ({\ttfamily Metrics}, {\ttfamily Exact\+Metrics}, {\ttfamily Heuristic\+Metrics}, {\ttfamily Meta\+Heuristic\+Metrics}), and ASCII table visualization functions for the MMKP Io\+T-\/\+EC-\/\+CC simulator. 
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{mmkp_8hpp_a54295524698f2887657caf7820956714}\label{mmkp_8hpp_a54295524698f2887657caf7820956714} 
+\index{mmkp.hpp@{mmkp.hpp}!i\_matrix@{i\_matrix}}
+\index{i\_matrix@{i\_matrix}!mmkp.hpp@{mmkp.hpp}}
+\doxysubsubsection{\texorpdfstring{i\_matrix}{i\_matrix}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{mmkp_8hpp_a54295524698f2887657caf7820956714}{i\+\_\+matrix}} =  std\+::vector$<$\mbox{\hyperlink{mmkp_8hpp_a11561f2f1571eed3509f087e0a373adc}{i\+\_\+vector}}$>$}
+
+
+
+2D matrix of integers. 
+
+\Hypertarget{mmkp_8hpp_a57175fad6087051ccfda3252d316f596}\label{mmkp_8hpp_a57175fad6087051ccfda3252d316f596} 
+\index{mmkp.hpp@{mmkp.hpp}!i\_set@{i\_set}}
+\index{i\_set@{i\_set}!mmkp.hpp@{mmkp.hpp}}
+\doxysubsubsection{\texorpdfstring{i\_set}{i\_set}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{mmkp_8hpp_a57175fad6087051ccfda3252d316f596}{i\+\_\+set}} =  std\+::set$<$int$>$}
+
+
+
+Ordered set of unique integers. 
+
+\Hypertarget{mmkp_8hpp_a11561f2f1571eed3509f087e0a373adc}\label{mmkp_8hpp_a11561f2f1571eed3509f087e0a373adc} 
+\index{mmkp.hpp@{mmkp.hpp}!i\_vector@{i\_vector}}
+\index{i\_vector@{i\_vector}!mmkp.hpp@{mmkp.hpp}}
+\doxysubsubsection{\texorpdfstring{i\_vector}{i\_vector}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{mmkp_8hpp_a11561f2f1571eed3509f087e0a373adc}{i\+\_\+vector}} =  std\+::vector$<$int$>$}
+
+
+
+Vector of integers. 
+
+\Hypertarget{mmkp_8hpp_abdece7e039099de53cbe158d24376ff8}\label{mmkp_8hpp_abdece7e039099de53cbe158d24376ff8} 
+\index{mmkp.hpp@{mmkp.hpp}!id\_pair@{id\_pair}}
+\index{id\_pair@{id\_pair}!mmkp.hpp@{mmkp.hpp}}
+\doxysubsubsection{\texorpdfstring{id\_pair}{id\_pair}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{mmkp_8hpp_abdece7e039099de53cbe158d24376ff8}{id\+\_\+pair}} =  std\+::pair$<$int, double$>$}
+
+
+
+Pair of an integer ID and a double value (e.\+g., utility). 
+
+\Hypertarget{mmkp_8hpp_a6101f686aa3d1d29e76f7158cb8c347c}\label{mmkp_8hpp_a6101f686aa3d1d29e76f7158cb8c347c} 
+\index{mmkp.hpp@{mmkp.hpp}!id\_pair\_vector@{id\_pair\_vector}}
+\index{id\_pair\_vector@{id\_pair\_vector}!mmkp.hpp@{mmkp.hpp}}
+\doxysubsubsection{\texorpdfstring{id\_pair\_vector}{id\_pair\_vector}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{mmkp_8hpp_a6101f686aa3d1d29e76f7158cb8c347c}{id\+\_\+pair\+\_\+vector}} =  std\+::vector$<$\mbox{\hyperlink{mmkp_8hpp_abdece7e039099de53cbe158d24376ff8}{id\+\_\+pair}}$>$}
+
+
+
+Vector of integer-\/double pairs. 
+
+\Hypertarget{mmkp_8hpp_a24ea7b5663260ad00fc65ed519bbf8b1}\label{mmkp_8hpp_a24ea7b5663260ad00fc65ed519bbf8b1} 
+\index{mmkp.hpp@{mmkp.hpp}!ii\_pair@{ii\_pair}}
+\index{ii\_pair@{ii\_pair}!mmkp.hpp@{mmkp.hpp}}
+\doxysubsubsection{\texorpdfstring{ii\_pair}{ii\_pair}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{mmkp_8hpp_a24ea7b5663260ad00fc65ed519bbf8b1}{ii\+\_\+pair}} =  std\+::pair$<$int, int$>$}
+
+
+
+Pair of two integers. 
+
+\Hypertarget{mmkp_8hpp_a79e98970e41b731003aca29a0f415712}\label{mmkp_8hpp_a79e98970e41b731003aca29a0f415712} 
+\index{mmkp.hpp@{mmkp.hpp}!ii\_pair\_vector@{ii\_pair\_vector}}
+\index{ii\_pair\_vector@{ii\_pair\_vector}!mmkp.hpp@{mmkp.hpp}}
+\doxysubsubsection{\texorpdfstring{ii\_pair\_vector}{ii\_pair\_vector}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{mmkp_8hpp_a79e98970e41b731003aca29a0f415712}{ii\+\_\+pair\+\_\+vector}} =  std\+::vector$<$\mbox{\hyperlink{mmkp_8hpp_a24ea7b5663260ad00fc65ed519bbf8b1}{ii\+\_\+pair}}$>$}
+
+
+
+Vector of integer-\/integer pairs. 
+
+\Hypertarget{mmkp_8hpp_a97dbd67a2a456c598f22b2f229687dd9}\label{mmkp_8hpp_a97dbd67a2a456c598f22b2f229687dd9} 
+\index{mmkp.hpp@{mmkp.hpp}!s\_matrix@{s\_matrix}}
+\index{s\_matrix@{s\_matrix}!mmkp.hpp@{mmkp.hpp}}
+\doxysubsubsection{\texorpdfstring{s\_matrix}{s\_matrix}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{mmkp_8hpp_a97dbd67a2a456c598f22b2f229687dd9}{s\+\_\+matrix}} =  std\+::vector$<$\mbox{\hyperlink{mmkp_8hpp_a8611bd025a925b668051e6e08d0b4608}{s\+\_\+vector}}$>$}
+
+
+
+2D matrix of strings. 
+
+\Hypertarget{mmkp_8hpp_a8611bd025a925b668051e6e08d0b4608}\label{mmkp_8hpp_a8611bd025a925b668051e6e08d0b4608} 
+\index{mmkp.hpp@{mmkp.hpp}!s\_vector@{s\_vector}}
+\index{s\_vector@{s\_vector}!mmkp.hpp@{mmkp.hpp}}
+\doxysubsubsection{\texorpdfstring{s\_vector}{s\_vector}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{mmkp_8hpp_a8611bd025a925b668051e6e08d0b4608}{s\+\_\+vector}} =  std\+::vector$<$std\+::string$>$}
+
+
+
+Vector of strings. 
+

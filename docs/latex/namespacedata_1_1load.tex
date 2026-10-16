@@ -1,0 +1,60 @@
+\doxysection{data\+::load Namespace Reference}
+\hypertarget{namespacedata_1_1load}{}\label{namespacedata_1_1load}\index{data::load@{data::load}}
+
+
+Parses raw string datasets into strongly-\/typed {\ttfamily \doxylink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} and {\ttfamily \doxylink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} vectors.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} \mbox{\hyperlink{namespacedata_1_1load_a1cf3365d1111392a986685684c4ed7af}{devices}} (const int length, const int num\+\_\+services=10)
+\begin{DoxyCompactList}\small\item\em Loads device data from disk (generating it if absent) into a vector of {\ttfamily \doxylink{structcore_1_1Device}{core\+::\+Device}} objects. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} \mbox{\hyperlink{namespacedata_1_1load_ac246a8e8d760e5209660fe9bdbce70ba}{servers}} (const int ec=99, const int cc=1)
+\begin{DoxyCompactList}\small\item\em Loads Edge and Cloud server data from disk (generating it if absent). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Parses raw string datasets into strongly-\/typed {\ttfamily \doxylink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} and {\ttfamily \doxylink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} vectors. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacedata_1_1load_a1cf3365d1111392a986685684c4ed7af}\label{namespacedata_1_1load_a1cf3365d1111392a986685684c4ed7af} 
+\index{data::load@{data::load}!devices@{devices}}
+\index{devices@{devices}!data::load@{data::load}}
+\doxysubsubsection{\texorpdfstring{devices()}{devices()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} data\+::load\+::devices (\begin{DoxyParamCaption}\item[{const int}]{length,  }\item[{const int}]{num\+\_\+services = {\ttfamily 10} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Loads device data from disk (generating it if absent) into a vector of {\ttfamily \doxylink{structcore_1_1Device}{core\+::\+Device}} objects. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em length} & The total number of devices to load. \\
+\hline
+{\em num\+\_\+services} & The number of distinct services to generate if absent. Defaults to 10. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A 1-\/indexed {\ttfamily \doxylink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} vector containing the parsed device instances. 
+\end{DoxyReturn}
+\Hypertarget{namespacedata_1_1load_ac246a8e8d760e5209660fe9bdbce70ba}\label{namespacedata_1_1load_ac246a8e8d760e5209660fe9bdbce70ba} 
+\index{data::load@{data::load}!servers@{servers}}
+\index{servers@{servers}!data::load@{data::load}}
+\doxysubsubsection{\texorpdfstring{servers()}{servers()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} data\+::load\+::servers (\begin{DoxyParamCaption}\item[{const int}]{ec = {\ttfamily 99},  }\item[{const int}]{cc = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Loads Edge and Cloud server data from disk (generating it if absent). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ec} & The number of Edge Computing (EC) servers to load. \\
+\hline
+{\em cc} & The number of Cloud Computing (CC) servers to load. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A 1-\/indexed {\ttfamily \doxylink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} vector containing both EC and CC server instances. 
+\end{DoxyReturn}

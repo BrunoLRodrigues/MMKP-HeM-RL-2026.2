@@ -1,0 +1,5 @@
+<map id="metrics::MetaHeuristicMetrics" name="metrics::MetaHeuristicMetrics">
+<area shape="rect" id="Node000001" title="Extends Metrics to track Simulated Annealing hyperparameters and initial heuristic selection." alt="" coords="5,79,224,104"/>
+<area shape="rect" id="Node000002" href="$structmetrics_1_1Metrics.html" title="Polymorphic base structure for tracking, calculating, and saving simulation metrics." alt="" coords="51,5,178,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,44,117,79,112,79,112,44"/>
+</map>

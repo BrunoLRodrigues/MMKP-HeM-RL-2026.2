@@ -1,0 +1,125 @@
+\chapter{Alocação de Recursos MMKP em Redes Io\+T-\/\+EC-\/\+CC}
+\hypertarget{md_README_8pt-BR}{}\label{md_README_8pt-BR}\index{Alocação de Recursos MMKP em Redes IoT-\/EC-\/CC@{Alocação de Recursos MMKP em Redes IoT-\/EC-\/CC}}
+\label{md_README_8pt-BR_autotoc_md10}%
+\Hypertarget{md_README_8pt-BR_autotoc_md10}%
+ \href{https://brunolrodrigues.github.io/MMKP-HeM-RL-2026.2/}{\texttt{ }} \href{https://brunolrodrigues.github.io/MMKP-HeM-RL-2026.2/MMKP_Documentation.pdf}{\texttt{ }}
+
+🌐 {\bfseries{Idioma / Language\+:}} \doxylink{index_md_README}{English} \texorpdfstring{$\vert$}{|} {\bfseries{Português (Brasil)}}
+
+Simulador em C++17 para resolução do {\bfseries{Problema das Múltiplas Mochilas Multidimensionais (MMKP)}} aplicado à alocação de recursos em infraestruturas de {\bfseries{Internet das Coisas (IoT)}}, {\bfseries{Computação de Borda (EC)}} e {\bfseries{Computação em Nuvem (CC)}}. O simulador avalia métodos Exatos (ILP via IBM ILOG CPLEX), Heurísticas Construtivas e Meta-\/heurísticas ({\itshape Simulated Annealing}).
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_8pt-BR_autotoc_md12}{}\doxysection{\texorpdfstring{📁 Estrutura do Projeto}{📁 Estrutura do Projeto}}\label{md_README_8pt-BR_autotoc_md12}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{MMKP\_IoT\_EC\_CC/}
+\DoxyCodeLine{├──\ .github/workflows/}
+\DoxyCodeLine{│\ \ \ └──\ docs.yml\ \ \ \ \ \ \ \ \ \ \ \ \#\ Workflow\ do\ GitHub\ Actions\ para\ o\ Doxygen\ (HTML\ +\ PDF)}
+\DoxyCodeLine{├──\ data/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Conjuntos\ de\ dados\ de\ entrada\ (gerados\ automaticamente\ se\ ausentes)}
+\DoxyCodeLine{│\ \ \ ├──\ devices/\ \ \ \ \ \ \ \ \ \ \ \ \#\ Demandas\ de\ dispositivos\ IoT\ (Devices\_<N>.txt)}
+\DoxyCodeLine{│\ \ \ ├──\ servers/\ \ \ \ \ \ \ \ \ \ \ \ \#\ Capacidades\ dos\ servidores\ EC\ e\ CC\ (servers\_<EC>\_<CC>.txt)}
+\DoxyCodeLine{│\ \ \ └──\ Services.txt\ \ \ \ \ \ \ \ \#\ Perfis\ de\ serviços\ (COST,\ CPU,\ MEM,\ STO,\ TSK)}
+\DoxyCodeLine{├──\ docs/}
+\DoxyCodeLine{│\ \ \ ├──\ html/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Documentação\ HTML\ gerada\ pelo\ Doxygen\ (ignorada\ no\ Git)}
+\DoxyCodeLine{│\ \ \ ├──\ latex/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Documentação\ LaTeX/PDF\ gerada\ pelo\ Doxygen\ (ignorada\ no\ Git)}
+\DoxyCodeLine{│\ \ \ └──\ Doxyfile\ \ \ \ \ \ \ \ \ \ \ \ \#\ Configuração\ de\ documentação\ do\ Doxygen}
+\DoxyCodeLine{├──\ include/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Implementação\ C++17\ Header-\/Only}
+\DoxyCodeLine{│\ \ \ ├──\ exact.hpp\ \ \ \ \ \ \ \ \ \ \ \#\ Formulação\ matemática\ ILP\ no\ CPLEX}
+\DoxyCodeLine{│\ \ \ ├──\ heuristic.hpp\ \ \ \ \ \ \ \#\ Heurísticas\ construtivas\ (GR,\ GRF,\ GCB)}
+\DoxyCodeLine{│\ \ \ ├──\ metaheuristic.hpp\ \ \ \#\ Simulated\ Annealing\ e\ operadores\ de\ vizinhança}
+\DoxyCodeLine{│\ \ \ ├──\ mmkp.hpp\ \ \ \ \ \ \ \ \ \ \ \ \#\ Estruturas\ principais,\ leitura/escrita\ e\ métricas}
+\DoxyCodeLine{│\ \ \ └──\ tools.hpp\ \ \ \ \ \ \ \ \ \ \ \#\ Utilitários\ de\ CSV,\ números\ aleatórios,\ formatação\ e\ ordenação}
+\DoxyCodeLine{├──\ results/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Saídas\ das\ simulações\ (arquivos\ CSV\ e\ tabelas\ ASCII)}
+\DoxyCodeLine{│\ \ \ ├──\ EXACT/}
+\DoxyCodeLine{│\ \ \ ├──\ HEURISTIC/}
+\DoxyCodeLine{│\ \ \ └──\ METAHEURISTIC/}
+\DoxyCodeLine{├──\ src/}
+\DoxyCodeLine{│\ \ \ └──\ main.cpp\ \ \ \ \ \ \ \ \ \ \ \ \#\ Ponto\ de\ entrada\ e\ parâmetros\ dos\ experimentos}
+\DoxyCodeLine{├──\ build.sh\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Script\ automatizado\ de\ compilação\ e\ execução}
+\DoxyCodeLine{├──\ CMakeLists.txt\ \ \ \ \ \ \ \ \ \ \#\ Configuração\ de\ build\ via\ CMake}
+\DoxyCodeLine{├──\ README.md\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Documentação\ do\ projeto\ (Inglês)}
+\DoxyCodeLine{└──\ README.pt-\/BR.md\ \ \ \ \ \ \ \ \ \#\ Documentação\ do\ projeto\ (Português)}
+
+\end{DoxyCode}
+\hypertarget{md_README_8pt-BR_autotoc_md13}{}\doxysection{\texorpdfstring{⚙️ Pré-\/requisitos}{⚙️ Pré-requisitos}}\label{md_README_8pt-BR_autotoc_md13}
+
+\begin{DoxyItemize}
+\item {\bfseries{Sistema Operacional\+:}} Linux ou Windows Subsystem for Linux (WSL2 -\/ Ubuntu 24.\+04 recomendado)
+\item {\bfseries{Compilador\+:}} {\ttfamily g++} com suporte a C++17
+\item {\bfseries{Sistema de Build\+:}} Bash ({\ttfamily build.\+sh}) ou {\ttfamily CMake} (\texorpdfstring{$>$}{>}= 3.\+10)
+\item {\bfseries{Solver\+:}} IBM ILOG CPLEX Optimization Studio 22.\+2 instalado em\+: {\ttfamily /opt/ibm/\+ILOG/\+CPLEX\+\_\+\+Studio222}
+\end{DoxyItemize}
+
+\begin{quote}
+{\bfseries{Nota\+:}} Caso o seu CPLEX esteja instalado em outro diretório, atualize as variáveis {\ttfamily CPLEX\+\_\+\+INCLUDE}, {\ttfamily CONCERT\+\_\+\+INCLUDE}, {\ttfamily CPLEX\+\_\+\+LIB} e {\ttfamily CONCERT\+\_\+\+LIB} nos arquivos {\ttfamily build.\+sh} e {\ttfamily CMake\+Lists.\+txt}. \end{quote}
+\hypertarget{md_README_8pt-BR_autotoc_md14}{}\doxysection{\texorpdfstring{🚀 Como Compilar e Executar}{🚀 Como Compilar e Executar}}\label{md_README_8pt-BR_autotoc_md14}
+\hypertarget{md_README_8pt-BR_autotoc_md15}{}\doxysubsection{\texorpdfstring{Opção 1\+: Usando o script $<$tt$>$build.\+sh$<$/tt$>$ (\+Recomendado)}{Opção 1: Usando o script <tt>build.sh</tt> (Recomendado)}}\label{md_README_8pt-BR_autotoc_md15}
+Conceda permissão de execução e rode o script a partir da raiz do projeto\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{chmod\ +x\ build.sh}
+\DoxyCodeLine{./build.sh}
+
+\end{DoxyCode}
+
+
+O script aceita parâmetros opcionais antes de compilar e executar\+:
+\begin{DoxyItemize}
+\item {\ttfamily ./build.sh -\/b} ou {\ttfamily -\/-\/build}\+: Limpa os binários antigos da pasta {\ttfamily build/}.
+\item {\ttfamily ./build.sh -\/d} ou {\ttfamily -\/-\/data}\+: Apaga os arquivos da pasta {\ttfamily data/} (força a geração de novas instâncias).
+\item {\ttfamily ./build.sh -\/r} ou {\ttfamily -\/-\/results}\+: Limpa os resultados anteriores da pasta {\ttfamily results/}.
+\item {\ttfamily ./build.sh -\/a} ou {\ttfamily -\/-\/all}\+: Limpa {\ttfamily build/}, {\ttfamily data/} e {\ttfamily results/} simultaneamente.
+\item {\ttfamily ./build.sh -\/doc} ou {\ttfamily -\/-\/docs}\+: Regera a documentação HTML e PDF (La\+TeX) do Doxygen.
+\end{DoxyItemize}\hypertarget{md_README_8pt-BR_autotoc_md16}{}\doxysubsection{\texorpdfstring{Opção 2\+: Usando CMake}{Opção 2: Usando CMake}}\label{md_README_8pt-BR_autotoc_md16}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mkdir\ -\/p\ build\ \&\&\ cd\ build}
+\DoxyCodeLine{cmake\ ..}
+\DoxyCodeLine{make}
+\DoxyCodeLine{cd\ ..}
+\DoxyCodeLine{./build/MMKP\_IoT-\/EC-\/CC}
+
+\end{DoxyCode}
+ \texorpdfstring{$\ast$}{*}(Execute sempre o binário a partir da pasta raiz do projeto para que os caminhos relativos de {\ttfamily data/} e {\ttfamily results/} funcionem corretamente).\texorpdfstring{$\ast$}{*}\hypertarget{md_README_8pt-BR_autotoc_md17}{}\doxysection{\texorpdfstring{🧠 Algoritmos Implementados}{🧠 Algoritmos Implementados}}\label{md_README_8pt-BR_autotoc_md17}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Opção ({\ttfamily \doxylink{main_8cpp}{main.\+cpp}})   }&\cellcolor{\tableheadbgcolor}\textbf{ Paradigma   }&\cellcolor{\tableheadbgcolor}\textbf{ Algoritmo   }&\cellcolor{\tableheadbgcolor}\textbf{ Descrição    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Opção ({\ttfamily \doxylink{main_8cpp}{main.\+cpp}})   }&\cellcolor{\tableheadbgcolor}\textbf{ Paradigma   }&\cellcolor{\tableheadbgcolor}\textbf{ Algoritmo   }&\cellcolor{\tableheadbgcolor}\textbf{ Descrição    }\\\cline{1-4}
+\endhead
+\PBS\centering {\ttfamily 0}   &{\ttfamily EXACT}   &{\ttfamily SOLVER\+\_\+\+MAXIMUM\+\_\+\+COST}   &Modelo exato em ILP resolvido via CPLEX maximizando as penalidades evitadas.    \\\cline{1-4}
+\PBS\centering {\ttfamily -\/1}   &{\ttfamily HEURISTIC}   &{\ttfamily GREEDY\+\_\+\+CB}   &Alocação gulosa determinística ordenada pela razão custo-\/benefício multidimensional.    \\\cline{1-4}
+\PBS\centering {\ttfamily -\/2}   &{\ttfamily HEURISTIC}   &{\ttfamily GREEDY\+\_\+\+RANDOM}   &{\itshape Baseline} estocástica que tenta alocar cada dispositivo em um servidor sorteado.    \\\cline{1-4}
+\PBS\centering {\ttfamily -\/3}   &{\ttfamily HEURISTIC}   &{\ttfamily GREEDY\+\_\+\+RANDOM\+\_\+\+FALLBACK}   &Alocação estocástica em dois estágios priorizando a Borda (EC) com {\itshape fallback} para Nuvem (CC).    \\\cline{1-4}
+\PBS\centering {\ttfamily 1}   &{\ttfamily METAHEURISTIC}   &{\ttfamily SA} + {\ttfamily GREEDY\+\_\+\+CB}   &{\itshape Simulated Annealing} inicializado com a solução da {\ttfamily GREEDY\+\_\+\+CB}.    \\\cline{1-4}
+\PBS\centering {\ttfamily 2}   &{\ttfamily METAHEURISTIC}   &{\ttfamily SA} + {\ttfamily GREEDY\+\_\+\+RANDOM}   &{\itshape Simulated Annealing} inicializado com a solução da {\ttfamily GREEDY\+\_\+\+RANDOM}.    \\\cline{1-4}
+\PBS\centering {\ttfamily 3}   &{\ttfamily METAHEURISTIC}   &{\ttfamily SA} + {\ttfamily GREEDY\+\_\+\+RANDOM\+\_\+\+FALLBACK}   &{\itshape Simulated Annealing} inicializado com a solução da {\ttfamily GREEDY\+\_\+\+RANDOM\+\_\+\+FALLBACK}.   \\\cline{1-4}
+\end{longtabu}
+
+
+{\itshape Nota\+: Ao executar as opções {\ttfamily 1}, {\ttfamily 2} e {\ttfamily 3}, a solução inicial gerada pela heurística base já é automaticamente avaliada e salva em {\ttfamily results/\+HEURISTIC/} antes do início do Simulated Annealing.}\hypertarget{md_README_8pt-BR_autotoc_md18}{}\doxysection{\texorpdfstring{🔧 Parâmetros da Simulação}{🔧 Parâmetros da Simulação}}\label{md_README_8pt-BR_autotoc_md18}
+Os parâmetros do experimento podem ser ajustados diretamente em {\ttfamily \doxylink{main_8cpp}{src/main.\+cpp}}\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily SERVICES = 100}\+: Quantidade de perfis de serviços.
+\item {\ttfamily DEVICES\+\_\+\+START = 10000}, {\ttfamily DEVICES\+\_\+\+STEP = 1000}, {\ttfamily DEVICES\+\_\+\+END = 20000}\+: Escala de dispositivos IoT.
+\item {\ttfamily EC\+\_\+\+LENGTH = 499}, {\ttfamily CC\+\_\+\+LENGTH = 1}\+: Quantidade de servidores de Borda (EC) e Nuvem (CC).
+\item {\ttfamily MAX\+\_\+\+RUNS = 50}\+: Número de execuções independentes por instância.
+\item {\ttfamily CPLEX\+\_\+\+TIME\+\_\+\+LIMIT = 3600}\+: Tempo limite do CPLEX em segundos (1 hora).
+\item {\ttfamily TEMPERATURE = 50.\+0}, {\ttfamily ALPHA = 0.\+9999}\+: Parâmetros de resfriamento do {\itshape Simulated Annealing}.
+\end{DoxyItemize}\hypertarget{md_README_8pt-BR_autotoc_md19}{}\doxysection{\texorpdfstring{📚 Documentação (\+Doxygen)}{📚 Documentação (Doxygen)}}\label{md_README_8pt-BR_autotoc_md19}
+Para gerar ou atualizar localmente a documentação em HTML ({\ttfamily docs/html/index.\+html}) e em PDF ({\ttfamily docs/latex/refman.\+pdf}), execute na raiz do projeto\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{doxygen\ docs/Doxyfile}
+\DoxyCodeLine{make\ -\/C\ docs/latex}
+
+\end{DoxyCode}
+ 

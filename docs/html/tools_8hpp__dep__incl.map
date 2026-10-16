@@ -1,0 +1,18 @@
+<map id="include/tools.hpp" name="include/tools.hpp">
+<area shape="rect" id="Node000001" title="General&#45;purpose utilities for CSV I/O, string formatting, random number generation,..." alt="" coords="54,5,187,31"/>
+<area shape="rect" id="Node000002" href="$metaheuristic_8hpp.html" title="Meta&#45;heuristic optimization algorithms and neighborhood operators for MMKP." alt="" coords="5,225,196,251"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,45,102,152,102,177,103,225,98,225,97,177,97,152,113,44"/>
+<area shape="rect" id="Node000004" href="$mmkp_8hpp.html" title="Core data structures, synthetic dataset generators, metric trackers, and console/file display routine..." alt="" coords="133,79,276,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="146,38,193,76,189,80,143,42"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html" title="Entry point and benchmark runner for the MMKP IoT&#45;EC&#45;CC resource allocation simulator." alt="" coords="231,299,336,324"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="144,253,254,296,252,301,142,258"/>
+<area shape="poly" id="edge9_Node000004_Node000002" title=" " alt="" coords="165,112,138,130,116,153,108,171,104,191,102,225,97,225,98,190,103,170,112,151,135,126,162,108"/>
+<area shape="poly" id="edge10_Node000004_Node000003" title=" " alt="" coords="250,108,277,126,298,151,306,170,310,191,308,234,300,272,291,299,286,298,295,270,303,233,304,192,300,172,293,153,273,130,247,112"/>
+<area shape="rect" id="Node000005" href="$exact_8hpp.html" title="Exact Integer Linear Programming (ILP) formulations using IBM ILOG CPLEX." alt="" coords="359,225,496,251"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="253,106,297,125,341,150,387,188,420,223,416,227,383,192,338,154,294,130,251,111"/>
+<area shape="rect" id="Node000006" href="$heuristic_8hpp.html" title="Constructive heuristic algorithms for fast MMKP resource allocation." alt="" coords="126,152,283,177"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="207,118,207,152,202,152,202,118"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="393,259,308,301,306,296,391,254"/>
+<area shape="poly" id="edge7_Node000006_Node000002" title=" " alt="" coords="178,187,119,227,116,223,175,183"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="220,188,279,297,275,300,215,191"/>
+</map>

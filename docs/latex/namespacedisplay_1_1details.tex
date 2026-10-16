@@ -1,0 +1,120 @@
+\doxysection{display\+::details Namespace Reference}
+\hypertarget{namespacedisplay_1_1details}{}\label{namespacedisplay_1_1details}\index{display::details@{display::details}}
+
+
+Internal helper routines for rendering ASCII box-\/drawing tables.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacedisplay_1_1details_a0bcffd5e9eca0e969003c388b5aa4456}{print\+\_\+row}} (std\+::ostream \&out, const std\+::string \&label, const std\+::string \&value)
+\begin{DoxyCompactList}\small\item\em Prints a formatted key-\/value row within the ASCII table. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedisplay_1_1details_aba0986edbc7c6c7a57bee3ea44a80c97}{print\+\_\+header}} (std\+::ostream \&out)
+\begin{DoxyCompactList}\small\item\em Prints the top or bottom border of the ASCII table. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedisplay_1_1details_aec3d7d493a51302454a4633f5271747b}{print\+\_\+middle}} (std\+::ostream \&out)
+\begin{DoxyCompactList}\small\item\em Prints a section separator line within the ASCII table. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedisplay_1_1details_a82c76ec947e3458cbde5ef6c1b4fd1e5}{print\+\_\+title}} (std\+::ostream \&out, const std\+::string \&title)
+\begin{DoxyCompactList}\small\item\em Prints a centered title row within the ASCII table. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int \mbox{\hyperlink{namespacedisplay_1_1details_a06fe5a2ba83e133d60ff8fb9412247ae}{total\+\_\+width}} = 72
+\begin{DoxyCompactList}\small\item\em Total character width of the formatted ASCII table. \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{namespacedisplay_1_1details_a4f6c7b2d8be72025dc62f949bd69aaf4}{label\+\_\+width}} = 26
+\begin{DoxyCompactList}\small\item\em Character width allocated to the left-\/hand label column. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Internal helper routines for rendering ASCII box-\/drawing tables. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacedisplay_1_1details_aba0986edbc7c6c7a57bee3ea44a80c97}\label{namespacedisplay_1_1details_aba0986edbc7c6c7a57bee3ea44a80c97} 
+\index{display::details@{display::details}!print\_header@{print\_header}}
+\index{print\_header@{print\_header}!display::details@{display::details}}
+\doxysubsubsection{\texorpdfstring{print\_header()}{print\_header()}}
+{\footnotesize\ttfamily void display\+::details\+::print\+\_\+header (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Prints the top or bottom border of the ASCII table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & The target output stream. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{namespacedisplay_1_1details_aec3d7d493a51302454a4633f5271747b}\label{namespacedisplay_1_1details_aec3d7d493a51302454a4633f5271747b} 
+\index{display::details@{display::details}!print\_middle@{print\_middle}}
+\index{print\_middle@{print\_middle}!display::details@{display::details}}
+\doxysubsubsection{\texorpdfstring{print\_middle()}{print\_middle()}}
+{\footnotesize\ttfamily void display\+::details\+::print\+\_\+middle (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Prints a section separator line within the ASCII table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & The target output stream. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{namespacedisplay_1_1details_a0bcffd5e9eca0e969003c388b5aa4456}\label{namespacedisplay_1_1details_a0bcffd5e9eca0e969003c388b5aa4456} 
+\index{display::details@{display::details}!print\_row@{print\_row}}
+\index{print\_row@{print\_row}!display::details@{display::details}}
+\doxysubsubsection{\texorpdfstring{print\_row()}{print\_row()}}
+{\footnotesize\ttfamily void display\+::details\+::print\+\_\+row (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out,  }\item[{const std\+::string \&}]{label,  }\item[{const std\+::string \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Prints a formatted key-\/value row within the ASCII table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & The target output stream. \\
+\hline
+{\em label} & The row label string. \\
+\hline
+{\em value} & The row value string. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{namespacedisplay_1_1details_a82c76ec947e3458cbde5ef6c1b4fd1e5}\label{namespacedisplay_1_1details_a82c76ec947e3458cbde5ef6c1b4fd1e5} 
+\index{display::details@{display::details}!print\_title@{print\_title}}
+\index{print\_title@{print\_title}!display::details@{display::details}}
+\doxysubsubsection{\texorpdfstring{print\_title()}{print\_title()}}
+{\footnotesize\ttfamily void display\+::details\+::print\+\_\+title (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out,  }\item[{const std\+::string \&}]{title }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Prints a centered title row within the ASCII table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & The target output stream. \\
+\hline
+{\em title} & The title text to center. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacedisplay_1_1details_a4f6c7b2d8be72025dc62f949bd69aaf4}\label{namespacedisplay_1_1details_a4f6c7b2d8be72025dc62f949bd69aaf4} 
+\index{display::details@{display::details}!label\_width@{label\_width}}
+\index{label\_width@{label\_width}!display::details@{display::details}}
+\doxysubsubsection{\texorpdfstring{label\_width}{label\_width}}
+{\footnotesize\ttfamily const int display\+::details\+::label\+\_\+width = 26}
+
+
+
+Character width allocated to the left-\/hand label column. 
+
+\Hypertarget{namespacedisplay_1_1details_a06fe5a2ba83e133d60ff8fb9412247ae}\label{namespacedisplay_1_1details_a06fe5a2ba83e133d60ff8fb9412247ae} 
+\index{display::details@{display::details}!total\_width@{total\_width}}
+\index{total\_width@{total\_width}!display::details@{display::details}}
+\doxysubsubsection{\texorpdfstring{total\_width}{total\_width}}
+{\footnotesize\ttfamily const int display\+::details\+::total\+\_\+width = 72}
+
+
+
+Total character width of the formatted ASCII table. 
+

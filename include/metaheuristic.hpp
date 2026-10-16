@@ -112,7 +112,7 @@ namespace metaheuristic {
         }
     
         /**
-         * @brief Reverts a previously applied neighborhood move in $O(\log N)$ time.
+         * @brief Reverts a previously applied neighborhood move in $O(\f$\log\f$ N)$ time.
          * @details Restores the exact server allocations and resource supplies prior to `apply_neighbor`.
          * 
          * @param devices The global state vector of devices.
@@ -136,8 +136,8 @@ namespace metaheuristic {
         /**
          * @brief Executes the Simulated Annealing (SA) optimization algorithm.
          * @details Iteratively explores the solution space by applying random neighborhood moves. 
-         * Accepts worsening moves according to the Metropolis criterion $\exp(-\Delta / T)$ 
-         * to escape local optima, cooling down geometrically via factor $\alpha$ until $T \le 10^{-3}$.
+         * Accepts worsening moves according to the Metropolis criterion $\f$\exp\f$(-\f$\Delta\f$ / T)$ 
+         * to escape local optima, cooling down geometrically via factor $\f$\alpha\f$$ until $T \f$\le\f$ 10^{-3}$.
          * Uses lazy synchronization for tracking the best-found state.
          * 
          * @param state The unified simulation state containing devices, servers, and metrics.

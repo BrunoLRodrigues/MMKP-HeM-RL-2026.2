@@ -1,0 +1,142 @@
+\doxysection{display Namespace Reference}
+\hypertarget{namespacedisplay}{}\label{namespacedisplay}\index{display@{display}}
+
+
+Utility namespace for formatting and printing entities and ASCII metric tables to console or files.  
+
+
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacedisplay_1_1details}{details}}
+\begin{DoxyCompactList}\small\item\em Internal helper routines for rendering ASCII box-\/drawing tables. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacedisplay_a48688ce51b12e703f0eba7b25b2b15de}{show\+\_\+device}} (const \mbox{\hyperlink{structcore_1_1Device}{core\+::\+Device}} \&device)
+\begin{DoxyCompactList}\small\item\em Displays detailed information of a single device to standard output. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedisplay_ae8cf71158bd852e9ec3ecf62e3775753}{show\+\_\+devices}} (const \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} \&devices)
+\begin{DoxyCompactList}\small\item\em Displays detailed information for all devices in the vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedisplay_ad1ad930094e2b754d6f2df967dad099e}{show\+\_\+server}} (const \mbox{\hyperlink{structcore_1_1Server}{core\+::\+Server}} \&server)
+\begin{DoxyCompactList}\small\item\em Displays capacity and current demand of a single server. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedisplay_a337aacbd09f97bc5f8a0a381fe2743fb}{show\+\_\+servers}} (const \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} \&servers)
+\begin{DoxyCompactList}\small\item\em Displays capacity and demand information for all servers. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedisplay_a62e56a84fce178ee2f40199f196a7ce9}{show\+\_\+metrics\+\_\+console\+\_\+or\+\_\+file}} (const \mbox{\hyperlink{structmetrics_1_1Metrics}{metrics\+::\+Metrics}} \&metrics, std\+::ostream \&out)
+\begin{DoxyCompactList}\small\item\em Formats and writes the complete simulation metrics table to an output stream. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedisplay_afca8be8f3244589f3f4078a9e4306b20}{show\+\_\+metrics}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structmetrics_1_1Metrics}{metrics\+::\+Metrics}} $>$ \&ptr)
+\begin{DoxyCompactList}\small\item\em Displays the metrics table on the console and appends it to a drawing file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedisplay_a5a95b172c89cdb8957c4ce2fbe61ae15}{show\+\_\+servers\+\_\+usage}} (const \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} \&servers)
+\begin{DoxyCompactList}\small\item\em Prints a summary table of server resource utilization percentages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Utility namespace for formatting and printing entities and ASCII metric tables to console or files. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacedisplay_a48688ce51b12e703f0eba7b25b2b15de}\label{namespacedisplay_a48688ce51b12e703f0eba7b25b2b15de} 
+\index{display@{display}!show\_device@{show\_device}}
+\index{show\_device@{show\_device}!display@{display}}
+\doxysubsubsection{\texorpdfstring{show\_device()}{show\_device()}}
+{\footnotesize\ttfamily void display\+::show\+\_\+device (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcore_1_1Device}{core\+::\+Device}} \&}]{device }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Displays detailed information of a single device to standard output. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em device} & The device instance to display. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{namespacedisplay_ae8cf71158bd852e9ec3ecf62e3775753}\label{namespacedisplay_ae8cf71158bd852e9ec3ecf62e3775753} 
+\index{display@{display}!show\_devices@{show\_devices}}
+\index{show\_devices@{show\_devices}!display@{display}}
+\doxysubsubsection{\texorpdfstring{show\_devices()}{show\_devices()}}
+{\footnotesize\ttfamily void display\+::show\+\_\+devices (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} \&}]{devices }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Displays detailed information for all devices in the vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em devices} & The vector of devices to display. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{namespacedisplay_afca8be8f3244589f3f4078a9e4306b20}\label{namespacedisplay_afca8be8f3244589f3f4078a9e4306b20} 
+\index{display@{display}!show\_metrics@{show\_metrics}}
+\index{show\_metrics@{show\_metrics}!display@{display}}
+\doxysubsubsection{\texorpdfstring{show\_metrics()}{show\_metrics()}}
+{\footnotesize\ttfamily void display\+::show\+\_\+metrics (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structmetrics_1_1Metrics}{metrics\+::\+Metrics}} $>$ \&}]{ptr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Displays the metrics table on the console and appends it to a drawing file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ptr} & Shared pointer to the simulation metrics instance. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{namespacedisplay_a62e56a84fce178ee2f40199f196a7ce9}\label{namespacedisplay_a62e56a84fce178ee2f40199f196a7ce9} 
+\index{display@{display}!show\_metrics\_console\_or\_file@{show\_metrics\_console\_or\_file}}
+\index{show\_metrics\_console\_or\_file@{show\_metrics\_console\_or\_file}!display@{display}}
+\doxysubsubsection{\texorpdfstring{show\_metrics\_console\_or\_file()}{show\_metrics\_console\_or\_file()}}
+{\footnotesize\ttfamily void display\+::show\+\_\+metrics\+\_\+console\+\_\+or\+\_\+file (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structmetrics_1_1Metrics}{metrics\+::\+Metrics}} \&}]{metrics,  }\item[{std\+::ostream \&}]{out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Formats and writes the complete simulation metrics table to an output stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em metrics} & The metrics instance to format. \\
+\hline
+{\em out} & The target output stream. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{namespacedisplay_ad1ad930094e2b754d6f2df967dad099e}\label{namespacedisplay_ad1ad930094e2b754d6f2df967dad099e} 
+\index{display@{display}!show\_server@{show\_server}}
+\index{show\_server@{show\_server}!display@{display}}
+\doxysubsubsection{\texorpdfstring{show\_server()}{show\_server()}}
+{\footnotesize\ttfamily void display\+::show\+\_\+server (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcore_1_1Server}{core\+::\+Server}} \&}]{server }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Displays capacity and current demand of a single server. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em server} & The server instance to display. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{namespacedisplay_a337aacbd09f97bc5f8a0a381fe2743fb}\label{namespacedisplay_a337aacbd09f97bc5f8a0a381fe2743fb} 
+\index{display@{display}!show\_servers@{show\_servers}}
+\index{show\_servers@{show\_servers}!display@{display}}
+\doxysubsubsection{\texorpdfstring{show\_servers()}{show\_servers()}}
+{\footnotesize\ttfamily void display\+::show\+\_\+servers (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} \&}]{servers }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Displays capacity and demand information for all servers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em servers} & The vector of servers to display. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{namespacedisplay_a5a95b172c89cdb8957c4ce2fbe61ae15}\label{namespacedisplay_a5a95b172c89cdb8957c4ce2fbe61ae15} 
+\index{display@{display}!show\_servers\_usage@{show\_servers\_usage}}
+\index{show\_servers\_usage@{show\_servers\_usage}!display@{display}}
+\doxysubsubsection{\texorpdfstring{show\_servers\_usage()}{show\_servers\_usage()}}
+{\footnotesize\ttfamily void display\+::show\+\_\+servers\+\_\+usage (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} \&}]{servers }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Prints a summary table of server resource utilization percentages. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em servers} & The vector of servers to summarize. \\
+\hline
+\end{DoxyParams}

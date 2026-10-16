@@ -1,0 +1,212 @@
+\doxysection{core\+::Server Struct Reference}
+\hypertarget{structcore_1_1Server}{}\label{structcore_1_1Server}\index{core::Server@{core::Server}}
+
+
+Represents an Edge Computing (EC) or Cloud Computing (CC) server node.  
+
+
+
+
+{\ttfamily \#include $<$mmkp.\+hpp$>$}
+
+
+
+Collaboration diagram for core\+::Server\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{structcore_1_1Server__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structcore_1_1Server_a24891c28e8cfad802737d177259f0599}{Server}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor initializing an empty/placeholder server. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structcore_1_1Server_a0820e531fd1a95de62dff7eab0958d53}{Server}} (int id\+\_\+, char type\+\_\+, double cpu\+\_\+, double mem\+\_\+, double sto\+\_\+)
+\begin{DoxyCompactList}\small\item\em Parameterized constructor initializing a server with given capacities. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structcore_1_1Server_aee0071cd3e71c36a8861fbd98fad8a16}{can\+\_\+serve}} (const \mbox{\hyperlink{structcore_1_1Device}{Device}} \&device) const
+\begin{DoxyCompactList}\small\item\em Checks if the server has enough residual capacity to serve a given device. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structcore_1_1Server_a537a5e6b913db9ff0e0b1de584067990}{add\+\_\+service}} (\mbox{\hyperlink{structcore_1_1Device}{Device}} \&device)
+\begin{DoxyCompactList}\small\item\em Allocates a device to this server and updates consumed resources. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structcore_1_1Server_ad13b43798af6d07b70393d3b7239d780}{rmv\+\_\+service}} (\mbox{\hyperlink{structcore_1_1Device}{Device}} \&device)
+\begin{DoxyCompactList}\small\item\em Removes a device from this server and releases its consumed resources. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{structcore_1_1Server_a0c946ea419d875d81dc5e66ca27c3d6f}{id}}
+\begin{DoxyCompactList}\small\item\em Unique 1-\/based identifier of the server. \end{DoxyCompactList}\item 
+char \mbox{\hyperlink{structcore_1_1Server_a4309664304c6f6df68e8f1841d2649e3}{type}}
+\begin{DoxyCompactList}\small\item\em \doxylink{structcore_1_1Server}{Server} tier type (`\textquotesingle{}E'{\ttfamily for Edge,}\textquotesingle{}C\textquotesingle{}\`{} for Cloud). \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{structcore_1_1Server_aeec37b8c331e9a588304329940ce2bba}{cpu}}
+\begin{DoxyCompactList}\small\item\em Maximum total CPU capacity of the server. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{structcore_1_1Server_ae5e9db950a7b35a9c1045cd6096051b2}{mem}}
+\begin{DoxyCompactList}\small\item\em Maximum total memory capacity of the server. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{structcore_1_1Server_a4e5ec779ca60973f6fa974a9ca3917ee}{sto}}
+\begin{DoxyCompactList}\small\item\em Maximum total storage capacity of the server. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structcore_1_1Supply}{Supply}} \mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}
+\begin{DoxyCompactList}\small\item\em Current resource utilization and set of allocated devices. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents an Edge Computing (EC) or Cloud Computing (CC) server node. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structcore_1_1Server_a24891c28e8cfad802737d177259f0599}\label{structcore_1_1Server_a24891c28e8cfad802737d177259f0599} 
+\index{core::Server@{core::Server}!Server@{Server}}
+\index{Server@{Server}!core::Server@{core::Server}}
+\doxysubsubsection{\texorpdfstring{Server()}{Server()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily core\+::\+Server\+::\+Server (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor initializing an empty/placeholder server. 
+
+\Hypertarget{structcore_1_1Server_a0820e531fd1a95de62dff7eab0958d53}\label{structcore_1_1Server_a0820e531fd1a95de62dff7eab0958d53} 
+\index{core::Server@{core::Server}!Server@{Server}}
+\index{Server@{Server}!core::Server@{core::Server}}
+\doxysubsubsection{\texorpdfstring{Server()}{Server()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily core\+::\+Server\+::\+Server (\begin{DoxyParamCaption}\item[{int}]{id\+\_\+,  }\item[{char}]{type\+\_\+,  }\item[{double}]{cpu\+\_\+,  }\item[{double}]{mem\+\_\+,  }\item[{double}]{sto\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Parameterized constructor initializing a server with given capacities. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id\+\_\+} & Unique 1-\/based server ID. \\
+\hline
+{\em type\+\_\+} & \doxylink{structcore_1_1Server}{Server} tier character (`\textquotesingle{}E'{\ttfamily or}\textquotesingle{}C\textquotesingle{}\`{}). \\
+\hline
+{\em cpu\+\_\+} & Total CPU capacity. \\
+\hline
+{\em mem\+\_\+} & Total memory capacity. \\
+\hline
+{\em sto\+\_\+} & Total storage capacity. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structcore_1_1Server_a537a5e6b913db9ff0e0b1de584067990}\label{structcore_1_1Server_a537a5e6b913db9ff0e0b1de584067990} 
+\index{core::Server@{core::Server}!add\_service@{add\_service}}
+\index{add\_service@{add\_service}!core::Server@{core::Server}}
+\doxysubsubsection{\texorpdfstring{add\_service()}{add\_service()}}
+{\footnotesize\ttfamily bool core\+::\+Server\+::add\+\_\+service (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structcore_1_1Device}{Device}} \&}]{device }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Allocates a device to this server and updates consumed resources. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em device} & The device to allocate (modified in-\/place to mark {\ttfamily served = true} and {\ttfamily server\+\_\+id}). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the device was successfully added; {\ttfamily false} if it was already present. 
+\end{DoxyReturn}
+\Hypertarget{structcore_1_1Server_aee0071cd3e71c36a8861fbd98fad8a16}\label{structcore_1_1Server_aee0071cd3e71c36a8861fbd98fad8a16} 
+\index{core::Server@{core::Server}!can\_serve@{can\_serve}}
+\index{can\_serve@{can\_serve}!core::Server@{core::Server}}
+\doxysubsubsection{\texorpdfstring{can\_serve()}{can\_serve()}}
+{\footnotesize\ttfamily bool core\+::\+Server\+::can\+\_\+serve (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcore_1_1Device}{Device}} \&}]{device }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if the server has enough residual capacity to serve a given device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em device} & The candidate device to be checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if residual CPU, MEM, and STO capacities are sufficient; {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+\Hypertarget{structcore_1_1Server_ad13b43798af6d07b70393d3b7239d780}\label{structcore_1_1Server_ad13b43798af6d07b70393d3b7239d780} 
+\index{core::Server@{core::Server}!rmv\_service@{rmv\_service}}
+\index{rmv\_service@{rmv\_service}!core::Server@{core::Server}}
+\doxysubsubsection{\texorpdfstring{rmv\_service()}{rmv\_service()}}
+{\footnotesize\ttfamily bool core\+::\+Server\+::rmv\+\_\+service (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structcore_1_1Device}{Device}} \&}]{device }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Removes a device from this server and releases its consumed resources. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em device} & The device to remove (modified in-\/place to reset {\ttfamily served = false} and {\ttfamily server\+\_\+id = -\/1}). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the device was successfully removed; {\ttfamily false} if it was not allocated to this server. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structcore_1_1Server_aeec37b8c331e9a588304329940ce2bba}\label{structcore_1_1Server_aeec37b8c331e9a588304329940ce2bba} 
+\index{core::Server@{core::Server}!cpu@{cpu}}
+\index{cpu@{cpu}!core::Server@{core::Server}}
+\doxysubsubsection{\texorpdfstring{cpu}{cpu}}
+{\footnotesize\ttfamily double core\+::\+Server\+::cpu}
+
+
+
+Maximum total CPU capacity of the server. 
+
+\Hypertarget{structcore_1_1Server_a0c946ea419d875d81dc5e66ca27c3d6f}\label{structcore_1_1Server_a0c946ea419d875d81dc5e66ca27c3d6f} 
+\index{core::Server@{core::Server}!id@{id}}
+\index{id@{id}!core::Server@{core::Server}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily int core\+::\+Server\+::id}
+
+
+
+Unique 1-\/based identifier of the server. 
+
+\Hypertarget{structcore_1_1Server_ae5e9db950a7b35a9c1045cd6096051b2}\label{structcore_1_1Server_ae5e9db950a7b35a9c1045cd6096051b2} 
+\index{core::Server@{core::Server}!mem@{mem}}
+\index{mem@{mem}!core::Server@{core::Server}}
+\doxysubsubsection{\texorpdfstring{mem}{mem}}
+{\footnotesize\ttfamily double core\+::\+Server\+::mem}
+
+
+
+Maximum total memory capacity of the server. 
+
+\Hypertarget{structcore_1_1Server_a4e5ec779ca60973f6fa974a9ca3917ee}\label{structcore_1_1Server_a4e5ec779ca60973f6fa974a9ca3917ee} 
+\index{core::Server@{core::Server}!sto@{sto}}
+\index{sto@{sto}!core::Server@{core::Server}}
+\doxysubsubsection{\texorpdfstring{sto}{sto}}
+{\footnotesize\ttfamily double core\+::\+Server\+::sto}
+
+
+
+Maximum total storage capacity of the server. 
+
+\Hypertarget{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}\label{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6} 
+\index{core::Server@{core::Server}!supply@{supply}}
+\index{supply@{supply}!core::Server@{core::Server}}
+\doxysubsubsection{\texorpdfstring{supply}{supply}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structcore_1_1Supply}{Supply}} core\+::\+Server\+::supply}
+
+
+
+Current resource utilization and set of allocated devices. 
+
+\Hypertarget{structcore_1_1Server_a4309664304c6f6df68e8f1841d2649e3}\label{structcore_1_1Server_a4309664304c6f6df68e8f1841d2649e3} 
+\index{core::Server@{core::Server}!type@{type}}
+\index{type@{type}!core::Server@{core::Server}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily char core\+::\+Server\+::type}
+
+
+
+\doxylink{structcore_1_1Server}{Server} tier type (`\textquotesingle{}E'{\ttfamily for Edge,}\textquotesingle{}C\textquotesingle{}\`{} for Cloud). 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{mmkp_8hpp}{mmkp.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,271 @@
+\doxysection{metrics\+::Meta\+Heuristic\+Metrics Struct Reference}
+\hypertarget{structmetrics_1_1MetaHeuristicMetrics}{}\label{structmetrics_1_1MetaHeuristicMetrics}\index{metrics::MetaHeuristicMetrics@{metrics::MetaHeuristicMetrics}}
+
+
+Extends {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} to track Simulated Annealing hyperparameters and initial heuristic selection.  
+
+
+
+
+{\ttfamily \#include $<$mmkp.\+hpp$>$}
+
+
+
+Inheritance diagram for metrics\+::Meta\+Heuristic\+Metrics\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{structmetrics_1_1MetaHeuristicMetrics__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for metrics\+::Meta\+Heuristic\+Metrics\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structmetrics_1_1MetaHeuristicMetrics__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a4577f7b12ce9db4502f95226e13188aa}{Meta\+Heuristic\+Metrics}} (\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}} algorithm\+\_\+name\+\_\+, int run\+\_\+id\+\_\+, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}} $>$ \&base, double temperature\+\_\+, double alpha\+\_\+, \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}} heuristic\+\_\+)
+\begin{DoxyCompactList}\small\item\em Constructs a {\ttfamily \doxylink{structmetrics_1_1MetaHeuristicMetrics}{Meta\+Heuristic\+Metrics}} object copying inputs from a base instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_ada3d29622ef4e8b00ddace1602bc4c35}{Meta\+Heuristic\+Metrics}} (\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}} algorithm\+\_\+name\+\_\+, int \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\+\_\+id}}, int d, int s\+\_\+ec, int s\+\_\+cc, double temperature\+\_\+, double alpha\+\_\+, \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}} heuristic\+\_\+)
+\begin{DoxyCompactList}\small\item\em Constructs a {\ttfamily \doxylink{structmetrics_1_1MetaHeuristicMetrics}{Meta\+Heuristic\+Metrics}} object with explicit instance dimensions and hyperparameters. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a41e6a6d331e0c29311079533ee63e5d5}{Meta\+Heuristic\+Metrics}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}} $>$ \&base, int \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\+\_\+id}})
+\begin{DoxyCompactList}\small\item\em Constructs a {\ttfamily \doxylink{structmetrics_1_1MetaHeuristicMetrics}{Meta\+Heuristic\+Metrics}} object from a base pointer and run ID. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}} $>$ \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a50a49fe0d7c98ab584ba79af50280a37}{clone}} () const override
+\begin{DoxyCompactList}\small\item\em Clones this {\ttfamily \doxylink{structmetrics_1_1MetaHeuristicMetrics}{Meta\+Heuristic\+Metrics}} instance polymorphically. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{structmetrics_1_1MetricEntry}{Metric\+Entry}} $>$ \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a2e6d0537cc0ba4d062bc79ca93591a17}{build\+\_\+metrics}} () const override
+\begin{DoxyCompactList}\small\item\em Appends meta-\/heuristic parameters ({\ttfamily Heuristic}, {\ttfamily Temperature}, {\ttfamily Alpha}) to the metric entries. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a47ddf6e4dab1f6f0705b86f1baf83128}{get\+\_\+header}} () const override
+\begin{DoxyCompactList}\small\item\em Appends meta-\/heuristic column headers ({\ttfamily Initial\+\_\+\+Heuristic}, {\ttfamily Temperature}, {\ttfamily Alpha}) to the CSV header. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_aaa64c8b3dc34768bc87c86fd24aa3a25}{data}} () const override
+\begin{DoxyCompactList}\small\item\em Appends meta-\/heuristic hyperparameter values to the CSV row data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{structmetrics_1_1Metrics}{metrics\+::\+Metrics}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structmetrics_1_1Metrics_a9217a58687ba34ac1761400e68e740f4}{Metrics}} (\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}} paradigm\+\_\+, \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}} algorithm\+\_\+name\+\_\+, int \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\+\_\+id}})
+\begin{DoxyCompactList}\small\item\em Constructs a {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} object with paradigm, algorithm, and run ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmetrics_1_1Metrics_a834a73372dabe9703229d24b046a2887}{Metrics}} (\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}} paradigm\+\_\+, \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}} algorithm\+\_\+name\+\_\+, int \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\+\_\+id}}, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}} $>$ \&base)
+\begin{DoxyCompactList}\small\item\em Constructs a {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} object copying input dimensions from a base instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmetrics_1_1Metrics_a0240efd0553a3ae4803fbd8e281dae90}{Metrics}} (\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}} paradigm\+\_\+, \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}} algorithm\+\_\+name\+\_\+, int \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\+\_\+id}}, int d, int s\+\_\+ec, int s\+\_\+cc)
+\begin{DoxyCompactList}\small\item\em Constructs a {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} object with explicit instance counts. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmetrics_1_1Metrics_aea7719ee4b9b57770c7180a32673b732}{Metrics}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}} $>$ \&base, int \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\+\_\+id}})
+\begin{DoxyCompactList}\small\item\em Copy-\/like constructor initializing from an existing {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} pointer and updating {\ttfamily run\+\_\+id}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{structmetrics_1_1Metrics_aea82b1fb1a350ce2ea39b8d0c504e124}{\texorpdfstring{$\sim$}{\string~}\+Metrics}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for safe polymorphic cleanup. \end{DoxyCompactList}\item 
+virtual std\+::filesystem\+::path \mbox{\hyperlink{structmetrics_1_1Metrics_a3d3c87cc48e752bab4238d3686fcf8f8}{get\+\_\+base\+\_\+directory\+\_\+path}} () const
+\begin{DoxyCompactList}\small\item\em Returns the output directory path corresponding to the current paradigm. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmetrics_1_1Metrics_a282b4959f016cb954aeea5a71c829032}{save\+\_\+to\+\_\+file}} () const
+\begin{DoxyCompactList}\small\item\em Appends the current simulation metrics row to the corresponding algorithm CSV file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}} \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_ab34b83b3649561bde7b7b2e111c83756}{heuristic}} = \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11ab50339a10e1de285ac99d4c3990b8693}{Algorithm\+::\+NONE}}
+\begin{DoxyCompactList}\small\item\em Constructive heuristic used to generate the initial solution. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a0426dc944bcbb90ee1b6fe2743fc2fa5}{temperature}} = 0.\+0
+\begin{DoxyCompactList}\small\item\em Initial temperature \$\+T\+\_\+0\$ for Simulated Annealing. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics_a4f77808e3eb6613175c15e1413c8fb25}{alpha}} = 0.\+0
+\begin{DoxyCompactList}\small\item\em Cooling rate factor \$ $\alpha$\$ for Simulated Annealing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{structmetrics_1_1Metrics}{metrics\+::\+Metrics}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}} \mbox{\hyperlink{structmetrics_1_1Metrics_a3826511b1490b1dc00db005abde1ec40}{paradigm}} = \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aab50339a10e1de285ac99d4c3990b8693}{Paradigm\+::\+NONE}}
+\begin{DoxyCompactList}\small\item\em Optimization paradigm of the current run. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}} \mbox{\hyperlink{structmetrics_1_1Metrics_a833606cb55a8544ef0154c0c7fa0e44f}{algorithm}} = \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11ab50339a10e1de285ac99d4c3990b8693}{Algorithm\+::\+NONE}}
+\begin{DoxyCompactList}\small\item\em Algorithm executed in the current run. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\+\_\+id}} = 0
+\begin{DoxyCompactList}\small\item\em Execution run identifier (1-\/indexed). \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs}{metrics\+::\+Metrics\+::\+Inputs}} \mbox{\hyperlink{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}{inputs}}
+\begin{DoxyCompactList}\small\item\em Instance input parameters. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs}{metrics\+::\+Metrics\+::\+Outputs}} \mbox{\hyperlink{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}{outputs}}
+\begin{DoxyCompactList}\small\item\em Simulation output metrics. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Extends {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} to track Simulated Annealing hyperparameters and initial heuristic selection. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structmetrics_1_1MetaHeuristicMetrics_a4577f7b12ce9db4502f95226e13188aa}\label{structmetrics_1_1MetaHeuristicMetrics_a4577f7b12ce9db4502f95226e13188aa} 
+\index{metrics::MetaHeuristicMetrics@{metrics::MetaHeuristicMetrics}!MetaHeuristicMetrics@{MetaHeuristicMetrics}}
+\index{MetaHeuristicMetrics@{MetaHeuristicMetrics}!metrics::MetaHeuristicMetrics@{metrics::MetaHeuristicMetrics}}
+\doxysubsubsection{\texorpdfstring{MetaHeuristicMetrics()}{MetaHeuristicMetrics()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily metrics\+::\+Meta\+Heuristic\+Metrics\+::\+Meta\+Heuristic\+Metrics (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}}}]{algorithm\+\_\+name\+\_\+,  }\item[{int}]{run\+\_\+id\+\_\+,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}} $>$ \&}]{base,  }\item[{double}]{temperature\+\_\+,  }\item[{double}]{alpha\+\_\+,  }\item[{\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}}}]{heuristic\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a {\ttfamily \doxylink{structmetrics_1_1MetaHeuristicMetrics}{Meta\+Heuristic\+Metrics}} object copying inputs from a base instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em algorithm\+\_\+name\+\_\+} & Meta-\/heuristic algorithm identifier. \\
+\hline
+{\em run\+\_\+id\+\_\+} & Execution run number. \\
+\hline
+{\em base} & Base metrics pointer containing input parameters. \\
+\hline
+{\em temperature\+\_\+} & Initial temperature \$\+T\+\_\+0\$. \\
+\hline
+{\em alpha\+\_\+} & Geometric cooling factor \$ $\alpha$\$. \\
+\hline
+{\em heuristic\+\_\+} & Initial constructive heuristic algorithm. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structmetrics_1_1MetaHeuristicMetrics_ada3d29622ef4e8b00ddace1602bc4c35}\label{structmetrics_1_1MetaHeuristicMetrics_ada3d29622ef4e8b00ddace1602bc4c35} 
+\index{metrics::MetaHeuristicMetrics@{metrics::MetaHeuristicMetrics}!MetaHeuristicMetrics@{MetaHeuristicMetrics}}
+\index{MetaHeuristicMetrics@{MetaHeuristicMetrics}!metrics::MetaHeuristicMetrics@{metrics::MetaHeuristicMetrics}}
+\doxysubsubsection{\texorpdfstring{MetaHeuristicMetrics()}{MetaHeuristicMetrics()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily metrics\+::\+Meta\+Heuristic\+Metrics\+::\+Meta\+Heuristic\+Metrics (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}}}]{algorithm\+\_\+name\+\_\+,  }\item[{int}]{run\+\_\+id,  }\item[{int}]{d,  }\item[{int}]{s\+\_\+ec,  }\item[{int}]{s\+\_\+cc,  }\item[{double}]{temperature\+\_\+,  }\item[{double}]{alpha\+\_\+,  }\item[{\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}}}]{heuristic\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a {\ttfamily \doxylink{structmetrics_1_1MetaHeuristicMetrics}{Meta\+Heuristic\+Metrics}} object with explicit instance dimensions and hyperparameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em algorithm\+\_\+name\+\_\+} & Meta-\/heuristic algorithm identifier. \\
+\hline
+{\em run\+\_\+id} & Execution run number. \\
+\hline
+{\em d} & Total device count. \\
+\hline
+{\em s\+\_\+ec} & Edge server count. \\
+\hline
+{\em s\+\_\+cc} & Cloud server count. \\
+\hline
+{\em temperature\+\_\+} & Initial temperature \$\+T\+\_\+0\$. \\
+\hline
+{\em alpha\+\_\+} & Geometric cooling factor \$ $\alpha$\$. \\
+\hline
+{\em heuristic\+\_\+} & Initial constructive heuristic algorithm. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structmetrics_1_1MetaHeuristicMetrics_a41e6a6d331e0c29311079533ee63e5d5}\label{structmetrics_1_1MetaHeuristicMetrics_a41e6a6d331e0c29311079533ee63e5d5} 
+\index{metrics::MetaHeuristicMetrics@{metrics::MetaHeuristicMetrics}!MetaHeuristicMetrics@{MetaHeuristicMetrics}}
+\index{MetaHeuristicMetrics@{MetaHeuristicMetrics}!metrics::MetaHeuristicMetrics@{metrics::MetaHeuristicMetrics}}
+\doxysubsubsection{\texorpdfstring{MetaHeuristicMetrics()}{MetaHeuristicMetrics()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily metrics\+::\+Meta\+Heuristic\+Metrics\+::\+Meta\+Heuristic\+Metrics (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}} $>$ \&}]{base,  }\item[{int}]{run\+\_\+id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a {\ttfamily \doxylink{structmetrics_1_1MetaHeuristicMetrics}{Meta\+Heuristic\+Metrics}} object from a base pointer and run ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em base} & Base metrics pointer. \\
+\hline
+{\em run\+\_\+id} & Execution run number. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structmetrics_1_1MetaHeuristicMetrics_a2e6d0537cc0ba4d062bc79ca93591a17}\label{structmetrics_1_1MetaHeuristicMetrics_a2e6d0537cc0ba4d062bc79ca93591a17} 
+\index{metrics::MetaHeuristicMetrics@{metrics::MetaHeuristicMetrics}!build\_metrics@{build\_metrics}}
+\index{build\_metrics@{build\_metrics}!metrics::MetaHeuristicMetrics@{metrics::MetaHeuristicMetrics}}
+\doxysubsubsection{\texorpdfstring{build\_metrics()}{build\_metrics()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{structmetrics_1_1MetricEntry}{Metric\+Entry}} $>$ metrics\+::\+Meta\+Heuristic\+Metrics\+::build\+\_\+metrics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Appends meta-\/heuristic parameters ({\ttfamily Heuristic}, {\ttfamily Temperature}, {\ttfamily Alpha}) to the metric entries. 
+
+\begin{DoxyReturn}{Returns}
+Vector of {\ttfamily \doxylink{structmetrics_1_1MetricEntry}{Metric\+Entry}} records. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{structmetrics_1_1Metrics_af63915d0c63b05e31be006320ce706a6}{metrics\+::\+Metrics}}.
+
+\Hypertarget{structmetrics_1_1MetaHeuristicMetrics_a50a49fe0d7c98ab584ba79af50280a37}\label{structmetrics_1_1MetaHeuristicMetrics_a50a49fe0d7c98ab584ba79af50280a37} 
+\index{metrics::MetaHeuristicMetrics@{metrics::MetaHeuristicMetrics}!clone@{clone}}
+\index{clone@{clone}!metrics::MetaHeuristicMetrics@{metrics::MetaHeuristicMetrics}}
+\doxysubsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}} $>$ metrics\+::\+Meta\+Heuristic\+Metrics\+::clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Clones this {\ttfamily \doxylink{structmetrics_1_1MetaHeuristicMetrics}{Meta\+Heuristic\+Metrics}} instance polymorphically. 
+
+\begin{DoxyReturn}{Returns}
+Shared pointer to the cloned {\ttfamily \doxylink{structmetrics_1_1MetaHeuristicMetrics}{Meta\+Heuristic\+Metrics}} object. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{structmetrics_1_1Metrics_a838af45542e979996137bbcb3dffac8b}{metrics\+::\+Metrics}}.
+
+\Hypertarget{structmetrics_1_1MetaHeuristicMetrics_aaa64c8b3dc34768bc87c86fd24aa3a25}\label{structmetrics_1_1MetaHeuristicMetrics_aaa64c8b3dc34768bc87c86fd24aa3a25} 
+\index{metrics::MetaHeuristicMetrics@{metrics::MetaHeuristicMetrics}!data@{data}}
+\index{data@{data}!metrics::MetaHeuristicMetrics@{metrics::MetaHeuristicMetrics}}
+\doxysubsubsection{\texorpdfstring{data()}{data()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ metrics\+::\+Meta\+Heuristic\+Metrics\+::data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Appends meta-\/heuristic hyperparameter values to the CSV row data. 
+
+\begin{DoxyReturn}{Returns}
+Vector of formatted string values. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{structmetrics_1_1Metrics_aae2f001dafac22ff14300767311562b8}{metrics\+::\+Metrics}}.
+
+\Hypertarget{structmetrics_1_1MetaHeuristicMetrics_a47ddf6e4dab1f6f0705b86f1baf83128}\label{structmetrics_1_1MetaHeuristicMetrics_a47ddf6e4dab1f6f0705b86f1baf83128} 
+\index{metrics::MetaHeuristicMetrics@{metrics::MetaHeuristicMetrics}!get\_header@{get\_header}}
+\index{get\_header@{get\_header}!metrics::MetaHeuristicMetrics@{metrics::MetaHeuristicMetrics}}
+\doxysubsubsection{\texorpdfstring{get\_header()}{get\_header()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ metrics\+::\+Meta\+Heuristic\+Metrics\+::get\+\_\+header (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Appends meta-\/heuristic column headers ({\ttfamily Initial\+\_\+\+Heuristic}, {\ttfamily Temperature}, {\ttfamily Alpha}) to the CSV header. 
+
+\begin{DoxyReturn}{Returns}
+Vector of column header strings. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{structmetrics_1_1Metrics_aa0f8b0b47c23913a43fd55391100a60b}{metrics\+::\+Metrics}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structmetrics_1_1MetaHeuristicMetrics_a4f77808e3eb6613175c15e1413c8fb25}\label{structmetrics_1_1MetaHeuristicMetrics_a4f77808e3eb6613175c15e1413c8fb25} 
+\index{metrics::MetaHeuristicMetrics@{metrics::MetaHeuristicMetrics}!alpha@{alpha}}
+\index{alpha@{alpha}!metrics::MetaHeuristicMetrics@{metrics::MetaHeuristicMetrics}}
+\doxysubsubsection{\texorpdfstring{alpha}{alpha}}
+{\footnotesize\ttfamily double metrics\+::\+Meta\+Heuristic\+Metrics\+::alpha = 0.\+0}
+
+
+
+Cooling rate factor \$ $\alpha$\$ for Simulated Annealing. 
+
+\Hypertarget{structmetrics_1_1MetaHeuristicMetrics_ab34b83b3649561bde7b7b2e111c83756}\label{structmetrics_1_1MetaHeuristicMetrics_ab34b83b3649561bde7b7b2e111c83756} 
+\index{metrics::MetaHeuristicMetrics@{metrics::MetaHeuristicMetrics}!heuristic@{heuristic}}
+\index{heuristic@{heuristic}!metrics::MetaHeuristicMetrics@{metrics::MetaHeuristicMetrics}}
+\doxysubsubsection{\texorpdfstring{heuristic}{heuristic}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}} metrics\+::\+Meta\+Heuristic\+Metrics\+::heuristic = \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11ab50339a10e1de285ac99d4c3990b8693}{Algorithm\+::\+NONE}}}
+
+
+
+Constructive heuristic used to generate the initial solution. 
+
+\Hypertarget{structmetrics_1_1MetaHeuristicMetrics_a0426dc944bcbb90ee1b6fe2743fc2fa5}\label{structmetrics_1_1MetaHeuristicMetrics_a0426dc944bcbb90ee1b6fe2743fc2fa5} 
+\index{metrics::MetaHeuristicMetrics@{metrics::MetaHeuristicMetrics}!temperature@{temperature}}
+\index{temperature@{temperature}!metrics::MetaHeuristicMetrics@{metrics::MetaHeuristicMetrics}}
+\doxysubsubsection{\texorpdfstring{temperature}{temperature}}
+{\footnotesize\ttfamily double metrics\+::\+Meta\+Heuristic\+Metrics\+::temperature = 0.\+0}
+
+
+
+Initial temperature \$\+T\+\_\+0\$ for Simulated Annealing. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{mmkp_8hpp}{mmkp.\+hpp}}\end{DoxyCompactItemize}

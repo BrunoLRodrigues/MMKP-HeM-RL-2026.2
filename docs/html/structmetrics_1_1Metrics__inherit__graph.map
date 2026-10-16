@@ -1,0 +1,9 @@
+<map id="metrics::Metrics" name="metrics::Metrics">
+<area shape="rect" id="Node000001" title="Polymorphic base structure for tracking, calculating, and saving simulation metrics." alt="" coords="222,5,349,31"/>
+<area shape="rect" id="Node000002" href="$structmetrics_1_1ExactMetrics.html" title="Extends Metrics to include CPLEX solver status, objective value, and MIP optimality gap." alt="" coords="5,79,168,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="241,38,120,81,118,76,240,33"/>
+<area shape="rect" id="Node000003" href="$structmetrics_1_1HeuristicMetrics.html" title="Specialization of Metrics for constructive heuristic runs." alt="" coords="193,79,378,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="288,44,288,79,283,79,283,44"/>
+<area shape="rect" id="Node000004" href="$structmetrics_1_1MetaHeuristicMetrics.html" title="Extends Metrics to track Simulated Annealing hyperparameters and initial heuristic selection." alt="" coords="403,79,621,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="336,32,476,76,475,81,334,37"/>
+</map>

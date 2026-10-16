@@ -1,0 +1,42 @@
+\doxysection{metaheuristic Namespace Reference}
+\hypertarget{namespacemetaheuristic}{}\label{namespacemetaheuristic}\index{metaheuristic@{metaheuristic}}
+
+
+Encapsulates meta-\/heuristic algorithms for network resource allocation.  
+
+
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03}{anonymous\+\_\+namespace\{metaheuristic.\+hpp\}}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacemetaheuristic_a048f6eef02905cc9184c197939c3209a}{boot}} (\mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}} \&state)
+\begin{DoxyCompactList}\small\item\em Initializes and launches the selected meta-\/heuristic algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Encapsulates meta-\/heuristic algorithms for network resource allocation. 
+
+Provides trajectory-\/based optimization techniques, specifically Simulated Annealing, to iteratively improve initial heuristic solutions by exploring shift, insertion, and 1-\/for-\/1 swap neighborhood structures. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacemetaheuristic_a048f6eef02905cc9184c197939c3209a}\label{namespacemetaheuristic_a048f6eef02905cc9184c197939c3209a} 
+\index{metaheuristic@{metaheuristic}!boot@{boot}}
+\index{boot@{boot}!metaheuristic@{metaheuristic}}
+\doxysubsubsection{\texorpdfstring{boot()}{boot()}}
+{\footnotesize\ttfamily void metaheuristic\+::boot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}} \&}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initializes and launches the selected meta-\/heuristic algorithm. 
+
+Generates an initial solution using the configured constructive base heuristic, records its standalone metrics in the heuristic results directory, and then executes the meta-\/heuristic optimization over the resulting state.
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & The unified simulation state to be optimized. \\
+\hline
+\end{DoxyParams}

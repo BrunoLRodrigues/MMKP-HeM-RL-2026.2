@@ -1,0 +1,15 @@
+<map id="include/mmkp.hpp" name="include/mmkp.hpp">
+<area shape="rect" id="Node000001" title="Core data structures, synthetic dataset generators, metric trackers, and console/file display routine..." alt="" coords="167,5,309,31"/>
+<area shape="rect" id="Node000002" href="$exact_8hpp.html" title="Exact Integer Linear Programming (ILP) formulations using IBM ILOG CPLEX." alt="" coords="5,152,143,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="213,41,164,81,87,154,83,150,160,77,210,37"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html" title="Entry point and benchmark runner for the MMKP IoT&#45;EC&#45;CC resource allocation simulator." alt="" coords="153,225,259,251"/>
+<area shape="poly" id="edge8_Node000001_Node000003" title=" " alt="" coords="225,43,209,79,202,121,201,162,207,225,201,226,196,162,197,120,203,78,220,41"/>
+<area shape="rect" id="Node000004" href="$heuristic_8hpp.html" title="Constructive heuristic algorithms for fast MMKP resource allocation." alt="" coords="218,79,375,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="258,40,289,77,285,80,254,43"/>
+<area shape="rect" id="Node000005" href="$metaheuristic_8hpp.html" title="Meta&#45;heuristic optimization algorithms and neighborhood operators for MMKP." alt="" coords="269,152,460,177"/>
+<area shape="poly" id="edge7_Node000001_Node000005" title=" " alt="" coords="324,32,360,49,376,62,390,77,396,97,393,118,376,153,371,151,388,117,391,98,385,80,373,66,357,54,321,36"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="108,181,186,223,183,227,106,186"/>
+<area shape="poly" id="edge6_Node000004_Node000003" title=" " alt="" coords="284,117,260,153,215,227,211,224,256,151,279,114"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="319,112,356,150,352,154,315,116"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="328,185,233,228,231,223,326,180"/>
+</map>

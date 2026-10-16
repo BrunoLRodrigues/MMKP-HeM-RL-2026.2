@@ -1,0 +1,104 @@
+\doxysection{data\+::generate Namespace Reference}
+\hypertarget{namespacedata_1_1generate}{}\label{namespacedata_1_1generate}\index{data::generate@{data::generate}}
+
+
+Generates synthetic datasets for services, IoT devices, and EC/\+CC servers when files are absent.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{namespacedata_1_1generate_a8cf334007dfe6c39270237e4b5e1df96}{services}} (const int num\+\_\+services=10)
+\begin{DoxyCompactList}\small\item\em Generates or loads network service requirement templates. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{namespacedata_1_1generate_af6567b345dff3a26eabcad5abd28fcdb}{devices}} (const int length, const int num\+\_\+services=10)
+\begin{DoxyCompactList}\small\item\em Generates or loads device request data representing IoT network demands. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{namespacedata_1_1generate_a406f9158cb3dc3b05a461bc10038fae1}{servers}} (const int ec\+\_\+length=99, const int cc\+\_\+length=1)
+\begin{DoxyCompactList}\small\item\em Generates or loads server infrastructure data for Edge and Cloud nodes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const std\+::filesystem\+::path \mbox{\hyperlink{namespacedata_1_1generate_a75e853eaa2e0c225aad26cf3607b53f8}{DATA\+\_\+\+PATH}} = std\+::filesystem\+::current\+\_\+path() / "{}data"{}
+\begin{DoxyCompactList}\small\item\em Path pointing to the root {\ttfamily data/} directory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Generates synthetic datasets for services, IoT devices, and EC/\+CC servers when files are absent. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacedata_1_1generate_af6567b345dff3a26eabcad5abd28fcdb}\label{namespacedata_1_1generate_af6567b345dff3a26eabcad5abd28fcdb} 
+\index{data::generate@{data::generate}!devices@{devices}}
+\index{devices@{devices}!data::generate@{data::generate}}
+\doxysubsubsection{\texorpdfstring{devices()}{devices()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ data\+::generate\+::devices (\begin{DoxyParamCaption}\item[{const int}]{length,  }\item[{const int}]{num\+\_\+services = {\ttfamily 10} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Generates or loads device request data representing IoT network demands. 
+
+Uniformly samples service requirement profiles from the services dataset and assigns them to each device instance. Saves the output to {\ttfamily data/devices/\+Devices\+\_\+\texorpdfstring{$<$}{<}length\texorpdfstring{$>$}{>}.txt}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em length} & The total number of devices to generate. \\
+\hline
+{\em num\+\_\+services} & The number of underlying service templates to sample from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A 2D string vector representing the devices dataset. 
+\end{DoxyReturn}
+\Hypertarget{namespacedata_1_1generate_a406f9158cb3dc3b05a461bc10038fae1}\label{namespacedata_1_1generate_a406f9158cb3dc3b05a461bc10038fae1} 
+\index{data::generate@{data::generate}!servers@{servers}}
+\index{servers@{servers}!data::generate@{data::generate}}
+\doxysubsubsection{\texorpdfstring{servers()}{servers()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ data\+::generate\+::servers (\begin{DoxyParamCaption}\item[{const int}]{ec\+\_\+length = {\ttfamily 99},  }\item[{const int}]{cc\+\_\+length = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Generates or loads server infrastructure data for Edge and Cloud nodes. 
+
+Creates capacity profiles for {\ttfamily ec\+\_\+length} Edge servers (`\textquotesingle{}E'{\ttfamily ) and}cc\+\_\+length{\ttfamily  Cloud servers (}\textquotesingle{}C\textquotesingle{}{\ttfamily ), saving the table to}data/servers/servers\+\_\+{\ttfamily \texorpdfstring{$<$}{<}ec\texorpdfstring{$>$}{>}}\+\_\+$<$cc$>$.\+txt\`{}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ec\+\_\+length} & The number of Edge Computing servers to generate. \\
+\hline
+{\em cc\+\_\+length} & The number of Cloud Computing servers to generate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A 2D string vector representing the servers dataset. 
+\end{DoxyReturn}
+\Hypertarget{namespacedata_1_1generate_a8cf334007dfe6c39270237e4b5e1df96}\label{namespacedata_1_1generate_a8cf334007dfe6c39270237e4b5e1df96} 
+\index{data::generate@{data::generate}!services@{services}}
+\index{services@{services}!data::generate@{data::generate}}
+\doxysubsubsection{\texorpdfstring{services()}{services()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ data\+::generate\+::services (\begin{DoxyParamCaption}\item[{const int}]{num\+\_\+services = {\ttfamily 10} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Generates or loads network service requirement templates. 
+
+Creates random service profiles with varying task counts, memory, storage, and processing demands. Persists the resulting table to {\ttfamily data/\+Services.\+txt} for reproducibility.
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+\_\+services} & The total number of distinct service profiles to generate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A 2D string vector containing the generated or loaded services dataset. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacedata_1_1generate_a75e853eaa2e0c225aad26cf3607b53f8}\label{namespacedata_1_1generate_a75e853eaa2e0c225aad26cf3607b53f8} 
+\index{data::generate@{data::generate}!DATA\_PATH@{DATA\_PATH}}
+\index{DATA\_PATH@{DATA\_PATH}!data::generate@{data::generate}}
+\doxysubsubsection{\texorpdfstring{DATA\_PATH}{DATA\_PATH}}
+{\footnotesize\ttfamily const std\+::filesystem\+::path data\+::generate\+::\+DATA\+\_\+\+PATH = std\+::filesystem\+::current\+\_\+path() / "{}data"{}}
+
+
+
+Path pointing to the root {\ttfamily data/} directory. 
+

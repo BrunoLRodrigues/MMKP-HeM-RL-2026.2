@@ -1,0 +1,46 @@
+\doxysection{include/heuristic.hpp File Reference}
+\hypertarget{heuristic_8hpp}{}\label{heuristic_8hpp}\index{include/heuristic.hpp@{include/heuristic.hpp}}
+
+
+Constructive heuristic algorithms for fast MMKP resource allocation.  
+
+
+{\ttfamily \#include "{}mmkp.\+hpp"{}}\newline
+Include dependency graph for heuristic.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{heuristic_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=261pt]{heuristic_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceheuristic}{heuristic}}
+\begin{DoxyCompactList}\small\item\em Contains constructive heuristic algorithms for network resource allocation. \end{DoxyCompactList}\item 
+namespace \mbox{\hyperlink{namespaceheuristic_1_1anonymous__namespace_02heuristic_8hpp_03}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespaceheuristic_1_1anonymous__namespace_02heuristic_8hpp_03_ac5d67e28eb3779f6cea40564f8e57667}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+cost\+\_\+benefit}} (\mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}} \&state)
+\begin{DoxyCompactList}\small\item\em Executes a Global Greedy Resource Allocation based on surrogate pseudo-\/utility. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespaceheuristic_1_1anonymous__namespace_02heuristic_8hpp_03_a73948f6480b8b285f07088a2b20c28be}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+random}} (\mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}} \&state)
+\begin{DoxyCompactList}\small\item\em Executes a fast random baseline resource allocation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespaceheuristic_1_1anonymous__namespace_02heuristic_8hpp_03_a00e404acd74a838e4016f8a63c639672}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+random\+\_\+fallback}} (\mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}} \&state)
+\begin{DoxyCompactList}\small\item\em Executes a two-\/stage random fallback resource allocation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespaceheuristic_a49f05c0252bd2ad23bf788bdf45e79cc}{heuristic\+::boot}} (\mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}} \&state)
+\begin{DoxyCompactList}\small\item\em Bootstraps and executes the configured constructive heuristic. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Constructive heuristic algorithms for fast MMKP resource allocation. 
+
+Implements deterministic cost-\/benefit greedy allocation ({\ttfamily greedy\+\_\+cost\+\_\+benefit}) as well as stochastic single-\/stage ({\ttfamily greedy\+\_\+random}) and two-\/stage Edge-\/first ({\ttfamily greedy\+\_\+random\+\_\+fallback}) constructive heuristics. 

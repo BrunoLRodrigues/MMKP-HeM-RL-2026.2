@@ -1,0 +1,149 @@
+\doxysection{metrics\+::Result Struct Reference}
+\hypertarget{structmetrics_1_1Result}{}\label{structmetrics_1_1Result}\index{metrics::Result@{metrics::Result}}
+
+
+Encapsulates the complete system state ({\ttfamily Devices}, {\ttfamily Servers}) and polymorphic {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} for a simulation run.  
+
+
+
+
+{\ttfamily \#include $<$mmkp.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structmetrics_1_1Result_a8b665faf116eb8ea2d6ae73325148e1d}{Result}} (\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} d, \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} s)
+\begin{DoxyCompactList}\small\item\em Constructs a {\ttfamily \doxylink{structmetrics_1_1Result}{Result}} state from pre-\/loaded devices and servers vectors. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmetrics_1_1Result_a9d307096eecb93041812c0059da7ad7d}{Result}} (const \mbox{\hyperlink{structmetrics_1_1Result}{Result}} \&other)
+\begin{DoxyCompactList}\small\item\em Deep-\/copy constructor cloning both entities and the polymorphic {\ttfamily stats} pointer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmetrics_1_1Result_aadd048e0edb53dcd001df0674f09a764}{Result}} (int num\+\_\+devices, int num\+\_\+services, int num\+\_\+ec, int num\+\_\+cc)
+\begin{DoxyCompactList}\small\item\em Loads (or generates) an instance with the specified dimensions and initializes base metrics. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmetrics_1_1Result}{Result}} \& \mbox{\hyperlink{structmetrics_1_1Result_a496ee70904cbef9bf8a9e6b07f133085}{operator=}} (const \mbox{\hyperlink{structmetrics_1_1Result}{Result}} \&other)
+\begin{DoxyCompactList}\small\item\em Deep-\/copy assignment operator cloning the polymorphic {\ttfamily stats} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} \mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}}
+\begin{DoxyCompactList}\small\item\em Vector of all IoT devices in the simulation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} \mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}}
+\begin{DoxyCompactList}\small\item\em Vector of all Edge and Cloud servers in the simulation. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}} $>$ \mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}
+\begin{DoxyCompactList}\small\item\em Polymorphic pointer to the run\textquotesingle{}s metrics tracker. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Encapsulates the complete system state ({\ttfamily Devices}, {\ttfamily Servers}) and polymorphic {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} for a simulation run. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structmetrics_1_1Result_a8b665faf116eb8ea2d6ae73325148e1d}\label{structmetrics_1_1Result_a8b665faf116eb8ea2d6ae73325148e1d} 
+\index{metrics::Result@{metrics::Result}!Result@{Result}}
+\index{Result@{Result}!metrics::Result@{metrics::Result}}
+\doxysubsubsection{\texorpdfstring{Result()}{Result()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily metrics\+::\+Result\+::\+Result (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}}}]{d,  }\item[{\mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}}}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a {\ttfamily \doxylink{structmetrics_1_1Result}{Result}} state from pre-\/loaded devices and servers vectors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Vector of devices. \\
+\hline
+{\em s} & Vector of servers. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structmetrics_1_1Result_a9d307096eecb93041812c0059da7ad7d}\label{structmetrics_1_1Result_a9d307096eecb93041812c0059da7ad7d} 
+\index{metrics::Result@{metrics::Result}!Result@{Result}}
+\index{Result@{Result}!metrics::Result@{metrics::Result}}
+\doxysubsubsection{\texorpdfstring{Result()}{Result()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily metrics\+::\+Result\+::\+Result (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structmetrics_1_1Result}{Result}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Deep-\/copy constructor cloning both entities and the polymorphic {\ttfamily stats} pointer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Source {\ttfamily \doxylink{structmetrics_1_1Result}{Result}} instance to copy. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structmetrics_1_1Result_aadd048e0edb53dcd001df0674f09a764}\label{structmetrics_1_1Result_aadd048e0edb53dcd001df0674f09a764} 
+\index{metrics::Result@{metrics::Result}!Result@{Result}}
+\index{Result@{Result}!metrics::Result@{metrics::Result}}
+\doxysubsubsection{\texorpdfstring{Result()}{Result()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily metrics\+::\+Result\+::\+Result (\begin{DoxyParamCaption}\item[{int}]{num\+\_\+devices,  }\item[{int}]{num\+\_\+services,  }\item[{int}]{num\+\_\+ec,  }\item[{int}]{num\+\_\+cc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Loads (or generates) an instance with the specified dimensions and initializes base metrics. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+\_\+devices} & Number of IoT devices to load. \\
+\hline
+{\em num\+\_\+services} & Number of service templates. \\
+\hline
+{\em num\+\_\+ec} & Number of Edge Computing servers. \\
+\hline
+{\em num\+\_\+cc} & Number of Cloud Computing servers. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structmetrics_1_1Result_a496ee70904cbef9bf8a9e6b07f133085}\label{structmetrics_1_1Result_a496ee70904cbef9bf8a9e6b07f133085} 
+\index{metrics::Result@{metrics::Result}!operator=@{operator=}}
+\index{operator=@{operator=}!metrics::Result@{metrics::Result}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmetrics_1_1Result}{Result}} \& metrics\+::\+Result\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structmetrics_1_1Result}{Result}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Deep-\/copy assignment operator cloning the polymorphic {\ttfamily stats} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Source {\ttfamily \doxylink{structmetrics_1_1Result}{Result}} instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to {\ttfamily \texorpdfstring{$\ast$}{*}this}. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}\label{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8} 
+\index{metrics::Result@{metrics::Result}!devices@{devices}}
+\index{devices@{devices}!metrics::Result@{metrics::Result}}
+\doxysubsubsection{\texorpdfstring{devices}{devices}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} metrics\+::\+Result\+::devices}
+
+
+
+Vector of all IoT devices in the simulation. 
+
+\Hypertarget{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}\label{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d} 
+\index{metrics::Result@{metrics::Result}!servers@{servers}}
+\index{servers@{servers}!metrics::Result@{metrics::Result}}
+\doxysubsubsection{\texorpdfstring{servers}{servers}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} metrics\+::\+Result\+::servers}
+
+
+
+Vector of all Edge and Cloud servers in the simulation. 
+
+\Hypertarget{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}\label{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f} 
+\index{metrics::Result@{metrics::Result}!stats@{stats}}
+\index{stats@{stats}!metrics::Result@{metrics::Result}}
+\doxysubsubsection{\texorpdfstring{stats}{stats}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}}$>$ metrics\+::\+Result\+::stats}
+
+
+
+Polymorphic pointer to the run\textquotesingle{}s metrics tracker. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{mmkp_8hpp}{mmkp.\+hpp}}\end{DoxyCompactItemize}
