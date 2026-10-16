@@ -2861,3 +2861,30 @@ MSCGEN_TOOL            =
 # command).
 
 MSCFILE_DIRS           =
+
+PROJECT_NAME           = "MMKP Resource Allocation in IoT-EC-CC Networks"
+PROJECT_NUMBER         = "1.0.0"
+OUTPUT_DIRECTORY       = docs
+
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EXTRACT_ANON_NSPACES   = YES
+
+INPUT                  = README.md include src
+RECURSIVE              = YES
+USE_MDFILE_AS_MAINPAGE = README.md
+FILTER_PATTERNS        = "*.md=sed -e 's/[🌐📁⚙️🚀🧠🔧📚]//g'"
+
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = YES
+
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+GENERATE_TREEVIEW      = YES
+
+GENERATE_LATEX         = YES
+LATEX_OUTPUT           = latex
+USE_PDFLATEX           = YES
+LATEX_BATCHMODE        = YES
+HAVE_DOT               = NO
