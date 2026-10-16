@@ -1,8 +1,8 @@
-name: Deploy Doxygen (HTML & PDF)
+name: Deploy Doxygen Documentation
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
   workflow_dispatch:
 
 permissions:
@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
@@ -20,28 +20,28 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Doxygen, Graphviz, and LaTeX
+      - name: Install Doxygen and LaTeX dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y doxygen graphviz texlive-latex-base texlive-fonts-recommended texlive-latex-extra
+          sudo apt-get install -y doxygen texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
 
-      - name: Generate Doxygen HTML and LaTeX
-        run: doxygen docs/Doxyfile
-
-      - name: Compile LaTeX to PDF and move to HTML folder
+      - name: Generate HTML and PDF documentation
         run: |
+          doxygen docs/Doxyfile
           make -C docs/latex
           cp docs/latex/refman.pdf docs/html/MMKP_Documentation.pdf
 
-      - name: Upload Pages artifact
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs/html
+          path: 'docs/html'
 
       - name: Deploy to GitHub Pages
         id: deployment

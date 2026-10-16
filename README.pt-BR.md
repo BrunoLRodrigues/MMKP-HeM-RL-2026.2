@@ -1,7 +1,7 @@
 # Alocação de Recursos MMKP em Redes IoT-EC-CC
 
-[![Documentation HTML](https://img.shields.io/badge/docs-HTML%20(Doxygen)-blue?logo=read-the-docs)](https://<SEU_USUARIO>.github.io/<SEU_REPOSITORIO>/)
-[![Documentation PDF](https://img.shields.io/badge/docs-PDF%20(LaTeX)-red?logo=adobe-acrobat-reader)](https://<SEU_USUARIO>.github.io/<SEU_REPOSITORIO>/MMKP_Documentation.pdf)
+[![Documentation HTML](https://img.shields.io/badge/docs-HTML%20(Doxygen)-blue?logo=read-the-docs)](https://brunolrodrigues.github.io/MMKP-HeM-RL-2026.2/)
+[![Documentation PDF](https://img.shields.io/badge/docs-PDF%20(LaTeX)-red?logo=adobe-acrobat-reader)](https://brunolrodrigues.github.io/MMKP-HeM-RL-2026.2/MMKP_Documentation.pdf)
 
 🌐 **Idioma / Language:** [English](README.md) | **Português (Brasil)**
 
