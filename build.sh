@@ -72,6 +72,12 @@ if [ "$GEN_DOCS" = true ]; then
     doxygen docs/Doxyfile
     if [ -d "docs/latex" ]; then
         make -C docs/latex
+        cp docs/latex/refman.pdf docs/html/MMKP_Documentation.pdf
+    fi
+    # Encerra o script aqui se nenhuma flag de build/limpeza foi usada junto
+    if [ "$CLEAN_BUILD" = false ] && [ "$CLEAN_DATA" = false ] && [ "$CLEAN_RESULTS" = false ]; then
+        echo "=== [EN] Documentation generated successfully! | [PT] Documentação gerada com sucesso! ==="
+        exit 0
     fi
 fi
 

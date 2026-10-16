@@ -31,37 +31,9 @@ jobs:
 
       - name: Generate HTML and PDF documentation
         run: |
-          # Substitui caracteres de árvore e remove emojis apenas no ambiente da Action para o pdflatex não falhar
-          sed -i 's/├──/+--/g; s/└──/`--/g; s/│/|/g' README.md
-          perl -CSD -pi -e 's/[^\x00-\x7F]//g' README.md
-
-          # Garante que as opções essenciais estejam ativas no Doxyfile
-          cat << 'EOF' >> docs/Doxyfile
-          PROJECT_NAME           = "MMKP Resource Allocation in IoT-EC-CC Networks"
-          OUTPUT_DIRECTORY       = docs
-          EXTRACT_ALL            = YES
-          EXTRACT_PRIVATE        = YES
-          EXTRACT_STATIC         = YES
-          EXTRACT_ANON_NSPACES   = YES
-          INPUT                  = README.md include src
-          RECURSIVE              = YES
-          USE_MDFILE_AS_MAINPAGE = README.md
-          SOURCE_BROWSER         = YES
-          INLINE_SOURCES         = YES
-          GENERATE_HTML          = YES
-          HTML_OUTPUT            = html
-          GENERATE_TREEVIEW      = YES
-          GENERATE_LATEX         = YES
-          LATEX_OUTPUT           = latex
-          USE_PDFLATEX           = YES
-          LATEX_BATCHMODE        = YES
-          EOF
-
           doxygen docs/Doxyfile
-          make -C docs/latex || true
-          if [ -f docs/latex/refman.pdf ]; then
-            cp docs/latex/refman.pdf docs/html/MMKP_Documentation.pdf
-          fi
+          make -C docs/latex
+          cp docs/latex/refman.pdf docs/html/MMKP_Documentation.pdf
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
