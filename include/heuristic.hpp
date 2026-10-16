@@ -1,11 +1,21 @@
+/**
+ * @file heuristic.hpp
+ * @brief Constructive heuristic algorithms for fast MMKP resource allocation.
+ * @details Implements deterministic cost-benefit greedy allocation (`greedy_cost_benefit`)
+ * as well as stochastic single-stage (`greedy_random`) and two-stage Edge-first
+ * (`greedy_random_fallback`) constructive heuristics.
+ */
+
 #pragma once
 
 #include "mmkp.hpp"
 
 /**
- * @brief Contains heuristic algorithms for network resource allocation.
- * @details Implements fast, suboptimal solution strategies (like Greedy, GRASP) 
- * prioritizing low execution times while attempting to minimize device penalty costs.
+ * @namespace heuristic
+ * @brief Contains constructive heuristic algorithms for network resource allocation.
+ * @details Implements fast, polynomial-time approximation strategies (Greedy Cost-Benefit,
+ * Greedy Random, and Greedy Random Fallback) prioritizing low execution times while 
+ * minimizing unserved device penalty costs.
  */
 namespace heuristic {
 
@@ -14,8 +24,8 @@ namespace heuristic {
         /**
          * @brief Executes a Global Greedy Resource Allocation based on surrogate pseudo-utility.
          * @details Normalizes device resource demands against total system capacity to compute 
-         * pseudo-utility and sorts candidates once globally. Allocates devices greedily per server 
-         * using prefix-skipping and minimum-demand early termination.
+         * a multidimensional cost-benefit pseudo-utility and sorts candidates once globally. 
+         * Allocates devices greedily per server using prefix-skipping and minimum-demand early termination.
          * 
          * @param state The unified simulation result state containing devices, servers, and metrics.
          */
@@ -96,7 +106,7 @@ namespace heuristic {
         /**
          * @brief Executes a fast random baseline resource allocation.
          * @details Iterates through all devices and attempts to assign each one to a 
-         * single randomly selected server. If the selected server lacks capacity, 
+         * single uniformly selected server. If the selected server lacks capacity, 
          * the device remains unserved. Metric calculation is deferred.
          * 
          * @param state The unified simulation result state containing devices, servers, and metrics.
@@ -132,8 +142,8 @@ namespace heuristic {
 
         /**
          * @brief Executes a two-stage random fallback resource allocation.
-         * @details Attempts to assign each device to a randomly selected Edge server first. 
-         * If the Edge server lacks capacity, falls back to a randomly selected Cloud server.
+         * @details Attempts to assign each device to a randomly selected Edge (EC) server first. 
+         * If the selected Edge server lacks capacity, falls back to a randomly selected Cloud (CC) server.
          * 
          * @param state The unified simulation result state containing devices, servers, and metrics.
          */
@@ -177,9 +187,9 @@ namespace heuristic {
     }
 
     /**
-     * @brief Bootstraps and executes the configured heuristic mathematical model.
-     * @details Reads the specified algorithm name from the metrics and dispatches 
-     * the execution to the corresponding heuristic solver.
+     * @brief Bootstraps and executes the configured constructive heuristic.
+     * @details Reads the specified algorithm identifier from `state.stats` and dispatches 
+     * execution to the corresponding heuristic solver.
      * 
      * @param state The unified simulation state to be processed.
      */

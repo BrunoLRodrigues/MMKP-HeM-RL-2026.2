@@ -1,25 +1,43 @@
+/**
+ * @file main.cpp
+ * @brief Entry point and benchmark runner for the MMKP IoT-EC-CC resource allocation simulator.
+ * @details Defines the experimental parameters (scaling of IoT devices, server counts, 
+ * CPLEX time limit, and Simulated Annealing cooling schedule) and orchestrates 
+ * the execution across Exact, Heuristic, and Meta-heuristic paradigms.
+ */
+
 #include "mmkp.hpp"
 #include "exact.hpp"
 #include "heuristic.hpp"
 #include "metaheuristic.hpp"
 
-constexpr int SERVICES = 100;
-constexpr int DEVICES_START = 10000; 
-constexpr int DEVICES_STEP = 1000;  
-constexpr int DEVICES_END = 20000;  
-constexpr int EC_LENGTH = 499;      
-constexpr int CC_LENGTH = 1;       
-constexpr int MAX_RUNS = 1;       
-
-constexpr double CPLEX_TIME_LIMIT = 3600; 
-constexpr double TEMPERATURE = 50.0;      
-constexpr double ALPHA = 0.9999;
+constexpr int SERVICES = 100;             ///< @brief Total number of distinct service profiles generated.
+constexpr int DEVICES_START = 10000;      ///< @brief Initial number of IoT devices in the scaling benchmark.
+constexpr int DEVICES_STEP = 1000;        ///< @brief Increment step for the number of IoT devices per batch.
+constexpr int DEVICES_END = 20000;        ///< @brief Maximum number of IoT devices in the scaling benchmark.
+constexpr int EC_LENGTH = 499;            ///< @brief Total number of Edge Computing (EC) servers available.
+constexpr int CC_LENGTH = 1;              ///< @brief Total number of Cloud Computing (CC) servers available.
+constexpr int MAX_RUNS = 50;              ///< @brief Number of independent runs per instance configuration.
+constexpr double CPLEX_TIME_LIMIT = 3600; ///< @brief Time limit in seconds for the CPLEX exact solver.
+constexpr double TEMPERATURE = 50.0;      ///< @brief Initial temperature for Simulated Annealing.
+constexpr double ALPHA = 0.9999;          ///< @brief Geometric cooling factor for Simulated Annealing.
 
 /**
  * @brief Executes a specific algorithm configuration for the network resource allocation simulation.
+ * @details Instantiates the appropriate metrics tracker based on the selected option, dispatches
+ * the simulation state to the corresponding solver paradigm (Exact, Heuristic, or Meta-heuristic),
+ * computes final utilization/cost metrics, and saves the results to disk.
+ * 
  * @param base The initial system state containing untouched devices and servers.
- * @param option The identifier for the algorithm combination to execute.
- * @param run_id The current execution run number.
+ * @param option The identifier for the algorithm combination to execute:
+ *               - `0`: Exact CPLEX solver (`solver_maximum_cost`)
+ *               - `-1`: Constructive heuristic (`greedy_cost_benefit`)
+ *               - `-2`: Constructive heuristic (`greedy_random`)
+ *               - `-3`: Constructive heuristic (`greedy_random_fallback`)
+ *               - `1`: Simulated Annealing + `greedy_cost_benefit`
+ *               - `2`: Simulated Annealing + `greedy_random`
+ *               - `3`: Simulated Annealing + `greedy_random_fallback`
+ * @param run_id The current execution run number (1-indexed).
  */
 void run_simulation(const metrics::Result& base, int option, int run_id) {
     metrics::Paradigm paradigm = metrics::Paradigm::NONE;
@@ -79,7 +97,11 @@ void run_simulation(const metrics::Result& base, int option, int run_id) {
 
 /**
  * @brief Main entry point for the network resource allocation simulation benchmark.
- * @return int Exit status code.
+ * @details Iterates over the configured range of device counts and independent runs,
+ * executing deterministic algorithms once per instance and stochastic algorithms across
+ * all runs.
+ * 
+ * @return int Exit status code (`0` on normal termination).
  */
 int main() {
     for (int devices_length = DEVICES_START; devices_length <= DEVICES_END; devices_length += DEVICES_STEP) {

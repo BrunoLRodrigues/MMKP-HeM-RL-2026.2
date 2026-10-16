@@ -1,3 +1,11 @@
+/**
+ * @file exact.hpp
+ * @brief Exact Integer Linear Programming (ILP) formulations using IBM ILOG CPLEX.
+ * @details Provides the mathematical optimization model and solver configuration
+ * to solve the Multiple Multidimensional Knapsack Problem (MMKP) for IoT-EC-CC
+ * resource allocation.
+ */
+
 #pragma once
 
 #include "mmkp.hpp"
@@ -5,6 +13,7 @@
 #include <ilcplex/ilocplex.h>
 
 /**
+ * @namespace exact
  * @brief Contains mathematical programming models for exact optimization.
  * @details Utilizes the IBM ILOG CPLEX optimizer to solve the network resource 
  * allocation problem to optimality or within a specified time limit, providing 
@@ -13,7 +22,7 @@
 namespace exact {
 
     /**
-     * @brief Type alias for a 2D array of CPLEX numerical variables.
+     * @brief Type alias for a 2D matrix of CPLEX decision variables.
      */
     using NumVar2D = IloArray<IloNumVarArray>;
 
@@ -21,10 +30,10 @@ namespace exact {
 
         /**
          * @brief Formulates and solves the exact ILP resource allocation model using CPLEX.
-         * @details Defines binary decision variables for device service status and server 
-         * assignment. Maximizes the total utility of served devices (avoided SLA penalties) 
-         * subject to single-server assignment and multidimensional resource capacity 
-         * constraints (CPU, MEM, STO).
+         * @details Defines binary decision variables $x_{d}^{i} \in \{0, 1\}$ indicating whether 
+         * device $d$ is assigned to server $i$. Maximizes the total utility of served devices 
+         * (avoided SLA penalties) subject to single-server assignment and multidimensional 
+         * resource capacity constraints (CPU, MEM, STO).
          * 
          * @param state The unified simulation state containing devices, servers, and metrics.
          * @param time_limit_sec The maximum execution time allowed for the solver in seconds.
@@ -154,8 +163,8 @@ namespace exact {
 
     /**
      * @brief Bootstraps and executes the configured exact mathematical model.
-     * @details Reads the specified algorithm name from the metrics and dispatches 
-     * the execution to the corresponding exact solver.
+     * @details Reads the specified algorithm identifier from `state.stats` and dispatches 
+     * execution to the corresponding exact solver implementation.
      * 
      * @param state The unified simulation state to be processed.
      * @param time_limit_sec The maximum execution time allowed for the exact solver in seconds.

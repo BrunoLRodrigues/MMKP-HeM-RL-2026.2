@@ -1,66 +1,95 @@
 #!/bin/bash
 
-# Interrompe o script imediatamente se ocorrer algum erro
+# =============================================================================
+# EN: Stop the script immediately if any command fails
+# PT: Interrompe o script imediatamente se ocorrer algum erro
+# =============================================================================
 set -e
 
-# Configurações do CPLEX IBM (Baseado no tasks.json)
+# =============================================================================
+# EN: IBM ILOG CPLEX 22.2 paths (matching tasks.json and CMakeLists.txt)
+# PT: Caminhos do IBM ILOG CPLEX 22.2 (baseado no tasks.json e CMakeLists.txt)
+# =============================================================================
 CPLEX_INCLUDE="/opt/ibm/ILOG/CPLEX_Studio222/cplex/include"
 CONCERT_INCLUDE="/opt/ibm/ILOG/CPLEX_Studio222/concert/include"
 CPLEX_LIB="/opt/ibm/ILOG/CPLEX_Studio222/cplex/lib/x86-64_linux/static_pic"
 CONCERT_LIB="/opt/ibm/ILOG/CPLEX_Studio222/concert/lib/x86-64_linux/static_pic"
 
-# Variáveis de controle para limpeza (false por padrão)
+# =============================================================================
+# EN: Control flags for cleanup and documentation (false by default)
+# PT: Variáveis de controle para limpeza e documentação (false por padrão)
+# =============================================================================
 CLEAN_DATA=false
 CLEAN_RESULTS=false
 CLEAN_BUILD=false
+GEN_DOCS=false
 
-# Processa os argumentos passados no terminal
+# =============================================================================
+# EN: Parse command-line arguments
+# PT: Processa os argumentos passados no terminal
+# =============================================================================
 while [[ "$#" -gt 0 ]]; do
     case $1 in
-        -d|--data) CLEAN_DATA=true ;;
+        -d|--data)    CLEAN_DATA=true ;;
         -r|--results) CLEAN_RESULTS=true ;;
-        -b|--build) CLEAN_BUILD=true ;;
-        -a|--all) CLEAN_DATA=true; CLEAN_RESULTS=true; CLEAN_BUILD=true ;;
-        *) echo "Parâmetro desconhecido: $1"; exit 1 ;;
+        -b|--build)   CLEAN_BUILD=true ;;
+        -a|--all)     CLEAN_DATA=true; CLEAN_RESULTS=true; CLEAN_BUILD=true ;;
+        -doc|--docs)  GEN_DOCS=true ;;
+        *) echo "Unknown parameter / Parâmetro desconhecido: $1"; exit 1 ;;
     esac
     shift
 done
 
-# Esvazia o conteúdo dentro da pasta data
+# EN: Empty the data/ directory if requested
+# PT: Esvazia o conteúdo dentro da pasta data/ se solicitado
 if [ "$CLEAN_DATA" = true ]; then
-    echo "=== Limpando o conteúdo da pasta data/ ==="
+    echo "=== [EN] Cleaning data/ directory | [PT] Limpando a pasta data/ ==="
     if [ -d "data" ]; then
         find data -mindepth 1 -delete
     fi
 fi
 
-# Esvazia o conteúdo dentro da pasta results
+# EN: Empty the results/ directory if requested
+# PT: Esvazia o conteúdo dentro da pasta results/ se solicitado
 if [ "$CLEAN_RESULTS" = true ]; then
-    echo "=== Limpando o conteúdo da pasta results/ ==="
+    echo "=== [EN] Cleaning results/ directory | [PT] Limpando a pasta results/ ==="
     if [ -d "results" ]; then
         find results -mindepth 1 -delete
     fi
 fi
 
-# Limpa o conteúdo da pasta build
+# EN: Clean the build/ directory if requested
+# PT: Limpa o conteúdo da pasta build/ se solicitado
 if [ "$CLEAN_BUILD" = true ]; then
-    echo "=== Removendo arquivos de build antigos ==="
+    echo "=== [EN] Removing old build files | [PT] Removendo arquivos de build antigos ==="
     rm -rf build/*
 fi
 
-echo "=== Configurando o diretório build ==="
+# EN: Generate Doxygen documentation (HTML + LaTeX PDF) if requested
+# PT: Gera a documentação Doxygen (HTML + PDF LaTeX) se solicitado
+if [ "$GEN_DOCS" = true ]; then
+    echo "=== [EN] Generating Doxygen docs | [PT] Gerando documentação Doxygen ==="
+    doxygen docs/Doxyfile
+    if [ -d "docs/latex" ]; then
+        make -C docs/latex
+    fi
+fi
+
+echo "=== [EN] Setting up build directory | [PT] Configurando o diretório build ==="
 mkdir -p build
 
-echo "=== Compilando o projeto com G++ (CPLEX + Heuristics) ==="
-# Executa a linha de compilação direta do G++ espelhando o formato do tasks.json
+echo "=== [EN] Compiling with G++ (CPLEX + Heuristics) | [PT] Compilando com G++ ==="
+# EN: Direct G++ compilation command with maximum optimization (-O3)
+# PT: Linha de compilação direta do G++ com otimização máxima (-O3)
 /usr/bin/g++ -O3 -std=c++17 -fPIC -fexceptions -DNDEBUG -DIL_STD \
     -I$CPLEX_INCLUDE -I$CONCERT_INCLUDE -Iinclude \
-    src/*.cpp -o build/solver_model \
+    src/*.cpp -o build/MMKP_IoT-EC-CC \
     -L$CPLEX_LIB -L$CONCERT_LIB \
     -lilocplex -lconcert -lcplex -lm -lpthread -ldl -w
 
-echo "=== Build concluído com sucesso! Executando a simulação... ==="
-echo "------------------------------------------------------------"
+echo "=== [EN] Build succeeded! Running simulation... | [PT] Build concluído! Executando... ==="
+echo "-----------------------------------------------------------------------------------------"
 
-# Executa o binário final a partir da raiz (mantendo o Current Working Directory correto)
-./build/solver_model
+# EN: Run the binary from the project root to preserve relative paths
+# PT: Executa o binário a partir da raiz mantendo os caminhos relativos corretos
+./build/MMKP_IoT-EC-CC

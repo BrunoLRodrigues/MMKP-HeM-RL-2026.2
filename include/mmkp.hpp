@@ -1,67 +1,131 @@
+/**
+ * @file mmkp.hpp
+ * @brief Core data structures, synthetic dataset generators, metric trackers, and console/file display routines.
+ * @details Defines the domain entities (`Device`, `Server`, `Supply`), dataset loading/generation utilities,
+ * polymorphic metric collection classes (`Metrics`, `ExactMetrics`, `HeuristicMetrics`, `MetaHeuristicMetrics`),
+ * and ASCII table visualization functions for the MMKP IoT-EC-CC simulator.
+ */
+
 #pragma once
 
 #include "tools.hpp"
 
-// Aliases type definitions replacing C-style macros
-using ii_pair = std::pair<int, int>;
-using id_pair = std::pair<int, double>;       
-using i_vector = std::vector<int>;         
-using s_vector = std::vector<std::string>; 
-using ii_pair_vector = std::vector<ii_pair>;
-using id_pair_vector = std::vector<id_pair>;
-using i_matrix = std::vector<i_vector>;
-using s_matrix = std::vector<s_vector>;
-using i_set = std::set<int>;  
+// Type aliases replacing C-style macros
+using ii_pair = std::pair<int, int>;               ///< @brief Pair of two integers.
+using id_pair = std::pair<int, double>;            ///< @brief Pair of an integer ID and a double value (e.g., utility).
+using i_vector = std::vector<int>;                 ///< @brief Vector of integers.
+using s_vector = std::vector<std::string>;         ///< @brief Vector of strings.
+using ii_pair_vector = std::vector<ii_pair>;       ///< @brief Vector of integer-integer pairs.
+using id_pair_vector = std::vector<id_pair>;       ///< @brief Vector of integer-double pairs.
+using i_matrix = std::vector<i_vector>;            ///< @brief 2D matrix of integers.
+using s_matrix = std::vector<s_vector>;            ///< @brief 2D matrix of strings.
+using i_set = std::set<int>;                       ///< @brief Ordered set of unique integers.
 
+/**
+ * @namespace core
+ * @brief Contains the fundamental domain entities for the MMKP resource allocation problem.
+ */
 namespace core {
 
+    /**
+     * @struct Device
+     * @brief Represents an IoT device requesting computational resources for a specific service.
+     */
     struct Device {
-        int id;
-        double cost;
-        double cpu;
-        double mem;
-        double sto;
-        int tasks;
-        int service;
-        bool served = false;
-        int server_id = -1;
+        int id;              ///< @brief Unique 1-based identifier of the device.
+        double cost;         ///< @brief SLA penalty cost incurred if the device is not served.
+        double cpu;          ///< @brief Required processing capacity (CPU).
+        double mem;          ///< @brief Required memory capacity (MEM).
+        double sto;          ///< @brief Required storage capacity (STO).
+        int tasks;           ///< @brief Number of atomic tasks composing the requested service.
+        int service;         ///< @brief Identifier of the service template assigned to this device.
+        bool served = false; ///< @brief Flag indicating whether the device is currently allocated to a server.
+        int server_id = -1;  ///< @brief ID of the server hosting this device (`-1` if unserved).
 
+        /**
+         * @brief Default constructor initializing an empty/placeholder device.
+         */
         Device() : id(0), cost(0.0), cpu(0.0), mem(0.0), sto(0.0), tasks(0), service(0) {}
+
+        /**
+         * @brief Parameterized constructor initializing a device with specific resource demands.
+         * @param id_ Unique identifier of the device.
+         * @param cost_ Penalty cost if unserved.
+         * @param cpu_ CPU demand.
+         * @param mem_ Memory demand.
+         * @param sto_ Storage demand.
+         * @param tasks_ Number of service tasks.
+         * @param service_ Service profile ID.
+         */
         Device(int id_, double cost_, double cpu_, double mem_, double sto_, int tasks_, int service_)
             : id(id_), cost(cost_), cpu(cpu_), mem(mem_), sto(sto_), tasks(tasks_), service(service_) {}
     };
 
+    /**
+     * @brief Contiguous collection of `Device` instances (1-indexed, index 0 is a placeholder).
+     */
     using Devices = std::vector<Device>;   
 
+    /**
+     * @struct Supply
+     * @brief Tracks the cumulative resource consumption and allocated device IDs on a single server.
+     */
     struct Supply {
-        double cost = 0.0;
-        double cpu = 0.0;
-        double mem = 0.0;
-        double sto = 0.0;
+        double cost = 0.0; ///< @brief Total avoided penalty cost of devices currently allocated to the server.
+        double cpu = 0.0;  ///< @brief Currently consumed CPU capacity on the server.
+        double mem = 0.0;  ///< @brief Currently consumed memory capacity on the server.
+        double sto = 0.0;  ///< @brief Currently consumed storage capacity on the server.
         //double free = 0.0;
-        i_set devices;
+        i_set devices;     ///< @brief Set of device IDs currently served by the server.
 
+        /**
+         * @brief Default constructor initializing zero resource usage.
+         */
         Supply() : cost(0.0), cpu(0.0), mem(0.0), sto(0.0) {}
+
+        /**
+         * @brief Parameterized constructor initializing specific resource usage values.
+         * @param cost_ Initial accumulated cost.
+         * @param cpu_ Initial consumed CPU.
+         * @param mem_ Initial consumed memory.
+         * @param sto_ Initial consumed storage.
+         */
         Supply(double cost_,  double cpu_, double mem_, double sto_)
             : cost(cost_), cpu(cpu_), mem(mem_), sto(sto_) {}
     };
 
+    /**
+     * @struct Server
+     * @brief Represents an Edge Computing (EC) or Cloud Computing (CC) server node.
+     */
     struct Server {
-        int id;
-        char type; // 'E' for Edge, 'C' for Cloud
-        double cpu;
-        double mem;
-        double sto;
-        Supply supply;
+        int id;        ///< @brief Unique 1-based identifier of the server.
+        char type;     ///< @brief Server tier type (`'E'` for Edge, `'C'` for Cloud).
+        double cpu;    ///< @brief Maximum total CPU capacity of the server.
+        double mem;    ///< @brief Maximum total memory capacity of the server.
+        double sto;    ///< @brief Maximum total storage capacity of the server.
+        Supply supply; ///< @brief Current resource utilization and set of allocated devices.
 
+        /**
+         * @brief Default constructor initializing an empty/placeholder server.
+         */
         Server() : id(0), type(' '), cpu(0.0), mem(0.0), sto(0.0), supply() {}
+
+        /**
+         * @brief Parameterized constructor initializing a server with given capacities.
+         * @param id_ Unique 1-based server ID.
+         * @param type_ Server tier character (`'E'` or `'C'`).
+         * @param cpu_ Total CPU capacity.
+         * @param mem_ Total memory capacity.
+         * @param sto_ Total storage capacity.
+         */
         Server(int id_, char type_, double cpu_, double mem_, double sto_)
             : id(id_), type(type_), cpu(cpu_), mem(mem_), sto(sto_) {}
         
         /**
-         * @brief Checks if the server has enough capacity to serve a given device.
-         * @param device The device to be checked.
-         * @return True if the server can accommodate the device, false otherwise.
+         * @brief Checks if the server has enough residual capacity to serve a given device.
+         * @param device The candidate device to be checked.
+         * @return `true` if residual CPU, MEM, and STO capacities are sufficient; `false` otherwise.
          */
         inline bool can_serve(const Device& device) const {
             return (
@@ -72,9 +136,9 @@ namespace core {
         }
 
         /**
-         * @brief Allocates a device to this server and updates resource demands.
-         * @param device The device to add.
-         * @return True if the device was successfully added, false if it was already served.
+         * @brief Allocates a device to this server and updates consumed resources.
+         * @param device The device to allocate (modified in-place to mark `served = true` and `server_id`).
+         * @return `true` if the device was successfully added; `false` if it was already present.
          */
         inline bool add_service(Device& device) { 
             auto result = supply.devices.insert(device.id);
@@ -87,16 +151,14 @@ namespace core {
             supply.cpu += device.cpu;
             supply.mem += device.mem;
             supply.sto += device.sto;
-
-            //calculate_free();
             
             return true;
         }
 
         /**
-         * @brief Removes a device from this server and releases its resources.
-         * @param device The device to remove.
-         * @return True if the device was successfully removed, false if it was not found.
+         * @brief Removes a device from this server and releases its consumed resources.
+         * @param device The device to remove (modified in-place to reset `served = false` and `server_id = -1`).
+         * @return `true` if the device was successfully removed; `false` if it was not allocated to this server.
          */
         inline bool rmv_service(Device& device) {
             if (supply.devices.erase(device.id) == 0) return false;
@@ -109,36 +171,34 @@ namespace core {
             supply.mem -= device.mem;
             supply.sto -= device.sto;
 
-            //calculate_free();
-            
             return true;
         }
-        
-        /*
-        inline void calculate_free() {
-            supply.free = (1 - supply.cpu/cpu) + (1 - supply.mem/mem) + (1 - supply.sto/sto);
-        }
-        */
     };
 
+    /**
+     * @brief Contiguous collection of `Server` instances (1-indexed, index 0 is a placeholder).
+     */
     using Servers = std::vector<Server>;   
 }
 
+/**
+ * @namespace data::generate
+ * @brief Generates synthetic datasets for services, IoT devices, and EC/CC servers when files are absent.
+ */
 namespace data::generate {
 
     /**
-     * @brief Path pointing to the main data directory.
+     * @brief Path pointing to the root `data/` directory.
      */
     const std::filesystem::path DATA_PATH = std::filesystem::current_path() / "data";
 
     /**
-     * @brief Generates or loads network service requirement data.
+     * @brief Generates or loads network service requirement templates.
      * @details Creates random service profiles with varying task counts, memory, storage, 
-     * and processing demands. Calculates a non-service cost penalty based on these 
-     * hardware requirements. The result is saved to a text file for future runs.
+     * and processing demands. Persists the resulting table to `data/Services.txt` for reproducibility.
      * 
      * @param num_services The total number of distinct service profiles to generate.
-     * @return A 2D string vector containing the generated services dataset.
+     * @return A 2D string vector containing the generated or loaded services dataset.
      */
     inline std::vector<std::vector<std::string>> services(const int num_services = 10) {
         std::filesystem::path service_path = DATA_PATH / "Services.txt";
@@ -174,13 +234,13 @@ namespace data::generate {
     }
 
     /**
-     * @brief Generates or loads device request data representing mobile network users.
-     * @details Merges geographic coordinate data from a base device file with randomness 
-     * service requirements generated by the services routine.
+     * @brief Generates or loads device request data representing IoT network demands.
+     * @details Uniformly samples service requirement profiles from the services dataset 
+     * and assigns them to each device instance. Saves the output to `data/devices/Devices_<length>.txt`.
      * 
      * @param length The total number of devices to generate.
      * @param num_services The number of underlying service templates to sample from.
-     * @return A 2D string vector representing the comprehensive devices dataset.
+     * @return A 2D string vector representing the devices dataset.
      */
     inline std::vector<std::vector<std::string>> devices(const int length, const int num_services = 10) {
         std::filesystem::path device_file_path = DATA_PATH / "devices" / ("Devices_" + std::to_string(length) + ".txt");
@@ -218,6 +278,9 @@ namespace data::generate {
 
     /**
      * @brief Generates or loads server infrastructure data for Edge and Cloud nodes.
+     * @details Creates capacity profiles for `ec_length` Edge servers (`'E'`) and `cc_length`
+     * Cloud servers (`'C'`), saving the table to `data/servers/servers_<ec>_<cc>.txt`.
+     * 
      * @param ec_length The number of Edge Computing servers to generate.
      * @param cc_length The number of Cloud Computing servers to generate.
      * @return A 2D string vector representing the servers dataset.
@@ -261,13 +324,17 @@ namespace data::generate {
     }
 }
 
+/**
+ * @namespace data::load
+ * @brief Parses raw string datasets into strongly-typed `core::Devices` and `core::Servers` vectors.
+ */
 namespace data::load {
 
     /**
-     * @brief Loads device data from generated files into a vector of Device objects.
+     * @brief Loads device data from disk (generating it if absent) into a vector of `core::Device` objects.
      * @param length The total number of devices to load.
-     * @param num_services The number of distinct services to generate. Defaults to 10.
-     * @return A vector of Device objects containing the parsed data.
+     * @param num_services The number of distinct services to generate if absent. Defaults to 10.
+     * @return A 1-indexed `core::Devices` vector containing the parsed device instances.
      */
     inline core::Devices devices(const int length, const int num_services = 10) {
         std::vector<std::vector<std::string>> load_devices = data::generate::devices(length, num_services);
@@ -302,10 +369,10 @@ namespace data::load {
     }
     
     /**
-     * @brief Loads edge and cloud server data from generated files.
+     * @brief Loads Edge and Cloud server data from disk (generating it if absent).
      * @param ec The number of Edge Computing (EC) servers to load.
      * @param cc The number of Cloud Computing (CC) servers to load.
-     * @return A vector of Server objects containing both EC and CC data.
+     * @return A 1-indexed `core::Servers` vector containing both EC and CC server instances.
      */
     inline core::Servers servers(const int ec = 99, const int cc = 1) {
         std::vector<std::vector<std::string>> load_servers = data::generate::servers(ec, cc);
@@ -338,27 +405,32 @@ namespace data::load {
     }    
 }
 
+/**
+ * @namespace metrics
+ * @brief Provides structures and routines for tracking, formatting, and persisting simulation metrics.
+ */
 namespace metrics {
 
     /**
-     * @brief Path pointing to the main results directory.
+     * @brief Path pointing to the root `results/` directory.
      */
     const std::filesystem::path RESULTS_PATH = std::filesystem::current_path() / "results";
 
     /**
-     * @brief Enumerates the paradigms of simulations available.
+     * @enum Paradigm
+     * @brief Enumerates the optimization paradigms supported by the simulator.
      */
     enum class Paradigm {
-        NONE,
-        EXACT,          
-        HEURISTIC,      
-        METAHEURISTIC   
+        NONE,          ///< @brief Uninitialized paradigm.
+        EXACT,         ///< @brief Exact mathematical programming (ILP via CPLEX).
+        HEURISTIC,     ///< @brief Constructive heuristic algorithms.
+        METAHEURISTIC  ///< @brief Meta-heuristic optimization algorithms.
     };
 
     /**
-     * @brief Converts a SimulationType enum value to its string representation.
-     * @param type The SimulationType to convert.
-     * @return String representation of the SimulationType.
+     * @brief Converts a `Paradigm` enum value to its uppercase string representation.
+     * @param paradigm The `Paradigm` value to convert.
+     * @return String representation of the paradigm.
      */
     inline std::string to_string(Paradigm paradigm) {
         switch (paradigm) {
@@ -370,19 +442,22 @@ namespace metrics {
     }
 
     /**
-     * @brief Identifies the base algorithm used for the simulation.
+     * @enum Algorithm
+     * @brief Identifies the specific optimization algorithm used in a simulation run.
      */
     enum class Algorithm {
-        NONE,
-        solver_maximum_cost,
-        greedy_cost_benefit,
-        greedy_random,
-        greedy_random_fallback,
-        simulated_annealing
+        NONE,                   ///< @brief Uninitialized algorithm.
+        solver_maximum_cost,    ///< @brief Exact ILP solver maximizing avoided penalty cost.
+        greedy_cost_benefit,    ///< @brief Deterministic surrogate cost-benefit greedy heuristic.
+        greedy_random,          ///< @brief Single-stage uniform random greedy heuristic.
+        greedy_random_fallback, ///< @brief Two-stage Edge-first random greedy heuristic with Cloud fallback.
+        simulated_annealing     ///< @brief Simulated Annealing meta-heuristic.
     };
 
     /**
-     * @brief Converts the Algorithm enum to a string representation.
+     * @brief Converts an `Algorithm` enum value to its standardized string identifier.
+     * @param algorithm The `Algorithm` value to convert.
+     * @return String representation of the algorithm.
      */
     inline std::string to_string(Algorithm algorithm) {
         switch (algorithm) {
@@ -396,57 +471,94 @@ namespace metrics {
     }
 
     /**
-     * @brief Represents a formatted entry for displaying or saving metrics.
+     * @struct MetricEntry
+     * @brief Represents a formatted key-value entry for displaying or exporting simulation metrics.
      */
     struct MetricEntry {
-        std::string category;
-        std::string header;
-        std::string label;
-        std::string file_value;
-        std::string console_value;
+        std::string category;      ///< @brief Section category header (e.g., `"GENERAL"`, `"DEVICES"`, `"COSTS"`).
+        std::string header;        ///< @brief Short column header name for CSV output.
+        std::string label;         ///< @brief Human-readable row label for console/ASCII table output.
+        std::string file_value;    ///< @brief Raw formatted string value for CSV persistence.
+        std::string console_value; ///< @brief Decorated string value (with units/percentages) for ASCII tables.
     };
 
     /**
-     * @brief Base structure for tracking, calculating, and saving simulation metrics.
+     * @struct Metrics
+     * @brief Polymorphic base structure for tracking, calculating, and saving simulation metrics.
      */
     struct Metrics {
-        Paradigm paradigm = Paradigm::NONE;
-        Algorithm algorithm = Algorithm::NONE;
-        int run_id = 0;
+        Paradigm paradigm = Paradigm::NONE;    ///< @brief Optimization paradigm of the current run.
+        Algorithm algorithm = Algorithm::NONE; ///< @brief Algorithm executed in the current run.
+        int run_id = 0;                        ///< @brief Execution run identifier (1-indexed).
 
+        /**
+         * @struct Inputs
+         * @brief Captures the static input instance dimensions and maximum possible penalty cost.
+         */
         struct Inputs {
-            int devices_count = 0;
-            int servers_ec_count = 0;
-            int servers_cc_count = 0;
-            double max_penalty_cost = 0;
+            int devices_count = 0;       ///< @brief Total number of IoT devices in the instance.
+            int servers_ec_count = 0;    ///< @brief Total number of Edge Computing (EC) servers.
+            int servers_cc_count = 0;    ///< @brief Total number of Cloud Computing (CC) servers.
+            double max_penalty_cost = 0; ///< @brief Sum of penalty costs across all devices if none are served.
 
             Inputs& operator=(const Inputs& other) = default;
-        } inputs;
+        } inputs; ///< @brief Instance input parameters.
 
+        /**
+         * @struct Outputs
+         * @brief Captures the resulting performance and resource utilization metrics after allocation.
+         */
         struct Outputs {
-            double execution_time = 0.0;
-            int    devices_served_count = 0;
-            int    devices_served_ec_count = 0;
-            int    devices_served_cc_count = 0;
-            int    servers_used_count = 0;
-            int    servers_used_ec_count = 0;
-            int    servers_used_cc_count = 0;
-            double total_penalty_cost = 0.0; 
+            double execution_time = 0.0;      ///< @brief Total algorithm runtime in seconds.
+            int    devices_served_count = 0;  ///< @brief Total number of served devices.
+            int    devices_served_ec_count = 0; ///< @brief Number of devices served by Edge (EC) servers.
+            int    devices_served_cc_count = 0; ///< @brief Number of devices served by Cloud (CC) servers.
+            int    servers_used_count = 0;    ///< @brief Total number of active servers hosting at least one device.
+            int    servers_used_ec_count = 0; ///< @brief Number of active Edge (EC) servers.
+            int    servers_used_cc_count = 0; ///< @brief Number of active Cloud (CC) servers.
+            double total_penalty_cost = 0.0;  ///< @brief Total penalty cost of all unserved devices.
 
             Outputs& operator=(const Outputs& other) = default; 
-        } outputs;
+        } outputs; ///< @brief Simulation output metrics.
 
+        /**
+         * @brief Constructs a `Metrics` object with paradigm, algorithm, and run ID.
+         * @param paradigm_ Optimization paradigm.
+         * @param algorithm_name_ Executed algorithm.
+         * @param run_id Current run number.
+         */
         Metrics(Paradigm paradigm_, Algorithm algorithm_name_, int run_id) 
             : paradigm(paradigm_), algorithm(algorithm_name_), run_id(run_id) {}
 
+        /**
+         * @brief Constructs a `Metrics` object copying input dimensions from a base instance.
+         * @param paradigm_ Optimization paradigm.
+         * @param algorithm_name_ Executed algorithm.
+         * @param run_id Current run number.
+         * @param base Shared pointer to a base `Metrics` instance containing input parameters.
+         */
         Metrics(Paradigm paradigm_, Algorithm algorithm_name_, int run_id, const std::shared_ptr<Metrics>& base) 
             : paradigm(paradigm_), algorithm(algorithm_name_), run_id(run_id) {
                 if (base) inputs = base->inputs;
             }
         
+        /**
+         * @brief Constructs a `Metrics` object with explicit instance counts.
+         * @param paradigm_ Optimization paradigm.
+         * @param algorithm_name_ Executed algorithm.
+         * @param run_id Current run number.
+         * @param d Total device count.
+         * @param s_ec Edge server count.
+         * @param s_cc Cloud server count.
+         */
         Metrics(Paradigm paradigm_, Algorithm algorithm_name_, int run_id, int d, int s_ec, int s_cc) 
             : paradigm(paradigm_), algorithm(algorithm_name_), run_id(run_id), inputs({d, s_ec, s_cc, 0}) {}
         
+        /**
+         * @brief Copy-like constructor initializing from an existing `Metrics` pointer and updating `run_id`.
+         * @param base Shared pointer to an existing `Metrics` object.
+         * @param run_id New run identifier.
+         */
         Metrics(const std::shared_ptr<Metrics>& base, int run_id) 
             : paradigm(base ? base->paradigm : Paradigm::NONE), 
               algorithm(base ? base->algorithm : Algorithm::NONE), 
@@ -457,16 +569,31 @@ namespace metrics {
             }
         }
               
+        /**
+         * @brief Virtual destructor for safe polymorphic cleanup.
+         */
         virtual ~Metrics() = default;
         
+        /**
+         * @brief Creates a polymorphic deep copy of this `Metrics` instance.
+         * @return A `std::shared_ptr<Metrics>` pointing to the cloned instance.
+         */
         virtual std::shared_ptr<Metrics> clone() const {
             return std::shared_ptr<Metrics>(new Metrics(*this));
         }
 
+        /**
+         * @brief Returns the output directory path corresponding to the current paradigm.
+         * @return Filesystem path `results/<PARADIGM>`.
+         */
         virtual std::filesystem::path get_base_directory_path() const {
             return RESULTS_PATH / to_string(this->paradigm);
         }
 
+        /**
+         * @brief Builds the list of formatted metric entries for console and file reporting.
+         * @return Vector of `MetricEntry` records.
+         */
         virtual std::vector<MetricEntry> build_metrics() const {
             int current_total = inputs.devices_count;
             int total_servers = inputs.servers_ec_count + inputs.servers_cc_count;
@@ -492,7 +619,8 @@ namespace metrics {
         }
 
         /**
-         * @brief Gets the CSV header line. Now explicitly virtual for overrides.
+         * @brief Returns the CSV header columns for the current metric type.
+         * @return Vector of column header strings.
          */
         virtual std::vector<std::string> get_header() const {
             return {
@@ -503,7 +631,8 @@ namespace metrics {
         }
 
         /**
-         * @brief Collects the metric values dynamically. Now explicitly virtual for overrides.
+         * @brief Collects the metric values matching the columns of `get_header()`.
+         * @return Vector of formatted string values for a single CSV row.
          */
         virtual std::vector<std::string> data() const {
             return {
@@ -526,7 +655,7 @@ namespace metrics {
         }
 
         /**
-         * @brief Appends the current simulation metrics to the corresponding algorithm CSV file.
+         * @brief Appends the current simulation metrics row to the corresponding algorithm CSV file.
          */
         inline void save_to_file() const {
             std::filesystem::path dir_path = this->get_base_directory_path();
@@ -542,28 +671,56 @@ namespace metrics {
     };
 
     /**
-     * @brief Extends Metrics struct to include variables specific to exact mathematical models.
+     * @struct ExactMetrics
+     * @brief Extends `Metrics` to include CPLEX solver status, objective value, and MIP optimality gap.
      */
     struct ExactMetrics : public Metrics {
-        std::string status = "Unknown";
-        double objective_function = 0.0;
-        double gap = 1.0;               
+        std::string status = "Unknown"; ///< @brief Termination status reported by CPLEX (e.g., `"Optimal"`).
+        double objective_function = 0.0; ///< @brief Objective function value achieved by the solver.
+        double gap = 1.0;                ///< @brief Relative MIP optimality gap.
 
+        /**
+         * @brief Constructs an `ExactMetrics` object copying input dimensions from a base instance.
+         * @param algorithm_name_ Exact algorithm identifier.
+         * @param run_id_ Execution run number.
+         * @param base Base metrics pointer containing input parameters.
+         */
         ExactMetrics(Algorithm algorithm_name_, int run_id_, const std::shared_ptr<Metrics>& base) 
             : Metrics(Paradigm::EXACT, algorithm_name_, run_id_, base) {
                 if (base) inputs = base->inputs;
             }
 
+        /**
+         * @brief Constructs an `ExactMetrics` object with explicit instance dimensions.
+         * @param algorithm_name_ Exact algorithm identifier.
+         * @param run_id Execution run number.
+         * @param d Total device count.
+         * @param s_ec Edge server count.
+         * @param s_cc Cloud server count.
+         */
         ExactMetrics(Algorithm algorithm_name_, int run_id, int d, int s_ec, int s_cc) : 
             Metrics(Paradigm::EXACT, algorithm_name_, run_id, d, s_ec, s_cc) {}
         
+        /**
+         * @brief Constructs an `ExactMetrics` object from a base pointer and run ID.
+         * @param base Base metrics pointer.
+         * @param run_id Execution run number.
+         */
         ExactMetrics(const std::shared_ptr<Metrics>& base, int run_id) :
             Metrics(base, run_id) {}
         
+        /**
+         * @brief Clones this `ExactMetrics` instance polymorphically.
+         * @return Shared pointer to the cloned `ExactMetrics` object.
+         */
         std::shared_ptr<Metrics> clone() const override {
             return std::shared_ptr<ExactMetrics>(new ExactMetrics(*this));
         }
 
+        /**
+         * @brief Appends CPLEX solver statistics (`Status`, `OF`, `GAP`) to the base metric entries.
+         * @return Vector of `MetricEntry` records.
+         */
         std::vector<MetricEntry> build_metrics() const override {
             auto m = Metrics::build_metrics();
             m.push_back({"SOLVER STATS", "Status", "Solver Status", status, status});
@@ -572,6 +729,10 @@ namespace metrics {
             return m;
         }
 
+        /**
+         * @brief Appends exact solver column headers (`Status`, `Obj_Function`, `Gap`) to the CSV header.
+         * @return Vector of column header strings.
+         */
         std::vector<std::string> get_header() const override {
             auto h = Metrics::get_header();
             h.push_back("Status");
@@ -580,6 +741,10 @@ namespace metrics {
             return h;
         }
 
+        /**
+         * @brief Appends exact solver values to the CSV row data.
+         * @return Vector of formatted string values.
+         */
         std::vector<std::string> data() const override {
             auto d = Metrics::data();
             d.push_back(status);
@@ -590,48 +755,106 @@ namespace metrics {
     };
 
     /**
-     * @brief Identifies metrics specific to heuristic models.
+     * @struct HeuristicMetrics
+     * @brief Specialization of `Metrics` for constructive heuristic runs.
      */
     struct HeuristicMetrics : public Metrics {
+        /**
+         * @brief Constructs a `HeuristicMetrics` object copying input dimensions from a base instance.
+         * @param algorithm_name_ Heuristic algorithm identifier.
+         * @param run_id_ Execution run number.
+         * @param base Base metrics pointer containing input parameters.
+         */
         HeuristicMetrics(Algorithm algorithm_name_, int run_id_, const std::shared_ptr<Metrics>& base) :
             Metrics(Paradigm::HEURISTIC, algorithm_name_, run_id_, base) {
                 if (base) inputs = base->inputs;
             }
 
+        /**
+         * @brief Constructs a `HeuristicMetrics` object with explicit instance dimensions.
+         * @param algorithm_name_ Heuristic algorithm identifier.
+         * @param run_id Execution run number.
+         * @param d Total device count.
+         * @param s_ec Edge server count.
+         * @param s_cc Cloud server count.
+         */
         HeuristicMetrics(Algorithm algorithm_name_, int run_id, int d, int s_ec, int s_cc) :
             Metrics(Paradigm::HEURISTIC, algorithm_name_, run_id, d, s_ec, s_cc) {}
         
+        /**
+         * @brief Constructs a `HeuristicMetrics` object from a base pointer and run ID.
+         * @param base Base metrics pointer.
+         * @param run_id Execution run number.
+         */
         HeuristicMetrics(const std::shared_ptr<Metrics>& base, int run_id) :
             Metrics(base, run_id) {}
 
+        /**
+         * @brief Clones this `HeuristicMetrics` instance polymorphically.
+         * @return Shared pointer to the cloned `HeuristicMetrics` object.
+         */
         std::shared_ptr<Metrics> clone() const override {
             return std::shared_ptr<HeuristicMetrics>(new HeuristicMetrics(*this));
         }
     };
 
     /**
-     * @brief Extends Metrics struct to include parameters required by meta-heuristic algorithms.
+     * @struct MetaHeuristicMetrics
+     * @brief Extends `Metrics` to track Simulated Annealing hyperparameters and initial heuristic selection.
      */
     struct MetaHeuristicMetrics : public Metrics {
-        Algorithm heuristic = Algorithm::NONE; 
-        double temperature = 0.0;              
-        double alpha = 0.0;                    
+        Algorithm heuristic = Algorithm::NONE; ///< @brief Constructive heuristic used to generate the initial solution.
+        double temperature = 0.0;              ///< @brief Initial temperature $T_0$ for Simulated Annealing.
+        double alpha = 0.0;                    ///< @brief Cooling rate factor $\alpha$ for Simulated Annealing.
 
+        /**
+         * @brief Constructs a `MetaHeuristicMetrics` object copying inputs from a base instance.
+         * @param algorithm_name_ Meta-heuristic algorithm identifier.
+         * @param run_id_ Execution run number.
+         * @param base Base metrics pointer containing input parameters.
+         * @param temperature_ Initial temperature $T_0$.
+         * @param alpha_ Geometric cooling factor $\alpha$.
+         * @param heuristic_ Initial constructive heuristic algorithm.
+         */
         MetaHeuristicMetrics(Algorithm algorithm_name_, int run_id_, const std::shared_ptr<Metrics>& base, double temperature_, double alpha_, Algorithm heuristic_) 
             : Metrics(Paradigm::METAHEURISTIC, algorithm_name_, run_id_, base), temperature(temperature_), alpha(alpha_), heuristic(heuristic_) {
                 if (base) inputs = base->inputs;
             }
 
+        /**
+         * @brief Constructs a `MetaHeuristicMetrics` object with explicit instance dimensions and hyperparameters.
+         * @param algorithm_name_ Meta-heuristic algorithm identifier.
+         * @param run_id Execution run number.
+         * @param d Total device count.
+         * @param s_ec Edge server count.
+         * @param s_cc Cloud server count.
+         * @param temperature_ Initial temperature $T_0$.
+         * @param alpha_ Geometric cooling factor $\alpha$.
+         * @param heuristic_ Initial constructive heuristic algorithm.
+         */
         MetaHeuristicMetrics(Algorithm algorithm_name_, int run_id, int d, int s_ec, int s_cc, double temperature_, double alpha_, Algorithm heuristic_) :
             Metrics(Paradigm::METAHEURISTIC, algorithm_name_, run_id, d, s_ec, s_cc), temperature(temperature_), alpha(alpha_), heuristic(heuristic_) {}
         
+        /**
+         * @brief Constructs a `MetaHeuristicMetrics` object from a base pointer and run ID.
+         * @param base Base metrics pointer.
+         * @param run_id Execution run number.
+         */
         MetaHeuristicMetrics(const std::shared_ptr<Metrics>& base, int run_id) :
             Metrics(base, run_id) {}    
         
+        /**
+         * @brief Clones this `MetaHeuristicMetrics` instance polymorphically.
+         * @return Shared pointer to the cloned `MetaHeuristicMetrics` object.
+         */
         std::shared_ptr<Metrics> clone() const override {
             return std::shared_ptr<MetaHeuristicMetrics>(new MetaHeuristicMetrics(*this));
         }
 
+        /**
+         * @brief Appends meta-heuristic parameters (`Heuristic`, `Temperature`, `Alpha`) to the metric entries.
+         * @return Vector of `MetricEntry` records.
+         */
         std::vector<MetricEntry> build_metrics() const override {
             auto m = Metrics::build_metrics();
             std::string cat = to_string(algorithm) + " PARAMETERS";
@@ -641,6 +864,10 @@ namespace metrics {
             return m;
         }
 
+        /**
+         * @brief Appends meta-heuristic column headers (`Initial_Heuristic`, `Temperature`, `Alpha`) to the CSV header.
+         * @return Vector of column header strings.
+         */
         std::vector<std::string> get_header() const override {
             auto h = Metrics::get_header();
             h.push_back("Initial_Heuristic");
@@ -649,6 +876,10 @@ namespace metrics {
             return h;
         }
 
+        /**
+         * @brief Appends meta-heuristic hyperparameter values to the CSV row data.
+         * @return Vector of formatted string values.
+         */
         std::vector<std::string> data() const override {
             auto d = Metrics::data();
             d.push_back(to_string(heuristic));
@@ -659,22 +890,40 @@ namespace metrics {
     };
 
     /**
-     * @brief Encapsulates the complete state and tracked metrics for a single simulation run.
+     * @struct Result
+     * @brief Encapsulates the complete system state (`Devices`, `Servers`) and polymorphic `Metrics` for a simulation run.
      */
     struct Result {
-        core::Devices devices;          
-        core::Servers servers;          
-        std::shared_ptr<Metrics> stats; 
+        core::Devices devices;          ///< @brief Vector of all IoT devices in the simulation.
+        core::Servers servers;          ///< @brief Vector of all Edge and Cloud servers in the simulation.
+        std::shared_ptr<Metrics> stats; ///< @brief Polymorphic pointer to the run's metrics tracker.
         
+        /**
+         * @brief Constructs a `Result` state from pre-loaded devices and servers vectors.
+         * @param d Vector of devices.
+         * @param s Vector of servers.
+         */
         Result(core::Devices d, core::Servers s)
             : devices(std::move(d)), servers(std::move(s)) {}
             
+        /**
+         * @brief Deep-copy constructor cloning both entities and the polymorphic `stats` pointer.
+         * @param other Source `Result` instance to copy.
+         */
         Result(const Result& other)
             : devices(other.devices), servers(other.servers) {
             if (other.stats) {
                 stats = other.stats->clone();
             }
         }
+
+        /**
+         * @brief Loads (or generates) an instance with the specified dimensions and initializes base metrics.
+         * @param num_devices Number of IoT devices to load.
+         * @param num_services Number of service templates.
+         * @param num_ec Number of Edge Computing servers.
+         * @param num_cc Number of Cloud Computing servers.
+         */ 
         Result(int num_devices, int num_services, int num_ec, int num_cc)
             : devices(data::load::devices(num_devices, num_services)), servers(data::load::servers(num_ec, num_cc)) {
             
@@ -696,6 +945,11 @@ namespace metrics {
             stats->inputs.max_penalty_cost = static_cast<double>(total_cost);
         }
 
+        /**
+         * @brief Deep-copy assignment operator cloning the polymorphic `stats` object.
+         * @param other Source `Result` instance.
+         * @return Reference to `*this`.
+         */
         Result& operator=(const Result& other) {
             if (this != &other) {
                 devices = other.devices;
@@ -708,8 +962,8 @@ namespace metrics {
     };
 
     /**
-     * @brief Computes the final simulation metrics based on the allocated system state.
-     * @param state The simulation result structure holding devices, servers, and stats.
+     * @brief Computes the final simulation metrics based on the current device-to-server allocations.
+     * @param state The simulation result structure holding `devices`, `servers`, and `stats`.
      */
     inline void calculate_metrics(Result& state) {
         if (!state.stats) return;
@@ -754,14 +1008,16 @@ namespace metrics {
     }
 
     /**
-     * @brief Saves the final calculated metrics and generated diagrams to the file system.
+     * @brief Saves the final calculated metrics and ASCII summary tables to the file system.
      * @param state The simulation result structure to be saved.
+     * @param show_servers_usage Flag to indicate if individual server resource usage should be printed.
      */
     inline void save_results(const Result& state, bool show_servers_usage = false);
 }
 
 /**
- * @brief Utility namespace for displaying struct details natively via console or files.
+ * @namespace display
+ * @brief Utility namespace for formatting and printing entities and ASCII metric tables to console or files.
  */
 namespace display {
 
@@ -836,9 +1092,13 @@ namespace display {
         }
     }
 
+    /**
+     * @namespace display::details
+     * @brief Internal helper routines for rendering ASCII box-drawing tables.
+     */
     namespace details {
-        const int total_width = 72;
-        const int label_width = 26; 
+        const int total_width = 72; ///< @brief Total character width of the formatted ASCII table.
+        const int label_width = 26; ///< @brief Character width allocated to the left-hand label column.
        
         /**
          * @brief Prints a formatted key-value row within the ASCII table.
@@ -967,11 +1227,6 @@ namespace display {
     }
 }
 
-/**
- * @brief Saves the final calculated metrics and generated diagrams to the file system.
- * @param state The simulation result structure to be saved.
- * @param show_servers_usage Flag to indicate if server usage should be displayed.
- */
 inline void metrics::save_results(const Result& state, bool show_servers_usage) {
     if (!state.stats) return;
     state.stats->save_to_file();

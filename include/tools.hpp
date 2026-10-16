@@ -1,3 +1,9 @@
+/**
+ * @file tools.hpp
+ * @brief General-purpose utilities for CSV I/O, string formatting, random number generation, and indirect sorting.
+ * @details Header-only toolkit providing foundational helper functions used across the MMKP simulator.
+ */
+
 #pragma once
 
 #include <algorithm>
@@ -22,25 +28,26 @@
 
 
 /**
- * @brief Small constant used to prevent exact zero values in random generation.
+ * @brief Small epsilon constant used for floating-point comparisons and non-zero lower bounds.
  */
 constexpr double ZERO = 1e-13;
 
 /**
- * @brief Global standard for decimal places in floating-point formatting.
+ * @brief Global default precision (number of decimal places) for floating-point string formatting.
  */
 constexpr int DECIMAL_PLACES = 10;
 
 /**
- * @brief Provides basic file I/O operations specifically for CSV files.
+ * @namespace file_manager::csv
+ * @brief Provides file I/O operations for reading, writing, and appending delimited CSV/text files.
  */
 namespace file_manager::csv {
 
     /**
-     * @brief Reads a CSV file into a 2D vector of strings.
+     * @brief Reads a delimited CSV file into a 2D vector of strings.
      * @param file_path The full path to the file to be read.
-     * @param delimiter The character that separates columns, defaults to comma.
-     * @return An optional containing a 2D vector of strings upon success, or std::nullopt on failure.
+     * @param delimiter The character that separates columns (defaults to `','`).
+     * @return An `std::optional` containing the 2D vector of strings upon success, or `std::nullopt` on failure.
      */
     inline std::optional<std::vector<std::vector<std::string>>> read(const std::string& file_path, char delimiter = ',') {
         std::ifstream file(file_path);
@@ -69,11 +76,11 @@ namespace file_manager::csv {
     }
 
     /**
-     * @brief Writes a 2D vector of strings to a CSV file.
+     * @brief Writes a 2D vector of strings to a CSV file, creating parent directories if needed.
      * @param file_path The full path to the output file.
      * @param data The 2D vector of strings to write.
-     * @param delimiter The character used for separating columns, defaults to comma.
-     * @return True if successful, false otherwise.
+     * @param delimiter The character used for separating columns (defaults to `','`).
+     * @return `true` if the file was written successfully; `false` otherwise.
      */
     inline bool write(const std::string& file_path, const std::vector<std::vector<std::string>>& data, char delimiter = ',') {
         std::filesystem::path path(file_path);
@@ -102,11 +109,11 @@ namespace file_manager::csv {
     }
 
     /**
-     * @brief Appends a 2D vector of strings to a CSV file.
+     * @brief Appends a 2D vector of strings to an existing or new CSV file.
      * @param file_path The full path to the output file.
      * @param data The 2D vector of strings to append.
-     * @param delimiter The character used for separating columns, defaults to comma.
-     * @return True if successful, false otherwise.
+     * @param delimiter The character used for separating columns (defaults to `','`).
+     * @return `true` if the data was appended successfully; `false` otherwise.
      */
     inline bool append(const std::string& file_path, const std::vector<std::vector<std::string>>& data, char delimiter = ',') {
         std::filesystem::path path(file_path);
@@ -139,9 +146,9 @@ namespace file_manager::csv {
     }
 
     /**
-     * @brief Counts the number of lines in a file.
+     * @brief Counts the total number of lines in a file.
      * @param file_path The full path to the file.
-     * @return The total number of lines, or 0 if it cannot be opened.
+     * @return The total number of lines, or `0` if the file does not exist or cannot be opened.
      */
     inline int count_lines(const std::string& file_path) {
         if (!std::filesystem::exists(file_path)) {
@@ -161,17 +168,26 @@ namespace file_manager::csv {
         return count;
     }
 
-} namespace csv = file_manager::csv; // Alias for easier access
+}
 
+/**
+ * @brief Short namespace alias for `file_manager::csv`.
+ */
+namespace csv = file_manager::csv;
+
+/**
+ * @namespace convert
+ * @brief String conversion and formatting utilities for numbers, percentages, vectors, and sets.
+ */
 namespace convert {
     
     /**
-     * @brief Converts a value of any type to its string representation.
-     * @details Uses `std::ostringstream` for conversion, applying fixed-point notation with specified precision for floating-point types.
+     * @brief Converts a value of any streamable type to its string representation.
+     * @details Uses `std::ostringstream` for conversion, applying fixed-point notation with the specified precision for floating-point types.
      * @tparam T The data type of the value to be converted.
      * @param value The value to convert.
      * @param precision The number of decimal places for floating-point types.
-     * @return A string representation of the input value.
+     * @return A formatted string representation of `value`.
      */
     template <typename T>
     inline std::string to_string(const T& value, int precision = DECIMAL_PLACES) {
@@ -185,7 +201,7 @@ namespace convert {
 
     /**
      * @brief Calculates a percentage and converts it to a formatted string.
-     * @details Computes `(numerator / denominator) * 100.0` and returns it as a string. Safely handles division by zero.
+     * @details Computes $(\text{numerator} / \text{denominator}) \times 100.0$ and formats it to `precision` decimal places. Safely returns `0.0` when `denominator == 0.0`.
      * @param numerator The value representing the part of the total.
      * @param denominator The value representing the total.
      * @param precision The number of decimal places for the resulting percentage string.
@@ -200,10 +216,10 @@ namespace convert {
     }
 
     /**
-     * @brief Converts a vector of any primitive type to a JSON-like string representation.
+     * @brief Converts a vector of primitive types to a bracketed array string representation.
      * @tparam T The type of elements in the vector.
      * @param vec The vector to convert.
-     * @return A string formatted as an array (e.g., "[e1,e2,...]").
+     * @return A string formatted as `"[e1,e2,...]"`.
      */
     template <typename T>
     inline std::string vector_to_string(const std::vector<T>& vec) {
@@ -218,10 +234,10 @@ namespace convert {
     }
 
     /**
-     * @brief Converts a set of any primitive type to a JSON-like string representation.
+     * @brief Converts a `std::set` of primitive types to a bracketed array string representation.
      * @tparam T The type of elements in the set.
      * @param s The set to convert.
-     * @return A string formatted as an array (e.g., "[e1,e2,...]").
+     * @return A string formatted as `"[e1,e2,...]"`.
      */
     template <typename T>
     inline std::string set_to_string(const std::set<T>& s) {
@@ -238,11 +254,15 @@ namespace convert {
     }
 }
 
+/**
+ * @namespace randomness
+ * @brief Mersenne Twister (`std::mt19937`) random number generation and permutation utilities.
+ */
 namespace randomness {
 
     /**
-     * @brief Provides a singleton instance of a high-quality random number engine.
-     * @details Returns a reference to a static `std::mt19937` engine seeded with `std::random_device`.
+     * @brief Provides a singleton instance of a pseudo-random number engine.
+     * @details Returns a reference to a static `std::mt19937` engine seeded once via `std::random_device`.
      * @return A reference to the static `std::mt19937` random engine.
      */
     inline std::mt19937& get_engine() {
@@ -252,12 +272,12 @@ namespace randomness {
     }
 
     /**
-     * @brief Generates a random number within a specified inclusive interval.
-     * @tparam T The numeric type (must be arithmetic).
+     * @brief Generates a uniform random number within a specified inclusive interval $[\text{min}, \text{max}]$.
+     * @tparam T The numeric type (must satisfy `std::is_arithmetic_v<T>`).
      * @param min The lower bound of the interval (inclusive).
      * @param max The upper bound of the interval (inclusive).
-     * @return A random number within the specified range.
-     * @throws std::invalid_argument If min is greater than max.
+     * @return A uniformly distributed random number within $[\text{min}, \text{max}]$.
+     * @throws std::invalid_argument If `min > max`.
      */
     template<typename T>
     inline T random_number(T min, T max) {
@@ -276,14 +296,14 @@ namespace randomness {
     }
 
     /**
-     * @brief Generates a random number within a specified inclusive interval, excluding values from a vector.
-     * @details The generated number is automatically appended to the exclusion vector to prevent future duplicates.
-     * @tparam T The numeric type (must be arithmetic).
+     * @brief Generates a random number within $[\text{min}, \text{max}]$, excluding values present in `exclude`.
+     * @details The generated number is automatically appended to `exclude` to prevent future duplicates.
+     * @tparam T The numeric type (must satisfy `std::is_arithmetic_v<T>`).
      * @param min The lower bound of the interval (inclusive).
      * @param max The upper bound of the interval (inclusive).
      * @param exclude A reference to a vector containing values to be excluded.
-     * @return A random number within the specified range.
-     * @throws std::invalid_argument If min is greater than max, or if all possible integral values are excluded.
+     * @return A random number within $[\text{min}, \text{max}]$ not previously in `exclude`.
+     * @throws std::invalid_argument If `min > max`, or if all possible integral values in the range are already excluded.
      */
     template<typename T>
     inline T random_number(T min, T max, std::vector<T>& exclude) {
@@ -317,12 +337,12 @@ namespace randomness {
     }
 
     /**
-     * @brief Creates a vector of unique integers in random order within an inclusive range.
+     * @brief Creates a randomly shuffled vector containing all integers in the inclusive range $[\text{min}, \text{max}]$.
      * @tparam T The integral type for the range.
      * @param min The lower bound of the range (inclusive).
      * @param max The upper bound of the range (inclusive).
-     * @return A randomly shuffled vector containing all integers from min to max.
-     * @throws std::invalid_argument If min is greater than max.
+     * @return A randomly shuffled `std::vector<T>` of unique integers from `min` to `max`.
+     * @throws std::invalid_argument If `min > max`.
      */
     template<typename T>
     inline std::vector<T> shuffled_range(T min, T max) {
@@ -337,21 +357,26 @@ namespace randomness {
     }
 }
 
+/**
+ * @namespace sorting
+ * @brief Generic index-based sorting utilities for ordering 1-indexed entity vectors by member attributes.
+ */
 namespace sorting {
 
     /**
-     * @brief Internal details for generic implementations.
+     * @namespace sorting::details
+     * @brief Internal implementation helpers for pointer-to-member index sorting.
      */
     namespace details {
 
         /**
-         * @brief Internal sorting implementation logic that maps a member attribute.
-         * @tparam Ascending Sort direction flag.
+         * @brief Sorts a vector of indices based on a specified struct/class member attribute.
+         * @tparam Ascending Sort direction flag (`true` for ascending, `false` for descending).
          * @tparam T Entity struct/class type.
-         * @tparam AttributeType Data type of the sorted attribute.
+         * @tparam AttributeType Data type of the sorted member attribute.
          * @tparam AttributePtr Pointer-to-member specifying the comparison attribute.
-         * @param entities Constant reference to the data vector.
-         * @param idxs Vector of indices to be sorted.
+         * @param entities Constant reference to the entity vector.
+         * @param idxs Vector of 1-based indices to be sorted in-place.
          */
         template <bool Ascending, typename T, typename AttributeType, AttributeType T::* AttributePtr>
         void sort_indices_impl(const std::vector<T>& entities, std::vector<int>& idxs) {
@@ -372,14 +397,14 @@ namespace sorting {
     }
 
     /**
-     * @brief Sorts the indices of all entities (from 1 to N-1) by a specific struct/class attribute.
-     * @details Original vector is not modified. Assumes 1-based indexing for internal simulation logic. 
-     * @tparam Ascending If true, sorts in ascending order; otherwise, descending.
+     * @brief Sorts the indices of all entities (from `1` to `N-1`) by a specific struct/class attribute.
+     * @details Does not mutate the original `entities` vector. Assumes 1-based indexing where index `0` is a placeholder.
+     * @tparam Ascending If `true`, sorts in ascending order; otherwise, descending.
      * @tparam T The type of the entity.
      * @tparam AttributeType The data type of the member attribute.
      * @tparam AttributePtr Pointer-to-member specifying the attribute for comparison.
-     * @param entities The constant vector of entities.
-     * @return A new vector containing the sorted indices.
+     * @param entities The constant 1-indexed vector of entities.
+     * @return A new `std::vector<int>` containing the sorted 1-based indices.
      */
     template <bool Ascending, typename T, typename AttributeType, AttributeType T::* AttributePtr>
     inline std::vector<int> sort_entities(const std::vector<T>& entities) {
@@ -391,14 +416,14 @@ namespace sorting {
     }
 
     /**
-     * @brief Sorts a subset of entity indices by a specific attribute.
-     * @tparam Ascending If true, sorts in ascending order; otherwise, descending.
+     * @brief Sorts a specific subset of entity indices by a struct/class member attribute.
+     * @tparam Ascending If `true`, sorts in ascending order; otherwise, descending.
      * @tparam T The type of the entity.
      * @tparam AttributeType The data type of the member attribute.
      * @tparam AttributePtr Pointer-to-member specifying the attribute for comparison.
-     * @param entities The constant vector of entities.
-     * @param indices_to_sort A vector of integers representing the subset of indices to sort.
-     * @return A new vector containing the sorted subset indices.
+     * @param entities The constant 1-indexed vector of entities.
+     * @param indices_to_sort A vector of integers representing the subset of 1-based indices to sort.
+     * @return A new `std::vector<int>` containing the sorted subset indices.
      */
     template <bool Ascending, typename T, typename AttributeType, AttributeType T::* AttributePtr>
     inline std::vector<int> sort_entities(const std::vector<T>& entities, const std::vector<int>& indices_to_sort) {

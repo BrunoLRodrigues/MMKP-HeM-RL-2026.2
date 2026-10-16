@@ -1,48 +1,55 @@
+/**
+ * @file metaheuristic.hpp
+ * @brief Meta-heuristic optimization algorithms and neighborhood operators for MMKP.
+ * @details Implements Simulated Annealing (SA) with incremental delta evaluation and
+ * shift/insert/swap neighborhood moves to refine initial constructive heuristic solutions.
+ */
+
 #pragma once
 
 #include "mmkp.hpp"
 #include "heuristic.hpp"
 #include "tools.hpp"
 
-#include <chrono>
-#include <cmath>
-#include <iostream>
-#include <memory>
-#include <utility>
-
 /**
+ * @namespace metaheuristic
  * @brief Encapsulates meta-heuristic algorithms for network resource allocation.
- * @details Provides advanced optimization techniques, such as Simulated Annealing, 
- * to iteratively improve initial heuristic solutions by exploring neighborhood structures.
+ * @details Provides trajectory-based optimization techniques, specifically Simulated Annealing, 
+ * to iteratively improve initial heuristic solutions by exploring shift, insertion, and 
+ * 1-for-1 swap neighborhood structures.
  */
 namespace metaheuristic {
 
     namespace {
 
+        /**
+         * @brief Number of inner-loop iterations (Markov chain length) executed per temperature level.
+         */
         constexpr int LOOP = 10;
 
         /**
-         * @brief Represents a state transition within the neighborhood search.
+         * @struct Move
+         * @brief Represents a reversible state transition within the neighborhood search.
          */
         struct Move {
-            bool valid = false;      ///< @brief Indicates if the move was successfully applied.
-            int device_id = -1;      ///< @brief ID of the primary device.
-            int old_server_id = -1;  ///< @brief Original server of the primary device.
-            int new_server_id = -1;  ///< @brief New server of the primary device.
-            int swapped_id = -1;     ///< @brief ID of the secondary device removed in a swap.
-            double delta_cost = 0.0; ///< @brief The change in total penalty cost.
+            bool valid = false;      ///< @brief Indicates if a feasible move was found and applied.
+            int device_id = -1;      ///< @brief ID of the primary device involved in the move.
+            int old_server_id = -1;  ///< @brief Original server ID of the primary device (`-1` if previously unserved).
+            int new_server_id = -1;  ///< @brief Target server ID where the primary device was allocated.
+            int swapped_id = -1;     ///< @brief ID of the secondary device evicted in a swap (`-1` if not a swap).
+            double delta_cost = 0.0; ///< @brief Net change in total penalty cost resulting from the move.
         };
 
         /**
          * @brief Applies a shift, insert, or swap neighborhood move to the current state.
          * @details Selects a random device and attempts to allocate or shift it across random 
          * servers (including a fallback check on the last server for unserved devices). If direct 
-         * allocation fails for an unserved device, attempts a 1-for-1 swap with a served device.
+         * allocation fails for an unserved device, attempts a 1-for-1 swap with a currently served device.
          * 
          * @param devices The global state vector of devices.
          * @param servers The global state vector of servers.
-         * @param tries The maximum number of server selection attempts.
-         * @return Move A structure containing the applied transition details.
+         * @param tries The maximum number of random candidate attempts.
+         * @return Move A structure containing the applied transition details and cost variation.
          */
         inline Move apply_neighbor(core::Devices& devices, core::Servers& servers, int tries = 10) {
             Move move;
@@ -105,10 +112,12 @@ namespace metaheuristic {
         }
     
         /**
-         * @brief Reverts a previously applied neighborhood move.
+         * @brief Reverts a previously applied neighborhood move in $O(\log N)$ time.
+         * @details Restores the exact server allocations and resource supplies prior to `apply_neighbor`.
+         * 
          * @param devices The global state vector of devices.
          * @param servers The global state vector of servers.
-         * @param move The Move structure containing the transition details.
+         * @param move The `Move` structure containing the transition details to undo.
          */
         inline void revert_neighbor(core::Devices& devices, core::Servers& servers, const Move& move) {
             core::Device& device = devices[move.device_id];
@@ -127,8 +136,9 @@ namespace metaheuristic {
         /**
          * @brief Executes the Simulated Annealing (SA) optimization algorithm.
          * @details Iteratively explores the solution space by applying random neighborhood moves. 
-         * It accepts worse solutions with a probability dependent on the current temperature 
-         * to escape local optima, cooling down progressively based on the alpha factor.
+         * Accepts worsening moves according to the Metropolis criterion $\exp(-\Delta / T)$ 
+         * to escape local optima, cooling down geometrically via factor $\alpha$ until $T \le 10^{-3}$.
+         * Uses lazy synchronization for tracking the best-found state.
          * 
          * @param state The unified simulation state containing devices, servers, and metrics.
          */
@@ -202,8 +212,9 @@ namespace metaheuristic {
 
     /**
      * @brief Initializes and launches the selected meta-heuristic algorithm.
-     * @details Generates an initial solution using a specified base heuristic 
-     * and then applies the configured meta-heuristic to optimize the allocation further.
+     * @details Generates an initial solution using the configured constructive base heuristic, 
+     * records its standalone metrics in the heuristic results directory, and then executes 
+     * the meta-heuristic optimization over the resulting state.
      * 
      * @param state The unified simulation state to be optimized.
      */
