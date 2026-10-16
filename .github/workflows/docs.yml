@@ -31,6 +31,9 @@ jobs:
 
       - name: Generate HTML and PDF documentation
         run: |
+          sed -i '/img.shields.io/d' README.md
+          sed -i 's/\$\\ge 3.10\$/\>= 3.10/g' README.md
+
           doxygen docs/Doxyfile
           make -C docs/latex
           cp docs/latex/refman.pdf docs/html/MMKP_Documentation.pdf
