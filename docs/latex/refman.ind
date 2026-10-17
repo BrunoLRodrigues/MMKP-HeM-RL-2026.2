@@ -1,16 +1,655 @@
 \begin{theindex}
 
-  \item {convert}, \hyperpage{6}
-    \subitem {set\_to\_string}, \hyperpage{6}
+  \item {\texorpdfstring{$\sim$}{\string~}Metrics}
+    \subitem {metrics::Metrics}, \hyperpage{53}
 
   \indexspace
 
+  \item {add\_service}
+    \subitem {core::Server}, \hyperpage{62}
+  \item {Algorithm}
+    \subitem {metrics}, \hyperpage{24}
+  \item {algorithm}
+    \subitem {metrics::ExactMetrics}, \hyperpage{36}
+    \subitem {metrics::HeuristicMetrics}, \hyperpage{41}
+    \subitem {metrics::MetaHeuristicMetrics}, \hyperpage{47}
+    \subitem {metrics::Metrics}, \hyperpage{54}
+  \item {ALPHA}
+    \subitem {main.cpp}, \hyperpage{108}
+  \item {alpha}
+    \subitem {metrics::MetaHeuristicMetrics}, \hyperpage{47}
+  \item {append}
+    \subitem {file\_manager::csv}, \hyperpage{17}
+  \item {apply\_neighbor}
+    \subitem {metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}}, 
+		\hyperpage{21}
+
+  \indexspace
+
+  \item {boot}
+    \subitem {exact}, \hyperpage{16}
+    \subitem {heuristic}, \hyperpage{19}
+    \subitem {metaheuristic}, \hyperpage{21}
+  \item {build\_metrics}
+    \subitem {metrics::ExactMetrics}, \hyperpage{35}
+    \subitem {metrics::HeuristicMetrics}, \hyperpage{40}
+    \subitem {metrics::MetaHeuristicMetrics}, \hyperpage{46}
+    \subitem {metrics::Metrics}, \hyperpage{53}
+
+  \indexspace
+
+  \item {calculate\_metrics}
+    \subitem {metrics}, \hyperpage{24}
+  \item {can\_serve}
+    \subitem {core::Server}, \hyperpage{63}
+  \item {category}
+    \subitem {metrics::MetricEntry}, \hyperpage{49}
+  \item {CC\_LENGTH}
+    \subitem {main.cpp}, \hyperpage{108}
+  \item {clone}
+    \subitem {metrics::ExactMetrics}, \hyperpage{35}
+    \subitem {metrics::HeuristicMetrics}, \hyperpage{40}
+    \subitem {metrics::MetaHeuristicMetrics}, \hyperpage{46}
+    \subitem {metrics::Metrics}, \hyperpage{53}
+  \item {console\_value}
+    \subitem {metrics::MetricEntry}, \hyperpage{49}
+  \item {convert}, \hyperpage{5}
+    \subitem {set\_to\_string}, \hyperpage{6}
+    \subitem {to\_percentage\_string}, \hyperpage{6}
+    \subitem {to\_string}, \hyperpage{7}
+    \subitem {vector\_to\_string}, \hyperpage{7}
+  \item {core}, \hyperpage{8}
+    \subitem {Devices}, \hyperpage{8}
+    \subitem {Servers}, \hyperpage{8}
+  \item {core::Device}, \hyperpage{30}
+    \subitem {cost}, \hyperpage{31}
+    \subitem {cpu}, \hyperpage{32}
+    \subitem {Device}, \hyperpage{31}
+    \subitem {id}, \hyperpage{32}
+    \subitem {mem}, \hyperpage{32}
+    \subitem {served}, \hyperpage{32}
+    \subitem {server\_id}, \hyperpage{32}
+    \subitem {service}, \hyperpage{32}
+    \subitem {sto}, \hyperpage{32}
+    \subitem {tasks}, \hyperpage{32}
+  \item {core::Server}, \hyperpage{60}
+    \subitem {add\_service}, \hyperpage{62}
+    \subitem {can\_serve}, \hyperpage{63}
+    \subitem {cpu}, \hyperpage{63}
+    \subitem {id}, \hyperpage{63}
+    \subitem {mem}, \hyperpage{64}
+    \subitem {rmv\_service}, \hyperpage{63}
+    \subitem {Server}, \hyperpage{62}
+    \subitem {sto}, \hyperpage{64}
+    \subitem {supply}, \hyperpage{64}
+    \subitem {type}, \hyperpage{64}
+  \item {core::Supply}, \hyperpage{64}
+    \subitem {cost}, \hyperpage{66}
+    \subitem {cpu}, \hyperpage{66}
+    \subitem {devices}, \hyperpage{66}
+    \subitem {mem}, \hyperpage{66}
+    \subitem {sto}, \hyperpage{67}
+    \subitem {Supply}, \hyperpage{66}
+  \item {cost}
+    \subitem {core::Device}, \hyperpage{31}
+    \subitem {core::Supply}, \hyperpage{66}
+  \item {count\_lines}
+    \subitem {file\_manager::csv}, \hyperpage{18}
+  \item {CPLEX\_TIME\_LIMIT}
+    \subitem {main.cpp}, \hyperpage{108}
+  \item {cpu}
+    \subitem {core::Device}, \hyperpage{32}
+    \subitem {core::Server}, \hyperpage{63}
+    \subitem {core::Supply}, \hyperpage{66}
+
+  \indexspace
+
+  \item {data}, \hyperpage{8}
+    \subitem {metrics::ExactMetrics}, \hyperpage{36}
+    \subitem {metrics::HeuristicMetrics}, \hyperpage{40}
+    \subitem {metrics::MetaHeuristicMetrics}, \hyperpage{46}
+    \subitem {metrics::Metrics}, \hyperpage{53}
+  \item {data::generate}, \hyperpage{8}
+    \subitem {DATA\_PATH}, \hyperpage{10}
+    \subitem {devices}, \hyperpage{9}
+    \subitem {servers}, \hyperpage{9}
+    \subitem {services}, \hyperpage{10}
+  \item {data::load}, \hyperpage{10}
+    \subitem {devices}, \hyperpage{11}
+    \subitem {servers}, \hyperpage{11}
+  \item {DATA\_PATH}
+    \subitem {data::generate}, \hyperpage{10}
+  \item {DECIMAL\_PLACES}
+    \subitem {tools.hpp}, \hyperpage{100}
+  \item {delta\_cost}
+    \subitem {metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}::Move}, 
+		\hyperpage{55}
+  \item {Device}
+    \subitem {core::Device}, \hyperpage{31}
+  \item {device\_id}
+    \subitem {metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}::Move}, 
+		\hyperpage{55}
+  \item {Devices}
+    \subitem {core}, \hyperpage{8}
+  \item {devices}
+    \subitem {core::Supply}, \hyperpage{66}
+    \subitem {data::generate}, \hyperpage{9}
+    \subitem {data::load}, \hyperpage{11}
+    \subitem {metrics::Result}, \hyperpage{60}
+  \item {devices\_count}
+    \subitem {metrics::Metrics::Inputs}, \hyperpage{43}
+  \item {DEVICES\_END}
+    \subitem {main.cpp}, \hyperpage{108}
+  \item {devices\_served\_cc\_count}
+    \subitem {metrics::Metrics::Outputs}, \hyperpage{57}
+  \item {devices\_served\_count}
+    \subitem {metrics::Metrics::Outputs}, \hyperpage{57}
+  \item {devices\_served\_ec\_count}
+    \subitem {metrics::Metrics::Outputs}, \hyperpage{57}
+  \item {DEVICES\_START}
+    \subitem {main.cpp}, \hyperpage{108}
+  \item {DEVICES\_STEP}
+    \subitem {main.cpp}, \hyperpage{109}
+  \item {display}, \hyperpage{11}
+    \subitem {show\_device}, \hyperpage{12}
+    \subitem {show\_devices}, \hyperpage{12}
+    \subitem {show\_metrics}, \hyperpage{12}
+    \subitem {show\_metrics\_console\_or\_file}, \hyperpage{13}
+    \subitem {show\_server}, \hyperpage{13}
+    \subitem {show\_servers}, \hyperpage{13}
+    \subitem {show\_servers\_usage}, \hyperpage{13}
+  \item {display::details}, \hyperpage{14}
+    \subitem {label\_width}, \hyperpage{15}
+    \subitem {print\_header}, \hyperpage{14}
+    \subitem {print\_middle}, \hyperpage{14}
+    \subitem {print\_row}, \hyperpage{15}
+    \subitem {print\_title}, \hyperpage{15}
+    \subitem {total\_width}, \hyperpage{15}
+
+  \indexspace
+
+  \item {EC\_LENGTH}
+    \subitem {main.cpp}, \hyperpage{109}
+  \item {EXACT}
+    \subitem {metrics}, \hyperpage{24}
+  \item {exact}, \hyperpage{15}
+    \subitem {boot}, \hyperpage{16}
+    \subitem {NumVar2D}, \hyperpage{16}
+  \item {exact::anonymous\_namespace\lcurly{}exact.hpp\rcurly{}}, 
+		\hyperpage{16}
+    \subitem {solver\_maximum\_cost}, \hyperpage{16}
+  \item {ExactMetrics}
+    \subitem {metrics::ExactMetrics}, \hyperpage{34, 35}
+  \item {execution\_time}
+    \subitem {metrics::Metrics::Outputs}, \hyperpage{57}
+
+  \indexspace
+
+  \item {file\_manager}, \hyperpage{17}
+  \item {file\_manager::csv}, \hyperpage{17}
+    \subitem {append}, \hyperpage{17}
+    \subitem {count\_lines}, \hyperpage{18}
+    \subitem {read}, \hyperpage{18}
+    \subitem {write}, \hyperpage{18}
+  \item {file\_value}
+    \subitem {metrics::MetricEntry}, \hyperpage{49}
+  \item {FIXED\_PENALTY}
+    \subitem {main.cpp}, \hyperpage{109}
+
+  \indexspace
+
+  \item {gap}
+    \subitem {metrics::ExactMetrics}, \hyperpage{36}
+  \item {get\_base\_directory\_path}
+    \subitem {metrics::ExactMetrics}, \hyperpage{36}
+    \subitem {metrics::HeuristicMetrics}, \hyperpage{41}
+    \subitem {metrics::MetaHeuristicMetrics}, \hyperpage{47}
+    \subitem {metrics::Metrics}, \hyperpage{54}
+  \item {get\_engine}
+    \subitem {randomness}, \hyperpage{26}
+  \item {get\_header}
+    \subitem {metrics::ExactMetrics}, \hyperpage{36}
+    \subitem {metrics::HeuristicMetrics}, \hyperpage{41}
+    \subitem {metrics::MetaHeuristicMetrics}, \hyperpage{47}
+    \subitem {metrics::Metrics}, \hyperpage{54}
+  \item {greedy\_cost\_benefit}
+    \subitem {heuristic::anonymous\_namespace\lcurly{}heuristic.hpp\rcurly{}}, 
+		\hyperpage{19}
+    \subitem {metrics}, \hyperpage{24}
+  \item {greedy\_random}
+    \subitem {heuristic::anonymous\_namespace\lcurly{}heuristic.hpp\rcurly{}}, 
+		\hyperpage{20}
+    \subitem {metrics}, \hyperpage{24}
+  \item {greedy\_random\_fallback}
+    \subitem {heuristic::anonymous\_namespace\lcurly{}heuristic.hpp\rcurly{}}, 
+		\hyperpage{20}
+    \subitem {metrics}, \hyperpage{24}
+
+  \indexspace
+
+  \item {header}
+    \subitem {metrics::MetricEntry}, \hyperpage{50}
+  \item {HEURISTIC}
+    \subitem {metrics}, \hyperpage{24}
+  \item {heuristic}, \hyperpage{19}
+    \subitem {boot}, \hyperpage{19}
+    \subitem {metrics::MetaHeuristicMetrics}, \hyperpage{47}
+  \item {heuristic::anonymous\_namespace\lcurly{}heuristic.hpp\rcurly{}}, 
+		\hyperpage{19}
+    \subitem {greedy\_cost\_benefit}, \hyperpage{19}
+    \subitem {greedy\_random}, \hyperpage{20}
+    \subitem {greedy\_random\_fallback}, \hyperpage{20}
+  \item {HeuristicMetrics}
+    \subitem {metrics::HeuristicMetrics}, \hyperpage{39, 40}
+
+  \indexspace
+
+  \item {i\_matrix}
+    \subitem {mmkp.hpp}, \hyperpage{81}
+  \item {i\_set}
+    \subitem {mmkp.hpp}, \hyperpage{81}
+  \item {i\_vector}
+    \subitem {mmkp.hpp}, \hyperpage{81}
+  \item {id}
+    \subitem {core::Device}, \hyperpage{32}
+    \subitem {core::Server}, \hyperpage{63}
+  \item {id\_pair}
+    \subitem {mmkp.hpp}, \hyperpage{81}
+  \item {id\_pair\_vector}
+    \subitem {mmkp.hpp}, \hyperpage{81}
+  \item {ii\_pair}
+    \subitem {mmkp.hpp}, \hyperpage{82}
+  \item {ii\_pair\_vector}
+    \subitem {mmkp.hpp}, \hyperpage{82}
+  \item {include/exact.hpp}, \hyperpage{67, 68}
+  \item {include/heuristic.hpp}, \hyperpage{70, 71}
+  \item {include/metaheuristic.hpp}, \hyperpage{73}, \hyperpage{75}
+  \item {include/mmkp.hpp}, \hyperpage{78}, \hyperpage{82}
+  \item {include/tools.hpp}, \hyperpage{98}, \hyperpage{101}
+  \item {inputs}
+    \subitem {metrics::ExactMetrics}, \hyperpage{37}
+    \subitem {metrics::HeuristicMetrics}, \hyperpage{41}
+    \subitem {metrics::MetaHeuristicMetrics}, \hyperpage{48}
+    \subitem {metrics::Metrics}, \hyperpage{54}
+
+  \indexspace
+
+  \item {label}
+    \subitem {metrics::MetricEntry}, \hyperpage{50}
+  \item {label\_width}
+    \subitem {display::details}, \hyperpage{15}
+  \item {LOOP}
+    \subitem {metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}}, 
+		\hyperpage{23}
+
+  \indexspace
+
+  \item {main}
+    \subitem {main.cpp}, \hyperpage{107}
+  \item {main.cpp}
+    \subitem {ALPHA}, \hyperpage{108}
+    \subitem {CC\_LENGTH}, \hyperpage{108}
+    \subitem {CPLEX\_TIME\_LIMIT}, \hyperpage{108}
+    \subitem {DEVICES\_END}, \hyperpage{108}
+    \subitem {DEVICES\_START}, \hyperpage{108}
+    \subitem {DEVICES\_STEP}, \hyperpage{109}
+    \subitem {EC\_LENGTH}, \hyperpage{109}
+    \subitem {FIXED\_PENALTY}, \hyperpage{109}
+    \subitem {main}, \hyperpage{107}
+    \subitem {MAX\_RUNS}, \hyperpage{109}
+    \subitem {run\_simulation}, \hyperpage{107}
+    \subitem {SERVICES}, \hyperpage{109}
+    \subitem {TEMPERATURE}, \hyperpage{109}
+  \item {max\_penalty\_cost}
+    \subitem {metrics::Metrics::Inputs}, \hyperpage{43}
+  \item {MAX\_RUNS}
+    \subitem {main.cpp}, \hyperpage{109}
+  \item {mem}
+    \subitem {core::Device}, \hyperpage{32}
+    \subitem {core::Server}, \hyperpage{64}
+    \subitem {core::Supply}, \hyperpage{66}
+  \item {METAHEURISTIC}
+    \subitem {metrics}, \hyperpage{24}
+  \item {metaheuristic}, \hyperpage{20}
+    \subitem {boot}, \hyperpage{21}
+  \item {metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}}, 
+		\hyperpage{21}
+    \subitem {apply\_neighbor}, \hyperpage{21}
+    \subitem {LOOP}, \hyperpage{23}
+    \subitem {revert\_neighbor}, \hyperpage{22}
+    \subitem {simulated\_annealing}, \hyperpage{22}
+  \item {metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}::Move}, 
+		\hyperpage{55}
+    \subitem {delta\_cost}, \hyperpage{55}
+    \subitem {device\_id}, \hyperpage{55}
+    \subitem {new\_server\_id}, \hyperpage{55}
+    \subitem {old\_server\_id}, \hyperpage{56}
+    \subitem {swapped\_id}, \hyperpage{56}
+    \subitem {valid}, \hyperpage{56}
+  \item {MetaHeuristicMetrics}
+    \subitem {metrics::MetaHeuristicMetrics}, \hyperpage{45, 46}
+  \item {Metrics}
+    \subitem {metrics::Metrics}, \hyperpage{51, 52}
+  \item {metrics}, \hyperpage{23}
+    \subitem {Algorithm}, \hyperpage{24}
+    \subitem {calculate\_metrics}, \hyperpage{24}
+    \subitem {EXACT}, \hyperpage{24}
+    \subitem {greedy\_cost\_benefit}, \hyperpage{24}
+    \subitem {greedy\_random}, \hyperpage{24}
+    \subitem {greedy\_random\_fallback}, \hyperpage{24}
+    \subitem {HEURISTIC}, \hyperpage{24}
+    \subitem {METAHEURISTIC}, \hyperpage{24}
+    \subitem {NONE}, \hyperpage{24}
+    \subitem {Paradigm}, \hyperpage{24}
+    \subitem {RESULTS\_PATH}, \hyperpage{25}
+    \subitem {save\_results}, \hyperpage{24}
+    \subitem {simulated\_annealing}, \hyperpage{24}
+    \subitem {solver\_maximum\_cost}, \hyperpage{24}
+    \subitem {to\_string}, \hyperpage{25}
+  \item {metrics::ExactMetrics}, \hyperpage{33}
+    \subitem {algorithm}, \hyperpage{36}
+    \subitem {build\_metrics}, \hyperpage{35}
+    \subitem {clone}, \hyperpage{35}
+    \subitem {data}, \hyperpage{36}
+    \subitem {ExactMetrics}, \hyperpage{34, 35}
+    \subitem {gap}, \hyperpage{36}
+    \subitem {get\_base\_directory\_path}, \hyperpage{36}
+    \subitem {get\_header}, \hyperpage{36}
+    \subitem {inputs}, \hyperpage{37}
+    \subitem {objective\_function}, \hyperpage{37}
+    \subitem {outputs}, \hyperpage{37}
+    \subitem {paradigm}, \hyperpage{37}
+    \subitem {run\_id}, \hyperpage{37}
+    \subitem {save\_to\_file}, \hyperpage{36}
+    \subitem {status}, \hyperpage{37}
+  \item {metrics::HeuristicMetrics}, \hyperpage{37}
+    \subitem {algorithm}, \hyperpage{41}
+    \subitem {build\_metrics}, \hyperpage{40}
+    \subitem {clone}, \hyperpage{40}
+    \subitem {data}, \hyperpage{40}
+    \subitem {get\_base\_directory\_path}, \hyperpage{41}
+    \subitem {get\_header}, \hyperpage{41}
+    \subitem {HeuristicMetrics}, \hyperpage{39, 40}
+    \subitem {inputs}, \hyperpage{41}
+    \subitem {outputs}, \hyperpage{42}
+    \subitem {paradigm}, \hyperpage{42}
+    \subitem {run\_id}, \hyperpage{42}
+    \subitem {save\_to\_file}, \hyperpage{41}
+  \item {metrics::MetaHeuristicMetrics}, \hyperpage{43}
+    \subitem {algorithm}, \hyperpage{47}
+    \subitem {alpha}, \hyperpage{47}
+    \subitem {build\_metrics}, \hyperpage{46}
+    \subitem {clone}, \hyperpage{46}
+    \subitem {data}, \hyperpage{46}
+    \subitem {get\_base\_directory\_path}, \hyperpage{47}
+    \subitem {get\_header}, \hyperpage{47}
+    \subitem {heuristic}, \hyperpage{47}
+    \subitem {inputs}, \hyperpage{48}
+    \subitem {MetaHeuristicMetrics}, \hyperpage{45, 46}
+    \subitem {outputs}, \hyperpage{48}
+    \subitem {paradigm}, \hyperpage{48}
+    \subitem {run\_id}, \hyperpage{48}
+    \subitem {save\_to\_file}, \hyperpage{47}
+    \subitem {temperature}, \hyperpage{48}
+  \item {metrics::MetricEntry}, \hyperpage{48}
+    \subitem {category}, \hyperpage{49}
+    \subitem {console\_value}, \hyperpage{49}
+    \subitem {file\_value}, \hyperpage{49}
+    \subitem {header}, \hyperpage{50}
+    \subitem {label}, \hyperpage{50}
+  \item {metrics::Metrics}, \hyperpage{50}
+    \subitem {\texorpdfstring{$\sim$}{\string~}Metrics}, \hyperpage{53}
+    \subitem {algorithm}, \hyperpage{54}
+    \subitem {build\_metrics}, \hyperpage{53}
+    \subitem {clone}, \hyperpage{53}
+    \subitem {data}, \hyperpage{53}
+    \subitem {get\_base\_directory\_path}, \hyperpage{54}
+    \subitem {get\_header}, \hyperpage{54}
+    \subitem {inputs}, \hyperpage{54}
+    \subitem {Metrics}, \hyperpage{51, 52}
+    \subitem {outputs}, \hyperpage{54}
+    \subitem {paradigm}, \hyperpage{54}
+    \subitem {run\_id}, \hyperpage{55}
+    \subitem {save\_to\_file}, \hyperpage{54}
+  \item {metrics::Metrics::Inputs}, \hyperpage{42}
+    \subitem {devices\_count}, \hyperpage{43}
+    \subitem {max\_penalty\_cost}, \hyperpage{43}
+    \subitem {operator=}, \hyperpage{42}
+    \subitem {servers\_cc\_count}, \hyperpage{43}
+    \subitem {servers\_ec\_count}, \hyperpage{43}
+  \item {metrics::Metrics::Outputs}, \hyperpage{56}
+    \subitem {devices\_served\_cc\_count}, \hyperpage{57}
+    \subitem {devices\_served\_count}, \hyperpage{57}
+    \subitem {devices\_served\_ec\_count}, \hyperpage{57}
+    \subitem {execution\_time}, \hyperpage{57}
+    \subitem {operator=}, \hyperpage{57}
+    \subitem {servers\_used\_cc\_count}, \hyperpage{57}
+    \subitem {servers\_used\_count}, \hyperpage{57}
+    \subitem {servers\_used\_ec\_count}, \hyperpage{57}
+    \subitem {total\_penalty\_cost}, \hyperpage{58}
+  \item {metrics::Result}, \hyperpage{58}
+    \subitem {devices}, \hyperpage{60}
+    \subitem {operator=}, \hyperpage{60}
+    \subitem {Result}, \hyperpage{59}
+    \subitem {servers}, \hyperpage{60}
+    \subitem {stats}, \hyperpage{60}
   \item {MMKP Resource Allocation in IoT-\/EC-\/CC Networks}, 
 		\hyperpage{1}
+  \item {mmkp.hpp}
+    \subitem {i\_matrix}, \hyperpage{81}
+    \subitem {i\_set}, \hyperpage{81}
+    \subitem {i\_vector}, \hyperpage{81}
+    \subitem {id\_pair}, \hyperpage{81}
+    \subitem {id\_pair\_vector}, \hyperpage{81}
+    \subitem {ii\_pair}, \hyperpage{82}
+    \subitem {ii\_pair\_vector}, \hyperpage{82}
+    \subitem {s\_matrix}, \hyperpage{82}
+    \subitem {s\_vector}, \hyperpage{82}
 
   \indexspace
 
+  \item {new\_server\_id}
+    \subitem {metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}::Move}, 
+		\hyperpage{55}
+  \item {NONE}
+    \subitem {metrics}, \hyperpage{24}
+  \item {NumVar2D}
+    \subitem {exact}, \hyperpage{16}
+
+  \indexspace
+
+  \item {objective\_function}
+    \subitem {metrics::ExactMetrics}, \hyperpage{37}
+  \item {old\_server\_id}
+    \subitem {metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}::Move}, 
+		\hyperpage{56}
+  \item {operator=}
+    \subitem {metrics::Metrics::Inputs}, \hyperpage{42}
+    \subitem {metrics::Metrics::Outputs}, \hyperpage{57}
+    \subitem {metrics::Result}, \hyperpage{60}
+  \item {outputs}
+    \subitem {metrics::ExactMetrics}, \hyperpage{37}
+    \subitem {metrics::HeuristicMetrics}, \hyperpage{42}
+    \subitem {metrics::MetaHeuristicMetrics}, \hyperpage{48}
+    \subitem {metrics::Metrics}, \hyperpage{54}
+
+  \indexspace
+
+  \item {Paradigm}
+    \subitem {metrics}, \hyperpage{24}
+  \item {paradigm}
+    \subitem {metrics::ExactMetrics}, \hyperpage{37}
+    \subitem {metrics::HeuristicMetrics}, \hyperpage{42}
+    \subitem {metrics::MetaHeuristicMetrics}, \hyperpage{48}
+    \subitem {metrics::Metrics}, \hyperpage{54}
+  \item {print\_header}
+    \subitem {display::details}, \hyperpage{14}
+  \item {print\_middle}
+    \subitem {display::details}, \hyperpage{14}
+  \item {print\_row}
+    \subitem {display::details}, \hyperpage{15}
+  \item {print\_title}
+    \subitem {display::details}, \hyperpage{15}
+
+  \indexspace
+
+  \item {random\_number}
+    \subitem {randomness}, \hyperpage{26, 27}
+  \item {randomness}, \hyperpage{26}
+    \subitem {get\_engine}, \hyperpage{26}
+    \subitem {random\_number}, \hyperpage{26, 27}
+    \subitem {shuffled\_range}, \hyperpage{27}
+  \item {read}
+    \subitem {file\_manager::csv}, \hyperpage{18}
+  \item {README.md}, \hyperpage{106}
+  \item {Result}
+    \subitem {metrics::Result}, \hyperpage{59}
+  \item {RESULTS\_PATH}
+    \subitem {metrics}, \hyperpage{25}
+  \item {revert\_neighbor}
+    \subitem {metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}}, 
+		\hyperpage{22}
+  \item {rmv\_service}
+    \subitem {core::Server}, \hyperpage{63}
+  \item {run\_id}
+    \subitem {metrics::ExactMetrics}, \hyperpage{37}
+    \subitem {metrics::HeuristicMetrics}, \hyperpage{42}
+    \subitem {metrics::MetaHeuristicMetrics}, \hyperpage{48}
+    \subitem {metrics::Metrics}, \hyperpage{55}
+  \item {run\_simulation}
+    \subitem {main.cpp}, \hyperpage{107}
+
+  \indexspace
+
+  \item {s\_matrix}
+    \subitem {mmkp.hpp}, \hyperpage{82}
+  \item {s\_vector}
+    \subitem {mmkp.hpp}, \hyperpage{82}
+  \item {save\_results}
+    \subitem {metrics}, \hyperpage{24}
+  \item {save\_to\_file}
+    \subitem {metrics::ExactMetrics}, \hyperpage{36}
+    \subitem {metrics::HeuristicMetrics}, \hyperpage{41}
+    \subitem {metrics::MetaHeuristicMetrics}, \hyperpage{47}
+    \subitem {metrics::Metrics}, \hyperpage{54}
+  \item {served}
+    \subitem {core::Device}, \hyperpage{32}
+  \item {Server}
+    \subitem {core::Server}, \hyperpage{62}
+  \item {server\_id}
+    \subitem {core::Device}, \hyperpage{32}
+  \item {Servers}
+    \subitem {core}, \hyperpage{8}
+  \item {servers}
+    \subitem {data::generate}, \hyperpage{9}
+    \subitem {data::load}, \hyperpage{11}
+    \subitem {metrics::Result}, \hyperpage{60}
+  \item {servers\_cc\_count}
+    \subitem {metrics::Metrics::Inputs}, \hyperpage{43}
+  \item {servers\_ec\_count}
+    \subitem {metrics::Metrics::Inputs}, \hyperpage{43}
+  \item {servers\_used\_cc\_count}
+    \subitem {metrics::Metrics::Outputs}, \hyperpage{57}
+  \item {servers\_used\_count}
+    \subitem {metrics::Metrics::Outputs}, \hyperpage{57}
+  \item {servers\_used\_ec\_count}
+    \subitem {metrics::Metrics::Outputs}, \hyperpage{57}
+  \item {service}
+    \subitem {core::Device}, \hyperpage{32}
+  \item {SERVICES}
+    \subitem {main.cpp}, \hyperpage{109}
+  \item {services}
+    \subitem {data::generate}, \hyperpage{10}
   \item {set\_to\_string}
     \subitem {convert}, \hyperpage{6}
+  \item {show\_device}
+    \subitem {display}, \hyperpage{12}
+  \item {show\_devices}
+    \subitem {display}, \hyperpage{12}
+  \item {show\_metrics}
+    \subitem {display}, \hyperpage{12}
+  \item {show\_metrics\_console\_or\_file}
+    \subitem {display}, \hyperpage{13}
+  \item {show\_server}
+    \subitem {display}, \hyperpage{13}
+  \item {show\_servers}
+    \subitem {display}, \hyperpage{13}
+  \item {show\_servers\_usage}
+    \subitem {display}, \hyperpage{13}
+  \item {shuffled\_range}
+    \subitem {randomness}, \hyperpage{27}
+  \item {simulated\_annealing}
+    \subitem {metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}}, 
+		\hyperpage{22}
+    \subitem {metrics}, \hyperpage{24}
+  \item {solver\_maximum\_cost}
+    \subitem {exact::anonymous\_namespace\lcurly{}exact.hpp\rcurly{}}, 
+		\hyperpage{16}
+    \subitem {metrics}, \hyperpage{24}
+  \item {sort\_entities}
+    \subitem {sorting}, \hyperpage{28, 29}
+  \item {sort\_indices\_impl}
+    \subitem {sorting::details}, \hyperpage{30}
+  \item {sorting}, \hyperpage{28}
+    \subitem {sort\_entities}, \hyperpage{28, 29}
+  \item {sorting::details}, \hyperpage{29}
+    \subitem {sort\_indices\_impl}, \hyperpage{30}
+  \item {src/main.cpp}, \hyperpage{106}, \hyperpage{109}
+  \item {stats}
+    \subitem {metrics::Result}, \hyperpage{60}
+  \item {status}
+    \subitem {metrics::ExactMetrics}, \hyperpage{37}
+  \item {sto}
+    \subitem {core::Device}, \hyperpage{32}
+    \subitem {core::Server}, \hyperpage{64}
+    \subitem {core::Supply}, \hyperpage{67}
+  \item {Supply}
+    \subitem {core::Supply}, \hyperpage{66}
+  \item {supply}
+    \subitem {core::Server}, \hyperpage{64}
+  \item {swapped\_id}
+    \subitem {metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}::Move}, 
+		\hyperpage{56}
+
+  \indexspace
+
+  \item {tasks}
+    \subitem {core::Device}, \hyperpage{32}
+  \item {TEMPERATURE}
+    \subitem {main.cpp}, \hyperpage{109}
+  \item {temperature}
+    \subitem {metrics::MetaHeuristicMetrics}, \hyperpage{48}
+  \item {to\_percentage\_string}
+    \subitem {convert}, \hyperpage{6}
+  \item {to\_string}
+    \subitem {convert}, \hyperpage{7}
+    \subitem {metrics}, \hyperpage{25}
+  \item {tools.hpp}
+    \subitem {DECIMAL\_PLACES}, \hyperpage{100}
+    \subitem {ZERO}, \hyperpage{100}
+  \item {total\_penalty\_cost}
+    \subitem {metrics::Metrics::Outputs}, \hyperpage{58}
+  \item {total\_width}
+    \subitem {display::details}, \hyperpage{15}
+  \item {type}
+    \subitem {core::Server}, \hyperpage{64}
+
+  \indexspace
+
+  \item {valid}
+    \subitem {metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}::Move}, 
+		\hyperpage{56}
+  \item {vector\_to\_string}
+    \subitem {convert}, \hyperpage{7}
+
+  \indexspace
+
+  \item {write}
+    \subitem {file\_manager::csv}, \hyperpage{18}
+
+  \indexspace
+
+  \item {ZERO}
+    \subitem {tools.hpp}, \hyperpage{100}
 
 \end{theindex}

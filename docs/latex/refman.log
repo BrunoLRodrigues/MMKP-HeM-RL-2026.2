@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.6)  16 OCT 2026 22:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.6)  16 OCT 2026 22:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1758,7 +1758,7 @@ File: structmetrics_1_1ExactMetrics__inherit__graph.pdf Graphic file (type pdf)
 
 <use structmetrics_1_1ExactMetrics__inherit__graph.pdf>
 Package pdftex.def Info: structmetrics_1_1ExactMetrics__inherit__graph.pdf  use
-d on input line 18.
+d on input line 19.
 (pdftex.def)             Requested size: 202.0pt x 154.00394pt.
 [33] <./structmetrics_1_1ExactMetrics__coll__graph.pdf>
 <structmetrics_1_1ExactMetrics__coll__graph.pdf, id=2067, 493.845pt x 242.9075p
@@ -1766,183 +1766,34 @@ t>
 File: structmetrics_1_1ExactMetrics__coll__graph.pdf Graphic file (type pdf)
 <use structmetrics_1_1ExactMetrics__coll__graph.pdf>
 Package pdftex.def Info: structmetrics_1_1ExactMetrics__coll__graph.pdf  used o
-n input line 28.
+n input line 29.
 (pdftex.def)             Requested size: 350.0pt x 172.15417pt.
 [34] [35]
-Underfull \hbox (badness 10000) detected at line 169
+Underfull \hbox (badness 10000) detected at line 170
 [][][]
  []
 
 
-Overfull \hbox (61.0124pt too wide) in paragraph at lines 182--183
+Overfull \hbox (61.0124pt too wide) in paragraph at lines 183--184
 []\T1/phv/m/n/10 References [], [], [], [], [], [],
  []
 
 
-Overfull \hbox (17.7145pt too wide) in paragraph at lines 188--189
+Overfull \hbox (17.7145pt too wide) in paragraph at lines 189--190
 \T1/pcr/m/n/8 std[]::shared[]_[]ptr$\OML/cmm/m/it/8 <$ [] $>$ \T1/pcr/m/n/8 met
 rics[]::[]Exact[]Metrics[]::clone ( ) const [inline], [override], [virtual] 
  []
 
 
-Underfull \hbox (badness 10000) detected at line 194
+Underfull \hbox (badness 10000) detected at line 195
 [][][]
  []
 
 [36]
-Underfull \hbox (badness 10000) detected at line 215
+Underfull \hbox (badness 10000) detected at line 216
 [][][]
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 234--235
-\T1/pcr/m/n/8 virtual std[]::filesystem[]::path metrics[]::[]Metrics[]::get[]_[
-]base[]_[]directory[]_[]path ( ) const [inline],
- []
-
-
-Underfull \hbox (badness 10000) detected at line 240
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 259--260
-\T1/pcr/m/n/8 std[]::vector$\OML/cmm/m/it/8 <$ \T1/pcr/m/n/8 std[]::string $\OM
-L/cmm/m/it/8 >$ \T1/pcr/m/n/8 metrics[]::[]Exact[]Metrics[]::get[]_[]header ( )
- const [inline], [override],
- []
-
-
-Underfull \hbox (badness 10000) detected at line 265
-[][][]
- []
-
-
-Underfull \hbox (badness 3792) in paragraph at lines 296--297
-[]\T1/phv/m/n/10 References [], [], [],
- []
-
-
-Overfull \hbox (70.54831pt too wide) in paragraph at lines 349--350
-[]\T1/phv/m/n/10 Referenced by [], [], [], [],
- []
-
-[37]) (./structmetrics_1_1HeuristicMetrics.tex <./structmetrics_1_1HeuristicMet
-rics__inherit__graph.pdf>
-<structmetrics_1_1HeuristicMetrics__inherit__graph.pdf, id=2278, 219.82124pt x 
-154.5775pt>
-File: structmetrics_1_1HeuristicMetrics__inherit__graph.pdf Graphic file (type 
-pdf)
-<use structmetrics_1_1HeuristicMetrics__inherit__graph.pdf>
-Package pdftex.def Info: structmetrics_1_1HeuristicMetrics__inherit__graph.pdf 
- used on input line 18.
-(pdftex.def)             Requested size: 219.0pt x 154.00394pt.
-[38] <./structmetrics_1_1HeuristicMetrics__coll__graph.pdf>
-<structmetrics_1_1HeuristicMetrics__coll__graph.pdf, id=2303, 371.3875pt x 221.
-82875pt>
-File: structmetrics_1_1HeuristicMetrics__coll__graph.pdf Graphic file (type pdf
-)
-<use structmetrics_1_1HeuristicMetrics__coll__graph.pdf>
-Package pdftex.def Info: structmetrics_1_1HeuristicMetrics__coll__graph.pdf  us
-ed on input line 27.
-(pdftex.def)             Requested size: 350.0pt x 209.05722pt.
-[39] [40]
-Overfull \hbox (17.7145pt too wide) in paragraph at lines 156--157
-\T1/pcr/m/n/8 virtual std[]::vector$\OML/cmm/m/it/8 <$ [] $>$ \T1/pcr/m/n/8 met
-rics[]::[]Metrics[]::build[]_[]metrics ( ) const [inline], [virtual],
- []
-
-
-Underfull \hbox (badness 10000) detected at line 162
-[][][]
- []
-
-
-Overfull \hbox (47.38174pt too wide) in paragraph at lines 175--176
-[]\T1/phv/m/n/10 References [], [], [],
- []
-
-
-Overfull \hbox (123.8166pt too wide) in paragraph at lines 175--176
-[]\T1/phv/m/n/10 , [], [],
- []
-
-
-Overfull \hbox (89.60051pt too wide) in paragraph at lines 175--176
-[]\T1/phv/m/n/10 , [], [], [],
- []
-
-
-Overfull \hbox (110.92868pt too wide) in paragraph at lines 175--176
-[]\T1/phv/m/n/10 , [], [],
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 175--176
-[]\T1/phv/m/n/10 , [], [], and
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 185--186
-\T1/pcr/m/n/8 std[]::shared[]_[]ptr$\OML/cmm/m/it/8 <$ [] $>$ \T1/pcr/m/n/8 met
-rics[]::[]Heuristic[]Metrics[]::clone ( ) const [inline], [override],
- []
-
-
-Underfull \hbox (badness 10000) detected at line 191
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 206--207
-\T1/pcr/m/n/8 virtual std[]::vector$\OML/cmm/m/it/8 <$ \T1/pcr/m/n/8 std[]::str
-ing $\OML/cmm/m/it/8 >$ \T1/pcr/m/n/8 metrics[]::[]Metrics[]::data ( ) const [i
-nline], [virtual],
- []
-
-[41]
-Underfull \hbox (badness 10000) detected at line 212
-[][][]
- []
-
-
-Overfull \hbox (157.325pt too wide) in paragraph at lines 225--226
-[]\T1/phv/m/n/10 References [], [], [], [],
- []
-
-
-Overfull \hbox (123.8166pt too wide) in paragraph at lines 225--226
-[]\T1/phv/m/n/10 , [], [],
- []
-
-
-Overfull \hbox (26.93474pt too wide) in paragraph at lines 225--226
-[]\T1/phv/m/n/10 , [], [], [],
- []
-
-
-Underfull \hbox (badness 3386) in paragraph at lines 225--226
-[]\T1/phv/m/n/10 , [], [],
- []
-
-
-Overfull \hbox (142.44614pt too wide) in paragraph at lines 225--226
-[]\T1/phv/m/n/10 , [], [],
- []
-
-
-Overfull \hbox (15.71974pt too wide) in paragraph at lines 229--230
-[]\T1/phv/m/n/10 Referenced by [], [], and []. 
- []
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{structmetrics
-_1_1Metrics_a3d3c87cc48e752bab4238d3686fcf8f8}) has been already used, duplicat
-e ignored
-<to be read again> 
-                   \relax 
-l.231 ...etrics_a3d3c87cc48e752bab4238d3686fcf8f8}
-                                                  \label{structmetrics_1_1Me...
 
 Underfull \hbox (badness 10000) in paragraph at lines 235--236
 \T1/pcr/m/n/8 virtual std[]::filesystem[]::path metrics[]::[]Metrics[]::get[]_[
@@ -1955,12 +1806,161 @@ Underfull \hbox (badness 10000) detected at line 241
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 260--261
+\T1/pcr/m/n/8 std[]::vector$\OML/cmm/m/it/8 <$ \T1/pcr/m/n/8 std[]::string $\OM
+L/cmm/m/it/8 >$ \T1/pcr/m/n/8 metrics[]::[]Exact[]Metrics[]::get[]_[]header ( )
+ const [inline], [override],
+ []
+
+
 Underfull \hbox (badness 10000) detected at line 266
 [][][]
  []
 
 
-Overfull \hbox (71.75267pt too wide) in paragraph at lines 279--280
+Underfull \hbox (badness 3792) in paragraph at lines 297--298
+[]\T1/phv/m/n/10 References [], [], [],
+ []
+
+
+Overfull \hbox (70.54831pt too wide) in paragraph at lines 350--351
+[]\T1/phv/m/n/10 Referenced by [], [], [], [],
+ []
+
+[37]) (./structmetrics_1_1HeuristicMetrics.tex <./structmetrics_1_1HeuristicMet
+rics__inherit__graph.pdf>
+<structmetrics_1_1HeuristicMetrics__inherit__graph.pdf, id=2278, 219.82124pt x 
+154.5775pt>
+File: structmetrics_1_1HeuristicMetrics__inherit__graph.pdf Graphic file (type 
+pdf)
+<use structmetrics_1_1HeuristicMetrics__inherit__graph.pdf>
+Package pdftex.def Info: structmetrics_1_1HeuristicMetrics__inherit__graph.pdf 
+ used on input line 19.
+(pdftex.def)             Requested size: 219.0pt x 154.00394pt.
+[38] <./structmetrics_1_1HeuristicMetrics__coll__graph.pdf>
+<structmetrics_1_1HeuristicMetrics__coll__graph.pdf, id=2303, 371.3875pt x 221.
+82875pt>
+File: structmetrics_1_1HeuristicMetrics__coll__graph.pdf Graphic file (type pdf
+)
+<use structmetrics_1_1HeuristicMetrics__coll__graph.pdf>
+Package pdftex.def Info: structmetrics_1_1HeuristicMetrics__coll__graph.pdf  us
+ed on input line 29.
+(pdftex.def)             Requested size: 350.0pt x 209.05722pt.
+[39] [40]
+Overfull \hbox (17.7145pt too wide) in paragraph at lines 158--159
+\T1/pcr/m/n/8 virtual std[]::vector$\OML/cmm/m/it/8 <$ [] $>$ \T1/pcr/m/n/8 met
+rics[]::[]Metrics[]::build[]_[]metrics ( ) const [inline], [virtual],
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 164
+[][][]
+ []
+
+
+Overfull \hbox (47.38174pt too wide) in paragraph at lines 177--178
+[]\T1/phv/m/n/10 References [], [], [],
+ []
+
+
+Overfull \hbox (123.8166pt too wide) in paragraph at lines 177--178
+[]\T1/phv/m/n/10 , [], [],
+ []
+
+
+Overfull \hbox (89.60051pt too wide) in paragraph at lines 177--178
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Overfull \hbox (110.92868pt too wide) in paragraph at lines 177--178
+[]\T1/phv/m/n/10 , [], [],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--178
+[]\T1/phv/m/n/10 , [], [], and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 187--188
+\T1/pcr/m/n/8 std[]::shared[]_[]ptr$\OML/cmm/m/it/8 <$ [] $>$ \T1/pcr/m/n/8 met
+rics[]::[]Heuristic[]Metrics[]::clone ( ) const [inline], [override],
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 193
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 208--209
+\T1/pcr/m/n/8 virtual std[]::vector$\OML/cmm/m/it/8 <$ \T1/pcr/m/n/8 std[]::str
+ing $\OML/cmm/m/it/8 >$ \T1/pcr/m/n/8 metrics[]::[]Metrics[]::data ( ) const [i
+nline], [virtual],
+ []
+
+[41]
+Underfull \hbox (badness 10000) detected at line 214
+[][][]
+ []
+
+
+Overfull \hbox (157.325pt too wide) in paragraph at lines 227--228
+[]\T1/phv/m/n/10 References [], [], [], [],
+ []
+
+
+Overfull \hbox (123.8166pt too wide) in paragraph at lines 227--228
+[]\T1/phv/m/n/10 , [], [],
+ []
+
+
+Overfull \hbox (26.93474pt too wide) in paragraph at lines 227--228
+[]\T1/phv/m/n/10 , [], [], [],
+ []
+
+
+Underfull \hbox (badness 3386) in paragraph at lines 227--228
+[]\T1/phv/m/n/10 , [], [],
+ []
+
+
+Overfull \hbox (142.44614pt too wide) in paragraph at lines 227--228
+[]\T1/phv/m/n/10 , [], [],
+ []
+
+
+Overfull \hbox (15.71974pt too wide) in paragraph at lines 231--232
+[]\T1/phv/m/n/10 Referenced by [], [], and []. 
+ []
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{structmetrics
+_1_1Metrics_a3d3c87cc48e752bab4238d3686fcf8f8}) has been already used, duplicat
+e ignored
+<to be read again> 
+                   \relax 
+l.233 ...etrics_a3d3c87cc48e752bab4238d3686fcf8f8}
+                                                  \label{structmetrics_1_1Me...
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+\T1/pcr/m/n/8 virtual std[]::filesystem[]::path metrics[]::[]Metrics[]::get[]_[
+]base[]_[]directory[]_[]path ( ) const [inline],
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 243
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 268
+[][][]
+ []
+
+
+Overfull \hbox (71.75267pt too wide) in paragraph at lines 281--282
 []\T1/phv/m/n/10 Referenced by [], [], and []. 
  []
 
@@ -1970,10 +1970,10 @@ _1_1Metrics_a282b4959f016cb954aeea5a71c829032}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.281 ...etrics_a282b4959f016cb954aeea5a71c829032}
+l.283 ...etrics_a282b4959f016cb954aeea5a71c829032}
                                                   \label{structmetrics_1_1Me...
 
-Underfull \hbox (badness 3792) in paragraph at lines 297--298
+Underfull \hbox (badness 3792) in paragraph at lines 299--300
 []\T1/phv/m/n/10 References [], [], [],
  []
 
@@ -1983,7 +1983,7 @@ _1_1Metrics_a833606cb55a8544ef0154c0c7fa0e44f}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.302 ...etrics_a833606cb55a8544ef0154c0c7fa0e44f}
+l.304 ...etrics_a833606cb55a8544ef0154c0c7fa0e44f}
                                                   \label{structmetrics_1_1Me...
 
 pdfTeX warning (ext4): destination with the same identifier (name{structmetrics
@@ -1991,15 +1991,15 @@ _1_1Metrics_a75174af17b3795ba7f58d792872a6a47}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.320 ...etrics_a75174af17b3795ba7f58d792872a6a47}
+l.322 ...etrics_a75174af17b3795ba7f58d792872a6a47}
                                                   \label{structmetrics_1_1Me...
 
-Underfull \hbox (badness 1048) in paragraph at lines 332--333
+Underfull \hbox (badness 1048) in paragraph at lines 334--335
 []\T1/phv/m/n/10 Referenced by [], [], [],
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 332--333
+Underfull \hbox (badness 10000) in paragraph at lines 334--335
 []\T1/phv/m/n/10 , [], [], and
  []
 
@@ -2009,7 +2009,7 @@ _1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.334 ...etrics_ab7ed674919819ab3b2e2f575d7919b61}
+l.336 ...etrics_ab7ed674919819ab3b2e2f575d7919b61}
                                                   \label{structmetrics_1_1Me...
 [42]
 pdfTeX warning (ext4): destination with the same identifier (name{structmetrics
@@ -2017,7 +2017,7 @@ _1_1Metrics_a3826511b1490b1dc00db005abde1ec40}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.348 ...etrics_a3826511b1490b1dc00db005abde1ec40}
+l.350 ...etrics_a3826511b1490b1dc00db005abde1ec40}
                                                   \label{structmetrics_1_1Me...
 
 pdfTeX warning (ext4): destination with the same identifier (name{structmetrics
@@ -2025,7 +2025,7 @@ _1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.366 ...etrics_ad8482215a3e6fda00f5cdef4ea725ab8}
+l.368 ...etrics_ad8482215a3e6fda00f5cdef4ea725ab8}
                                                   \label{structmetrics_1_1Me...
 ) (./structmetrics_1_1Metrics_1_1Inputs.tex [43]) (./structmetrics_1_1MetaHeuri
 sticMetrics.tex <./structmetrics_1_1MetaHeuristicMetrics__inherit__graph.pdf>
@@ -2035,7 +2035,7 @@ File: structmetrics_1_1MetaHeuristicMetrics__inherit__graph.pdf Graphic file (t
 ype pdf)
 <use structmetrics_1_1MetaHeuristicMetrics__inherit__graph.pdf>
 Package pdftex.def Info: structmetrics_1_1MetaHeuristicMetrics__inherit__graph.
-pdf  used on input line 18.
+pdf  used on input line 19.
 (pdftex.def)             Requested size: 244.0pt x 154.00394pt.
  <./structmetrics_1_1MetaHeuristicMetrics__coll__graph.pdf>
 <structmetrics_1_1MetaHeuristicMetrics__coll__graph.pdf, id=2581, 371.3875pt x 
@@ -2044,31 +2044,31 @@ File: structmetrics_1_1MetaHeuristicMetrics__coll__graph.pdf Graphic file (type
  pdf)
 <use structmetrics_1_1MetaHeuristicMetrics__coll__graph.pdf>
 Package pdftex.def Info: structmetrics_1_1MetaHeuristicMetrics__coll__graph.pdf
-  used on input line 27.
+  used on input line 29.
 (pdftex.def)             Requested size: 350.0pt x 209.05722pt.
 [44] [45] [46]
-Underfull \hbox (badness 10000) in paragraph at lines 174--175
+Underfull \hbox (badness 10000) in paragraph at lines 176--177
 \T1/pcr/m/n/8 std[]::vector$\OML/cmm/m/it/8 <$ [] $>$ \T1/pcr/m/n/8 metrics[]::
 []Meta[]Heuristic[]Metrics[]::build[]_[]metrics ( ) const [inline],
  []
 
 
-Underfull \hbox (badness 10000) detected at line 180
+Underfull \hbox (badness 10000) detected at line 182
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 205
+Underfull \hbox (badness 10000) detected at line 207
 [][][]
  []
 
 [47]
-Underfull \hbox (badness 10000) detected at line 226
+Underfull \hbox (badness 10000) detected at line 228
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 239--240
+Underfull \hbox (badness 10000) in paragraph at lines 241--242
 []\T1/phv/m/n/10 References [], [], [], [], [], and
  []
 
@@ -2078,28 +2078,28 @@ _1_1Metrics_a3d3c87cc48e752bab4238d3686fcf8f8}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.241 ...etrics_a3d3c87cc48e752bab4238d3686fcf8f8}
+l.243 ...etrics_a3d3c87cc48e752bab4238d3686fcf8f8}
                                                   \label{structmetrics_1_1Me...
 
-Underfull \hbox (badness 10000) in paragraph at lines 245--246
+Underfull \hbox (badness 10000) in paragraph at lines 247--248
 \T1/pcr/m/n/8 virtual std[]::filesystem[]::path metrics[]::[]Metrics[]::get[]_[
 ]base[]_[]directory[]_[]path ( ) const [inline],
  []
 
 
-Underfull \hbox (badness 10000) detected at line 251
+Underfull \hbox (badness 10000) detected at line 253
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 270--271
+Underfull \hbox (badness 10000) in paragraph at lines 272--273
 \T1/pcr/m/n/8 std[]::vector$\OML/cmm/m/it/8 <$ \T1/pcr/m/n/8 std[]::string $\OM
 L/cmm/m/it/8 >$ \T1/pcr/m/n/8 metrics[]::[]Meta[]Heuristic[]Metrics[]::get[]_[]
 header ( ) const [inline],
  []
 
 
-Underfull \hbox (badness 10000) detected at line 276
+Underfull \hbox (badness 10000) detected at line 278
 [][][]
  []
 
@@ -2109,10 +2109,10 @@ _1_1Metrics_a282b4959f016cb954aeea5a71c829032}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.291 ...etrics_a282b4959f016cb954aeea5a71c829032}
+l.293 ...etrics_a282b4959f016cb954aeea5a71c829032}
                                                   \label{structmetrics_1_1Me...
 
-Underfull \hbox (badness 3792) in paragraph at lines 307--308
+Underfull \hbox (badness 3792) in paragraph at lines 309--310
 []\T1/phv/m/n/10 References [], [], [],
  []
 
@@ -2122,7 +2122,7 @@ _1_1Metrics_a833606cb55a8544ef0154c0c7fa0e44f}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.312 ...etrics_a833606cb55a8544ef0154c0c7fa0e44f}
+l.314 ...etrics_a833606cb55a8544ef0154c0c7fa0e44f}
                                                   \label{structmetrics_1_1Me...
 [48]
 pdfTeX warning (ext4): destination with the same identifier (name{structmetrics
@@ -2130,15 +2130,15 @@ _1_1Metrics_a75174af17b3795ba7f58d792872a6a47}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.362 ...etrics_a75174af17b3795ba7f58d792872a6a47}
+l.364 ...etrics_a75174af17b3795ba7f58d792872a6a47}
                                                   \label{structmetrics_1_1Me...
 
-Underfull \hbox (badness 1048) in paragraph at lines 374--375
+Underfull \hbox (badness 1048) in paragraph at lines 376--377
 []\T1/phv/m/n/10 Referenced by [], [], [],
  []
 
 
-Overfull \hbox (48.49847pt too wide) in paragraph at lines 374--375
+Overfull \hbox (48.49847pt too wide) in paragraph at lines 376--377
 []\T1/phv/m/n/10 , [], [], and []. 
  []
 
@@ -2148,7 +2148,7 @@ _1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.376 ...etrics_ab7ed674919819ab3b2e2f575d7919b61}
+l.378 ...etrics_ab7ed674919819ab3b2e2f575d7919b61}
                                                   \label{structmetrics_1_1Me...
 
 pdfTeX warning (ext4): destination with the same identifier (name{structmetrics
@@ -2156,7 +2156,7 @@ _1_1Metrics_a3826511b1490b1dc00db005abde1ec40}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.390 ...etrics_a3826511b1490b1dc00db005abde1ec40}
+l.392 ...etrics_a3826511b1490b1dc00db005abde1ec40}
                                                   \label{structmetrics_1_1Me...
 
 pdfTeX warning (ext4): destination with the same identifier (name{structmetrics
@@ -2164,7 +2164,7 @@ _1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.408 ...etrics_ad8482215a3e6fda00f5cdef4ea725ab8}
+l.410 ...etrics_ad8482215a3e6fda00f5cdef4ea725ab8}
                                                   \label{structmetrics_1_1Me...
 ) (./structmetrics_1_1MetricEntry.tex <./structmetrics_1_1MetricEntry__coll__gr
 aph.pdf>
@@ -2181,14 +2181,14 @@ __graph.pdf>
 File: structmetrics_1_1Metrics__inherit__graph.pdf Graphic file (type pdf)
 <use structmetrics_1_1Metrics__inherit__graph.pdf>
 Package pdftex.def Info: structmetrics_1_1Metrics__inherit__graph.pdf  used on 
-input line 18.
+input line 19.
 (pdftex.def)             Requested size: 350.0pt x 99.4505pt.
  <./structmetrics_1_1Metrics__coll__graph.pdf>
 <structmetrics_1_1Metrics__coll__graph.pdf, id=2860, 371.3875pt x 165.61874pt>
 File: structmetrics_1_1Metrics__coll__graph.pdf Graphic file (type pdf)
 <use structmetrics_1_1Metrics__coll__graph.pdf>
 Package pdftex.def Info: structmetrics_1_1Metrics__coll__graph.pdf  used on inp
-ut line 27.
+ut line 29.
 (pdftex.def)             Requested size: 350.0pt x 156.08345pt.
 [51] [52] [53]
 pdfTeX warning (ext4): destination with the same identifier (name{structmetrics
@@ -2196,35 +2196,35 @@ _1_1Metrics_af63915d0c63b05e31be006320ce706a6}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.204 ...etrics_af63915d0c63b05e31be006320ce706a6}
+l.206 ...etrics_af63915d0c63b05e31be006320ce706a6}
                                                   \label{structmetrics_1_1Me...
 
-Underfull \hbox (badness 10000) detected at line 214
+Underfull \hbox (badness 10000) detected at line 216
 [][][]
  []
 
 
-Overfull \hbox (47.38174pt too wide) in paragraph at lines 227--228
+Overfull \hbox (47.38174pt too wide) in paragraph at lines 229--230
 []\T1/phv/m/n/10 References [], [], [],
  []
 
 
-Overfull \hbox (123.8166pt too wide) in paragraph at lines 227--228
+Overfull \hbox (123.8166pt too wide) in paragraph at lines 229--230
 []\T1/phv/m/n/10 , [], [],
  []
 
 
-Overfull \hbox (126.44777pt too wide) in paragraph at lines 227--228
+Overfull \hbox (126.44777pt too wide) in paragraph at lines 229--230
 []\T1/phv/m/n/10 , [], [], [], [],
  []
 
 
-Overfull \hbox (142.44614pt too wide) in paragraph at lines 227--228
+Overfull \hbox (142.44614pt too wide) in paragraph at lines 229--230
 []\T1/phv/m/n/10 , [], [],
  []
 
 
-Underfull \hbox (badness 10000) detected at line 243
+Underfull \hbox (badness 10000) detected at line 245
 [][][]
  []
 
@@ -2234,35 +2234,35 @@ _1_1Metrics_aae2f001dafac22ff14300767311562b8}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.254 ...etrics_aae2f001dafac22ff14300767311562b8}
+l.256 ...etrics_aae2f001dafac22ff14300767311562b8}
                                                   \label{structmetrics_1_1Me...
 
-Underfull \hbox (badness 10000) detected at line 264
+Underfull \hbox (badness 10000) detected at line 266
 [][][]
  []
 
 
-Overfull \hbox (89.05257pt too wide) in paragraph at lines 277--278
+Overfull \hbox (89.05257pt too wide) in paragraph at lines 279--280
 []\T1/phv/m/n/10 References [], [], [], [],
  []
 
 
-Overfull \hbox (123.8166pt too wide) in paragraph at lines 277--278
+Overfull \hbox (123.8166pt too wide) in paragraph at lines 279--280
 []\T1/phv/m/n/10 , [], [],
  []
 
 
-Overfull \hbox (24.6797pt too wide) in paragraph at lines 277--278
+Overfull \hbox (24.6797pt too wide) in paragraph at lines 279--280
 []\T1/phv/m/n/10 , [], [], [], [], [],
  []
 
 
-Overfull \hbox (110.92868pt too wide) in paragraph at lines 277--278
+Overfull \hbox (110.92868pt too wide) in paragraph at lines 279--280
 []\T1/phv/m/n/10 , [], [],
  []
 
 
-Overfull \hbox (105.36795pt too wide) in paragraph at lines 277--278
+Overfull \hbox (105.36795pt too wide) in paragraph at lines 279--280
 []\T1/phv/m/n/10 , [], [], and []. 
  []
 
@@ -2272,16 +2272,16 @@ _1_1Metrics_a3d3c87cc48e752bab4238d3686fcf8f8}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.283 ...etrics_a3d3c87cc48e752bab4238d3686fcf8f8}
+l.285 ...etrics_a3d3c87cc48e752bab4238d3686fcf8f8}
                                                   \label{structmetrics_1_1Me...
 [54]
-Underfull \hbox (badness 10000) in paragraph at lines 287--288
+Underfull \hbox (badness 10000) in paragraph at lines 289--290
 \T1/pcr/m/n/8 virtual std[]::filesystem[]::path metrics[]::[]Metrics[]::get[]_[
 ]base[]_[]directory[]_[]path ( ) const [inline],
  []
 
 
-Underfull \hbox (badness 10000) detected at line 293
+Underfull \hbox (badness 10000) detected at line 295
 [][][]
  []
 
@@ -2291,10 +2291,10 @@ _1_1Metrics_aa0f8b0b47c23913a43fd55391100a60b}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.308 ...etrics_aa0f8b0b47c23913a43fd55391100a60b}
+l.310 ...etrics_aa0f8b0b47c23913a43fd55391100a60b}
                                                   \label{structmetrics_1_1Me...
 
-Underfull \hbox (badness 10000) detected at line 318
+Underfull \hbox (badness 10000) detected at line 320
 [][][]
  []
 
@@ -2304,7 +2304,7 @@ _1_1Metrics_a282b4959f016cb954aeea5a71c829032}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.333 ...etrics_a282b4959f016cb954aeea5a71c829032}
+l.335 ...etrics_a282b4959f016cb954aeea5a71c829032}
                                                   \label{structmetrics_1_1Me...
 
 pdfTeX warning (ext4): destination with the same identifier (name{structmetrics
@@ -2312,7 +2312,7 @@ _1_1Metrics_a833606cb55a8544ef0154c0c7fa0e44f}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.354 ...etrics_a833606cb55a8544ef0154c0c7fa0e44f}
+l.356 ...etrics_a833606cb55a8544ef0154c0c7fa0e44f}
                                                   \label{structmetrics_1_1Me...
 
 pdfTeX warning (ext4): destination with the same identifier (name{structmetrics
@@ -2320,10 +2320,10 @@ _1_1Metrics_a75174af17b3795ba7f58d792872a6a47}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.372 ...etrics_a75174af17b3795ba7f58d792872a6a47}
+l.374 ...etrics_a75174af17b3795ba7f58d792872a6a47}
                                                   \label{structmetrics_1_1Me...
 
-Overfull \hbox (24.7845pt too wide) in paragraph at lines 384--385
+Overfull \hbox (24.7845pt too wide) in paragraph at lines 386--387
 []\T1/phv/m/n/10 Referenced by [], [], [], [],
  []
 
@@ -2333,7 +2333,7 @@ _1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.386 ...etrics_ab7ed674919819ab3b2e2f575d7919b61}
+l.388 ...etrics_ab7ed674919819ab3b2e2f575d7919b61}
                                                   \label{structmetrics_1_1Me...
 
 pdfTeX warning (ext4): destination with the same identifier (name{structmetrics
@@ -2341,7 +2341,7 @@ _1_1Metrics_a3826511b1490b1dc00db005abde1ec40}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.400 ...etrics_a3826511b1490b1dc00db005abde1ec40}
+l.402 ...etrics_a3826511b1490b1dc00db005abde1ec40}
                                                   \label{structmetrics_1_1Me...
 [55]
 pdfTeX warning (ext4): destination with the same identifier (name{structmetrics
@@ -2349,7 +2349,7 @@ _1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.418 ...etrics_ad8482215a3e6fda00f5cdef4ea725ab8}
+l.420 ...etrics_ad8482215a3e6fda00f5cdef4ea725ab8}
                                                   \label{structmetrics_1_1Me...
 )
 (./structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move.
@@ -2553,48 +2553,48 @@ Overfull \hbox (111.83846pt too wide) in paragraph at lines 182--183
 <exact_8hpp__incl.pdf, id=3641, 1460.45625pt x 264.99pt>
 File: exact_8hpp__incl.pdf Graphic file (type pdf)
 <use exact_8hpp__incl.pdf>
-Package pdftex.def Info: exact_8hpp__incl.pdf  used on input line 14.
+Package pdftex.def Info: exact_8hpp__incl.pdf  used on input line 15.
 (pdftex.def)             Requested size: 350.0pt x 63.50185pt.
  <./exact_8hpp__dep__incl.pdf>
 <exact_8hpp__dep__incl.pdf, id=3656, 183.68625pt x 154.5775pt>
 File: exact_8hpp__dep__incl.pdf Graphic file (type pdf)
 <use exact_8hpp__dep__incl.pdf>
-Package pdftex.def Info: exact_8hpp__dep__incl.pdf  used on input line 21.
+Package pdftex.def Info: exact_8hpp__dep__incl.pdf  used on input line 23.
 (pdftex.def)             Requested size: 183.0pt x 154.01102pt.
 [68]) (./exact_8hpp_source.tex [69] [70]) (./heuristic_8hpp.tex <./heuristic_8h
 pp__incl.pdf>
 <heuristic_8hpp__incl.pdf, id=3860, 1460.45625pt x 264.99pt>
 File: heuristic_8hpp__incl.pdf Graphic file (type pdf)
 <use heuristic_8hpp__incl.pdf>
-Package pdftex.def Info: heuristic_8hpp__incl.pdf  used on input line 13.
+Package pdftex.def Info: heuristic_8hpp__incl.pdf  used on input line 14.
 (pdftex.def)             Requested size: 350.0pt x 63.50185pt.
  <./heuristic_8hpp__dep__incl.pdf>
 <heuristic_8hpp__dep__incl.pdf, id=3876, 261.97874pt x 209.78375pt>
 File: heuristic_8hpp__dep__incl.pdf Graphic file (type pdf)
 <use heuristic_8hpp__dep__incl.pdf>
-Package pdftex.def Info: heuristic_8hpp__dep__incl.pdf  used on input line 20.
+Package pdftex.def Info: heuristic_8hpp__dep__incl.pdf  used on input line 22.
 (pdftex.def)             Requested size: 261.0pt x 209.00536pt.
 [71]) (./heuristic_8hpp_source.tex [72] [73]) (./metaheuristic_8hpp.tex <./meta
 heuristic_8hpp__incl.pdf>
 <metaheuristic_8hpp__incl.pdf, id=4154, 1460.45625pt x 320.19624pt>
 File: metaheuristic_8hpp__incl.pdf Graphic file (type pdf)
 <use metaheuristic_8hpp__incl.pdf>
-Package pdftex.def Info: metaheuristic_8hpp__incl.pdf  used on input line 15.
+Package pdftex.def Info: metaheuristic_8hpp__incl.pdf  used on input line 16.
 (pdftex.def)             Requested size: 350.0pt x 76.7314pt.
 [74] <./metaheuristic_8hpp__dep__incl.pdf>
 <metaheuristic_8hpp__dep__incl.pdf, id=4250, 223.83624pt x 154.5775pt>
 File: metaheuristic_8hpp__dep__incl.pdf Graphic file (type pdf)
 <use metaheuristic_8hpp__dep__incl.pdf>
 Package pdftex.def Info: metaheuristic_8hpp__dep__incl.pdf  used on input line 
-22.
+24.
 (pdftex.def)             Requested size: 223.0pt x 154.00394pt.
 
-Underfull \hbox (badness 804) in paragraph at lines 42--43
+Underfull \hbox (badness 804) in paragraph at lines 44--45
 []\T1/phv/m/n/10 void [] ([] &de-vices,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--45
+Underfull \hbox (badness 10000) in paragraph at lines 46--47
 []\T1/phv/m/n/10 void [] ([]
  []
 
@@ -2603,21 +2603,21 @@ _8hpp__incl.pdf>
 <mmkp_8hpp__incl.pdf, id=4652, 1460.45625pt x 209.78375pt>
 File: mmkp_8hpp__incl.pdf Graphic file (type pdf)
 <use mmkp_8hpp__incl.pdf>
-Package pdftex.def Info: mmkp_8hpp__incl.pdf  used on input line 13.
+Package pdftex.def Info: mmkp_8hpp__incl.pdf  used on input line 14.
 (pdftex.def)             Requested size: 350.0pt x 50.2723pt.
  <./mmkp_8hpp__dep__incl.pdf>
 <mmkp_8hpp__dep__incl.pdf, id=4667, 422.57875pt x 264.99pt>
 File: mmkp_8hpp__dep__incl.pdf Graphic file (type pdf)
 <use mmkp_8hpp__dep__incl.pdf>
-Package pdftex.def Info: mmkp_8hpp__dep__incl.pdf  used on input line 20.
+Package pdftex.def Info: mmkp_8hpp__dep__incl.pdf  used on input line 22.
 (pdftex.def)             Requested size: 350.0pt x 219.48473pt.
 [79] [80]
-Overfull \hbox (28.02373pt too wide) in paragraph at lines 93--98
+Overfull \hbox (28.02373pt too wide) in paragraph at lines 95--100
 []\T1/phv/m/n/10 enum class [] { [] , [] , [] , []
  []
 
 
-Underfull \hbox (badness 772) in paragraph at lines 114--115
+Underfull \hbox (badness 772) in paragraph at lines 116--117
 []\T1/phv/m/n/10 std[]::vector$\OML/cmm/m/it/10 <$ \T1/phv/m/n/10 std[]::vector
 $\OML/cmm/m/it/10 <$ \T1/phv/m/n/10 std[]::string $\OML/cmm/m/it/10 >$ $>$ [] \
 T1/phv/m/n/10 (const int length, const int num[]_[]
@@ -2628,27 +2628,27 @@ T1/phv/m/n/10 (const int length, const int num[]_[]
 <tools_8hpp__incl.pdf, id=6977, 1460.45625pt x 154.5775pt>
 File: tools_8hpp__incl.pdf Graphic file (type pdf)
 <use tools_8hpp__incl.pdf>
-Package pdftex.def Info: tools_8hpp__incl.pdf  used on input line 31.
+Package pdftex.def Info: tools_8hpp__incl.pdf  used on input line 32.
 (pdftex.def)             Requested size: 350.0pt x 37.04274pt.
  <./tools_8hpp__dep__incl.pdf>
 <tools_8hpp__dep__incl.pdf, id=6992, 449.68pt x 320.19624pt>
 File: tools_8hpp__dep__incl.pdf Graphic file (type pdf)
 <use tools_8hpp__dep__incl.pdf>
-Package pdftex.def Info: tools_8hpp__dep__incl.pdf  used on input line 38.
+Package pdftex.def Info: tools_8hpp__dep__incl.pdf  used on input line 40.
 (pdftex.def)             Requested size: 350.0pt x 249.22928pt.
 [99]
-Overfull \hbox (27.29239pt too wide) in paragraph at lines 69--70
+Overfull \hbox (27.29239pt too wide) in paragraph at lines 71--72
 []\T1/phv/m/n/10 std[]::string [] (dou-ble nu-mer-a-tor, dou-ble de-nom-i-na-to
 r, int precision=[]) 
  []
 
 [100]
-Overfull \hbox (75.04662pt too wide) in paragraph at lines 124--125
+Overfull \hbox (75.04662pt too wide) in paragraph at lines 126--127
 []\T1/phv/m/n/10 Referenced by [], [], [],
  []
 
 
-Overfull \hbox (57.49576pt too wide) in paragraph at lines 142--143
+Overfull \hbox (57.49576pt too wide) in paragraph at lines 144--145
 []\T1/phv/m/n/10 Referenced by [], and []. 
  []
 
@@ -2657,31 +2657,108 @@ ex) (./main_8cpp.tex <./main_8cpp__incl.pdf>
 <main_8cpp__incl.pdf, id=7632, 1460.45625pt x 375.4025pt>
 File: main_8cpp__incl.pdf Graphic file (type pdf)
 <use main_8cpp__incl.pdf>
-Package pdftex.def Info: main_8cpp__incl.pdf  used on input line 16.
+Package pdftex.def Info: main_8cpp__incl.pdf  used on input line 17.
 (pdftex.def)             Requested size: 350.0pt x 89.96095pt.
 [107]
-Underfull \hbox (badness 10000) detected at line 75
+Underfull \hbox (badness 10000) detected at line 76
 [][][]
  []
 
 [108]
-Overfull \hbox (34.93073pt too wide) in paragraph at lines 122--123
+Overfull \hbox (34.93073pt too wide) in paragraph at lines 123--124
 []\T1/phv/m/n/10 References [], [], [], [], [], [],
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 122--123
+Underfull \hbox (badness 10000) in paragraph at lines 123--124
 []\T1/phv/m/n/10 , [], [], [],
  []
 
 
-Overfull \hbox (21.52869pt too wide) in paragraph at lines 122--123
+Overfull \hbox (21.52869pt too wide) in paragraph at lines 123--124
 []\T1/phv/m/n/10 , [], [], [], [],
  []
 
-[109]) (./main_8cpp_source.tex [110] [111]) [112] (./refman.ind [113
+[109]) (./main_8cpp_source.tex [110] [111]) [112] (./refman.ind
+Overfull \hbox (33.61446pt too wide) in paragraph at lines 24--26
+[]| \T1/phv/m/n/10 meta-heuris-tic::anonymous_namespace{metaheuristic.hpp},
+ []
+
+[113
 
 
+]
+Overfull \hbox (60.263pt too wide) in paragraph at lines 125--127
+[]| \T1/phv/m/n/10 meta-heuris-tic::anonymous_namespace{metaheuristic.hpp}::Mov
+e,
+ []
+
+
+Overfull \hbox (60.263pt too wide) in paragraph at lines 130--132
+[]| \T1/phv/m/n/10 meta-heuris-tic::anonymous_namespace{metaheuristic.hpp}::Mov
+e,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 216--218
+[]| \T1/phv/m/n/10 heuris-tic::anonymous_namespace{heuristic.hpp},
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 220--222
+[]| \T1/phv/m/n/10 heuris-tic::anonymous_namespace{heuristic.hpp},
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 224--226
+[]| \T1/phv/m/n/10 heuris-tic::anonymous_namespace{heuristic.hpp},
+ []
+
+[114]
+Overfull \hbox (33.61446pt too wide) in paragraph at lines 282--284
+[]| \T1/phv/m/n/10 meta-heuris-tic::anonymous_namespace{metaheuristic.hpp},
+ []
+
+
+Overfull \hbox (40.263pt too wide) in paragraph at lines 321--323
+[]\T1/phv/m/n/10 metaheuristic::anonymous_namespace{metaheuristic.hpp}::Move,
+ []
+
+[115]
+Overfull \hbox (60.263pt too wide) in paragraph at lines 452--454
+[]| \T1/phv/m/n/10 meta-heuris-tic::anonymous_namespace{metaheuristic.hpp}::Mov
+e,
+ []
+
+
+Overfull \hbox (60.263pt too wide) in paragraph at lines 464--466
+[]| \T1/phv/m/n/10 meta-heuris-tic::anonymous_namespace{metaheuristic.hpp}::Mov
+e,
+ []
+
+[116]
+Overfull \hbox (33.61446pt too wide) in paragraph at lines 510--512
+[]| \T1/phv/m/n/10 meta-heuris-tic::anonymous_namespace{metaheuristic.hpp},
+ []
+
+
+Overfull \hbox (33.61446pt too wide) in paragraph at lines 582--584
+[]| \T1/phv/m/n/10 meta-heuris-tic::anonymous_namespace{metaheuristic.hpp},
+ []
+
+
+Overfull \hbox (60.263pt too wide) in paragraph at lines 611--613
+[]| \T1/phv/m/n/10 meta-heuris-tic::anonymous_namespace{metaheuristic.hpp}::Mov
+e,
+ []
+
+[117]
+Overfull \hbox (60.263pt too wide) in paragraph at lines 640--642
+[]| \T1/phv/m/n/10 meta-heuris-tic::anonymous_namespace{metaheuristic.hpp}::Mov
+e,
+ []
+
+[118
 
 ]) (./refman.aux)
  ***********
@@ -2695,8 +2772,8 @@ Package rerunfilecheck Info: File `refman.out' has not changed.
 (rerunfilecheck)             Checksum: 2F641F189443BF58D1DBEC8855D573AE;35001.
  ) 
 Here is how much of TeX's memory you used:
- 23334 strings out of 474222
- 414433 string characters out of 5748734
+ 23339 strings out of 474222
+ 414473 string characters out of 5748734
  1959975 words of memory out of 5000000
  41762 multiletter control sequences out of 15000+600000
  613497 words of font info for 124 fonts, out of 8000000 for 9000
@@ -2719,10 +2796,10 @@ t/fonts/type1/urw/courier/ucrro8a.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvet
 ic/uhvb8ac.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (117 pages, 832182 bytes).
+Output written on refman.pdf (122 pages, 853351 bytes).
 PDF statistics:
- 8804 PDF objects out of 8907 (max. 8388607)
- 8447 compressed objects within 85 object streams
- 3367 named destinations out of 3580 (max. 500000)
+ 9275 PDF objects out of 10688 (max. 8388607)
+ 8908 compressed objects within 90 object streams
+ 3372 named destinations out of 3580 (max. 500000)
  1340 words of extra memory for PDF output out of 10000 (max. 10000000)
 
