@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -28,8 +32,9 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">MMKP Resource Allocation in IoT-EC-CC Networks
+   <div id="projectname">MMKP Resource Allocation in IoT-EC-CC Networks<span id="projectnumber">&#160;1.0.0</span>
    </div>
+   <div id="projectbrief">Exact, Heuristic, and Meta-heuristic solvers for MMKP in Edge-Cloud environments</div>
   </td>
  </tr>
  </tbody>
@@ -53,6 +58,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('structmetrics_1_1Metrics.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -74,11 +96,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacemetrics.html">metrics</a></li><li class="navelem"><a class="el" href="structmetrics_1_1Metrics.html">Metrics</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
@@ -106,7 +123,7 @@ Inheritance diagram for metrics::Metrics:</div>
 <area shape="rect" href="structmetrics_1_1MetaHeuristicMetrics.html" title="Extends Metrics to track Simulated Annealing hyperparameters and initial heuristic selection." alt="" coords="403,79,621,104"/>
 <area shape="poly" title=" " alt="" coords="336,32,476,76,475,81,334,37"/>
 </map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for metrics::Metrics:</div>
 <div class="dyncontent">
@@ -118,7 +135,7 @@ Collaboration diagram for metrics::Metrics:</div>
 <area shape="rect" href="structmetrics_1_1Metrics_1_1Outputs.html" title="Captures the resulting performance and resource utilization metrics after allocation." alt="" coords="205,5,391,31"/>
 <area shape="poly" title=" " alt="" coords="275,42,211,95,208,91,272,38"/>
 </map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
@@ -185,6 +202,8 @@ Public Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Polymorphic base structure for tracking, calculating, and saving simulation metrics. </p>
+
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00521">521</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a9217a58687ba34ac1761400e68e740f4" name="a9217a58687ba34ac1761400e68e740f4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9217a58687ba34ac1761400e68e740f4">&#9670;&#160;</a></span>Metrics() <span class="overload">[1/4]</span></h2>
@@ -235,6 +254,8 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00562">562</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
 
 </div>
 </div>
@@ -294,6 +315,10 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00572">572</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
+
+<p class="reference">References <a class="el" href="structmetrics_1_1Metrics.html#a75174af17b3795ba7f58d792872a6a47">inputs</a>.</p>
 
 </div>
 </div>
@@ -368,6 +393,8 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00586">586</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
+
 </div>
 </div>
 <a id="aea7719ee4b9b57770c7180a32673b732" name="aea7719ee4b9b57770c7180a32673b732"></a>
@@ -412,6 +439,10 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00594">594</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
+
+<p class="reference">References <a class="el" href="structmetrics_1_1Metrics.html#a75174af17b3795ba7f58d792872a6a47">inputs</a>, and <a class="el" href="structmetrics_1_1Metrics.html#ab7ed674919819ab3b2e2f575d7919b61">outputs</a>.</p>
 
 </div>
 </div>
@@ -471,6 +502,12 @@ Public Attributes</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="structmetrics_1_1ExactMetrics.html#ae99cb9c2fa55d61fae9fa870c8241727">metrics::ExactMetrics</a>, and <a class="el" href="structmetrics_1_1MetaHeuristicMetrics.html#a2e6d0537cc0ba4d062bc79ca93591a17">metrics::MetaHeuristicMetrics</a>.</p>
 
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00629">629</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
+
+<p class="reference">References <a class="el" href="tools_8hpp_source.html#l00038">DECIMAL_PLACES</a>, <a class="el" href="mmkp_8hpp_source.html#l00531">metrics::Metrics::Inputs::devices_count</a>, <a class="el" href="mmkp_8hpp_source.html#l00547">metrics::Metrics::Outputs::devices_served_cc_count</a>, <a class="el" href="mmkp_8hpp_source.html#l00545">metrics::Metrics::Outputs::devices_served_count</a>, <a class="el" href="mmkp_8hpp_source.html#l00546">metrics::Metrics::Outputs::devices_served_ec_count</a>, <a class="el" href="mmkp_8hpp_source.html#l00544">metrics::Metrics::Outputs::execution_time</a>, <a class="el" href="structmetrics_1_1Metrics.html#a75174af17b3795ba7f58d792872a6a47">inputs</a>, <a class="el" href="mmkp_8hpp_source.html#l00534">metrics::Metrics::Inputs::max_penalty_cost</a>, <a class="el" href="structmetrics_1_1Metrics.html#ab7ed674919819ab3b2e2f575d7919b61">outputs</a>, <a class="el" href="mmkp_8hpp_source.html#l00533">metrics::Metrics::Inputs::servers_cc_count</a>, <a class="el" href="mmkp_8hpp_source.html#l00532">metrics::Metrics::Inputs::servers_ec_count</a>, <a class="el" href="mmkp_8hpp_source.html#l00550">metrics::Metrics::Outputs::servers_used_cc_count</a>, <a class="el" href="mmkp_8hpp_source.html#l00548">metrics::Metrics::Outputs::servers_used_count</a>, <a class="el" href="mmkp_8hpp_source.html#l00549">metrics::Metrics::Outputs::servers_used_ec_count</a>, <a class="el" href="tools_8hpp_source.html#l00210">convert::to_percentage_string()</a>, <a class="el" href="tools_8hpp_source.html#l00193">convert::to_string()</a>, and <a class="el" href="mmkp_8hpp_source.html#l00551">metrics::Metrics::Outputs::total_penalty_cost</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="mmkp_8hpp_source.html#l00756">metrics::ExactMetrics::build_metrics()</a>, and <a class="el" href="mmkp_8hpp_source.html#l00890">metrics::MetaHeuristicMetrics::build_metrics()</a>.</p>
+
 </div>
 </div>
 <a id="a838af45542e979996137bbcb3dffac8b" name="a838af45542e979996137bbcb3dffac8b"></a>
@@ -500,6 +537,8 @@ Public Attributes</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>A <code>std::shared_ptr&lt;<a class="el" href="structmetrics_1_1Metrics.html" title="Polymorphic base structure for tracking, calculating, and saving simulation metrics.">Metrics</a>&gt;</code> pointing to the cloned instance. </dd></dl>
 
 <p>Reimplemented in <a class="el" href="structmetrics_1_1ExactMetrics.html#ab1058b8e443a2c28e86128afb7d253ff">metrics::ExactMetrics</a>, <a class="el" href="structmetrics_1_1HeuristicMetrics.html#a82621204baa20252efe563f69f1bfadd">metrics::HeuristicMetrics</a>, and <a class="el" href="structmetrics_1_1MetaHeuristicMetrics.html#a50a49fe0d7c98ab584ba79af50280a37">metrics::MetaHeuristicMetrics</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00613">613</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
 
 </div>
 </div>
@@ -531,6 +570,12 @@ Public Attributes</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="structmetrics_1_1ExactMetrics.html#aa164372f0ec3c9680644b3d2f55117a7">metrics::ExactMetrics</a>, and <a class="el" href="structmetrics_1_1MetaHeuristicMetrics.html#aaa64c8b3dc34768bc87c86fd24aa3a25">metrics::MetaHeuristicMetrics</a>.</p>
 
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00669">669</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
+
+<p class="reference">References <a class="el" href="mmkp_8hpp_source.html#l00523">algorithm</a>, <a class="el" href="tools_8hpp_source.html#l00038">DECIMAL_PLACES</a>, <a class="el" href="mmkp_8hpp_source.html#l00531">metrics::Metrics::Inputs::devices_count</a>, <a class="el" href="mmkp_8hpp_source.html#l00547">metrics::Metrics::Outputs::devices_served_cc_count</a>, <a class="el" href="mmkp_8hpp_source.html#l00545">metrics::Metrics::Outputs::devices_served_count</a>, <a class="el" href="mmkp_8hpp_source.html#l00546">metrics::Metrics::Outputs::devices_served_ec_count</a>, <a class="el" href="mmkp_8hpp_source.html#l00544">metrics::Metrics::Outputs::execution_time</a>, <a class="el" href="structmetrics_1_1Metrics.html#a75174af17b3795ba7f58d792872a6a47">inputs</a>, <a class="el" href="mmkp_8hpp_source.html#l00534">metrics::Metrics::Inputs::max_penalty_cost</a>, <a class="el" href="structmetrics_1_1Metrics.html#ab7ed674919819ab3b2e2f575d7919b61">outputs</a>, <a class="el" href="mmkp_8hpp_source.html#l00522">paradigm</a>, <a class="el" href="mmkp_8hpp_source.html#l00524">run_id</a>, <a class="el" href="mmkp_8hpp_source.html#l00533">metrics::Metrics::Inputs::servers_cc_count</a>, <a class="el" href="mmkp_8hpp_source.html#l00532">metrics::Metrics::Inputs::servers_ec_count</a>, <a class="el" href="mmkp_8hpp_source.html#l00550">metrics::Metrics::Outputs::servers_used_cc_count</a>, <a class="el" href="mmkp_8hpp_source.html#l00548">metrics::Metrics::Outputs::servers_used_count</a>, <a class="el" href="mmkp_8hpp_source.html#l00549">metrics::Metrics::Outputs::servers_used_ec_count</a>, <a class="el" href="tools_8hpp_source.html#l00193">convert::to_string()</a>, <a class="el" href="mmkp_8hpp_source.html#l00467">metrics::to_string()</a>, and <a class="el" href="mmkp_8hpp_source.html#l00551">metrics::Metrics::Outputs::total_penalty_cost</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="mmkp_8hpp_source.html#l00780">metrics::ExactMetrics::data()</a>, <a class="el" href="mmkp_8hpp_source.html#l00915">metrics::MetaHeuristicMetrics::data()</a>, and <a class="el" href="mmkp_8hpp_source.html#l00692">save_to_file()</a>.</p>
+
 </div>
 </div>
 <a id="a3d3c87cc48e752bab4238d3686fcf8f8" name="a3d3c87cc48e752bab4238d3686fcf8f8"></a>
@@ -558,6 +603,12 @@ Public Attributes</h2></td></tr>
 
 <p>Returns the output directory path corresponding to the current paradigm. </p>
 <dl class="section return"><dt>Returns</dt><dd>Filesystem path <code>results/&lt;PARADIGM&gt;</code>. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00621">621</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
+
+<p class="reference">References <a class="el" href="mmkp_8hpp_source.html#l00449">metrics::RESULTS_PATH</a>, and <a class="el" href="mmkp_8hpp_source.html#l00467">metrics::to_string()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="mmkp_8hpp_source.html#l00692">save_to_file()</a>.</p>
 
 </div>
 </div>
@@ -589,6 +640,10 @@ Public Attributes</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="structmetrics_1_1ExactMetrics.html#a93043f660ea769becfd8105eea97860c">metrics::ExactMetrics</a>, and <a class="el" href="structmetrics_1_1MetaHeuristicMetrics.html#a47ddf6e4dab1f6f0705b86f1baf83128">metrics::MetaHeuristicMetrics</a>.</p>
 
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00657">657</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="mmkp_8hpp_source.html#l00768">metrics::ExactMetrics::get_header()</a>, <a class="el" href="mmkp_8hpp_source.html#l00903">metrics::MetaHeuristicMetrics::get_header()</a>, and <a class="el" href="mmkp_8hpp_source.html#l00692">save_to_file()</a>.</p>
+
 </div>
 </div>
 <a id="a282b4959f016cb954aeea5a71c829032" name="a282b4959f016cb954aeea5a71c829032"></a>
@@ -616,6 +671,10 @@ Public Attributes</h2></td></tr>
 
 <p>Appends the current simulation metrics row to the corresponding algorithm CSV file. </p>
 
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00692">692</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
+
+<p class="reference">References <a class="el" href="tools_8hpp_source.html#l00118">file_manager::csv::append()</a>, <a class="el" href="mmkp_8hpp_source.html#l00669">data()</a>, <a class="el" href="mmkp_8hpp_source.html#l00621">get_base_directory_path()</a>, <a class="el" href="mmkp_8hpp_source.html#l00657">get_header()</a>, and <a class="el" href="mmkp_8hpp_source.html#l00467">metrics::to_string()</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -633,6 +692,10 @@ Public Attributes</h2></td></tr>
 
 <p>Algorithm executed in the current run. </p>
 
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00523">523</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="mmkp_8hpp_source.html#l00890">metrics::MetaHeuristicMetrics::build_metrics()</a>, and <a class="el" href="mmkp_8hpp_source.html#l00669">data()</a>.</p>
+
 </div>
 </div>
 <a id="a75174af17b3795ba7f58d792872a6a47" name="a75174af17b3795ba7f58d792872a6a47"></a>
@@ -648,6 +711,8 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Instance input parameters. </p>
+
+<p class="reference">Referenced by <a class="el" href="mmkp_8hpp_source.html#l00629">build_metrics()</a>, <a class="el" href="mmkp_8hpp_source.html#l00669">data()</a>, <a class="el" href="mmkp_8hpp_source.html#l00720">metrics::ExactMetrics::ExactMetrics()</a>, <a class="el" href="mmkp_8hpp_source.html#l00800">metrics::HeuristicMetrics::HeuristicMetrics()</a>, <a class="el" href="mmkp_8hpp_source.html#l00851">metrics::MetaHeuristicMetrics::MetaHeuristicMetrics()</a>, <a class="el" href="mmkp_8hpp_source.html#l00594">Metrics()</a>, and <a class="el" href="mmkp_8hpp_source.html#l00572">Metrics()</a>.</p>
 
 </div>
 </div>
@@ -665,6 +730,8 @@ Public Attributes</h2></td></tr>
 
 <p>Simulation output metrics. </p>
 
+<p class="reference">Referenced by <a class="el" href="mmkp_8hpp_source.html#l00629">build_metrics()</a>, <a class="el" href="mmkp_8hpp_source.html#l00669">data()</a>, and <a class="el" href="mmkp_8hpp_source.html#l00594">Metrics()</a>.</p>
+
 </div>
 </div>
 <a id="a3826511b1490b1dc00db005abde1ec40" name="a3826511b1490b1dc00db005abde1ec40"></a>
@@ -680,6 +747,10 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Optimization paradigm of the current run. </p>
+
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00522">522</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="mmkp_8hpp_source.html#l00669">data()</a>.</p>
 
 </div>
 </div>
@@ -697,15 +768,23 @@ Public Attributes</h2></td></tr>
 
 <p>Execution run identifier (1-indexed). </p>
 
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00524">524</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="mmkp_8hpp_source.html#l00669">data()</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>include/<a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacemetrics.html">metrics</a></li><li class="navelem"><a class="el" href="structmetrics_1_1Metrics.html">Metrics</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
 </body>
 </html>

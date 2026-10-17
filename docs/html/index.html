@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -28,8 +32,9 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">MMKP Resource Allocation in IoT-EC-CC Networks
+   <div id="projectname">MMKP Resource Allocation in IoT-EC-CC Networks<span id="projectnumber">&#160;1.0.0</span>
    </div>
+   <div id="projectbrief">Exact, Heuristic, and Meta-heuristic solvers for MMKP in Edge-Cloud environments</div>
   </td>
  </tr>
  </tbody>
@@ -54,6 +59,22 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('index.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -79,8 +100,8 @@ $(function() {
   <div class="headertitle"><div class="title">MMKP Resource Allocation in IoT-EC-CC Networks </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_README"></a> <a href="https://brunolrodrigues.github.io/MMKP-HeM-RL-2026.2/"><img src="https://img.shields.io/badge/docs-HTML%20(Doxygen)-blue?logo=read-the-docs" alt="Documentation HTML" class="inline"/></a> <a href="https://brunolrodrigues.github.io/MMKP-HeM-RL-2026.2/MMKP_Documentation.pdf"><img src="https://img.shields.io/badge/docs-PDF%20(LaTeX)-red?logo=adobe-acrobat-reader" alt="Documentation PDF" class="inline"/></a></p>
-<p>🌐 <b>Language / Idioma:</b> <b>English</b> | <a class="el" href="md_README_8pt-BR.html">Português (Brasil)</a></p>
+<div class="textblock"><p><a class="anchor" id="md_README"></a></p>
+<p>🌐 <b>Language / Idioma:</b> <b>English</b> | Português (Brasil)</p>
 <p>A C++17 simulator for solving the <b>Multiple Multidimensional Knapsack Problem (MMKP)</b> applied to resource allocation across <b>Internet of Things (IoT)</b>, <b>Edge Computing (EC)</b>, and <b>Cloud Computing (CC)</b> infrastructures. The simulator evaluates Exact (ILP via IBM ILOG CPLEX), Constructive Heuristic, and Meta-heuristic (Simulated Annealing) paradigms.</p>
 <hr  />
 <h1><a class="anchor" id="autotoc_md2"></a>
@@ -176,17 +197,26 @@ Option 2: Using CMake</h2>
 <li><code>MAX_RUNS = 50</code>: Number of independent runs per instance.</li>
 <li><code>CPLEX_TIME_LIMIT = 3600</code>: Maximum solver runtime in seconds (1 hour).</li>
 <li><code>TEMPERATURE = 50.0</code>, <code>ALPHA = 0.9999</code>: Simulated Annealing cooling schedule.</li>
+<li><code>FIXED_PENALTY = false</code>: Controls whether device SLA penalty costs are constant (<code>1.0</code>) or task-proportional.</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md9"></a>
+📊 Simulation Results (&lt;tt&gt;results/&lt;/tt&gt;)</h1>
+<p>In the output files stored inside the <code>results/</code> directory (<code>EXACT/</code>, <code>HEURISTIC/</code>, and <code>METAHEURISTIC/</code>):</p><ul>
+<li>**First batch of execution rows (<code>10,000</code> to <code>20,000</code> devices):** Executed using a **constant penalty cost (<code>1.0</code>)** for all devices (<code>FIXED_PENALTY = true</code>).</li>
+<li>**Subsequent execution rows (<code>10,000</code> to <code>20,000</code> devices):** Executed using a <b>variable penalty cost</b> (<code>FIXED_PENALTY = false</code>), where each device's penalty cost is determined by the random draw of tasks generated for its assigned service profile in <code>data/Services.txt</code>.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md10"></a>
 📚 Documentation (Doxygen)</h1>
 <p>To generate or update the HTML (<code>docs/html/index.html</code>) and PDF (<code>docs/latex/refman.pdf</code>) documentation locally, run from the project root:</p>
-<div class="fragment"><div class="line">doxygen docs/Doxyfile</div>
-<div class="line">make -C docs/latex</div>
+<div class="fragment"><div class="line">./build.sh --docs</div>
 </div><!-- fragment --> </div></div><!-- PageDoc -->
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
 </body>
 </html>

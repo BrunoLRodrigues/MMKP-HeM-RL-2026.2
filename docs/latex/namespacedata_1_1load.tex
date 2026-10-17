@@ -1,28 +1,28 @@
-\doxysection{data\+::load Namespace Reference}
+\doxysubsection{data\+::load Namespace Reference}
 \hypertarget{namespacedata_1_1load}{}\label{namespacedata_1_1load}\index{data::load@{data::load}}
 
 
 Parses raw string datasets into strongly-\/typed {\ttfamily \doxylink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} and {\ttfamily \doxylink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} vectors.  
 
 
-\doxysubsubsection*{Functions}
+\doxysubsubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} \mbox{\hyperlink{namespacedata_1_1load_a1cf3365d1111392a986685684c4ed7af}{devices}} (const int length, const int num\+\_\+services=10)
+\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} \mbox{\hyperlink{namespacedata_1_1load_a70bed570daa56196a2313f2e53fdfd01}{devices}} (const int length, const int num\+\_\+services=10, bool fixed\+\_\+penalty=true)
 \begin{DoxyCompactList}\small\item\em Loads device data from disk (generating it if absent) into a vector of {\ttfamily \doxylink{structcore_1_1Device}{core\+::\+Device}} objects. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} \mbox{\hyperlink{namespacedata_1_1load_ac246a8e8d760e5209660fe9bdbce70ba}{servers}} (const int ec=99, const int cc=1)
 \begin{DoxyCompactList}\small\item\em Loads Edge and Cloud server data from disk (generating it if absent). \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\doxysubsubsection{Detailed Description}
 Parses raw string datasets into strongly-\/typed {\ttfamily \doxylink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} and {\ttfamily \doxylink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} vectors. 
 
-\doxysubsection{Function Documentation}
-\Hypertarget{namespacedata_1_1load_a1cf3365d1111392a986685684c4ed7af}\label{namespacedata_1_1load_a1cf3365d1111392a986685684c4ed7af} 
+\doxysubsubsection{Function Documentation}
+\Hypertarget{namespacedata_1_1load_a70bed570daa56196a2313f2e53fdfd01}\label{namespacedata_1_1load_a70bed570daa56196a2313f2e53fdfd01} 
 \index{data::load@{data::load}!devices@{devices}}
 \index{devices@{devices}!data::load@{data::load}}
-\doxysubsubsection{\texorpdfstring{devices()}{devices()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} data\+::load\+::devices (\begin{DoxyParamCaption}\item[{const int}]{length,  }\item[{const int}]{num\+\_\+services = {\ttfamily 10} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\doxyparagraph{\texorpdfstring{devices()}{devices()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} data\+::load\+::devices (\begin{DoxyParamCaption}\item[{const int}]{length,  }\item[{const int}]{num\+\_\+services = {\ttfamily 10},  }\item[{bool}]{fixed\+\_\+penalty = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -34,14 +34,28 @@ Loads device data from disk (generating it if absent) into a vector of {\ttfamil
 \hline
 {\em num\+\_\+services} & The number of distinct services to generate if absent. Defaults to 10. \\
 \hline
+{\em fixed\+\_\+penalty} & Whether the penalty (cost) of each device is fixed or can vary. Defaults to true. \\
+\hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A 1-\/indexed {\ttfamily \doxylink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} vector containing the parsed device instances. 
 \end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00371}{371}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l00267}{data\+::generate\+::devices()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00371}{devices()}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00371}{devices()}}.
+
 \Hypertarget{namespacedata_1_1load_ac246a8e8d760e5209660fe9bdbce70ba}\label{namespacedata_1_1load_ac246a8e8d760e5209660fe9bdbce70ba} 
 \index{data::load@{data::load}!servers@{servers}}
 \index{servers@{servers}!data::load@{data::load}}
-\doxysubsubsection{\texorpdfstring{servers()}{servers()}}
+\doxyparagraph{\texorpdfstring{servers()}{servers()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} data\+::load\+::servers (\begin{DoxyParamCaption}\item[{const int}]{ec = {\ttfamily 99},  }\item[{const int}]{cc = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -58,3 +72,15 @@ Loads Edge and Cloud server data from disk (generating it if absent).
 \begin{DoxyReturn}{Returns}
 A 1-\/indexed {\ttfamily \doxylink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} vector containing both EC and CC server instances. 
 \end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00409}{409}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l00409}{servers()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00319}{data\+::generate\+::servers()}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00409}{servers()}}.
+

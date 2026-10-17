@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -28,8 +32,9 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">MMKP Resource Allocation in IoT-EC-CC Networks
+   <div id="projectname">MMKP Resource Allocation in IoT-EC-CC Networks<span id="projectnumber">&#160;1.0.0</span>
    </div>
+   <div id="projectbrief">Exact, Heuristic, and Meta-heuristic solvers for MMKP in Edge-Cloud environments</div>
   </td>
  </tr>
  </tbody>
@@ -53,6 +58,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('mmkp_8hpp.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -74,11 +96,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
@@ -207,7 +224,7 @@ Namespaces</h2></td></tr>
 <tr class="memdesc:namespacecore"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains the fundamental domain entities for the MMKP resource allocation problem. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespacedata_1_1generate" id="r_namespacedata_1_1generate"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedata_1_1generate.html">data::generate</a></td></tr>
-<tr class="memdesc:namespacedata_1_1generate"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates synthetic datasets for services, IoT devices, and EC/CC servers when files are absent. <br /></td></tr>
+<tr class="memdesc:namespacedata_1_1generate"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates or updates synthetic datasets for services, IoT devices, and EC/CC servers. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespacedata" id="r_namespacedata"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedata.html">data</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -284,18 +301,18 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a8cf334007dfe6c39270237e4b5e1df96" id="r_a8cf334007dfe6c39270237e4b5e1df96"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; std::string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedata_1_1generate.html#a8cf334007dfe6c39270237e4b5e1df96">data::generate::services</a> (const int num_services=10)</td></tr>
-<tr class="memdesc:a8cf334007dfe6c39270237e4b5e1df96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates or loads network service requirement templates.  <br /></td></tr>
-<tr class="separator:a8cf334007dfe6c39270237e4b5e1df96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6567b345dff3a26eabcad5abd28fcdb" id="r_af6567b345dff3a26eabcad5abd28fcdb"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; std::string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedata_1_1generate.html#af6567b345dff3a26eabcad5abd28fcdb">data::generate::devices</a> (const int length, const int num_services=10)</td></tr>
-<tr class="memdesc:af6567b345dff3a26eabcad5abd28fcdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates or loads device request data representing IoT network demands.  <br /></td></tr>
-<tr class="separator:af6567b345dff3a26eabcad5abd28fcdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c60a34a447b946d2ac51f1b055189db" id="r_a6c60a34a447b946d2ac51f1b055189db"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; std::string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedata_1_1generate.html#a6c60a34a447b946d2ac51f1b055189db">data::generate::services</a> (const int num_services=10, bool fixed_penalty=true)</td></tr>
+<tr class="memdesc:a6c60a34a447b946d2ac51f1b055189db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates or loads network service requirement templates.  <br /></td></tr>
+<tr class="separator:a6c60a34a447b946d2ac51f1b055189db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77ee30fbb09d00be8392d88310fbe2bd" id="r_a77ee30fbb09d00be8392d88310fbe2bd"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; std::string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedata_1_1generate.html#a77ee30fbb09d00be8392d88310fbe2bd">data::generate::devices</a> (const int length, const int num_services=10, bool fixed_penalty=true)</td></tr>
+<tr class="memdesc:a77ee30fbb09d00be8392d88310fbe2bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates or loads device request data representing IoT network demands.  <br /></td></tr>
+<tr class="separator:a77ee30fbb09d00be8392d88310fbe2bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a406f9158cb3dc3b05a461bc10038fae1" id="r_a406f9158cb3dc3b05a461bc10038fae1"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; std::string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedata_1_1generate.html#a406f9158cb3dc3b05a461bc10038fae1">data::generate::servers</a> (const int ec_length=99, const int cc_length=1)</td></tr>
 <tr class="memdesc:a406f9158cb3dc3b05a461bc10038fae1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates or loads server infrastructure data for Edge and Cloud nodes.  <br /></td></tr>
 <tr class="separator:a406f9158cb3dc3b05a461bc10038fae1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1cf3365d1111392a986685684c4ed7af" id="r_a1cf3365d1111392a986685684c4ed7af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecore.html#a815afea905ea8843f0cc85cb4590a3dc">core::Devices</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedata_1_1load.html#a1cf3365d1111392a986685684c4ed7af">data::load::devices</a> (const int length, const int num_services=10)</td></tr>
-<tr class="memdesc:a1cf3365d1111392a986685684c4ed7af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads device data from disk (generating it if absent) into a vector of <code><a class="el" href="structcore_1_1Device.html" title="Represents an IoT device requesting computational resources for a specific service.">core::Device</a></code> objects.  <br /></td></tr>
-<tr class="separator:a1cf3365d1111392a986685684c4ed7af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70bed570daa56196a2313f2e53fdfd01" id="r_a70bed570daa56196a2313f2e53fdfd01"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecore.html#a815afea905ea8843f0cc85cb4590a3dc">core::Devices</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedata_1_1load.html#a70bed570daa56196a2313f2e53fdfd01">data::load::devices</a> (const int length, const int num_services=10, bool fixed_penalty=true)</td></tr>
+<tr class="memdesc:a70bed570daa56196a2313f2e53fdfd01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads device data from disk (generating it if absent) into a vector of <code><a class="el" href="structcore_1_1Device.html" title="Represents an IoT device requesting computational resources for a specific service.">core::Device</a></code> objects.  <br /></td></tr>
+<tr class="separator:a70bed570daa56196a2313f2e53fdfd01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac246a8e8d760e5209660fe9bdbce70ba" id="r_ac246a8e8d760e5209660fe9bdbce70ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecore.html#ac53c64bc23d713f5e94e801d40e34803">core::Servers</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedata_1_1load.html#ac246a8e8d760e5209660fe9bdbce70ba">data::load::servers</a> (const int ec=99, const int cc=1)</td></tr>
 <tr class="memdesc:ac246a8e8d760e5209660fe9bdbce70ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads Edge and Cloud server data from disk (generating it if absent).  <br /></td></tr>
 <tr class="separator:ac246a8e8d760e5209660fe9bdbce70ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -363,6 +380,8 @@ Variables</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Core data structures, synthetic dataset generators, metric trackers, and console/file display routines. </p>
 <p>Defines the domain entities (<code>Device</code>, <code>Server</code>, <code>Supply</code>), dataset loading/generation utilities, polymorphic metric collection classes (<code>Metrics</code>, <code>ExactMetrics</code>, <code>HeuristicMetrics</code>, <code>MetaHeuristicMetrics</code>), and ASCII table visualization functions for the MMKP IoT-EC-CC simulator. </p>
+
+<p class="definition">Definition in file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
 </div><h2 class="groupheader">Typedef Documentation</h2>
 <a id="a54295524698f2887657caf7820956714" name="a54295524698f2887657caf7820956714"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a54295524698f2887657caf7820956714">&#9670;&#160;</a></span>i_matrix</h2>
@@ -377,6 +396,8 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>2D matrix of integers. </p>
+
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00020">20</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
 
 </div>
 </div>
@@ -394,6 +415,8 @@ Variables</h2></td></tr>
 
 <p>Ordered set of unique integers. </p>
 
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00022">22</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a11561f2f1571eed3509f087e0a373adc" name="a11561f2f1571eed3509f087e0a373adc"></a>
@@ -409,6 +432,8 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Vector of integers. </p>
+
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00016">16</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
 
 </div>
 </div>
@@ -426,6 +451,8 @@ Variables</h2></td></tr>
 
 <p>Pair of an integer ID and a double value (e.g., utility). </p>
 
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00015">15</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a6101f686aa3d1d29e76f7158cb8c347c" name="a6101f686aa3d1d29e76f7158cb8c347c"></a>
@@ -441,6 +468,8 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Vector of integer-double pairs. </p>
+
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00019">19</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
 
 </div>
 </div>
@@ -458,6 +487,8 @@ Variables</h2></td></tr>
 
 <p>Pair of two integers. </p>
 
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00014">14</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a79e98970e41b731003aca29a0f415712" name="a79e98970e41b731003aca29a0f415712"></a>
@@ -473,6 +504,8 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Vector of integer-integer pairs. </p>
+
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00018">18</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
 
 </div>
 </div>
@@ -490,6 +523,8 @@ Variables</h2></td></tr>
 
 <p>2D matrix of strings. </p>
 
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00021">21</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a8611bd025a925b668051e6e08d0b4608" name="a8611bd025a925b668051e6e08d0b4608"></a>
@@ -506,12 +541,18 @@ Variables</h2></td></tr>
 
 <p>Vector of strings. </p>
 
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00017">17</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
+
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="mmkp_8hpp.html">mmkp.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
 </body>
 </html>

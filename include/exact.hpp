@@ -30,8 +30,8 @@ namespace exact {
 
         /**
          * @brief Formulates and solves the exact ILP resource allocation model using CPLEX.
-         * @details Defines binary decision variables $x_{d}^{i} \in \{0, 1\}$ indicating whether 
-         * device $d$ is assigned to server $i$. Maximizes the total utility of served devices 
+         * @details Defines binary decision variables \f$x_{d}^{i} \in \{0, 1\}\f$ indicating whether 
+         * device \f$d\f$ is assigned to server \f$i\f$. Maximizes the total utility of served devices 
          * (avoided SLA penalties) subject to single-server assignment and multidimensional 
          * resource capacity constraints (CPU, MEM, STO).
          * 

@@ -69,10 +69,23 @@ fi
 # PT: Gera a documentação Doxygen (HTML + PDF LaTeX) se solicitado
 if [ "$GEN_DOCS" = true ]; then
     echo "=== [EN] Generating Doxygen docs | [PT] Gerando documentação Doxygen ==="
+    cp README.md README.md.tmp
+    sed -i '/img.shields.io/d' README.md
     doxygen docs/Doxyfile
+    mv README.md.tmp README.md
+
     if [ -d "docs/latex" ]; then
-        make -C docs/latex
-        cp docs/latex/refman.pdf docs/html/MMKP_Documentation.pdf
+        sed -i 's/\\UTF{[0-9A-Fa-f]*}//g' docs/latex/*.tex 2>/dev/null || true
+        (
+            cd docs/latex
+            pdflatex -interaction=nonstopmode refman.tex >/dev/null || true
+            makeindex refman.idx >/dev/null 2>&1 || true
+            pdflatex -interaction=nonstopmode refman.tex >/dev/null || true
+            pdflatex -interaction=nonstopmode refman.tex >/dev/null || true
+        )
+        if [ -f "docs/latex/refman.pdf" ]; then
+            cp docs/latex/refman.pdf docs/html/MMKP_Documentation.pdf
+        fi
     fi
     # Encerra o script aqui se nenhuma flag de build/limpeza foi usada junto
     if [ "$CLEAN_BUILD" = false ] && [ "$CLEAN_DATA" = false ] && [ "$CLEAN_RESULTS" = false ]; then

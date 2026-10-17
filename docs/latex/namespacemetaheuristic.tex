@@ -1,32 +1,32 @@
-\doxysection{metaheuristic Namespace Reference}
+\doxysubsection{metaheuristic Namespace Reference}
 \hypertarget{namespacemetaheuristic}{}\label{namespacemetaheuristic}\index{metaheuristic@{metaheuristic}}
 
 
 Encapsulates meta-\/heuristic algorithms for network resource allocation.  
 
 
-\doxysubsubsection*{Namespaces}
+\doxysubsubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
 namespace \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03}{anonymous\+\_\+namespace\{metaheuristic.\+hpp\}}}
 \end{DoxyCompactItemize}
-\doxysubsubsection*{Functions}
+\doxysubsubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{namespacemetaheuristic_a048f6eef02905cc9184c197939c3209a}{boot}} (\mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}} \&state)
 \begin{DoxyCompactList}\small\item\em Initializes and launches the selected meta-\/heuristic algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\doxysubsubsection{Detailed Description}
 Encapsulates meta-\/heuristic algorithms for network resource allocation. 
 
 Provides trajectory-\/based optimization techniques, specifically Simulated Annealing, to iteratively improve initial heuristic solutions by exploring shift, insertion, and 1-\/for-\/1 swap neighborhood structures. 
 
-\doxysubsection{Function Documentation}
+\doxysubsubsection{Function Documentation}
 \Hypertarget{namespacemetaheuristic_a048f6eef02905cc9184c197939c3209a}\label{namespacemetaheuristic_a048f6eef02905cc9184c197939c3209a} 
 \index{metaheuristic@{metaheuristic}!boot@{boot}}
 \index{boot@{boot}!metaheuristic@{metaheuristic}}
-\doxysubsubsection{\texorpdfstring{boot()}{boot()}}
+\doxyparagraph{\texorpdfstring{boot()}{boot()}}
 {\footnotesize\ttfamily void metaheuristic\+::boot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}} \&}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -40,3 +40,15 @@ Generates an initial solution using the configured constructive base heuristic, 
 {\em state} & The unified simulation state to be optimized. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{metaheuristic_8hpp_source_l00221}{221}} of file \mbox{\hyperlink{metaheuristic_8hpp_source}{metaheuristic.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{heuristic_8hpp_source_l00196}{heuristic\+::boot()}}, \mbox{\hyperlink{mmkp_8hpp_source_l01001}{metrics\+::calculate\+\_\+metrics()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00929}{metrics\+::\+Result\+::devices}}, \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11abe0511aca70b810b2ed30f6c24c4a620}{metrics\+::greedy\+\_\+cost\+\_\+benefit}}, \mbox{\hyperlink{mmkp_8hpp_source_l01263}{metrics\+::save\+\_\+results()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00930}{metrics\+::\+Result\+::servers}}, \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11a557e0f060742f44e69f44502ad2f3d71}{metrics\+::simulated\+\_\+annealing}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00931}{metrics\+::\+Result\+::stats}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_source_l00043}{run\+\_\+simulation()}}.
+

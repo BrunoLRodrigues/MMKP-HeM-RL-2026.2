@@ -8,7 +8,7 @@ var searchData=
   ['tools_2ehpp_5',['tools.hpp',['../tools_8hpp.html',1,'']]],
   ['total_5fpenalty_5fcost_6',['total_penalty_cost',['../structmetrics_1_1Metrics_1_1Outputs.html#a4e1167a2019ff1105f6b3c7a4b24fd78',1,'metrics::Metrics::Outputs']]],
   ['total_5fwidth_7',['total_width',['../namespacedisplay_1_1details.html#a06fe5a2ba83e133d60ff8fb9412247ae',1,'display::details']]],
-  ['tt_20build_20sh_20tt_20recomendado_8',['Opção 1: Usando o script &lt;tt&gt;build.sh&lt;/tt&gt; (Recomendado)',['../md_README_8pt-BR.html#autotoc_md15',1,'']]],
-  ['tt_20build_20sh_20tt_20recommended_9',['Option 1: Using &lt;tt&gt;build.sh&lt;/tt&gt; (Recommended)',['../index.html#autotoc_md5',1,'']]],
+  ['tt_20build_20sh_20tt_20recommended_8',['Option 1: Using &lt;tt&gt;build.sh&lt;/tt&gt; (Recommended)',['../index.html#autotoc_md5',1,'']]],
+  ['tt_20results_20tt_9',['📊 Simulation Results (&lt;tt&gt;results/&lt;/tt&gt;)',['../index.html#autotoc_md9',1,'']]],
   ['type_10',['type',['../structcore_1_1Server.html#a4309664304c6f6df68e8f1841d2649e3',1,'core::Server']]]
 ];

@@ -9,6 +9,7 @@ var main_8cpp =
     [ "DEVICES_START", "main_8cpp.html#a388d4bbd8ca214abdbc3a5e4e7cfc30d", null ],
     [ "DEVICES_STEP", "main_8cpp.html#a09403595097b1f51af63092dd418f351", null ],
     [ "EC_LENGTH", "main_8cpp.html#a182bbb04b1b749e22fcf1db5320565bf", null ],
+    [ "FIXED_PENALTY", "main_8cpp.html#abe93e9a692a8e515cac8c530b0259ea9", null ],
     [ "MAX_RUNS", "main_8cpp.html#a4dd65ede7d682789089fe5b304cb91cd", null ],
     [ "SERVICES", "main_8cpp.html#a97af17a128538a7283ef3d4243fe4c9f", null ],
     [ "TEMPERATURE", "main_8cpp.html#a6ee0d833caf468544d3742ba723e4bcf", null ]

@@ -1,15 +1,15 @@
-\chapter{MMKP Resource Allocation in Io\+T-\/\+EC-\/\+CC Networks}
+\doxysection{MMKP Resource Allocation in Io\+T-\/\+EC-\/\+CC Networks}
 \hypertarget{index}{}\label{index}\index{MMKP Resource Allocation in IoT-\/EC-\/CC Networks@{MMKP Resource Allocation in IoT-\/EC-\/CC Networks}}
 \label{index_md_README}%
 \Hypertarget{index_md_README}%
- \href{https://brunolrodrigues.github.io/MMKP-HeM-RL-2026.2/}{\texttt{ }} \href{https://brunolrodrigues.github.io/MMKP-HeM-RL-2026.2/MMKP_Documentation.pdf}{\texttt{ }}
 
-🌐 {\bfseries{Language / Idioma\+:}} {\bfseries{English}} \texorpdfstring{$\vert$}{|} \doxysectlink{md_README_8pt-BR}{Português (Brasil)}{0}
+
+🌐 {\bfseries{Language / Idioma\+:}} {\bfseries{English}} \texorpdfstring{$\vert$}{|} Português (Brasil)
 
 A C++17 simulator for solving the {\bfseries{Multiple Multidimensional Knapsack Problem (MMKP)}} applied to resource allocation across {\bfseries{Internet of Things (IoT)}}, {\bfseries{Edge Computing (EC)}}, and {\bfseries{Cloud Computing (CC)}} infrastructures. The simulator evaluates Exact (ILP via IBM ILOG CPLEX), Constructive Heuristic, and Meta-\/heuristic (Simulated Annealing) paradigms.
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md2}{}\doxysection{\texorpdfstring{📁 Project Structure}{📁 Project Structure}}\label{index_autotoc_md2}
+\hypertarget{index_autotoc_md2}{}\doxysubsection{\texorpdfstring{📁 Project Structure}{📁 Project Structure}}\label{index_autotoc_md2}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{MMKP\_IoT\_EC\_CC/}
@@ -41,7 +41,7 @@ A C++17 simulator for solving the {\bfseries{Multiple Multidimensional Knapsack 
 \DoxyCodeLine{└──\ README.pt-\/BR.md\ \ \ \ \ \ \ \ \ \#\ Project\ documentation\ (Portuguese)}
 
 \end{DoxyCode}
-\hypertarget{index_autotoc_md3}{}\doxysection{\texorpdfstring{⚙️ Prerequisites}{⚙️ Prerequisites}}\label{index_autotoc_md3}
+\hypertarget{index_autotoc_md3}{}\doxysubsection{\texorpdfstring{⚙️ Prerequisites}{⚙️ Prerequisites}}\label{index_autotoc_md3}
 
 \begin{DoxyItemize}
 \item {\bfseries{OS\+:}} Linux or Windows Subsystem for Linux (WSL2 -\/ Ubuntu 24.\+04 recommended)
@@ -52,8 +52,8 @@ A C++17 simulator for solving the {\bfseries{Multiple Multidimensional Knapsack 
 
 \begin{quote}
 {\bfseries{Note\+:}} If your CPLEX installation is in a different directory, update the {\ttfamily CPLEX\+\_\+\+INCLUDE}, {\ttfamily CONCERT\+\_\+\+INCLUDE}, {\ttfamily CPLEX\+\_\+\+LIB}, and {\ttfamily CONCERT\+\_\+\+LIB} paths in {\ttfamily build.\+sh} and {\ttfamily CMake\+Lists.\+txt}. \end{quote}
-\hypertarget{index_autotoc_md4}{}\doxysection{\texorpdfstring{🚀 How to Compile and Run}{🚀 How to Compile and Run}}\label{index_autotoc_md4}
-\hypertarget{index_autotoc_md5}{}\doxysubsection{\texorpdfstring{Option 1\+: Using $<$tt$>$build.\+sh$<$/tt$>$ (\+Recommended)}{Option 1: Using <tt>build.sh</tt> (Recommended)}}\label{index_autotoc_md5}
+\hypertarget{index_autotoc_md4}{}\doxysubsection{\texorpdfstring{🚀 How to Compile and Run}{🚀 How to Compile and Run}}\label{index_autotoc_md4}
+\hypertarget{index_autotoc_md5}{}\doxysubsubsection{\texorpdfstring{Option 1\+: Using $<$tt$>$build.\+sh$<$/tt$>$ (\+Recommended)}{Option 1: Using <tt>build.sh</tt> (Recommended)}}\label{index_autotoc_md5}
 Grant execution permission and run the script from the project root\+:
 
 
@@ -71,7 +71,7 @@ The script supports optional flags before compiling and running\+:
 \item {\ttfamily ./build.sh -\/r} or {\ttfamily -\/-\/results}\+: Clears previous outputs in {\ttfamily results/}.
 \item {\ttfamily ./build.sh -\/a} or {\ttfamily -\/-\/all}\+: Cleans {\ttfamily build/}, {\ttfamily data/}, and {\ttfamily results/}.
 \item {\ttfamily ./build.sh -\/doc} or {\ttfamily -\/-\/docs}\+: Regenerates Doxygen HTML and La\+TeX PDF documentation.
-\end{DoxyItemize}\hypertarget{index_autotoc_md6}{}\doxysubsection{\texorpdfstring{Option 2\+: Using CMake}{Option 2: Using CMake}}\label{index_autotoc_md6}
+\end{DoxyItemize}\hypertarget{index_autotoc_md6}{}\doxysubsubsection{\texorpdfstring{Option 2\+: Using CMake}{Option 2: Using CMake}}\label{index_autotoc_md6}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{mkdir\ -\/p\ build\ \&\&\ cd\ build}
@@ -81,7 +81,7 @@ The script supports optional flags before compiling and running\+:
 \DoxyCodeLine{./build/MMKP\_IoT-\/EC-\/CC}
 
 \end{DoxyCode}
- \texorpdfstring{$\ast$}{*}(Always run the binary from the project root directory so relative paths to {\ttfamily data/} and {\ttfamily results/} resolve properly).\texorpdfstring{$\ast$}{*}\hypertarget{index_autotoc_md7}{}\doxysection{\texorpdfstring{🧠 Implemented Algorithms}{🧠 Implemented Algorithms}}\label{index_autotoc_md7}
+ \texorpdfstring{$\ast$}{*}(Always run the binary from the project root directory so relative paths to {\ttfamily data/} and {\ttfamily results/} resolve properly).\texorpdfstring{$\ast$}{*}\hypertarget{index_autotoc_md7}{}\doxysubsection{\texorpdfstring{🧠 Implemented Algorithms}{🧠 Implemented Algorithms}}\label{index_autotoc_md7}
 \tabulinesep=1mm
 \begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
 \hline
@@ -102,7 +102,7 @@ The script supports optional flags before compiling and running\+:
 \end{longtabu}
 
 
-{\itshape Note\+: When executing options {\ttfamily 1}, {\ttfamily 2}, and {\ttfamily 3}, the initial heuristic solution is automatically evaluated and saved under {\ttfamily results/\+HEURISTIC/} prior to running Simulated Annealing.}\hypertarget{index_autotoc_md8}{}\doxysection{\texorpdfstring{🔧 Simulation Parameters}{🔧 Simulation Parameters}}\label{index_autotoc_md8}
+{\itshape Note\+: When executing options {\ttfamily 1}, {\ttfamily 2}, and {\ttfamily 3}, the initial heuristic solution is automatically evaluated and saved under {\ttfamily results/\+HEURISTIC/} prior to running Simulated Annealing.}\hypertarget{index_autotoc_md8}{}\doxysubsection{\texorpdfstring{🔧 Simulation Parameters}{🔧 Simulation Parameters}}\label{index_autotoc_md8}
 Simulation constants can be customized directly in {\ttfamily \doxylink{main_8cpp}{src/main.\+cpp}}\+:
 
 
@@ -113,13 +113,18 @@ Simulation constants can be customized directly in {\ttfamily \doxylink{main_8cp
 \item {\ttfamily MAX\+\_\+\+RUNS = 50}\+: Number of independent runs per instance.
 \item {\ttfamily CPLEX\+\_\+\+TIME\+\_\+\+LIMIT = 3600}\+: Maximum solver runtime in seconds (1 hour).
 \item {\ttfamily TEMPERATURE = 50.\+0}, {\ttfamily ALPHA = 0.\+9999}\+: Simulated Annealing cooling schedule.
-\end{DoxyItemize}\hypertarget{index_autotoc_md9}{}\doxysection{\texorpdfstring{📚 Documentation (\+Doxygen)}{📚 Documentation (Doxygen)}}\label{index_autotoc_md9}
+\item {\ttfamily FIXED\+\_\+\+PENALTY = false}\+: Controls whether device SLA penalty costs are constant ({\ttfamily 1.\+0}) or task-\/proportional.
+\end{DoxyItemize}\hypertarget{index_autotoc_md9}{}\doxysubsection{\texorpdfstring{📊 Simulation Results ($<$tt$>$results/$<$/tt$>$)}{📊 Simulation Results (<tt>results/</tt>)}}\label{index_autotoc_md9}
+In the output files stored inside the {\ttfamily results/} directory ({\ttfamily EXACT/}, {\ttfamily HEURISTIC/}, and {\ttfamily METAHEURISTIC/})\+:
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+First batch of execution rows ({\ttfamily 10,000} to {\ttfamily 20,000} devices)\+:\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Executed using a \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}constant penalty cost ({\ttfamily 1.\+0})\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} for all devices ({\ttfamily FIXED\+\_\+\+PENALTY = true}).
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+Subsequent execution rows ({\ttfamily 10,000} to {\ttfamily 20,000} devices)\+:\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Executed using a {\bfseries{variable penalty cost}} ({\ttfamily FIXED\+\_\+\+PENALTY = false}), where each device\textquotesingle{}s penalty cost is determined by the random draw of tasks generated for its assigned service profile in {\ttfamily data/\+Services.\+txt}.
+\end{DoxyItemize}\hypertarget{index_autotoc_md10}{}\doxysubsection{\texorpdfstring{📚 Documentation (\+Doxygen)}{📚 Documentation (Doxygen)}}\label{index_autotoc_md10}
 To generate or update the HTML ({\ttfamily docs/html/index.\+html}) and PDF ({\ttfamily docs/latex/refman.\+pdf}) documentation locally, run from the project root\+:
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{doxygen\ docs/Doxyfile}
-\DoxyCodeLine{make\ -\/C\ docs/latex}
+\DoxyCodeLine{./build.sh\ -\/-\/docs}
 
 \end{DoxyCode}
  

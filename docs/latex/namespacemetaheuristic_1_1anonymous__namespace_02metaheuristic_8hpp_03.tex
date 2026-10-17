@@ -1,31 +1,31 @@
-\doxysection{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\} Namespace Reference}
+\doxysubsection{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\} Namespace Reference}
 \hypertarget{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03}{}\label{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03}\index{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}@{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}}}
-\doxysubsubsection*{Classes}
+\doxysubsubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{Move}}
 \begin{DoxyCompactList}\small\item\em Represents a reversible state transition within the neighborhood search. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Functions}
+\doxysubsubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{Move}} \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a3043acb2774dc482b46e7ffc19f672a6}{apply\+\_\+neighbor}} (\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} \&devices, \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} \&servers, int tries=10)
 \begin{DoxyCompactList}\small\item\em Applies a shift, insert, or swap neighborhood move to the current state. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a8a942dd816ecc741137762ec82b563a0}{revert\+\_\+neighbor}} (\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} \&devices, \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} \&servers, const \mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{Move}} \&move)
-\begin{DoxyCompactList}\small\item\em Reverts a previously applied neighborhood move in \$O( $\log$ N)\$ time. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Reverts a previously applied neighborhood move in $O(\log N)$ time. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a6297cb9a818da42479ae99fcb13ed8cf}{simulated\+\_\+annealing}} (\mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}} \&state)
 \begin{DoxyCompactList}\small\item\em Executes the Simulated Annealing (SA) optimization algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Variables}
+\doxysubsubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 constexpr int \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a55eda76f1c1e58ce4654833f7dee433e}{LOOP}} = 10
 \begin{DoxyCompactList}\small\item\em Number of inner-\/loop iterations (Markov chain length) executed per temperature level. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Function Documentation}
+\doxysubsubsection{Function Documentation}
 \Hypertarget{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a3043acb2774dc482b46e7ffc19f672a6}\label{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a3043acb2774dc482b46e7ffc19f672a6} 
 \index{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}@{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}}!apply\_neighbor@{apply\_neighbor}}
 \index{apply\_neighbor@{apply\_neighbor}!metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}@{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}}}
-\doxysubsubsection{\texorpdfstring{apply\_neighbor()}{apply\_neighbor()}}
+\doxyparagraph{\texorpdfstring{apply\_neighbor()}{apply\_neighbor()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{Move}} metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::apply\+\_\+neighbor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} \&}]{devices,  }\item[{\mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} \&}]{servers,  }\item[{int}]{tries = {\ttfamily 10} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -46,15 +46,27 @@ Selects a random device and attempts to allocate or shift it across random serve
 \begin{DoxyReturn}{Returns}
 \doxylink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{Move} A structure containing the applied transition details and cost variation. 
 \end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{metaheuristic_8hpp_source_l00054}{54}} of file \mbox{\hyperlink{metaheuristic_8hpp_source}{metaheuristic.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l00143}{core\+::\+Server\+::add\+\_\+service()}}, \mbox{\hyperlink{metaheuristic_8hpp_source_l00054}{apply\+\_\+neighbor()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00130}{core\+::\+Server\+::can\+\_\+serve()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00036}{core\+::\+Device\+::cost}}, \mbox{\hyperlink{metaheuristic_8hpp_source_l00040}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::\+Move\+::delta\+\_\+cost}}, \mbox{\hyperlink{metaheuristic_8hpp_source_l00036}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::\+Move\+::device\+\_\+id}}, \mbox{\hyperlink{metaheuristic_8hpp_source_l00038}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::\+Move\+::new\+\_\+server\+\_\+id}}, \mbox{\hyperlink{metaheuristic_8hpp_source_l00037}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::\+Move\+::old\+\_\+server\+\_\+id}}, \mbox{\hyperlink{tools_8hpp_source_l00283}{randomness\+::random\+\_\+number()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00163}{core\+::\+Server\+::rmv\+\_\+service()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00042}{core\+::\+Device\+::served}}, \mbox{\hyperlink{mmkp_8hpp_source_l00043}{core\+::\+Device\+::server\+\_\+id}}, \mbox{\hyperlink{metaheuristic_8hpp_source_l00039}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::\+Move\+::swapped\+\_\+id}}, and \mbox{\hyperlink{metaheuristic_8hpp_source_l00035}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::\+Move\+::valid}}.
+
+
+
+Referenced by \mbox{\hyperlink{metaheuristic_8hpp_source_l00054}{apply\+\_\+neighbor()}}, and \mbox{\hyperlink{metaheuristic_8hpp_source_l00145}{simulated\+\_\+annealing()}}.
+
 \Hypertarget{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a8a942dd816ecc741137762ec82b563a0}\label{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a8a942dd816ecc741137762ec82b563a0} 
 \index{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}@{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}}!revert\_neighbor@{revert\_neighbor}}
 \index{revert\_neighbor@{revert\_neighbor}!metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}@{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}}}
-\doxysubsubsection{\texorpdfstring{revert\_neighbor()}{revert\_neighbor()}}
+\doxyparagraph{\texorpdfstring{revert\_neighbor()}{revert\_neighbor()}}
 {\footnotesize\ttfamily void metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::revert\+\_\+neighbor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} \&}]{devices,  }\item[{\mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} \&}]{servers,  }\item[{const \mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{Move}} \&}]{move }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Reverts a previously applied neighborhood move in \$O( $\log$ N)\$ time. 
+Reverts a previously applied neighborhood move in $O(\log N)$ time. 
 
 Restores the exact server allocations and resource supplies prior to {\ttfamily apply\+\_\+neighbor}.
 
@@ -67,17 +79,29 @@ Restores the exact server allocations and resource supplies prior to {\ttfamily 
 {\em move} & The {\ttfamily \doxylink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{Move}} structure containing the transition details to undo. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{metaheuristic_8hpp_source_l00122}{122}} of file \mbox{\hyperlink{metaheuristic_8hpp_source}{metaheuristic.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{metaheuristic_8hpp_source_l00036}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::\+Move\+::device\+\_\+id}}, \mbox{\hyperlink{metaheuristic_8hpp_source_l00038}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::\+Move\+::new\+\_\+server\+\_\+id}}, \mbox{\hyperlink{metaheuristic_8hpp_source_l00037}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::\+Move\+::old\+\_\+server\+\_\+id}}, \mbox{\hyperlink{metaheuristic_8hpp_source_l00122}{revert\+\_\+neighbor()}}, and \mbox{\hyperlink{metaheuristic_8hpp_source_l00039}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::\+Move\+::swapped\+\_\+id}}.
+
+
+
+Referenced by \mbox{\hyperlink{metaheuristic_8hpp_source_l00122}{revert\+\_\+neighbor()}}, and \mbox{\hyperlink{metaheuristic_8hpp_source_l00145}{simulated\+\_\+annealing()}}.
+
 \Hypertarget{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a6297cb9a818da42479ae99fcb13ed8cf}\label{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a6297cb9a818da42479ae99fcb13ed8cf} 
 \index{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}@{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}}!simulated\_annealing@{simulated\_annealing}}
 \index{simulated\_annealing@{simulated\_annealing}!metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}@{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}}}
-\doxysubsubsection{\texorpdfstring{simulated\_annealing()}{simulated\_annealing()}}
+\doxyparagraph{\texorpdfstring{simulated\_annealing()}{simulated\_annealing()}}
 {\footnotesize\ttfamily void metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::simulated\+\_\+annealing (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}} \&}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
 Executes the Simulated Annealing (SA) optimization algorithm. 
 
-Iteratively explores the solution space by applying random neighborhood moves. Accepts worsening moves according to the Metropolis criterion \$ $\exp$(-\/ $\Delta$ / T)\$ to escape local optima, cooling down geometrically via factor \$ $\alpha$\$ until \$T $\le$ 10\texorpdfstring{$^\wedge$}{\string^}\{-\/3\}\$. Uses lazy synchronization for tracking the best-\/found state.
+Iteratively explores the solution space by applying random neighborhood moves. Accepts worsening moves according to the Metropolis criterion $\exp(-\Delta / T)$ to escape local optima, cooling down geometrically via factor $\alpha$ until $T \le 10^{-3}$. Uses lazy synchronization for tracking the best-\/found state.
 
 
 \begin{DoxyParams}{Parameters}
@@ -86,14 +110,34 @@ Iteratively explores the solution space by applying random neighborhood moves. A
 \end{DoxyParams}
 
 
-\doxysubsection{Variable Documentation}
+Definition at line \mbox{\hyperlink{metaheuristic_8hpp_source_l00145}{145}} of file \mbox{\hyperlink{metaheuristic_8hpp_source}{metaheuristic.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{metaheuristic_8hpp_source_l00054}{apply\+\_\+neighbor()}}, \mbox{\hyperlink{metaheuristic_8hpp_source_l00040}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::\+Move\+::delta\+\_\+cost}}, \mbox{\hyperlink{metaheuristic_8hpp_source_l00036}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::\+Move\+::device\+\_\+id}}, \mbox{\hyperlink{mmkp_8hpp_source_l00929}{metrics\+::\+Result\+::devices}}, \mbox{\hyperlink{metaheuristic_8hpp_source_l00028}{LOOP}}, \mbox{\hyperlink{metaheuristic_8hpp_source_l00038}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::\+Move\+::new\+\_\+server\+\_\+id}}, \mbox{\hyperlink{metaheuristic_8hpp_source_l00037}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::\+Move\+::old\+\_\+server\+\_\+id}}, \mbox{\hyperlink{tools_8hpp_source_l00283}{randomness\+::random\+\_\+number()}}, \mbox{\hyperlink{metaheuristic_8hpp_source_l00122}{revert\+\_\+neighbor()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00930}{metrics\+::\+Result\+::servers}}, \mbox{\hyperlink{metaheuristic_8hpp_source_l00145}{simulated\+\_\+annealing()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00931}{metrics\+::\+Result\+::stats}}, \mbox{\hyperlink{metaheuristic_8hpp_source_l00039}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::\+Move\+::swapped\+\_\+id}}, \mbox{\hyperlink{metaheuristic_8hpp_source_l00035}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::\+Move\+::valid}}, and \mbox{\hyperlink{tools_8hpp_source_l00033}{ZERO}}.
+
+
+
+Referenced by \mbox{\hyperlink{metaheuristic_8hpp_source_l00145}{simulated\+\_\+annealing()}}.
+
+
+
+\doxysubsubsection{Variable Documentation}
 \Hypertarget{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a55eda76f1c1e58ce4654833f7dee433e}\label{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a55eda76f1c1e58ce4654833f7dee433e} 
 \index{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}@{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}}!LOOP@{LOOP}}
 \index{LOOP@{LOOP}!metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}@{metaheuristic::anonymous\_namespace\lcurly{}metaheuristic.hpp\rcurly{}}}
-\doxysubsubsection{\texorpdfstring{LOOP}{LOOP}}
+\doxyparagraph{\texorpdfstring{LOOP}{LOOP}}
 {\footnotesize\ttfamily constexpr int metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::\+LOOP = 10\hspace{0.3cm}{\ttfamily [constexpr]}}
 
 
 
 Number of inner-\/loop iterations (Markov chain length) executed per temperature level. 
+
+
+
+Definition at line \mbox{\hyperlink{metaheuristic_8hpp_source_l00028}{28}} of file \mbox{\hyperlink{metaheuristic_8hpp_source}{metaheuristic.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{metaheuristic_8hpp_source_l00145}{simulated\+\_\+annealing()}}.
 

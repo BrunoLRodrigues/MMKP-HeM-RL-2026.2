@@ -104,12 +104,18 @@ Os parâmetros do experimento podem ser ajustados diretamente em `src/main.cpp`:
 * `MAX_RUNS = 50`: Número de execuções independentes por instância.
 * `CPLEX_TIME_LIMIT = 3600`: Tempo limite do CPLEX em segundos (1 hora).
 * `TEMPERATURE = 50.0`, `ALPHA = 0.9999`: Parâmetros de resfriamento do *Simulated Annealing*.
+* `FIXED_PENALTY = false`: Define se o custo de penalidade de cada dispositivo é fixo (`1.0`) ou variável.
+
+## 📊 Resultados da Simulação (`results/`)
+
+Nos arquivos de saída armazenados dentro do diretório `results/` (`EXACT/`, `HEURISTIC/` e `METAHEURISTIC/`):
+* **Primeiras linhas de execução (`10.000` até `20.000` dispositivos):** Foram realizadas com **custo de penalidade constante (`1.0`)** para todos os dispositivos (`FIXED_PENALTY = true`).
+* **Demais linhas de execução (`10.000` até `20.000` dispositivos):** Referem-se à execução com **custo de penalidade variável** (`FIXED_PENALTY = false`), calculado com base no sorteio das tarefas (*tasks*) geradas para cada serviço em `data/Services.txt`.
 
 ## 📚 Documentação (Doxygen)
 
 Para gerar ou atualizar localmente a documentação em HTML (`docs/html/index.html`) e em PDF (`docs/latex/refman.pdf`), execute na raiz do projeto:
 
 ~~~bash
-doxygen docs/Doxyfile
-make -C docs/latex
+./build.sh --docs
 ~~~

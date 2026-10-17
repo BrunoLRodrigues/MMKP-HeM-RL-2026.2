@@ -104,12 +104,18 @@ Simulation constants can be customized directly in `src/main.cpp`:
 * `MAX_RUNS = 50`: Number of independent runs per instance.
 * `CPLEX_TIME_LIMIT = 3600`: Maximum solver runtime in seconds (1 hour).
 * `TEMPERATURE = 50.0`, `ALPHA = 0.9999`: Simulated Annealing cooling schedule.
+* `FIXED_PENALTY = false`: Controls whether device SLA penalty costs are constant (`1.0`) or task-proportional.
+
+## 📊 Simulation Results (`results/`)
+
+In the output files stored inside the `results/` directory (`EXACT/`, `HEURISTIC/`, and `METAHEURISTIC/`):
+* **First batch of execution rows (`10,000` to `20,000` devices):** Executed using a **constant penalty cost (`1.0`)** for all devices (`FIXED_PENALTY = true`).
+* **Subsequent execution rows (`10,000` to `20,000` devices):** Executed using a **variable penalty cost** (`FIXED_PENALTY = false`), where each device's penalty cost is determined by the random draw of tasks generated for its assigned service profile in `data/Services.txt`.
 
 ## 📚 Documentation (Doxygen)
 
 To generate or update the HTML (`docs/html/index.html`) and PDF (`docs/latex/refman.pdf`) documentation locally, run from the project root:
 
 ~~~bash
-doxygen docs/Doxyfile
-make -C docs/latex
+./build.sh --docs
 ~~~

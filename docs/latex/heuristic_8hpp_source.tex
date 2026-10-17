@@ -1,171 +1,215 @@
-\doxysection{heuristic.\+hpp}
+\doxysubsection{heuristic.\+hpp}
 \hypertarget{heuristic_8hpp_source}{}\label{heuristic_8hpp_source}\index{include/heuristic.hpp@{include/heuristic.hpp}}
 \mbox{\hyperlink{heuristic_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ }
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00010\ }
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{mmkp_8hpp}{mmkp.hpp}}"{}}}
-\DoxyCodeLine{00012\ }
-\DoxyCodeLine{00020\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceheuristic}{heuristic}}\ \{}
-\DoxyCodeLine{00021\ }
-\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{namespace\ }\{}
-\DoxyCodeLine{00023\ }
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceheuristic_1_1anonymous__namespace_02heuristic_8hpp_03_ac5d67e28eb3779f6cea40564f8e57667}{greedy\_cost\_benefit}}(\mbox{\hyperlink{structmetrics_1_1Result}{metrics::Result}}\&\ state)\ \{}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ metrics\_ptr\ =\ std::dynamic\_pointer\_cast<metrics::HeuristicMetrics>(state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}});}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!metrics\_ptr)\ \{}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Invalid\ metrics\ type\ for\ heuristic\ solver.\(\backslash\)n"{}};}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00038\ }
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core::Devices}}\&\ devices\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}};}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core::Servers}}\&\ servers\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}};}
-\DoxyCodeLine{00041\ }
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ start\_chrono\ =\ std::chrono::high\_resolution\_clock::now();}
-\DoxyCodeLine{00043\ }
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ total\_cpu\ =\ 0.0,\ total\_mem\ =\ 0.0,\ total\_sto\ =\ 0.0;}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 1;\ i\ <\ servers.size();\ i++)\ \{}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ total\_cpu\ +=\ servers[i].cpu;}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ total\_mem\ +=\ servers[i].mem;}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ total\_sto\ +=\ servers[i].sto;}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00050\ }
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmkp_8hpp_a6101f686aa3d1d29e76f7158cb8c347c}{id\_pair\_vector}}\ candidates;}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ candidates.reserve(devices.size());}
-\DoxyCodeLine{00053\ }
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ min\_cpu\ =\ std::numeric\_limits<double>::max();}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ min\_mem\ =\ std::numeric\_limits<double>::max();}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ min\_sto\ =\ std::numeric\_limits<double>::max();}
-\DoxyCodeLine{00057\ }
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ d\ =\ 1;\ d\ <\ devices.size();\ d++)\ \{}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Device}{core::Device}}\&\ device\ =\ devices[d];}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!device.\mbox{\hyperlink{structcore_1_1Device_a835d0367af9fbc3419f6fb8a114760e3}{served}})\ \{}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ w\_cpu\ =\ device.\mbox{\hyperlink{structcore_1_1Device_ac8f4ac74433e443f9a0144118539cc3d}{cpu}}\ /\ total\_cpu;}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ w\_mem\ =\ device.\mbox{\hyperlink{structcore_1_1Device_ab995063705eec1a4eeafcff73b32a7c7}{mem}}\ /\ total\_mem;}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ w\_sto\ =\ device.\mbox{\hyperlink{structcore_1_1Device_a5b35cbc18886c7fbcc22912e64e014d1}{sto}}\ /\ total\_sto;}
-\DoxyCodeLine{00064\ }
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ utility\ =\ device.\mbox{\hyperlink{structcore_1_1Device_abcd568ad40b2da1bf96e020eb373f395}{cost}}\ /\ (w\_cpu\ +\ w\_mem\ +\ w\_sto);}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ candidates.emplace\_back(device.\mbox{\hyperlink{structcore_1_1Device_ac83e97cbd9fa5273e048d20efd117c78}{id}},\ utility);}
-\DoxyCodeLine{00067\ }
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (device.\mbox{\hyperlink{structcore_1_1Device_ac8f4ac74433e443f9a0144118539cc3d}{cpu}}\ <\ min\_cpu)\ min\_cpu\ =\ device.\mbox{\hyperlink{structcore_1_1Device_ac8f4ac74433e443f9a0144118539cc3d}{cpu}};}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (device.\mbox{\hyperlink{structcore_1_1Device_ab995063705eec1a4eeafcff73b32a7c7}{mem}}\ <\ min\_mem)\ min\_mem\ =\ device.\mbox{\hyperlink{structcore_1_1Device_ab995063705eec1a4eeafcff73b32a7c7}{mem}};}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (device.\mbox{\hyperlink{structcore_1_1Device_a5b35cbc18886c7fbcc22912e64e014d1}{sto}}\ <\ min\_sto)\ min\_sto\ =\ device.\mbox{\hyperlink{structcore_1_1Device_a5b35cbc18886c7fbcc22912e64e014d1}{sto}};}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00073\ }
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ std::sort(candidates.begin(),\ candidates.end(),\ [](\textcolor{keyword}{const}\ \mbox{\hyperlink{mmkp_8hpp_abdece7e039099de53cbe158d24376ff8}{id\_pair}}\&\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{mmkp_8hpp_abdece7e039099de53cbe158d24376ff8}{id\_pair}}\&\ b)\ \{}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ a.second\ >\ b.second;}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
-\DoxyCodeLine{00077\ }
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ start\_idx\ =\ 0;}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ num\_candidates\ =\ candidates.size();}
-\DoxyCodeLine{00080\ }
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 1;\ i\ <\ servers.size()\ \&\&\ start\_idx\ <\ num\_candidates;\ i++)\ \{}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Server}{core::Server}}\&\ server\ =\ servers[i];}
-\DoxyCodeLine{00083\ }
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ c\ =\ start\_idx;\ c\ <\ num\_candidates;\ c++)\ \{}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((server.\mbox{\hyperlink{structcore_1_1Server_aeec37b8c331e9a588304329940ce2bba}{cpu}}\ -\/\ server.\mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}.\mbox{\hyperlink{structcore_1_1Supply_aeede708c05a5c0ad4dcfeb4cab4a1e59}{cpu}}\ <\ min\_cpu)\ ||}
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (server.\mbox{\hyperlink{structcore_1_1Server_ae5e9db950a7b35a9c1045cd6096051b2}{mem}}\ -\/\ server.\mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}.\mbox{\hyperlink{structcore_1_1Supply_a8d1a5cb1c6a6f613ed211d717858d432}{mem}}\ <\ min\_mem)\ ||}
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (server.\mbox{\hyperlink{structcore_1_1Server_a4e5ec779ca60973f6fa974a9ca3917ee}{sto}}\ -\/\ server.\mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}.\mbox{\hyperlink{structcore_1_1Supply_af5ee55556ad0d4d3e6d2d48c7c46bbd4}{sto}}\ <\ min\_sto))\ \{}
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00090\ }
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Device}{core::Device}}\&\ device\ =\ devices[candidates[c].first];}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!device.\mbox{\hyperlink{structcore_1_1Device_a835d0367af9fbc3419f6fb8a114760e3}{served}}\ \&\&\ server.\mbox{\hyperlink{structcore_1_1Server_aee0071cd3e71c36a8861fbd98fad8a16}{can\_serve}}(device))\ \{}
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ server.\mbox{\hyperlink{structcore_1_1Server_a537a5e6b913db9ff0e0b1de584067990}{add\_service}}(device);}
-\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00095\ }
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (c\ ==\ start\_idx\ \&\&\ device.\mbox{\hyperlink{structcore_1_1Device_a835d0367af9fbc3419f6fb8a114760e3}{served}})\ \{}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ start\_idx++;}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00101\ }
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ end\_chrono\ =\ std::chrono::high\_resolution\_clock::now();}
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ metrics\_ptr-\/>outputs.execution\_time\ =\ std::chrono::duration<double>(end\_chrono\ -\/\ start\_chrono).count();}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00105\ \ \ \ \ }
-\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceheuristic_1_1anonymous__namespace_02heuristic_8hpp_03_a73948f6480b8b285f07088a2b20c28be}{greedy\_random}}(\mbox{\hyperlink{structmetrics_1_1Result}{metrics::Result}}\&\ state)\ \{}
-\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ metrics\_ptr\ =\ std::dynamic\_pointer\_cast<metrics::HeuristicMetrics>(state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}});}
-\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!metrics\_ptr)\ \{}
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Invalid\ metrics\ type\ for\ heuristic\ solver.\(\backslash\)n"{}};}
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00120\ }
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core::Devices}}\&\ devices\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}};}
-\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core::Servers}}\&\ servers\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}};}
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ size\_servers\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(servers.size())\ -\/\ 1;}
-\DoxyCodeLine{00125\ }
-\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ start\_chrono\ =\ std::chrono::high\_resolution\_clock::now();}
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ d\ =\ 1;\ d\ <\ devices.size();\ d++)\ \{}
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Device}{core::Device}}\&\ device\ =\ devices[d];}
-\DoxyCodeLine{00130\ }
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (size\_servers\ >\ 1)\ \{}
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ec\_id\ =\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{randomness::random\_number<int>}}(1,\ size\_servers);}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (servers[ec\_id].can\_serve(device))\ \{}
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ servers[ec\_id].add\_service(device);}
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00138\ }
-\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ end\_chrono\ =\ std::chrono::high\_resolution\_clock::now();}
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ metrics\_ptr-\/>outputs.execution\_time\ =\ std::chrono::duration<double>(end\_chrono\ -\/\ start\_chrono).count();}
-\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00142\ }
-\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceheuristic_1_1anonymous__namespace_02heuristic_8hpp_03_a00e404acd74a838e4016f8a63c639672}{greedy\_random\_fallback}}(\mbox{\hyperlink{structmetrics_1_1Result}{metrics::Result}}\&\ state)\ \{}
-\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ metrics\_ptr\ =\ std::dynamic\_pointer\_cast<metrics::HeuristicMetrics>(state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}});}
-\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!metrics\_ptr)\ \{}
-\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Invalid\ metrics\ type\ for\ heuristic\ solver.\(\backslash\)n"{}};}
-\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00156\ }
-\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ec\_count\ =\ metrics\_ptr-\/>inputs.servers\_ec\_count;}
-\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ cc\_count\ =\ metrics\_ptr-\/>inputs.servers\_cc\_count;}
-\DoxyCodeLine{00159\ }
-\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core::Devices}}\&\ devices\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}};}
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core::Servers}}\&\ servers\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}};}
-\DoxyCodeLine{00162\ }
-\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ start\_chrono\ =\ std::chrono::high\_resolution\_clock::now();}
-\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ d\ =\ 1;\ d\ <\ devices.size();\ d++)\ \{}
-\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Device}{core::Device}}\&\ device\ =\ devices[d];}
-\DoxyCodeLine{00167\ }
-\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ec\_count\ >\ 0)\ \{}
-\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ec\_id\ =\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{randomness::random\_number<int>}}(1,\ ec\_count);}
-\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (servers[ec\_id].can\_serve(device))\ \{}
-\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ servers[ec\_id].add\_service(device);}
-\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
-\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00175\ }
-\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cc\_count\ >\ 0)\ \{}
-\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ cc\_id\ =\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{randomness::random\_number<int>}}(ec\_count\ +\ 1,\ ec\_count\ +\ cc\_count);}
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (servers[cc\_id].can\_serve(device))\ \{}
-\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ servers[cc\_id].add\_service(device);}
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00183\ }
-\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ end\_chrono\ =\ std::chrono::high\_resolution\_clock::now();}
-\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ metrics\_ptr-\/>outputs.execution\_time\ =\ std::chrono::duration<double>(end\_chrono\ -\/\ start\_chrono).count();}
-\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00187\ \ \ \ \ \}}
-\DoxyCodeLine{00188\ }
-\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceheuristic_a49f05c0252bd2ad23bf788bdf45e79cc}{boot}}(\mbox{\hyperlink{structmetrics_1_1Result}{metrics::Result}}\&\ state)\ \{}
-\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}})\ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00198\ }
-\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11abe0511aca70b810b2ed30f6c24c4a620}{metrics::Algorithm::greedy\_cost\_benefit}}\ ==\ state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}-\/>algorithm)\ \{}
-\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ greedy\_cost\_benefit(state);}
-\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11aa845e2c8be77bb480b9bea73ff528829}{metrics::Algorithm::greedy\_random}}\ ==\ state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}-\/>algorithm)\ \{}
-\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ greedy\_random(state);}
-\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11a0327841700a466600166ed61b1b18200}{metrics::Algorithm::greedy\_random\_fallback}}\ ==\ state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}-\/>algorithm)\ \{}
-\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ greedy\_random\_fallback(state);}
-\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Unknown\ heuristic\ algorithm\ type.\(\backslash\)n"{}};}
-\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00208\ \ \ \ \ \}}
-\DoxyCodeLine{00209\ \}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ heuristic.hpp}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Constructive\ heuristic\ algorithms\ for\ fast\ MMKP\ resource\ allocation.}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00004}00004\ \textcolor{comment}{\ *\ @details\ Implements\ deterministic\ cost-\/benefit\ greedy\ allocation\ (`greedy\_cost\_benefit`)}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00005}00005\ \textcolor{comment}{\ *\ as\ well\ as\ stochastic\ single-\/stage\ (`greedy\_random`)\ and\ two-\/stage\ Edge-\/first}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00006}00006\ \textcolor{comment}{\ *\ (`greedy\_random\_fallback`)\ constructive\ heuristics.}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00007}00007\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00009}00009\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{mmkp_8hpp}{mmkp.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00012}00012\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00013}00013\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00014}\mbox{\hyperlink{namespaceheuristic}{00014}}\ \textcolor{comment}{\ *\ @namespace\ heuristic}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00015}00015\ \textcolor{comment}{\ *\ @brief\ Contains\ constructive\ heuristic\ algorithms\ for\ network\ resource\ allocation.}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00016}00016\ \textcolor{comment}{\ *\ @details\ Implements\ fast,\ polynomial-\/time\ approximation\ strategies\ (Greedy\ Cost-\/Benefit,}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00017}00017\ \textcolor{comment}{\ *\ Greedy\ Random,\ and\ Greedy\ Random\ Fallback)\ prioritizing\ low\ execution\ times\ while\ }}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00018}00018\ \textcolor{comment}{\ *\ minimizing\ unserved\ device\ penalty\ costs.}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00019}00019\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00020}00020\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceheuristic}{heuristic}}\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00022}\mbox{\hyperlink{namespaceheuristic_1_1anonymous__namespace_02heuristic_8hpp_03}{00022}}\ \ \ \ \ \textcolor{keyword}{namespace\ }\{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00023}00023\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00024}00024\ \textcolor{comment}{\ \ \ \ \ \ \ \ /**}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00025}00025\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @brief\ Executes\ a\ Global\ Greedy\ Resource\ Allocation\ based\ on\ surrogate\ pseudo-\/utility.}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00026}00026\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @details\ Normalizes\ device\ resource\ demands\ against\ total\ system\ capacity\ to\ compute\ }}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00027}00027\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ a\ multidimensional\ cost-\/benefit\ pseudo-\/utility\ and\ sorts\ candidates\ once\ globally.\ }}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00028}00028\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ Allocates\ devices\ greedily\ per\ server\ using\ prefix-\/skipping\ and\ minimum-\/demand\ early\ termination.}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00029}00029\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ }}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00030}00030\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @param\ state\ The\ unified\ simulation\ result\ state\ containing\ devices,\ servers,\ and\ metrics.}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00031}00031\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00032}\mbox{\hyperlink{namespaceheuristic_1_1anonymous__namespace_02heuristic_8hpp_03_ac5d67e28eb3779f6cea40564f8e57667}{00032}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceheuristic_1_1anonymous__namespace_02heuristic_8hpp_03_ac5d67e28eb3779f6cea40564f8e57667}{greedy\_cost\_benefit}}(\mbox{\hyperlink{structmetrics_1_1Result}{metrics::Result}}\&\ state)\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ metrics\_ptr\ =\ std::dynamic\_pointer\_cast<metrics::HeuristicMetrics>(state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}});}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!metrics\_ptr)\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Invalid\ metrics\ type\ for\ heuristic\ solver.\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core::Devices}}\&\ devices\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}};}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core::Servers}}\&\ servers\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}};}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ start\_chrono\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ total\_cpu\ =\ 0.0,\ total\_mem\ =\ 0.0,\ total\_sto\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 1;\ i\ <\ servers.size();\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ total\_cpu\ +=\ servers[i].cpu;}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ total\_mem\ +=\ servers[i].mem;}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ total\_sto\ +=\ servers[i].sto;}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmkp_8hpp_a6101f686aa3d1d29e76f7158cb8c347c}{id\_pair\_vector}}\ candidates;}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ candidates.reserve(devices.size());}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ min\_cpu\ =\ std::numeric\_limits<double>::max();}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ min\_mem\ =\ std::numeric\_limits<double>::max();}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ min\_sto\ =\ std::numeric\_limits<double>::max();}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ d\ =\ 1;\ d\ <\ devices.size();\ d++)\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Device}{core::Device}}\&\ device\ =\ devices[d];}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!device.\mbox{\hyperlink{structcore_1_1Device_a835d0367af9fbc3419f6fb8a114760e3}{served}})\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ w\_cpu\ =\ device.\mbox{\hyperlink{structcore_1_1Device_ac8f4ac74433e443f9a0144118539cc3d}{cpu}}\ /\ total\_cpu;}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ w\_mem\ =\ device.\mbox{\hyperlink{structcore_1_1Device_ab995063705eec1a4eeafcff73b32a7c7}{mem}}\ /\ total\_mem;}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ w\_sto\ =\ device.\mbox{\hyperlink{structcore_1_1Device_a5b35cbc18886c7fbcc22912e64e014d1}{sto}}\ /\ total\_sto;}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ utility\ =\ device.\mbox{\hyperlink{structcore_1_1Device_abcd568ad40b2da1bf96e020eb373f395}{cost}}\ /\ (w\_cpu\ +\ w\_mem\ +\ w\_sto);}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ candidates.emplace\_back(device.\mbox{\hyperlink{structcore_1_1Device_ac83e97cbd9fa5273e048d20efd117c78}{id}},\ utility);}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (device.\mbox{\hyperlink{structcore_1_1Device_ac8f4ac74433e443f9a0144118539cc3d}{cpu}}\ <\ min\_cpu)\ min\_cpu\ =\ device.\mbox{\hyperlink{structcore_1_1Device_ac8f4ac74433e443f9a0144118539cc3d}{cpu}};}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (device.\mbox{\hyperlink{structcore_1_1Device_ab995063705eec1a4eeafcff73b32a7c7}{mem}}\ <\ min\_mem)\ min\_mem\ =\ device.\mbox{\hyperlink{structcore_1_1Device_ab995063705eec1a4eeafcff73b32a7c7}{mem}};}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (device.\mbox{\hyperlink{structcore_1_1Device_a5b35cbc18886c7fbcc22912e64e014d1}{sto}}\ <\ min\_sto)\ min\_sto\ =\ device.\mbox{\hyperlink{structcore_1_1Device_a5b35cbc18886c7fbcc22912e64e014d1}{sto}};}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ std::sort(candidates.begin(),\ candidates.end(),\ [](\textcolor{keyword}{const}\ \mbox{\hyperlink{mmkp_8hpp_abdece7e039099de53cbe158d24376ff8}{id\_pair}}\&\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{mmkp_8hpp_abdece7e039099de53cbe158d24376ff8}{id\_pair}}\&\ b)\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ a.second\ >\ b.second;}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ start\_idx\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ num\_candidates\ =\ candidates.size();}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 1;\ i\ <\ servers.size()\ \&\&\ start\_idx\ <\ num\_candidates;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Server}{core::Server}}\&\ server\ =\ servers[i];}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ c\ =\ start\_idx;\ c\ <\ num\_candidates;\ c++)\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((server.\mbox{\hyperlink{structcore_1_1Server_aeec37b8c331e9a588304329940ce2bba}{cpu}}\ -\/\ server.\mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}.\mbox{\hyperlink{structcore_1_1Supply_aeede708c05a5c0ad4dcfeb4cab4a1e59}{cpu}}\ <\ min\_cpu)\ ||}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (server.\mbox{\hyperlink{structcore_1_1Server_ae5e9db950a7b35a9c1045cd6096051b2}{mem}}\ -\/\ server.\mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}.\mbox{\hyperlink{structcore_1_1Supply_a8d1a5cb1c6a6f613ed211d717858d432}{mem}}\ <\ min\_mem)\ ||}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (server.\mbox{\hyperlink{structcore_1_1Server_a4e5ec779ca60973f6fa974a9ca3917ee}{sto}}\ -\/\ server.\mbox{\hyperlink{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}{supply}}.\mbox{\hyperlink{structcore_1_1Supply_af5ee55556ad0d4d3e6d2d48c7c46bbd4}{sto}}\ <\ min\_sto))\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Device}{core::Device}}\&\ device\ =\ devices[candidates[c].first];}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!device.\mbox{\hyperlink{structcore_1_1Device_a835d0367af9fbc3419f6fb8a114760e3}{served}}\ \&\&\ server.\mbox{\hyperlink{structcore_1_1Server_aee0071cd3e71c36a8861fbd98fad8a16}{can\_serve}}(device))\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ server.\mbox{\hyperlink{structcore_1_1Server_a537a5e6b913db9ff0e0b1de584067990}{add\_service}}(device);}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (c\ ==\ start\_idx\ \&\&\ device.\mbox{\hyperlink{structcore_1_1Device_a835d0367af9fbc3419f6fb8a114760e3}{served}})\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ start\_idx++;}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ end\_chrono\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ metrics\_ptr-\/>outputs.execution\_time\ =\ std::chrono::duration<double>(end\_chrono\ -\/\ start\_chrono).count();}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00105}00105\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00106}00106\ \textcolor{comment}{\ \ \ \ \ \ \ \ /**}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00107}00107\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @brief\ Executes\ a\ fast\ random\ baseline\ resource\ allocation.}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00108}00108\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @details\ Iterates\ through\ all\ devices\ and\ attempts\ to\ assign\ each\ one\ to\ a\ }}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00109}00109\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ single\ uniformly\ selected\ server.\ If\ the\ selected\ server\ lacks\ capacity,\ }}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00110}00110\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ the\ device\ remains\ unserved.\ Metric\ calculation\ is\ deferred.}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00111}00111\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ }}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00112}00112\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @param\ state\ The\ unified\ simulation\ result\ state\ containing\ devices,\ servers,\ and\ metrics.}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00113}00113\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00114}\mbox{\hyperlink{namespaceheuristic_1_1anonymous__namespace_02heuristic_8hpp_03_a73948f6480b8b285f07088a2b20c28be}{00114}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceheuristic_1_1anonymous__namespace_02heuristic_8hpp_03_a73948f6480b8b285f07088a2b20c28be}{greedy\_random}}(\mbox{\hyperlink{structmetrics_1_1Result}{metrics::Result}}\&\ state)\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ metrics\_ptr\ =\ std::dynamic\_pointer\_cast<metrics::HeuristicMetrics>(state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}});}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!metrics\_ptr)\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Invalid\ metrics\ type\ for\ heuristic\ solver.\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core::Devices}}\&\ devices\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}};}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core::Servers}}\&\ servers\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}};}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ size\_servers\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(servers.size())\ -\/\ 1;}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ start\_chrono\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ d\ =\ 1;\ d\ <\ devices.size();\ d++)\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Device}{core::Device}}\&\ device\ =\ devices[d];}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (size\_servers\ >\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ec\_id\ =\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{randomness::random\_number<int>}}(1,\ size\_servers);}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (servers[ec\_id].can\_serve(device))\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ servers[ec\_id].add\_service(device);}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ end\_chrono\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ metrics\_ptr-\/>outputs.execution\_time\ =\ std::chrono::duration<double>(end\_chrono\ -\/\ start\_chrono).count();}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00142}00142\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00143}00143\ \textcolor{comment}{\ \ \ \ \ \ \ \ /**}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00144}00144\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @brief\ Executes\ a\ two-\/stage\ random\ fallback\ resource\ allocation.}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00145}00145\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @details\ Attempts\ to\ assign\ each\ device\ to\ a\ randomly\ selected\ Edge\ (EC)\ server\ first.\ }}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00146}00146\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ If\ the\ selected\ Edge\ server\ lacks\ capacity,\ falls\ back\ to\ a\ randomly\ selected\ Cloud\ (CC)\ server.}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00147}00147\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ }}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00148}00148\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @param\ state\ The\ unified\ simulation\ result\ state\ containing\ devices,\ servers,\ and\ metrics.}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00149}00149\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00150}\mbox{\hyperlink{namespaceheuristic_1_1anonymous__namespace_02heuristic_8hpp_03_a00e404acd74a838e4016f8a63c639672}{00150}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceheuristic_1_1anonymous__namespace_02heuristic_8hpp_03_a00e404acd74a838e4016f8a63c639672}{greedy\_random\_fallback}}(\mbox{\hyperlink{structmetrics_1_1Result}{metrics::Result}}\&\ state)\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ metrics\_ptr\ =\ std::dynamic\_pointer\_cast<metrics::HeuristicMetrics>(state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}});}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!metrics\_ptr)\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Invalid\ metrics\ type\ for\ heuristic\ solver.\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ec\_count\ =\ metrics\_ptr-\/>inputs.servers\_ec\_count;}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ cc\_count\ =\ metrics\_ptr-\/>inputs.servers\_cc\_count;}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core::Devices}}\&\ devices\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}};}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core::Servers}}\&\ servers\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}};}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ start\_chrono\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ d\ =\ 1;\ d\ <\ devices.size();\ d++)\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Device}{core::Device}}\&\ device\ =\ devices[d];}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ec\_count\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ec\_id\ =\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{randomness::random\_number<int>}}(1,\ ec\_count);}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (servers[ec\_id].can\_serve(device))\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ servers[ec\_id].add\_service(device);}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00175}00175\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cc\_count\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ cc\_id\ =\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{randomness::random\_number<int>}}(ec\_count\ +\ 1,\ ec\_count\ +\ cc\_count);}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (servers[cc\_id].can\_serve(device))\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ servers[cc\_id].add\_service(device);}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00183}00183\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ end\_chrono\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ metrics\_ptr-\/>outputs.execution\_time\ =\ std::chrono::duration<double>(end\_chrono\ -\/\ start\_chrono).count();}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00187}00187\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00188}00188\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00189}00189\ \textcolor{comment}{\ \ \ \ /**}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00190}00190\ \textcolor{comment}{\ \ \ \ \ *\ @brief\ Bootstraps\ and\ executes\ the\ configured\ constructive\ heuristic.}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00191}00191\ \textcolor{comment}{\ \ \ \ \ *\ @details\ Reads\ the\ specified\ algorithm\ identifier\ from\ \`{}state.stats`\ and\ dispatches\ }}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00192}00192\ \textcolor{comment}{\ \ \ \ \ *\ execution\ to\ the\ corresponding\ heuristic\ solver.}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00193}00193\ \textcolor{comment}{\ \ \ \ \ *\ }}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00194}00194\ \textcolor{comment}{\ \ \ \ \ *\ @param\ state\ The\ unified\ simulation\ state\ to\ be\ processed.}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00195}00195\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00196}\mbox{\hyperlink{namespaceheuristic_a49f05c0252bd2ad23bf788bdf45e79cc}{00196}}\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceheuristic_a49f05c0252bd2ad23bf788bdf45e79cc}{boot}}(\mbox{\hyperlink{structmetrics_1_1Result}{metrics::Result}}\&\ state)\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00197}00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00198}00198\ }
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00199}00199\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11abe0511aca70b810b2ed30f6c24c4a620}{metrics::Algorithm::greedy\_cost\_benefit}}\ ==\ state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}-\/>algorithm)\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ greedy\_cost\_benefit(state);}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00201}00201\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11aa845e2c8be77bb480b9bea73ff528829}{metrics::Algorithm::greedy\_random}}\ ==\ state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}-\/>algorithm)\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ greedy\_random(state);}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00203}00203\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11a0327841700a466600166ed61b1b18200}{metrics::Algorithm::greedy\_random\_fallback}}\ ==\ state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}-\/>algorithm)\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ greedy\_random\_fallback(state);}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00205}00205\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Unknown\ heuristic\ algorithm\ type.\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00207}00207\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00208}00208\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{heuristic_8hpp_source_l00209}00209\ \}}
 
 \end{DoxyCode}

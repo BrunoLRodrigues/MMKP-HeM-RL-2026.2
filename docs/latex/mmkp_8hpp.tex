@@ -1,4 +1,4 @@
-\doxysection{include/mmkp.hpp File Reference}
+\doxysubsection{include/mmkp.hpp File Reference}
 \hypertarget{mmkp_8hpp}{}\label{mmkp_8hpp}\index{include/mmkp.hpp@{include/mmkp.hpp}}
 
 
@@ -20,7 +20,7 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \includegraphics[width=350pt]{mmkp_8hpp__dep__incl}
 \end{center}
 \end{figure}
-\doxysubsubsection*{Classes}
+\doxysubsubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structcore_1_1Device}{core\+::\+Device}}
@@ -45,13 +45,13 @@ struct \mbox{\hyperlink{structmetrics_1_1MetaHeuristicMetrics}{metrics\+::\+Meta
 \begin{DoxyCompactList}\small\item\em Extends {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} to track Simulated Annealing hyperparameters and initial heuristic selection. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}}
 \begin{DoxyCompactList}\small\item\em Encapsulates the complete system state ({\ttfamily Devices}, {\ttfamily Servers}) and polymorphic {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} for a simulation run. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Namespaces}
+\doxysubsubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
 namespace \mbox{\hyperlink{namespacecore}{core}}
 \begin{DoxyCompactList}\small\item\em Contains the fundamental domain entities for the MMKP resource allocation problem. \end{DoxyCompactList}\item 
 namespace \mbox{\hyperlink{namespacedata_1_1generate}{data\+::generate}}
-\begin{DoxyCompactList}\small\item\em Generates synthetic datasets for services, IoT devices, and EC/\+CC servers when files are absent. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Generates or updates synthetic datasets for services, IoT devices, and EC/\+CC servers. \end{DoxyCompactList}\item 
 namespace \mbox{\hyperlink{namespacedata}{data}}
 \item 
 namespace \mbox{\hyperlink{namespacedata_1_1load}{data\+::load}}
@@ -62,7 +62,7 @@ namespace \mbox{\hyperlink{namespacedisplay}{display}}
 \begin{DoxyCompactList}\small\item\em Utility namespace for formatting and printing entities and ASCII metric tables to console or files. \end{DoxyCompactList}\item 
 namespace \mbox{\hyperlink{namespacedisplay_1_1details}{display\+::details}}
 \begin{DoxyCompactList}\small\item\em Internal helper routines for rendering ASCII box-\/drawing tables. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Typedefs}
+\doxysubsubsubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
 using \mbox{\hyperlink{mmkp_8hpp_a24ea7b5663260ad00fc65ed519bbf8b1}{ii\+\_\+pair}} = std\+::pair$<$ int, int $>$
@@ -87,7 +87,7 @@ using \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::
 \begin{DoxyCompactList}\small\item\em Contiguous collection of {\ttfamily \doxylink{structcore_1_1Device}{Device}} instances (1-\/indexed, index 0 is a placeholder). \end{DoxyCompactList}\item 
 using \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} = std\+::vector$<$ \mbox{\hyperlink{structcore_1_1Server}{Server}} $>$
 \begin{DoxyCompactList}\small\item\em Contiguous collection of {\ttfamily \doxylink{structcore_1_1Server}{Server}} instances (1-\/indexed, index 0 is a placeholder). \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Enumerations}
+\doxysubsubsubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
 enum class \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{metrics\+::\+Paradigm}} \{ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aab50339a10e1de285ac99d4c3990b8693}{metrics\+::\+NONE}}
@@ -106,16 +106,16 @@ enum class \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{
 , \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11a557e0f060742f44e69f44502ad2f3d71}{metrics\+::simulated\+\_\+annealing}}
  \}
 \begin{DoxyCompactList}\small\item\em Identifies the specific optimization algorithm used in a simulation run. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Functions}
+\doxysubsubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{namespacedata_1_1generate_a8cf334007dfe6c39270237e4b5e1df96}{data\+::generate\+::services}} (const int num\+\_\+services=10)
+std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{namespacedata_1_1generate_a6c60a34a447b946d2ac51f1b055189db}{data\+::generate\+::services}} (const int num\+\_\+services=10, bool fixed\+\_\+penalty=true)
 \begin{DoxyCompactList}\small\item\em Generates or loads network service requirement templates. \end{DoxyCompactList}\item 
-std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{namespacedata_1_1generate_af6567b345dff3a26eabcad5abd28fcdb}{data\+::generate\+::devices}} (const int length, const int num\+\_\+services=10)
+std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{namespacedata_1_1generate_a77ee30fbb09d00be8392d88310fbe2bd}{data\+::generate\+::devices}} (const int length, const int num\+\_\+services=10, bool fixed\+\_\+penalty=true)
 \begin{DoxyCompactList}\small\item\em Generates or loads device request data representing IoT network demands. \end{DoxyCompactList}\item 
 std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{namespacedata_1_1generate_a406f9158cb3dc3b05a461bc10038fae1}{data\+::generate\+::servers}} (const int ec\+\_\+length=99, const int cc\+\_\+length=1)
 \begin{DoxyCompactList}\small\item\em Generates or loads server infrastructure data for Edge and Cloud nodes. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} \mbox{\hyperlink{namespacedata_1_1load_a1cf3365d1111392a986685684c4ed7af}{data\+::load\+::devices}} (const int length, const int num\+\_\+services=10)
+\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} \mbox{\hyperlink{namespacedata_1_1load_a70bed570daa56196a2313f2e53fdfd01}{data\+::load\+::devices}} (const int length, const int num\+\_\+services=10, bool fixed\+\_\+penalty=true)
 \begin{DoxyCompactList}\small\item\em Loads device data from disk (generating it if absent) into a vector of {\ttfamily \doxylink{structcore_1_1Device}{core\+::\+Device}} objects. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} \mbox{\hyperlink{namespacedata_1_1load_ac246a8e8d760e5209660fe9bdbce70ba}{data\+::load\+::servers}} (const int ec=99, const int cc=1)
 \begin{DoxyCompactList}\small\item\em Loads Edge and Cloud server data from disk (generating it if absent). \end{DoxyCompactList}\item 
@@ -149,7 +149,7 @@ void \mbox{\hyperlink{namespacedisplay_afca8be8f3244589f3f4078a9e4306b20}{displa
 \begin{DoxyCompactList}\small\item\em Displays the metrics table on the console and appends it to a drawing file. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespacedisplay_a5a95b172c89cdb8957c4ce2fbe61ae15}{display\+::show\+\_\+servers\+\_\+usage}} (const \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} \&servers)
 \begin{DoxyCompactList}\small\item\em Prints a summary table of server resource utilization percentages. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Variables}
+\doxysubsubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 const std\+::filesystem\+::path \mbox{\hyperlink{namespacedata_1_1generate_a75e853eaa2e0c225aad26cf3607b53f8}{data\+::generate\+::\+DATA\+\_\+\+PATH}} = std\+::filesystem\+::current\+\_\+path() / "{}data"{}
@@ -162,99 +162,139 @@ const int \mbox{\hyperlink{namespacedisplay_1_1details_a4f6c7b2d8be72025dc62f949
 \begin{DoxyCompactList}\small\item\em Character width allocated to the left-\/hand label column. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\doxysubsubsection{Detailed Description}
 Core data structures, synthetic dataset generators, metric trackers, and console/file display routines. 
 
 Defines the domain entities ({\ttfamily Device}, {\ttfamily Server}, {\ttfamily Supply}), dataset loading/generation utilities, polymorphic metric collection classes ({\ttfamily Metrics}, {\ttfamily Exact\+Metrics}, {\ttfamily Heuristic\+Metrics}, {\ttfamily Meta\+Heuristic\+Metrics}), and ASCII table visualization functions for the MMKP Io\+T-\/\+EC-\/\+CC simulator. 
 
-\doxysubsection{Typedef Documentation}
+Definition in file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+\doxysubsubsection{Typedef Documentation}
 \Hypertarget{mmkp_8hpp_a54295524698f2887657caf7820956714}\label{mmkp_8hpp_a54295524698f2887657caf7820956714} 
 \index{mmkp.hpp@{mmkp.hpp}!i\_matrix@{i\_matrix}}
 \index{i\_matrix@{i\_matrix}!mmkp.hpp@{mmkp.hpp}}
-\doxysubsubsection{\texorpdfstring{i\_matrix}{i\_matrix}}
+\doxyparagraph{\texorpdfstring{i\_matrix}{i\_matrix}}
 {\footnotesize\ttfamily using \mbox{\hyperlink{mmkp_8hpp_a54295524698f2887657caf7820956714}{i\+\_\+matrix}} =  std\+::vector$<$\mbox{\hyperlink{mmkp_8hpp_a11561f2f1571eed3509f087e0a373adc}{i\+\_\+vector}}$>$}
 
 
 
 2D matrix of integers. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00020}{20}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
 \Hypertarget{mmkp_8hpp_a57175fad6087051ccfda3252d316f596}\label{mmkp_8hpp_a57175fad6087051ccfda3252d316f596} 
 \index{mmkp.hpp@{mmkp.hpp}!i\_set@{i\_set}}
 \index{i\_set@{i\_set}!mmkp.hpp@{mmkp.hpp}}
-\doxysubsubsection{\texorpdfstring{i\_set}{i\_set}}
+\doxyparagraph{\texorpdfstring{i\_set}{i\_set}}
 {\footnotesize\ttfamily using \mbox{\hyperlink{mmkp_8hpp_a57175fad6087051ccfda3252d316f596}{i\+\_\+set}} =  std\+::set$<$int$>$}
 
 
 
 Ordered set of unique integers. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00022}{22}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
 \Hypertarget{mmkp_8hpp_a11561f2f1571eed3509f087e0a373adc}\label{mmkp_8hpp_a11561f2f1571eed3509f087e0a373adc} 
 \index{mmkp.hpp@{mmkp.hpp}!i\_vector@{i\_vector}}
 \index{i\_vector@{i\_vector}!mmkp.hpp@{mmkp.hpp}}
-\doxysubsubsection{\texorpdfstring{i\_vector}{i\_vector}}
+\doxyparagraph{\texorpdfstring{i\_vector}{i\_vector}}
 {\footnotesize\ttfamily using \mbox{\hyperlink{mmkp_8hpp_a11561f2f1571eed3509f087e0a373adc}{i\+\_\+vector}} =  std\+::vector$<$int$>$}
 
 
 
 Vector of integers. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00016}{16}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
 \Hypertarget{mmkp_8hpp_abdece7e039099de53cbe158d24376ff8}\label{mmkp_8hpp_abdece7e039099de53cbe158d24376ff8} 
 \index{mmkp.hpp@{mmkp.hpp}!id\_pair@{id\_pair}}
 \index{id\_pair@{id\_pair}!mmkp.hpp@{mmkp.hpp}}
-\doxysubsubsection{\texorpdfstring{id\_pair}{id\_pair}}
+\doxyparagraph{\texorpdfstring{id\_pair}{id\_pair}}
 {\footnotesize\ttfamily using \mbox{\hyperlink{mmkp_8hpp_abdece7e039099de53cbe158d24376ff8}{id\+\_\+pair}} =  std\+::pair$<$int, double$>$}
 
 
 
 Pair of an integer ID and a double value (e.\+g., utility). 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00015}{15}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
 \Hypertarget{mmkp_8hpp_a6101f686aa3d1d29e76f7158cb8c347c}\label{mmkp_8hpp_a6101f686aa3d1d29e76f7158cb8c347c} 
 \index{mmkp.hpp@{mmkp.hpp}!id\_pair\_vector@{id\_pair\_vector}}
 \index{id\_pair\_vector@{id\_pair\_vector}!mmkp.hpp@{mmkp.hpp}}
-\doxysubsubsection{\texorpdfstring{id\_pair\_vector}{id\_pair\_vector}}
+\doxyparagraph{\texorpdfstring{id\_pair\_vector}{id\_pair\_vector}}
 {\footnotesize\ttfamily using \mbox{\hyperlink{mmkp_8hpp_a6101f686aa3d1d29e76f7158cb8c347c}{id\+\_\+pair\+\_\+vector}} =  std\+::vector$<$\mbox{\hyperlink{mmkp_8hpp_abdece7e039099de53cbe158d24376ff8}{id\+\_\+pair}}$>$}
 
 
 
 Vector of integer-\/double pairs. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00019}{19}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
 \Hypertarget{mmkp_8hpp_a24ea7b5663260ad00fc65ed519bbf8b1}\label{mmkp_8hpp_a24ea7b5663260ad00fc65ed519bbf8b1} 
 \index{mmkp.hpp@{mmkp.hpp}!ii\_pair@{ii\_pair}}
 \index{ii\_pair@{ii\_pair}!mmkp.hpp@{mmkp.hpp}}
-\doxysubsubsection{\texorpdfstring{ii\_pair}{ii\_pair}}
+\doxyparagraph{\texorpdfstring{ii\_pair}{ii\_pair}}
 {\footnotesize\ttfamily using \mbox{\hyperlink{mmkp_8hpp_a24ea7b5663260ad00fc65ed519bbf8b1}{ii\+\_\+pair}} =  std\+::pair$<$int, int$>$}
 
 
 
 Pair of two integers. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00014}{14}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
 \Hypertarget{mmkp_8hpp_a79e98970e41b731003aca29a0f415712}\label{mmkp_8hpp_a79e98970e41b731003aca29a0f415712} 
 \index{mmkp.hpp@{mmkp.hpp}!ii\_pair\_vector@{ii\_pair\_vector}}
 \index{ii\_pair\_vector@{ii\_pair\_vector}!mmkp.hpp@{mmkp.hpp}}
-\doxysubsubsection{\texorpdfstring{ii\_pair\_vector}{ii\_pair\_vector}}
+\doxyparagraph{\texorpdfstring{ii\_pair\_vector}{ii\_pair\_vector}}
 {\footnotesize\ttfamily using \mbox{\hyperlink{mmkp_8hpp_a79e98970e41b731003aca29a0f415712}{ii\+\_\+pair\+\_\+vector}} =  std\+::vector$<$\mbox{\hyperlink{mmkp_8hpp_a24ea7b5663260ad00fc65ed519bbf8b1}{ii\+\_\+pair}}$>$}
 
 
 
 Vector of integer-\/integer pairs. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00018}{18}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
 \Hypertarget{mmkp_8hpp_a97dbd67a2a456c598f22b2f229687dd9}\label{mmkp_8hpp_a97dbd67a2a456c598f22b2f229687dd9} 
 \index{mmkp.hpp@{mmkp.hpp}!s\_matrix@{s\_matrix}}
 \index{s\_matrix@{s\_matrix}!mmkp.hpp@{mmkp.hpp}}
-\doxysubsubsection{\texorpdfstring{s\_matrix}{s\_matrix}}
+\doxyparagraph{\texorpdfstring{s\_matrix}{s\_matrix}}
 {\footnotesize\ttfamily using \mbox{\hyperlink{mmkp_8hpp_a97dbd67a2a456c598f22b2f229687dd9}{s\+\_\+matrix}} =  std\+::vector$<$\mbox{\hyperlink{mmkp_8hpp_a8611bd025a925b668051e6e08d0b4608}{s\+\_\+vector}}$>$}
 
 
 
 2D matrix of strings. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00021}{21}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
 \Hypertarget{mmkp_8hpp_a8611bd025a925b668051e6e08d0b4608}\label{mmkp_8hpp_a8611bd025a925b668051e6e08d0b4608} 
 \index{mmkp.hpp@{mmkp.hpp}!s\_vector@{s\_vector}}
 \index{s\_vector@{s\_vector}!mmkp.hpp@{mmkp.hpp}}
-\doxysubsubsection{\texorpdfstring{s\_vector}{s\_vector}}
+\doxyparagraph{\texorpdfstring{s\_vector}{s\_vector}}
 {\footnotesize\ttfamily using \mbox{\hyperlink{mmkp_8hpp_a8611bd025a925b668051e6e08d0b4608}{s\+\_\+vector}} =  std\+::vector$<$std\+::string$>$}
 
 
 
 Vector of strings. 
+
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00017}{17}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
 

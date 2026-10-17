@@ -1,0 +1,23 @@
+<map id="metrics::Result" name="metrics::Result">
+<area shape="rect" id="Node000001" title="Encapsulates the complete system state (Devices, Servers) and polymorphic Metrics for a simulation ru..." alt="" coords="218,284,338,309"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,189,172,214"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="125,218,256,281,253,286,123,222"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="163,93,292,119"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="193,128,165,145,104,190,101,186,162,140,191,123"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="197,189,359,214"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="242,129,274,187,269,190,238,132"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="313,5,352,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="310,41,243,95,240,91,306,37"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="317,93,474,119"/>
+<area shape="poly" id="edge11_Node000010_Node000004" title=" " alt="" coords="351,40,389,91,384,94,347,43"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="281,228,281,284,275,284,275,228"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="384,181,567,221"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="424,230,303,286,301,281,422,225"/>
+<area shape="rect" id="Node000007" href="$structmetrics_1_1Metrics.html" title="Polymorphic base structure for tracking, calculating, and saving simulation metrics." alt="" coords="503,93,629,119"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="557,132,539,159,510,183,506,179,535,156,553,129"/>
+<area shape="rect" id="Node000008" href="$structmetrics_1_1Metrics_1_1Inputs.html" title="Captures the static input instance dimensions and maximum possible penalty cost." alt="" coords="385,5,560,31"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="497,38,555,91,551,95,494,42"/>
+<area shape="rect" id="Node000009" href="$structmetrics_1_1Metrics_1_1Outputs.html" title="Captures the resulting performance and resource utilization metrics after allocation." alt="" coords="585,5,771,31"/>
+<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="653,41,583,95,580,91,650,37"/>
+<area shape="poly" id="edge10_Node000006_Node000010" title=" " alt="" coords="394,133,395,145,399,156,410,169,424,179,421,183,406,173,394,159,390,146,388,133"/>
+</map>

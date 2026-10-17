@@ -1,152 +1,187 @@
-\doxysection{exact.\+hpp}
+\doxysubsection{exact.\+hpp}
 \hypertarget{exact_8hpp_source}{}\label{exact_8hpp_source}\index{include/exact.hpp@{include/exact.hpp}}
 \mbox{\hyperlink{exact_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ }
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00010\ }
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{mmkp_8hpp}{mmkp.hpp}}"{}}}
-\DoxyCodeLine{00012\ }
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <ilcplex/ilocplex.h>}}
-\DoxyCodeLine{00014\ }
-\DoxyCodeLine{00022\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceexact}{exact}}\ \{}
-\DoxyCodeLine{00023\ }
-\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespaceexact_a4ba342845801f3cf0d7fcd8d496504d9}{NumVar2D}}\ =\ IloArray<IloNumVarArray>;}
-\DoxyCodeLine{00028\ }
-\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{namespace\ }\{}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceexact_1_1anonymous__namespace_02exact_8hpp_03_ae7ca96aa19f5b3b84819efcfe40a885b}{solver\_maximum\_cost}}(\mbox{\hyperlink{structmetrics_1_1Result}{metrics::Result}}\&\ state,\ \textcolor{keywordtype}{int}\ time\_limit\_sec\ =\ 3600)\ \{}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core::Devices}}\&\ devices\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}};}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core::Servers}}\&\ servers\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}};}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ metrics\_ptr\ =\ std::dynamic\_pointer\_cast<metrics::ExactMetrics>(state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}});}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!metrics\_ptr)\ \{}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Invalid\ metrics\ type\ for\ exact\ solver.\(\backslash\)n"{}};}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00050\ }
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ IloEnv\ env;}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IloModel\ model(env);}
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ num\_devices\ =\ devices.size();}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ num\_servers\ =\ servers.size();}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00057\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#pragma\ region\ VariableDeclaration}}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//=========================================================================}}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ VARIABLE\ DECLARATION}}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//=========================================================================}}
-\DoxyCodeLine{00061\ }
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ x\string^\{i\}\_\{d\}:\ 1\ if\ device\ d\ is\ allocated\ to\ server\ i,\ 0\ otherwise.}}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceexact_a4ba342845801f3cf0d7fcd8d496504d9}{NumVar2D}}\ x(env,\ num\_servers);}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 1;\ i\ <\ num\_servers;\ i++)\ \{}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x[i]\ =\ IloNumVarArray(env,\ num\_devices,\ 0,\ 1,\ ILOBOOL);}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00067\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#pragma\ endregion}}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00069\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#pragma\ region\ ObjectiveFunctionAndConstraints}}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IloExpr\ obj(env);}
-\DoxyCodeLine{00071\ }
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ d\ =\ 1;\ d\ <\ num\_devices;\ d++)\ \{}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IloExpr\ c1(env);}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 1;\ i\ <\ num\_servers;\ i++)\ \{}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c1\ +=\ x[i][d];}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ obj\ +=\ devices[d].cost\ *\ x[i][d];}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ model.add(c1\ <=\ 1);}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c1.end();}
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00081\ }
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ model.add(IloMaximize(env,\ obj));}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ obj.end();}
-\DoxyCodeLine{00084\ }
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 1;\ i\ <\ num\_servers;\ i++)\ \{}
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IloExpr\ c\_cpu(env),\ c\_mem(env),\ c\_sto(env);}
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ d\ =\ 1;\ d\ <\ num\_devices;\ d++)\ \{}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c\_cpu\ +=\ devices[d].cpu\ *\ x[i][d];\ }
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c\_mem\ +=\ devices[d].mem\ *\ x[i][d];\ }
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c\_sto\ +=\ devices[d].sto\ *\ x[i][d];\ }
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00093\ }
-\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ model.add(c\_cpu\ <=\ servers[i].cpu);\ }
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ model.add(c\_mem\ <=\ servers[i].mem);\ }
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ model.add(c\_sto\ <=\ servers[i].sto);\ }
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c\_cpu.end();\ }
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c\_mem.end();\ }
-\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c\_sto.end();}
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00102\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#pragma\ endregion}}
-\DoxyCodeLine{00103\ }
-\DoxyCodeLine{00104\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#pragma\ region\ SolverConfiguration}}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//=========================================================================}}
-\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4.\ SOLVER\ CONFIGURATION\ AND\ EXECUTION}}
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//=========================================================================}}
-\DoxyCodeLine{00108\ }
-\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IloCplex\ cplex(model);}
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cplex.setOut(env.getNullStream());}
-\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cplex.setWarning(env.getNullStream());}
-\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cplex.setParam(IloCplex::Param::Threads,\ 1);}
-\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cplex.setParam(IloCplex::Param::ClockType,\ 2);}
-\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cplex.setParam(IloCplex::Param::TimeLimit,\ time\_limit\_sec);}
-\DoxyCodeLine{00116\ }
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cplex.setParam(IloCplex::Param::WorkMem,\ 16384);}
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cplex.setParam(IloCplex::Param::MIP::Strategy::File,\ 3);}
-\DoxyCodeLine{00119\ }
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Relative\ MIP\ gap\ tolerance\ of\ 1e-\/3\ (0.001)}}
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cplex.setParam(IloCplex::Param::MIP::Tolerances::MIPGap,\ 1e-\/3);}
-\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cplex.setParam(IloCplex::Param::Emphasis::MIP,\ IloCplex::MIPEmphasisBalanced);}
-\DoxyCodeLine{00123\ }
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ start\_chrono\ =\ std::chrono::high\_resolution\_clock::now();}
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ IloBool\ has\_solution\ =\ cplex.solve();}
-\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ end\_chrono\ =\ std::chrono::high\_resolution\_clock::now();}
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ metrics\_ptr-\/>outputs.execution\_time\ =\ std::chrono::duration<double>(end\_chrono\ -\/\ start\_chrono).count();}
-\DoxyCodeLine{00129\ }
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::stringstream\ status;}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ status\ <<\ cplex.getStatus();}
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ metrics\_ptr-\/>status\ =\ status.str();}
-\DoxyCodeLine{00133\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#pragma\ endregion}}
-\DoxyCodeLine{00134\ }
-\DoxyCodeLine{00135\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#pragma\ region\ Result}}
-\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//=========================================================================}}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 5.\ PARSE\ RESULTS}}
-\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//=========================================================================}}
-\DoxyCodeLine{00139\ }
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (has\_solution)\ \{}
-\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ metrics\_ptr-\/>objective\_function\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(cplex.getObjValue());}
-\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ metrics\_ptr-\/>gap\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(cplex.getMIPRelativeGap());}
-\DoxyCodeLine{00143\ }
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 1;\ i\ <\ num\_servers;\ i++)\ \{}
-\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ d\ =\ 1;\ d\ <\ num\_devices;\ d++)\ \{}
-\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cplex.isExtracted(x[i][d])\ \&\&\ cplex.getValue(x[i][d])\ >\ 0.5)\ \{}
-\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ servers[i].add\_service(devices[d]);}
-\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00152\ }
-\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ IloException\&\ e)\ \{}
-\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}CPLEX\ Error:\ "{}}\ <<\ e.getMessage()\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
-\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::exception\&\ e)\ \{}
-\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Standard\ Exception:\ "{}}\ <<\ e.what()\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
-\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (...)\ \{}
-\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}An\ unknown\ error\ occurred\ in\ the\ CPLEX\ model.\(\backslash\)n"{}};}
-\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ env.end();}
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00162\ \ \ \ \ \}}
-\DoxyCodeLine{00163\ }
-\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceexact_a6aacffeeb6699d2f7d822d8d0866edbc}{boot}}(\mbox{\hyperlink{structmetrics_1_1Result}{metrics::Result}}\&\ state,\ \textcolor{keywordtype}{int}\ time\_limit\_sec\ =\ 3600)\ \{}
-\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}})\ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00174\ }
-\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11ae6bb6feafcc4de7705a8fe1782af973e}{metrics::Algorithm::solver\_maximum\_cost}}\ ==\ state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}-\/>algorithm)\ \{}
-\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ solver\_maximum\_cost(state,\ time\_limit\_sec);}
-\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Unknown\ mathematical\ model\ algorithm\ type.\(\backslash\)n"{}};}
-\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00180\ \ \ \ \ \}}
-\DoxyCodeLine{00181\ \}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ exact.hpp}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Exact\ Integer\ Linear\ Programming\ (ILP)\ formulations\ using\ IBM\ ILOG\ CPLEX.}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00004}00004\ \textcolor{comment}{\ *\ @details\ Provides\ the\ mathematical\ optimization\ model\ and\ solver\ configuration}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00005}00005\ \textcolor{comment}{\ *\ to\ solve\ the\ Multiple\ Multidimensional\ Knapsack\ Problem\ (MMKP)\ for\ IoT-\/EC-\/CC}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00006}00006\ \textcolor{comment}{\ *\ resource\ allocation.}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00007}00007\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00009}00009\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{mmkp_8hpp}{mmkp.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <ilcplex/ilocplex.h>}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00014}00014\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00015}00015\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00016}\mbox{\hyperlink{namespaceexact}{00016}}\ \textcolor{comment}{\ *\ @namespace\ exact}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00017}00017\ \textcolor{comment}{\ *\ @brief\ Contains\ mathematical\ programming\ models\ for\ exact\ optimization.}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00018}00018\ \textcolor{comment}{\ *\ @details\ Utilizes\ the\ IBM\ ILOG\ CPLEX\ optimizer\ to\ solve\ the\ network\ resource\ }}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00019}00019\ \textcolor{comment}{\ *\ allocation\ problem\ to\ optimality\ or\ within\ a\ specified\ time\ limit,\ providing\ }}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00020}00020\ \textcolor{comment}{\ *\ an\ exact\ baseline\ by\ maximizing\ avoided\ non-\/service\ penalties.}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00021}00021\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00022}00022\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceexact}{exact}}\ \{}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00023}00023\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00024}00024\ \textcolor{comment}{\ \ \ \ /**}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00025}00025\ \textcolor{comment}{\ \ \ \ \ *\ @brief\ Type\ alias\ for\ a\ 2D\ matrix\ of\ CPLEX\ decision\ variables.}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00026}00026\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00027}\mbox{\hyperlink{namespaceexact_a4ba342845801f3cf0d7fcd8d496504d9}{00027}}\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespaceexact_a4ba342845801f3cf0d7fcd8d496504d9}{NumVar2D}}\ =\ IloArray<IloNumVarArray>;}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00029}\mbox{\hyperlink{namespaceexact_1_1anonymous__namespace_02exact_8hpp_03}{00029}}\ \ \ \ \ \textcolor{keyword}{namespace\ }\{}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00030}00030\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00031}00031\ \textcolor{comment}{\ \ \ \ \ \ \ \ /**}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00032}00032\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @brief\ Formulates\ and\ solves\ the\ exact\ ILP\ resource\ allocation\ model\ using\ CPLEX.}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00033}00033\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @details\ Defines\ binary\ decision\ variables\ \(\backslash\)f\$x\_\{d\}\string^\{i\}\ \(\backslash\)in\ \(\backslash\)\{0,\ 1\(\backslash\)\}\(\backslash\)f\$\ indicating\ whether\ }}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00034}00034\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ device\ \(\backslash\)f\$d\(\backslash\)f\$\ is\ assigned\ to\ server\ \(\backslash\)f\$i\(\backslash\)f\$.\ Maximizes\ the\ total\ utility\ of\ served\ devices\ }}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00035}00035\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ (avoided\ SLA\ penalties)\ subject\ to\ single-\/server\ assignment\ and\ multidimensional\ }}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00036}00036\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ resource\ capacity\ constraints\ (CPU,\ MEM,\ STO).}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00037}00037\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ }}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00038}00038\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @param\ state\ The\ unified\ simulation\ state\ containing\ devices,\ servers,\ and\ metrics.}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00039}00039\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @param\ time\_limit\_sec\ The\ maximum\ execution\ time\ allowed\ for\ the\ solver\ in\ seconds.}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00040}00040\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00041}\mbox{\hyperlink{namespaceexact_1_1anonymous__namespace_02exact_8hpp_03_ae7ca96aa19f5b3b84819efcfe40a885b}{00041}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceexact_1_1anonymous__namespace_02exact_8hpp_03_ae7ca96aa19f5b3b84819efcfe40a885b}{solver\_maximum\_cost}}(\mbox{\hyperlink{structmetrics_1_1Result}{metrics::Result}}\&\ state,\ \textcolor{keywordtype}{int}\ time\_limit\_sec\ =\ 3600)\ \{}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core::Devices}}\&\ devices\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}};}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core::Servers}}\&\ servers\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}};}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ metrics\_ptr\ =\ std::dynamic\_pointer\_cast<metrics::ExactMetrics>(state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}});}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!metrics\_ptr)\ \{}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Invalid\ metrics\ type\ for\ exact\ solver.\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ IloEnv\ env;}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IloModel\ model(env);}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ num\_devices\ =\ devices.size();}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ num\_servers\ =\ servers.size();}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00057}00057\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#pragma\ region\ VariableDeclaration}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//=========================================================================}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ VARIABLE\ DECLARATION}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//=========================================================================}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ x\string^\{i\}\_\{d\}:\ 1\ if\ device\ d\ is\ allocated\ to\ server\ i,\ 0\ otherwise.}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceexact_a4ba342845801f3cf0d7fcd8d496504d9}{NumVar2D}}\ x(env,\ num\_servers);}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 1;\ i\ <\ num\_servers;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x[i]\ =\ IloNumVarArray(env,\ num\_devices,\ 0,\ 1,\ ILOBOOL);}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00067}00067\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#pragma\ endregion}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00069}00069\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#pragma\ region\ ObjectiveFunctionAndConstraints}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IloExpr\ obj(env);}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ d\ =\ 1;\ d\ <\ num\_devices;\ d++)\ \{}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IloExpr\ c1(env);}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 1;\ i\ <\ num\_servers;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c1\ +=\ x[i][d];}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ obj\ +=\ devices[d].cost\ *\ x[i][d];}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ model.add(c1\ <=\ 1);}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c1.end();}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ model.add(IloMaximize(env,\ obj));}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ obj.end();}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 1;\ i\ <\ num\_servers;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IloExpr\ c\_cpu(env),\ c\_mem(env),\ c\_sto(env);}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ d\ =\ 1;\ d\ <\ num\_devices;\ d++)\ \{}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c\_cpu\ +=\ devices[d].cpu\ *\ x[i][d];\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c\_mem\ +=\ devices[d].mem\ *\ x[i][d];\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c\_sto\ +=\ devices[d].sto\ *\ x[i][d];\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ model.add(c\_cpu\ <=\ servers[i].cpu);\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ model.add(c\_mem\ <=\ servers[i].mem);\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ model.add(c\_sto\ <=\ servers[i].sto);\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c\_cpu.end();\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c\_mem.end();\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c\_sto.end();}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00102}00102\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#pragma\ endregion}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00104}00104\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#pragma\ region\ SolverConfiguration}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//=========================================================================}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4.\ SOLVER\ CONFIGURATION\ AND\ EXECUTION}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//=========================================================================}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IloCplex\ cplex(model);}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cplex.setOut(env.getNullStream());}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cplex.setWarning(env.getNullStream());}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cplex.setParam(IloCplex::Param::Threads,\ 1);}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cplex.setParam(IloCplex::Param::ClockType,\ 2);}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cplex.setParam(IloCplex::Param::TimeLimit,\ time\_limit\_sec);}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cplex.setParam(IloCplex::Param::WorkMem,\ 16384);}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cplex.setParam(IloCplex::Param::MIP::Strategy::File,\ 3);}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Relative\ MIP\ gap\ tolerance\ of\ 1e-\/3\ (0.001)}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cplex.setParam(IloCplex::Param::MIP::Tolerances::MIPGap,\ 1e-\/3);}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cplex.setParam(IloCplex::Param::Emphasis::MIP,\ IloCplex::MIPEmphasisBalanced);}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ start\_chrono\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ IloBool\ has\_solution\ =\ cplex.solve();}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ end\_chrono\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ metrics\_ptr-\/>outputs.execution\_time\ =\ std::chrono::duration<double>(end\_chrono\ -\/\ start\_chrono).count();}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::stringstream\ status;}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ status\ <<\ cplex.getStatus();}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ metrics\_ptr-\/>status\ =\ status.str();}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00133}00133\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#pragma\ endregion}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00135}00135\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#pragma\ region\ Result}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//=========================================================================}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 5.\ PARSE\ RESULTS}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//=========================================================================}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (has\_solution)\ \{}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ metrics\_ptr-\/>objective\_function\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(cplex.getObjValue());}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ metrics\_ptr-\/>gap\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(cplex.getMIPRelativeGap());}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 1;\ i\ <\ num\_servers;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ d\ =\ 1;\ d\ <\ num\_devices;\ d++)\ \{}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cplex.isExtracted(x[i][d])\ \&\&\ cplex.getValue(x[i][d])\ >\ 0.5)\ \{}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ servers[i].add\_service(devices[d]);}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ IloException\&\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}CPLEX\ Error:\ "{}}\ <<\ e.getMessage()\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::exception\&\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Standard\ Exception:\ "{}}\ <<\ e.what()\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (...)\ \{}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}An\ unknown\ error\ occurred\ in\ the\ CPLEX\ model.\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ env.end();}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00161}00161\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00162}00162\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00163}00163\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00164}00164\ \textcolor{comment}{\ \ \ \ /**}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00165}00165\ \textcolor{comment}{\ \ \ \ \ *\ @brief\ Bootstraps\ and\ executes\ the\ configured\ exact\ mathematical\ model.}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00166}00166\ \textcolor{comment}{\ \ \ \ \ *\ @details\ Reads\ the\ specified\ algorithm\ identifier\ from\ \`{}state.stats`\ and\ dispatches\ }}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00167}00167\ \textcolor{comment}{\ \ \ \ \ *\ execution\ to\ the\ corresponding\ exact\ solver\ implementation.}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00168}00168\ \textcolor{comment}{\ \ \ \ \ *\ }}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00169}00169\ \textcolor{comment}{\ \ \ \ \ *\ @param\ state\ The\ unified\ simulation\ state\ to\ be\ processed.}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00170}00170\ \textcolor{comment}{\ \ \ \ \ *\ @param\ time\_limit\_sec\ The\ maximum\ execution\ time\ allowed\ for\ the\ exact\ solver\ in\ seconds.}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00171}00171\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00172}\mbox{\hyperlink{namespaceexact_a6aacffeeb6699d2f7d822d8d0866edbc}{00172}}\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceexact_a6aacffeeb6699d2f7d822d8d0866edbc}{boot}}(\mbox{\hyperlink{structmetrics_1_1Result}{metrics::Result}}\&\ state,\ \textcolor{keywordtype}{int}\ time\_limit\_sec\ =\ 3600)\ \{}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11ae6bb6feafcc4de7705a8fe1782af973e}{metrics::Algorithm::solver\_maximum\_cost}}\ ==\ state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}-\/>algorithm)\ \{}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ solver\_maximum\_cost(state,\ time\_limit\_sec);}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Unknown\ mathematical\ model\ algorithm\ type.\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00180}00180\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{exact_8hpp_source_l00181}00181\ \}}
 
 \end{DoxyCode}

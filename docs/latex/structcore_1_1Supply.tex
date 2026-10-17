@@ -1,4 +1,4 @@
-\doxysection{core\+::Supply Struct Reference}
+\doxysubsection{core\+::Supply Struct Reference}
 \hypertarget{structcore_1_1Supply}{}\label{structcore_1_1Supply}\index{core::Supply@{core::Supply}}
 
 
@@ -9,14 +9,24 @@ Tracks the cumulative resource consumption and allocated device IDs on a single 
 
 {\ttfamily \#include $<$mmkp.\+hpp$>$}
 
-\doxysubsubsection*{Public Member Functions}
+
+
+Collaboration diagram for core\+::Supply\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=168pt]{structcore_1_1Supply__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{structcore_1_1Supply_a4ef05c3bf7a61c45d9e7583b0d134925}{Supply}} ()
 \begin{DoxyCompactList}\small\item\em Default constructor initializing zero resource usage. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structcore_1_1Supply_a482b2bff59f121cf5a3ecd74948717a0}{Supply}} (double cost\+\_\+, double cpu\+\_\+, double mem\+\_\+, double sto\+\_\+)
 \begin{DoxyCompactList}\small\item\em Parameterized constructor initializing specific resource usage values. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Public Attributes}
+\doxysubsubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 double \mbox{\hyperlink{structcore_1_1Supply_a16f2b476b9137780bddfd39065c1f5e4}{cost}} = 0.\+0
@@ -31,24 +41,32 @@ double \mbox{\hyperlink{structcore_1_1Supply_af5ee55556ad0d4d3e6d2d48c7c46bbd4}{
 \begin{DoxyCompactList}\small\item\em Set of device IDs currently served by the server. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\doxysubsubsection{Detailed Description}
 Tracks the cumulative resource consumption and allocated device IDs on a single server. 
 
-\doxysubsection{Constructor \& Destructor Documentation}
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00073}{73}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
 \Hypertarget{structcore_1_1Supply_a4ef05c3bf7a61c45d9e7583b0d134925}\label{structcore_1_1Supply_a4ef05c3bf7a61c45d9e7583b0d134925} 
 \index{core::Supply@{core::Supply}!Supply@{Supply}}
 \index{Supply@{Supply}!core::Supply@{core::Supply}}
-\doxysubsubsection{\texorpdfstring{Supply()}{Supply()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\doxyparagraph{\texorpdfstring{Supply()}{Supply()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily core\+::\+Supply\+::\+Supply (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
 Default constructor initializing zero resource usage. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00084}{84}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
 \Hypertarget{structcore_1_1Supply_a482b2bff59f121cf5a3ecd74948717a0}\label{structcore_1_1Supply_a482b2bff59f121cf5a3ecd74948717a0} 
 \index{core::Supply@{core::Supply}!Supply@{Supply}}
 \index{Supply@{Supply}!core::Supply@{core::Supply}}
-\doxysubsubsection{\texorpdfstring{Supply()}{Supply()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\doxyparagraph{\texorpdfstring{Supply()}{Supply()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily core\+::\+Supply\+::\+Supply (\begin{DoxyParamCaption}\item[{double}]{cost\+\_\+,  }\item[{double}]{cpu\+\_\+,  }\item[{double}]{mem\+\_\+,  }\item[{double}]{sto\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -68,56 +86,100 @@ Parameterized constructor initializing specific resource usage values.
 \end{DoxyParams}
 
 
-\doxysubsection{Member Data Documentation}
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00093}{93}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+\doxysubsubsection{Member Data Documentation}
 \Hypertarget{structcore_1_1Supply_a16f2b476b9137780bddfd39065c1f5e4}\label{structcore_1_1Supply_a16f2b476b9137780bddfd39065c1f5e4} 
 \index{core::Supply@{core::Supply}!cost@{cost}}
 \index{cost@{cost}!core::Supply@{core::Supply}}
-\doxysubsubsection{\texorpdfstring{cost}{cost}}
+\doxyparagraph{\texorpdfstring{cost}{cost}}
 {\footnotesize\ttfamily double core\+::\+Supply\+::cost = 0.\+0}
 
 
 
 Total avoided penalty cost of devices currently allocated to the server. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00074}{74}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00143}{core\+::\+Server\+::add\+\_\+service()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00163}{core\+::\+Server\+::rmv\+\_\+service()}}.
+
 \Hypertarget{structcore_1_1Supply_aeede708c05a5c0ad4dcfeb4cab4a1e59}\label{structcore_1_1Supply_aeede708c05a5c0ad4dcfeb4cab4a1e59} 
 \index{core::Supply@{core::Supply}!cpu@{cpu}}
 \index{cpu@{cpu}!core::Supply@{core::Supply}}
-\doxysubsubsection{\texorpdfstring{cpu}{cpu}}
+\doxyparagraph{\texorpdfstring{cpu}{cpu}}
 {\footnotesize\ttfamily double core\+::\+Supply\+::cpu = 0.\+0}
 
 
 
 Currently consumed CPU capacity on the server. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00075}{75}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00143}{core\+::\+Server\+::add\+\_\+service()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00130}{core\+::\+Server\+::can\+\_\+serve()}}, \mbox{\hyperlink{heuristic_8hpp_source_l00032}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+cost\+\_\+benefit()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00163}{core\+::\+Server\+::rmv\+\_\+service()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l01095}{display\+::show\+\_\+server()}}.
+
 \Hypertarget{structcore_1_1Supply_a46c7a0e0c5ef627372a278ae76c9122f}\label{structcore_1_1Supply_a46c7a0e0c5ef627372a278ae76c9122f} 
 \index{core::Supply@{core::Supply}!devices@{devices}}
 \index{devices@{devices}!core::Supply@{core::Supply}}
-\doxysubsubsection{\texorpdfstring{devices}{devices}}
+\doxyparagraph{\texorpdfstring{devices}{devices}}
 {\footnotesize\ttfamily \mbox{\hyperlink{mmkp_8hpp_a57175fad6087051ccfda3252d316f596}{i\+\_\+set}} core\+::\+Supply\+::devices}
 
 
 
 Set of device IDs currently served by the server. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00079}{79}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00143}{core\+::\+Server\+::add\+\_\+service()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00163}{core\+::\+Server\+::rmv\+\_\+service()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l01095}{display\+::show\+\_\+server()}}.
+
 \Hypertarget{structcore_1_1Supply_a8d1a5cb1c6a6f613ed211d717858d432}\label{structcore_1_1Supply_a8d1a5cb1c6a6f613ed211d717858d432} 
 \index{core::Supply@{core::Supply}!mem@{mem}}
 \index{mem@{mem}!core::Supply@{core::Supply}}
-\doxysubsubsection{\texorpdfstring{mem}{mem}}
+\doxyparagraph{\texorpdfstring{mem}{mem}}
 {\footnotesize\ttfamily double core\+::\+Supply\+::mem = 0.\+0}
 
 
 
 Currently consumed memory capacity on the server. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00076}{76}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00143}{core\+::\+Server\+::add\+\_\+service()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00130}{core\+::\+Server\+::can\+\_\+serve()}}, \mbox{\hyperlink{heuristic_8hpp_source_l00032}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+cost\+\_\+benefit()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00163}{core\+::\+Server\+::rmv\+\_\+service()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l01095}{display\+::show\+\_\+server()}}.
+
 \Hypertarget{structcore_1_1Supply_af5ee55556ad0d4d3e6d2d48c7c46bbd4}\label{structcore_1_1Supply_af5ee55556ad0d4d3e6d2d48c7c46bbd4} 
 \index{core::Supply@{core::Supply}!sto@{sto}}
 \index{sto@{sto}!core::Supply@{core::Supply}}
-\doxysubsubsection{\texorpdfstring{sto}{sto}}
+\doxyparagraph{\texorpdfstring{sto}{sto}}
 {\footnotesize\ttfamily double core\+::\+Supply\+::sto = 0.\+0}
 
 
 
 Currently consumed storage capacity on the server. 
+
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00077}{77}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00143}{core\+::\+Server\+::add\+\_\+service()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00130}{core\+::\+Server\+::can\+\_\+serve()}}, \mbox{\hyperlink{heuristic_8hpp_source_l00032}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+cost\+\_\+benefit()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00163}{core\+::\+Server\+::rmv\+\_\+service()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l01095}{display\+::show\+\_\+server()}}.
 
 
 

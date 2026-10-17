@@ -1,4 +1,4 @@
-\doxysection{include/tools.hpp File Reference}
+\doxysubsection{include/tools.hpp File Reference}
 \hypertarget{tools_8hpp}{}\label{tools_8hpp}\index{include/tools.hpp@{include/tools.hpp}}
 
 
@@ -38,7 +38,7 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \includegraphics[width=350pt]{tools_8hpp__dep__incl}
 \end{center}
 \end{figure}
-\doxysubsubsection*{Namespaces}
+\doxysubsubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
 namespace \mbox{\hyperlink{namespacefile__manager_1_1csv}{file\+\_\+manager\+::csv}}
@@ -53,7 +53,7 @@ namespace \mbox{\hyperlink{namespacesorting}{sorting}}
 \begin{DoxyCompactList}\small\item\em Generic index-\/based sorting utilities for ordering 1-\/indexed entity vectors by member attributes. \end{DoxyCompactList}\item 
 namespace \mbox{\hyperlink{namespacesorting_1_1details}{sorting\+::details}}
 \begin{DoxyCompactList}\small\item\em Internal implementation helpers for pointer-\/to-\/member index sorting. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Functions}
+\doxysubsubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 std\+::optional$<$ std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ $>$ \mbox{\hyperlink{namespacefile__manager_1_1csv_af48fa4ef4b9a1c06b33a77e1224e6d0f}{file\+\_\+manager\+::csv\+::read}} (const std\+::string \&file\+\_\+path, char delimiter=\textquotesingle{},\textquotesingle{})
@@ -75,18 +75,18 @@ std\+::string \mbox{\hyperlink{namespaceconvert_a58f9ce99c0ce086862a328dbead787f
 std\+::mt19937 \& \mbox{\hyperlink{namespacerandomness_ad50649872f82d27dda5ca55791ceb9e0}{randomness\+::get\+\_\+engine}} ()
 \begin{DoxyCompactList}\small\item\em Provides a singleton instance of a pseudo-\/random number engine. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\T \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{randomness\+::random\+\_\+number}} (T min, T max)
-\begin{DoxyCompactList}\small\item\em Generates a uniform random number within a specified inclusive interval \$\mbox{[} $\text$\{min\}, $\text$\{max\}\mbox{]}\$. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Generates a uniform random number within a specified inclusive interval {\ttfamily \mbox{[}min, max\mbox{]}}. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\T \mbox{\hyperlink{namespacerandomness_a360a8ddfb219fda12b41b721b6c72a64}{randomness\+::random\+\_\+number}} (T min, T max, std\+::vector$<$ T $>$ \&exclude)
-\begin{DoxyCompactList}\small\item\em Generates a random number within \$\mbox{[} $\text$\{min\}, $\text$\{max\}\mbox{]}\$, excluding values present in {\ttfamily exclude}. \end{DoxyCompactList}\item 
-{\footnotesize template$<$\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{typename}} \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{T}} $>$ }\\std\+::vector$<$ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{T}} $>$ \mbox{\hyperlink{namespacerandomness_a071f542899eccfe2da500e2a96764f24}{randomness\+::shuffled\+\_\+range}} (\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{T}} \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{min}}, \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{T}} \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{max}})
-\begin{DoxyCompactList}\small\item\em Creates a randomly shuffled vector containing all integers in the inclusive range \$\mbox{[} $\text$\{min\}, $\text$\{max\}\mbox{]}\$. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Generates a random number within {\ttfamily \mbox{[}min, max\mbox{]}}, excluding values present in {\ttfamily exclude}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{typename}} T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacerandomness_a071f542899eccfe2da500e2a96764f24}{randomness\+::shuffled\+\_\+range}} (T \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{min}}, T \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{max}})
+\begin{DoxyCompactList}\small\item\em Creates a randomly shuffled vector containing all integers in the inclusive range {\ttfamily \mbox{[}min, max\mbox{]}}. \end{DoxyCompactList}\item 
 {\footnotesize template$<$bool Ascending, typename T , typename Attribute\+Type , Attribute\+Type T\+::\texorpdfstring{$\ast$}{*} Attribute\+Ptr$>$ }\\void \mbox{\hyperlink{namespacesorting_1_1details_adf77f33a62d55f5505c5d5d542fa226c}{sorting\+::details\+::sort\+\_\+indices\+\_\+impl}} (const std\+::vector$<$ T $>$ \&entities, std\+::vector$<$ int $>$ \&idxs)
 \begin{DoxyCompactList}\small\item\em Sorts a vector of indices based on a specified struct/class member attribute. \end{DoxyCompactList}\item 
 {\footnotesize template$<$bool Ascending, typename T , typename Attribute\+Type , Attribute\+Type T\+::\texorpdfstring{$\ast$}{*} Attribute\+Ptr$>$ }\\std\+::vector$<$ int $>$ \mbox{\hyperlink{namespacesorting_a7d794c04fb04c9db129b2b3236f83223}{sorting\+::sort\+\_\+entities}} (const std\+::vector$<$ T $>$ \&entities)
 \begin{DoxyCompactList}\small\item\em Sorts the indices of all entities (from {\ttfamily 1} to {\ttfamily N-\/1}) by a specific struct/class attribute. \end{DoxyCompactList}\item 
 {\footnotesize template$<$bool Ascending, typename T , typename Attribute\+Type , Attribute\+Type T\+::\texorpdfstring{$\ast$}{*} Attribute\+Ptr$>$ }\\std\+::vector$<$ int $>$ \mbox{\hyperlink{namespacesorting_a009d8d26a17114c1b6731643c8dce782}{sorting\+::sort\+\_\+entities}} (const std\+::vector$<$ T $>$ \&entities, const std\+::vector$<$ int $>$ \&indices\+\_\+to\+\_\+sort)
 \begin{DoxyCompactList}\small\item\em Sorts a specific subset of entity indices by a struct/class member attribute. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Variables}
+\doxysubsubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 constexpr double \mbox{\hyperlink{tools_8hpp_acca3350a20fd52e319b79444c3137ee7}{ZERO}} = 1e-\/13
@@ -95,29 +95,49 @@ constexpr int \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DEC
 \begin{DoxyCompactList}\small\item\em Global default precision (number of decimal places) for floating-\/point string formatting. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\doxysubsubsection{Detailed Description}
 General-\/purpose utilities for CSV I/O, string formatting, random number generation, and indirect sorting. 
 
 Header-\/only toolkit providing foundational helper functions used across the MMKP simulator. 
 
-\doxysubsection{Variable Documentation}
+Definition in file \mbox{\hyperlink{tools_8hpp_source}{tools.\+hpp}}.
+
+
+
+\doxysubsubsection{Variable Documentation}
 \Hypertarget{tools_8hpp_af5c296dd72b5e135f446be8000800727}\label{tools_8hpp_af5c296dd72b5e135f446be8000800727} 
 \index{tools.hpp@{tools.hpp}!DECIMAL\_PLACES@{DECIMAL\_PLACES}}
 \index{DECIMAL\_PLACES@{DECIMAL\_PLACES}!tools.hpp@{tools.hpp}}
-\doxysubsubsection{\texorpdfstring{DECIMAL\_PLACES}{DECIMAL\_PLACES}}
+\doxyparagraph{\texorpdfstring{DECIMAL\_PLACES}{DECIMAL\_PLACES}}
 {\footnotesize\ttfamily constexpr int DECIMAL\+\_\+\+PLACES = 10\hspace{0.3cm}{\ttfamily [constexpr]}}
 
 
 
 Global default precision (number of decimal places) for floating-\/point string formatting. 
 
+
+
+Definition at line \mbox{\hyperlink{tools_8hpp_source_l00038}{38}} of file \mbox{\hyperlink{tools_8hpp_source}{tools.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00629}{metrics\+::\+Metrics\+::build\+\_\+metrics()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00756}{metrics\+::\+Exact\+Metrics\+::build\+\_\+metrics()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00890}{metrics\+::\+Meta\+Heuristic\+Metrics\+::build\+\_\+metrics()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00669}{metrics\+::\+Metrics\+::data()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00780}{metrics\+::\+Exact\+Metrics\+::data()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00915}{metrics\+::\+Meta\+Heuristic\+Metrics\+::data()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00319}{data\+::generate\+::servers()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00205}{data\+::generate\+::services()}}.
+
 \Hypertarget{tools_8hpp_acca3350a20fd52e319b79444c3137ee7}\label{tools_8hpp_acca3350a20fd52e319b79444c3137ee7} 
 \index{tools.hpp@{tools.hpp}!ZERO@{ZERO}}
 \index{ZERO@{ZERO}!tools.hpp@{tools.hpp}}
-\doxysubsubsection{\texorpdfstring{ZERO}{ZERO}}
+\doxyparagraph{\texorpdfstring{ZERO}{ZERO}}
 {\footnotesize\ttfamily constexpr double ZERO = 1e-\/13\hspace{0.3cm}{\ttfamily [constexpr]}}
 
 
 
 Small epsilon constant used for floating-\/point comparisons and non-\/zero lower bounds. 
+
+
+
+Definition at line \mbox{\hyperlink{tools_8hpp_source_l00033}{33}} of file \mbox{\hyperlink{tools_8hpp_source}{tools.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00205}{data\+::generate\+::services()}}, and \mbox{\hyperlink{metaheuristic_8hpp_source_l00145}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::simulated\+\_\+annealing()}}.
 

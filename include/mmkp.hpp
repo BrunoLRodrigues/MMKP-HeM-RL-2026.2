@@ -183,7 +183,7 @@ namespace core {
 
 /**
  * @namespace data::generate
- * @brief Generates synthetic datasets for services, IoT devices, and EC/CC servers when files are absent.
+ * @brief Generates or updates synthetic datasets for services, IoT devices, and EC/CC servers.
  */
 namespace data::generate {
 
@@ -195,15 +195,33 @@ namespace data::generate {
     /**
      * @brief Generates or loads network service requirement templates.
      * @details Creates random service profiles with varying task counts, memory, storage, 
-     * and processing demands. Persists the resulting table to `data/Services.txt` for reproducibility.
+     * and processing demands, persisting them to `data/Services.txt`. If the file already exists, 
+     * reloads the profiles and updates their penalty costs (`COST`) according to `fixed_penalty`.
      * 
      * @param num_services The total number of distinct service profiles to generate.
-     * @return A 2D string vector containing the generated or loaded services dataset.
+     * @param fixed_penalty If `true`, assigns a unit penalty cost (`1.0`); if `false`, generates task-proportional random penalty costs.
+     * @return A 2D string vector containing the generated or updated services dataset.
      */
-    inline std::vector<std::vector<std::string>> services(const int num_services = 10) {
+    inline std::vector<std::vector<std::string>> services(const int num_services = 10, bool fixed_penalty = true) {
         std::filesystem::path service_path = DATA_PATH / "Services.txt";
+        
         if (std::filesystem::exists(service_path)) {
-            return csv::read(service_path.string(), ';').value_or(std::vector<std::vector<std::string>>{});
+            auto loaded = csv::read(service_path.string(), ';').value_or(std::vector<std::vector<std::string>>{});
+
+            if (loaded.size() > 1) {
+                for (size_t i = 1; i < loaded.size(); i++) {
+                    int tsk = std::stoi(loaded[i][5]);
+                    double cos = 1.0;
+                    if (!fixed_penalty) {
+                        for (int j = 0; j < tsk; j++) {
+                            cos += randomness::random_number(ZERO, 2.5);
+                        }
+                    }
+                    loaded[i][1] = convert::to_string(cos, DECIMAL_PLACES);
+                }
+                csv::write(service_path.string(), loaded, ';');
+            }
+            return loaded;
         }
 
         std::vector<std::vector<std::string>> services;
@@ -214,7 +232,9 @@ namespace data::generate {
             double cpu = 0.0, mem = 0.0, sto = 0.0, cos = 1.0;
 
             for (int j = 0; j < tsk; j++) {
-                //cos += randomness::random_number(ZERO, 2.5);
+                if (!fixed_penalty) {
+                    cos += randomness::random_number(ZERO, 2.5);
+                }
                 cpu += randomness::random_number(ZERO, 2.5);
                 mem += randomness::random_number(ZERO, 2.5);
                 sto += randomness::random_number(ZERO, 15.0);
@@ -236,21 +256,32 @@ namespace data::generate {
     /**
      * @brief Generates or loads device request data representing IoT network demands.
      * @details Uniformly samples service requirement profiles from the services dataset 
-     * and assigns them to each device instance. Saves the output to `data/devices/Devices_<length>.txt`.
+     * and assigns them to each device instance in `data/devices/Devices_<length>.txt`. If the file 
+     * already exists, synchronizes each device's penalty cost (`COST`) with its corresponding service template.
      * 
      * @param length The total number of devices to generate.
      * @param num_services The number of underlying service templates to sample from.
+     * @param fixed_penalty Whether the penalty (cost) of each device is fixed (`1.0`) or variable.
      * @return A 2D string vector representing the devices dataset.
      */
-    inline std::vector<std::vector<std::string>> devices(const int length, const int num_services = 10) {
+    inline std::vector<std::vector<std::string>> devices(const int length, const int num_services = 10, bool fixed_penalty = true) {
         std::filesystem::path device_file_path = DATA_PATH / "devices" / ("Devices_" + std::to_string(length) + ".txt");
-        if (std::filesystem::exists(device_file_path)) {
-            return csv::read(device_file_path.string(), ';').value_or(std::vector<std::vector<std::string>>{});
-        }
+        
+        std::vector<std::vector<std::string>> data_services = services(num_services, fixed_penalty);
+        if (data_services.size() <= 1) return {};
 
-        std::vector<std::vector<std::string>> data_services = services(num_services);
-        if (data_services.size() <= 1) {
-            return {};
+        if (std::filesystem::exists(device_file_path)) {
+            auto loaded = csv::read(device_file_path.string(), ';').value_or(std::vector<std::vector<std::string>>{});
+            
+            if (loaded.size() > 1) {
+                for (size_t i = 1; i < loaded.size(); i++) {
+                int svc = std::stoi(loaded[i][6]);
+                loaded[i][1] = data_services.at(svc).at(1);
+            }
+            csv::write(device_file_path.string(), loaded, ';');
+            }
+
+            return loaded;
         }
 
         std::vector<std::vector<std::string>> devices;
@@ -279,7 +310,7 @@ namespace data::generate {
     /**
      * @brief Generates or loads server infrastructure data for Edge and Cloud nodes.
      * @details Creates capacity profiles for `ec_length` Edge servers (`'E'`) and `cc_length`
-     * Cloud servers (`'C'`), saving the table to `data/servers/servers_`<ec>`_<cc>.txt`.
+     * Cloud servers (`'C'`), saving the table to `data/servers/servers_<ec>_<cc>.txt`.
      * 
      * @param ec_length The number of Edge Computing servers to generate.
      * @param cc_length The number of Cloud Computing servers to generate.
@@ -334,10 +365,11 @@ namespace data::load {
      * @brief Loads device data from disk (generating it if absent) into a vector of `core::Device` objects.
      * @param length The total number of devices to load.
      * @param num_services The number of distinct services to generate if absent. Defaults to 10.
+     * @param fixed_penalty Whether the penalty (cost) of each device is fixed or can vary. Defaults to true.
      * @return A 1-indexed `core::Devices` vector containing the parsed device instances.
      */
-    inline core::Devices devices(const int length, const int num_services = 10) {
-        std::vector<std::vector<std::string>> load_devices = data::generate::devices(length, num_services);
+    inline core::Devices devices(const int length, const int num_services = 10, bool fixed_penalty = true) {
+        std::vector<std::vector<std::string>> load_devices = data::generate::devices(length, num_services, fixed_penalty);
         if (load_devices.size() <= 1) {
             std::cerr << "Error: Device data file not found or is empty.\n";
             return {};
@@ -804,16 +836,16 @@ namespace metrics {
      */
     struct MetaHeuristicMetrics : public Metrics {
         Algorithm heuristic = Algorithm::NONE; ///< @brief Constructive heuristic used to generate the initial solution.
-        double temperature = 0.0;              ///< @brief Initial temperature $T_0$ for Simulated Annealing.
-        double alpha = 0.0;                    ///< @brief Cooling rate factor $\f$\alpha\f$$ for Simulated Annealing.
+        double temperature = 0.0;              ///< @brief Initial temperature \f$T_0\f$ for Simulated Annealing.
+        double alpha = 0.0;                    ///< @brief Cooling rate factor \f$\alpha\f$ for Simulated Annealing.
 
         /**
          * @brief Constructs a `MetaHeuristicMetrics` object copying inputs from a base instance.
          * @param algorithm_name_ Meta-heuristic algorithm identifier.
          * @param run_id_ Execution run number.
          * @param base Base metrics pointer containing input parameters.
-         * @param temperature_ Initial temperature $T_0$.
-         * @param alpha_ Geometric cooling factor $\f$\alpha\f$$.
+         * @param temperature_ Initial temperature \f$T_0\f$.
+         * @param alpha_ Geometric cooling factor \f$\alpha\f$.
          * @param heuristic_ Initial constructive heuristic algorithm.
          */
         MetaHeuristicMetrics(Algorithm algorithm_name_, int run_id_, const std::shared_ptr<Metrics>& base, double temperature_, double alpha_, Algorithm heuristic_) 
@@ -828,8 +860,8 @@ namespace metrics {
          * @param d Total device count.
          * @param s_ec Edge server count.
          * @param s_cc Cloud server count.
-         * @param temperature_ Initial temperature $T_0$.
-         * @param alpha_ Geometric cooling factor $\f$\alpha\f$$.
+         * @param temperature_ Initial temperature \f$T_0\f$.
+         * @param alpha_ Geometric cooling factor \f$\alpha\f$.
          * @param heuristic_ Initial constructive heuristic algorithm.
          */
         MetaHeuristicMetrics(Algorithm algorithm_name_, int run_id, int d, int s_ec, int s_cc, double temperature_, double alpha_, Algorithm heuristic_) :
@@ -923,9 +955,10 @@ namespace metrics {
          * @param num_services Number of service templates.
          * @param num_ec Number of Edge Computing servers.
          * @param num_cc Number of Cloud Computing servers.
+         * @param fixed_penalty Whether the penalty (cost) of each device is fixed or can vary.
          */ 
-        Result(int num_devices, int num_services, int num_ec, int num_cc)
-            : devices(data::load::devices(num_devices, num_services)), servers(data::load::servers(num_ec, num_cc)) {
+        Result(int num_devices, int num_services, int num_ec, int num_cc, bool fixed_penalty = true)
+            : devices(data::load::devices(num_devices, num_services, fixed_penalty)), servers(data::load::servers(num_ec, num_cc)) {
             
             if (devices.size() <= 1 || servers.size() <= 1) {
                 std::cerr << "Error: Data failed to load.\n";

@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -28,8 +32,9 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">MMKP Resource Allocation in IoT-EC-CC Networks
+   <div id="projectname">MMKP Resource Allocation in IoT-EC-CC Networks<span id="projectnumber">&#160;1.0.0</span>
    </div>
+   <div id="projectbrief">Exact, Heuristic, and Meta-heuristic solvers for MMKP in Edge-Cloud environments</div>
   </td>
  </tr>
  </tbody>
@@ -53,6 +58,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('namespacedata_1_1generate.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -74,11 +96,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacedata.html">data</a></li><li class="navelem"><a class="el" href="namespacedata_1_1generate.html">generate</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#func-members">Functions</a> &#124;
@@ -87,17 +104,17 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Generates synthetic datasets for services, IoT devices, and EC/CC servers when files are absent.  
+<p>Generates or updates synthetic datasets for services, IoT devices, and EC/CC servers.  
 <a href="namespacedata_1_1generate.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a8cf334007dfe6c39270237e4b5e1df96" id="r_a8cf334007dfe6c39270237e4b5e1df96"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; std::string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedata_1_1generate.html#a8cf334007dfe6c39270237e4b5e1df96">services</a> (const int num_services=10)</td></tr>
-<tr class="memdesc:a8cf334007dfe6c39270237e4b5e1df96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates or loads network service requirement templates.  <br /></td></tr>
-<tr class="separator:a8cf334007dfe6c39270237e4b5e1df96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6567b345dff3a26eabcad5abd28fcdb" id="r_af6567b345dff3a26eabcad5abd28fcdb"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; std::string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedata_1_1generate.html#af6567b345dff3a26eabcad5abd28fcdb">devices</a> (const int length, const int num_services=10)</td></tr>
-<tr class="memdesc:af6567b345dff3a26eabcad5abd28fcdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates or loads device request data representing IoT network demands.  <br /></td></tr>
-<tr class="separator:af6567b345dff3a26eabcad5abd28fcdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c60a34a447b946d2ac51f1b055189db" id="r_a6c60a34a447b946d2ac51f1b055189db"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; std::string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedata_1_1generate.html#a6c60a34a447b946d2ac51f1b055189db">services</a> (const int num_services=10, bool fixed_penalty=true)</td></tr>
+<tr class="memdesc:a6c60a34a447b946d2ac51f1b055189db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates or loads network service requirement templates.  <br /></td></tr>
+<tr class="separator:a6c60a34a447b946d2ac51f1b055189db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77ee30fbb09d00be8392d88310fbe2bd" id="r_a77ee30fbb09d00be8392d88310fbe2bd"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; std::string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedata_1_1generate.html#a77ee30fbb09d00be8392d88310fbe2bd">devices</a> (const int length, const int num_services=10, bool fixed_penalty=true)</td></tr>
+<tr class="memdesc:a77ee30fbb09d00be8392d88310fbe2bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates or loads device request data representing IoT network demands.  <br /></td></tr>
+<tr class="separator:a77ee30fbb09d00be8392d88310fbe2bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a406f9158cb3dc3b05a461bc10038fae1" id="r_a406f9158cb3dc3b05a461bc10038fae1"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; std::string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedata_1_1generate.html#a406f9158cb3dc3b05a461bc10038fae1">servers</a> (const int ec_length=99, const int cc_length=1)</td></tr>
 <tr class="memdesc:a406f9158cb3dc3b05a461bc10038fae1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates or loads server infrastructure data for Edge and Cloud nodes.  <br /></td></tr>
 <tr class="separator:a406f9158cb3dc3b05a461bc10038fae1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -109,10 +126,10 @@ Variables</h2></td></tr>
 <tr class="separator:a75e853eaa2e0c225aad26cf3607b53f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Generates synthetic datasets for services, IoT devices, and EC/CC servers when files are absent. </p>
+<div class="textblock"><p>Generates or updates synthetic datasets for services, IoT devices, and EC/CC servers. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="af6567b345dff3a26eabcad5abd28fcdb" name="af6567b345dff3a26eabcad5abd28fcdb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af6567b345dff3a26eabcad5abd28fcdb">&#9670;&#160;</a></span>devices()</h2>
+<a id="a77ee30fbb09d00be8392d88310fbe2bd" name="a77ee30fbb09d00be8392d88310fbe2bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77ee30fbb09d00be8392d88310fbe2bd">&#9670;&#160;</a></span>devices()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -130,7 +147,13 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>num_services</em> = <code>10</code>&#160;</td>
+          <td class="paramname"><em>num_services</em> = <code>10</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>fixed_penalty</em> = <code>true</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -146,15 +169,22 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Generates or loads device request data representing IoT network demands. </p>
-<p>Uniformly samples service requirement profiles from the services dataset and assigns them to each device instance. Saves the output to <code>data/devices/Devices_&lt;length&gt;.txt</code>.</p>
+<p>Uniformly samples service requirement profiles from the services dataset and assigns them to each device instance in <code>data/devices/Devices_&lt;length&gt;.txt</code>. If the file already exists, synchronizes each device's penalty cost (<code>COST</code>) with its corresponding service template.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">length</td><td>The total number of devices to generate. </td></tr>
     <tr><td class="paramname">num_services</td><td>The number of underlying service templates to sample from. </td></tr>
+    <tr><td class="paramname">fixed_penalty</td><td>Whether the penalty (cost) of each device is fixed (<code>1.0</code>) or variable. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A 2D string vector representing the devices dataset. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00267">267</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
+
+<p class="reference">References <a class="el" href="mmkp_8hpp_source.html#l00193">DATA_PATH</a>, <a class="el" href="mmkp_8hpp_source.html#l00267">devices()</a>, <a class="el" href="tools_8hpp_source.html#l00283">randomness::random_number()</a>, <a class="el" href="tools_8hpp_source.html#l00052">file_manager::csv::read()</a>, <a class="el" href="mmkp_8hpp_source.html#l00205">services()</a>, <a class="el" href="tools_8hpp_source.html#l00193">convert::to_string()</a>, and <a class="el" href="tools_8hpp_source.html#l00085">file_manager::csv::write()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="mmkp_8hpp_source.html#l00267">devices()</a>, and <a class="el" href="mmkp_8hpp_source.html#l00371">data::load::devices()</a>.</p>
 
 </div>
 </div>
@@ -193,7 +223,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Generates or loads server infrastructure data for Edge and Cloud nodes. </p>
-<p>Creates capacity profiles for <code>ec_length</code> Edge servers (&lsquo;'E&rsquo;<code>) and</code>cc_length<code> Cloud servers (</code>'C'<code>), saving the table to</code>data/servers/servers_<code>&lt;ec&gt;</code>_&lt;cc&gt;.txt`.</p>
+<p>Creates capacity profiles for <code>ec_length</code> Edge servers (&lsquo;'E&rsquo;<code>) and</code>cc_length<code> Cloud servers (</code>'C'<code>), saving the table to</code>data/servers/servers_&lt;ec&gt;_&lt;cc&gt;.txt`.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ec_length</td><td>The number of Edge Computing servers to generate. </td></tr>
@@ -203,10 +233,16 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A 2D string vector representing the servers dataset. </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00319">319</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
+
+<p class="reference">References <a class="el" href="mmkp_8hpp_source.html#l00193">DATA_PATH</a>, <a class="el" href="tools_8hpp_source.html#l00038">DECIMAL_PLACES</a>, <a class="el" href="tools_8hpp_source.html#l00283">randomness::random_number()</a>, <a class="el" href="tools_8hpp_source.html#l00052">file_manager::csv::read()</a>, <a class="el" href="mmkp_8hpp_source.html#l00319">servers()</a>, <a class="el" href="tools_8hpp_source.html#l00193">convert::to_string()</a>, and <a class="el" href="tools_8hpp_source.html#l00085">file_manager::csv::write()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="mmkp_8hpp_source.html#l00409">data::load::servers()</a>, and <a class="el" href="mmkp_8hpp_source.html#l00319">servers()</a>.</p>
+
 </div>
 </div>
-<a id="a8cf334007dfe6c39270237e4b5e1df96" name="a8cf334007dfe6c39270237e4b5e1df96"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8cf334007dfe6c39270237e4b5e1df96">&#9670;&#160;</a></span>services()</h2>
+<a id="a6c60a34a447b946d2ac51f1b055189db" name="a6c60a34a447b946d2ac51f1b055189db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c60a34a447b946d2ac51f1b055189db">&#9670;&#160;</a></span>services()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -218,8 +254,18 @@ Variables</h2></td></tr>
           <td class="memname">std::vector&lt; std::vector&lt; std::string &gt; &gt; data::generate::services </td>
           <td>(</td>
           <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>num_services</em> = <code>10</code></td><td>)</td>
+          <td class="paramname"><em>num_services</em> = <code>10</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>fixed_penalty</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -230,14 +276,21 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Generates or loads network service requirement templates. </p>
-<p>Creates random service profiles with varying task counts, memory, storage, and processing demands. Persists the resulting table to <code>data/Services.txt</code> for reproducibility.</p>
+<p>Creates random service profiles with varying task counts, memory, storage, and processing demands, persisting them to <code>data/Services.txt</code>. If the file already exists, reloads the profiles and updates their penalty costs (<code>COST</code>) according to <code>fixed_penalty</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">num_services</td><td>The total number of distinct service profiles to generate. </td></tr>
+    <tr><td class="paramname">fixed_penalty</td><td>If <code>true</code>, assigns a unit penalty cost (<code>1.0</code>); if <code>false</code>, generates task-proportional random penalty costs. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A 2D string vector containing the generated or loaded services dataset. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A 2D string vector containing the generated or updated services dataset. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00205">205</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
+
+<p class="reference">References <a class="el" href="mmkp_8hpp_source.html#l00193">DATA_PATH</a>, <a class="el" href="tools_8hpp_source.html#l00038">DECIMAL_PLACES</a>, <a class="el" href="tools_8hpp_source.html#l00283">randomness::random_number()</a>, <a class="el" href="tools_8hpp_source.html#l00052">file_manager::csv::read()</a>, <a class="el" href="mmkp_8hpp_source.html#l00205">services()</a>, <a class="el" href="tools_8hpp_source.html#l00193">convert::to_string()</a>, <a class="el" href="tools_8hpp_source.html#l00085">file_manager::csv::write()</a>, and <a class="el" href="tools_8hpp_source.html#l00033">ZERO</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="mmkp_8hpp_source.html#l00267">devices()</a>, and <a class="el" href="mmkp_8hpp_source.html#l00205">services()</a>.</p>
 
 </div>
 </div>
@@ -256,12 +309,20 @@ Variables</h2></td></tr>
 
 <p>Path pointing to the root <code>data/</code> directory. </p>
 
+<p class="definition">Definition at line <a class="el" href="mmkp_8hpp_source.html#l00193">193</a> of file <a class="el" href="mmkp_8hpp_source.html">mmkp.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="mmkp_8hpp_source.html#l00267">devices()</a>, <a class="el" href="mmkp_8hpp_source.html#l00319">servers()</a>, and <a class="el" href="mmkp_8hpp_source.html#l00205">services()</a>.</p>
+
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacedata.html">data</a></li><li class="navelem"><a class="el" href="namespacedata_1_1generate.html">generate</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
 </body>
 </html>

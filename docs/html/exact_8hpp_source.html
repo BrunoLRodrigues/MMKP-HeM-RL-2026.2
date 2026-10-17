@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -28,8 +32,9 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">MMKP Resource Allocation in IoT-EC-CC Networks
+   <div id="projectname">MMKP Resource Allocation in IoT-EC-CC Networks<span id="projectnumber">&#160;1.0.0</span>
    </div>
+   <div id="projectbrief">Exact, Heuristic, and Meta-heuristic solvers for MMKP in Edge-Cloud environments</div>
   </td>
  </tr>
  </tbody>
@@ -58,6 +63,23 @@ $(function() {
 $(document).ready(function() { init_codefold(0); });
 /* @license-end */
 </script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('exact_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -79,29 +101,51 @@ $(document).ready(function() { init_codefold(0); });
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle"><div class="title">exact.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="exact_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<a href="exact_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * @file exact.hpp</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * @brief Exact Integer Linear Programming (ILP) formulations using IBM ILOG CPLEX.</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * @details Provides the mathematical optimization model and solver configuration</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * to solve the Multiple Multidimensional Knapsack Problem (MMKP) for IoT-EC-CC</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * resource allocation.</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="mmkp_8hpp.html">mmkp.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;ilcplex/ilocplex.h&gt;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment"></span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="namespaceexact.html">   16</a></span><span class="comment"> * @namespace exact</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment"> * @brief Contains mathematical programming models for exact optimization.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment"> * @details Utilizes the IBM ILOG CPLEX optimizer to solve the network resource </span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment"> * allocation problem to optimality or within a specified time limit, providing </span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment"> * an exact baseline by maximizing avoided non-service penalties.</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment"> */</span></div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceexact.html">exact</a> {</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment"></span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">    /**</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">     * @brief Type alias for a 2D matrix of CPLEX decision variables.</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">     */</span></div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="namespaceexact.html#a4ba342845801f3cf0d7fcd8d496504d9">   27</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="namespaceexact.html#a4ba342845801f3cf0d7fcd8d496504d9">NumVar2D</a> = IloArray&lt;IloNumVarArray&gt;;</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
 <div class="foldopen" id="foldopen00029" data-start="{" data-end="}">
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="namespaceexact_1_1anonymous__namespace_02exact_8hpp_03.html">   29</a></span>    <span class="keyword">namespace </span>{</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment"></span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">        /**</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">         * @brief Formulates and solves the exact ILP resource allocation model using CPLEX.</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">         * @details Defines binary decision variables \f$x_{d}^{i} \in \{0, 1\}\f$ indicating whether </span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">         * device \f$d\f$ is assigned to server \f$i\f$. Maximizes the total utility of served devices </span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">         * (avoided SLA penalties) subject to single-server assignment and multidimensional </span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">         * resource capacity constraints (CPU, MEM, STO).</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">         * </span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">         * @param state The unified simulation state containing devices, servers, and metrics.</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">         * @param time_limit_sec The maximum execution time allowed for the solver in seconds.</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">         */</span></div>
 <div class="foldopen" id="foldopen00041" data-start="{" data-end="}">
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="namespaceexact_1_1anonymous__namespace_02exact_8hpp_03.html#ae7ca96aa19f5b3b84819efcfe40a885b">   41</a></span>        <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceexact_1_1anonymous__namespace_02exact_8hpp_03.html#ae7ca96aa19f5b3b84819efcfe40a885b">solver_maximum_cost</a>(<a class="code hl_struct" href="structmetrics_1_1Result.html">metrics::Result</a>&amp; state, <span class="keywordtype">int</span> time_limit_sec = 3600) {</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            <a class="code hl_typedef" href="namespacecore.html#a815afea905ea8843f0cc85cb4590a3dc">core::Devices</a>&amp; devices = state.<a class="code hl_variable" href="structmetrics_1_1Result.html#a1e52f445dfc9a5fd13b646c74bf909c8">devices</a>;</div>
@@ -227,7 +271,15 @@ $(document).ready(function() { init_codefold(0); });
 </div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    }</div>
 </div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="comment"></span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="comment">    /**</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="comment">     * @brief Bootstraps and executes the configured exact mathematical model.</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="comment">     * @details Reads the specified algorithm identifier from `state.stats` and dispatches </span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="comment">     * execution to the corresponding exact solver implementation.</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="comment">     * </span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="comment">     * @param state The unified simulation state to be processed.</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="comment">     * @param time_limit_sec The maximum execution time allowed for the exact solver in seconds.</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="comment">     */</span></div>
 <div class="foldopen" id="foldopen00172" data-start="{" data-end="}">
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="namespaceexact.html#a6aacffeeb6699d2f7d822d8d0866edbc">  172</a></span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceexact.html#a6aacffeeb6699d2f7d822d8d0866edbc">boot</a>(<a class="code hl_struct" href="structmetrics_1_1Result.html">metrics::Result</a>&amp; state, <span class="keywordtype">int</span> time_limit_sec = 3600) {</div>
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>        <span class="keywordflow">if</span> (!state.<a class="code hl_variable" href="structmetrics_1_1Result.html#afde5ec716c4e2962845c63c7e720b92f">stats</a>) <span class="keywordflow">return</span>;</div>
@@ -241,21 +293,25 @@ $(document).ready(function() { init_codefold(0); });
 </div>
 <div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>}</div>
 <div class="ttc" id="ammkp_8hpp_html"><div class="ttname"><a href="mmkp_8hpp.html">mmkp.hpp</a></div><div class="ttdoc">Core data structures, synthetic dataset generators, metric trackers, and console/file display routine...</div></div>
-<div class="ttc" id="anamespacecore_html_a815afea905ea8843f0cc85cb4590a3dc"><div class="ttname"><a href="namespacecore.html#a815afea905ea8843f0cc85cb4590a3dc">core::Devices</a></div><div class="ttdeci">std::vector&lt; Device &gt; Devices</div><div class="ttdoc">Contiguous collection of Device instances (1-indexed, index 0 is a placeholder).</div><div class="ttdef"><b>Definition</b> mmkp.hpp:67</div></div>
-<div class="ttc" id="anamespacecore_html_ac53c64bc23d713f5e94e801d40e34803"><div class="ttname"><a href="namespacecore.html#ac53c64bc23d713f5e94e801d40e34803">core::Servers</a></div><div class="ttdeci">std::vector&lt; Server &gt; Servers</div><div class="ttdoc">Contiguous collection of Server instances (1-indexed, index 0 is a placeholder).</div><div class="ttdef"><b>Definition</b> mmkp.hpp:181</div></div>
-<div class="ttc" id="anamespaceexact_1_1anonymous__namespace_02exact_8hpp_03_html_ae7ca96aa19f5b3b84819efcfe40a885b"><div class="ttname"><a href="namespaceexact_1_1anonymous__namespace_02exact_8hpp_03.html#ae7ca96aa19f5b3b84819efcfe40a885b">exact::anonymous_namespace{exact.hpp}::solver_maximum_cost</a></div><div class="ttdeci">void solver_maximum_cost(metrics::Result &amp;state, int time_limit_sec=3600)</div><div class="ttdef"><b>Definition</b> exact.hpp:41</div></div>
+<div class="ttc" id="anamespacecore_html_a815afea905ea8843f0cc85cb4590a3dc"><div class="ttname"><a href="namespacecore.html#a815afea905ea8843f0cc85cb4590a3dc">core::Devices</a></div><div class="ttdeci">std::vector&lt; Device &gt; Devices</div><div class="ttdoc">Contiguous collection of Device instances (1-indexed, index 0 is a placeholder).</div><div class="ttdef"><b>Definition</b> <a href="mmkp_8hpp_source.html#l00067">mmkp.hpp:67</a></div></div>
+<div class="ttc" id="anamespacecore_html_ac53c64bc23d713f5e94e801d40e34803"><div class="ttname"><a href="namespacecore.html#ac53c64bc23d713f5e94e801d40e34803">core::Servers</a></div><div class="ttdeci">std::vector&lt; Server &gt; Servers</div><div class="ttdoc">Contiguous collection of Server instances (1-indexed, index 0 is a placeholder).</div><div class="ttdef"><b>Definition</b> <a href="mmkp_8hpp_source.html#l00181">mmkp.hpp:181</a></div></div>
+<div class="ttc" id="anamespaceexact_1_1anonymous__namespace_02exact_8hpp_03_html_ae7ca96aa19f5b3b84819efcfe40a885b"><div class="ttname"><a href="namespaceexact_1_1anonymous__namespace_02exact_8hpp_03.html#ae7ca96aa19f5b3b84819efcfe40a885b">exact::anonymous_namespace{exact.hpp}::solver_maximum_cost</a></div><div class="ttdeci">void solver_maximum_cost(metrics::Result &amp;state, int time_limit_sec=3600)</div><div class="ttdoc">Formulates and solves the exact ILP resource allocation model using CPLEX.</div><div class="ttdef"><b>Definition</b> <a href="exact_8hpp_source.html#l00041">exact.hpp:41</a></div></div>
 <div class="ttc" id="anamespaceexact_html"><div class="ttname"><a href="namespaceexact.html">exact</a></div><div class="ttdoc">Contains mathematical programming models for exact optimization.</div></div>
-<div class="ttc" id="anamespaceexact_html_a4ba342845801f3cf0d7fcd8d496504d9"><div class="ttname"><a href="namespaceexact.html#a4ba342845801f3cf0d7fcd8d496504d9">exact::NumVar2D</a></div><div class="ttdeci">IloArray&lt; IloNumVarArray &gt; NumVar2D</div><div class="ttdoc">Type alias for a 2D matrix of CPLEX decision variables.</div><div class="ttdef"><b>Definition</b> exact.hpp:27</div></div>
-<div class="ttc" id="anamespaceexact_html_a6aacffeeb6699d2f7d822d8d0866edbc"><div class="ttname"><a href="namespaceexact.html#a6aacffeeb6699d2f7d822d8d0866edbc">exact::boot</a></div><div class="ttdeci">void boot(metrics::Result &amp;state, int time_limit_sec=3600)</div><div class="ttdoc">Bootstraps and executes the configured exact mathematical model.</div><div class="ttdef"><b>Definition</b> exact.hpp:172</div></div>
+<div class="ttc" id="anamespaceexact_html_a4ba342845801f3cf0d7fcd8d496504d9"><div class="ttname"><a href="namespaceexact.html#a4ba342845801f3cf0d7fcd8d496504d9">exact::NumVar2D</a></div><div class="ttdeci">IloArray&lt; IloNumVarArray &gt; NumVar2D</div><div class="ttdoc">Type alias for a 2D matrix of CPLEX decision variables.</div><div class="ttdef"><b>Definition</b> <a href="exact_8hpp_source.html#l00027">exact.hpp:27</a></div></div>
+<div class="ttc" id="anamespaceexact_html_a6aacffeeb6699d2f7d822d8d0866edbc"><div class="ttname"><a href="namespaceexact.html#a6aacffeeb6699d2f7d822d8d0866edbc">exact::boot</a></div><div class="ttdeci">void boot(metrics::Result &amp;state, int time_limit_sec=3600)</div><div class="ttdoc">Bootstraps and executes the configured exact mathematical model.</div><div class="ttdef"><b>Definition</b> <a href="exact_8hpp_source.html#l00172">exact.hpp:172</a></div></div>
 <div class="ttc" id="anamespacemetrics_html_a52f859a07d748c00c090a31bea367c11ae6bb6feafcc4de7705a8fe1782af973e"><div class="ttname"><a href="namespacemetrics.html#a52f859a07d748c00c090a31bea367c11ae6bb6feafcc4de7705a8fe1782af973e">metrics::Algorithm::solver_maximum_cost</a></div><div class="ttdeci">@ solver_maximum_cost</div><div class="ttdoc">Exact ILP solver maximizing avoided penalty cost.</div></div>
-<div class="ttc" id="astructmetrics_1_1Result_html"><div class="ttname"><a href="structmetrics_1_1Result.html">metrics::Result</a></div><div class="ttdoc">Encapsulates the complete system state (Devices, Servers) and polymorphic Metrics for a simulation ru...</div><div class="ttdef"><b>Definition</b> mmkp.hpp:896</div></div>
-<div class="ttc" id="astructmetrics_1_1Result_html_a1e52f445dfc9a5fd13b646c74bf909c8"><div class="ttname"><a href="structmetrics_1_1Result.html#a1e52f445dfc9a5fd13b646c74bf909c8">metrics::Result::devices</a></div><div class="ttdeci">core::Devices devices</div><div class="ttdoc">Vector of all IoT devices in the simulation.</div><div class="ttdef"><b>Definition</b> mmkp.hpp:897</div></div>
-<div class="ttc" id="astructmetrics_1_1Result_html_a37d89aae373480d3f0148a4cf201f49d"><div class="ttname"><a href="structmetrics_1_1Result.html#a37d89aae373480d3f0148a4cf201f49d">metrics::Result::servers</a></div><div class="ttdeci">core::Servers servers</div><div class="ttdoc">Vector of all Edge and Cloud servers in the simulation.</div><div class="ttdef"><b>Definition</b> mmkp.hpp:898</div></div>
-<div class="ttc" id="astructmetrics_1_1Result_html_afde5ec716c4e2962845c63c7e720b92f"><div class="ttname"><a href="structmetrics_1_1Result.html#afde5ec716c4e2962845c63c7e720b92f">metrics::Result::stats</a></div><div class="ttdeci">std::shared_ptr&lt; Metrics &gt; stats</div><div class="ttdoc">Polymorphic pointer to the run's metrics tracker.</div><div class="ttdef"><b>Definition</b> mmkp.hpp:899</div></div>
+<div class="ttc" id="astructmetrics_1_1Result_html"><div class="ttname"><a href="structmetrics_1_1Result.html">metrics::Result</a></div><div class="ttdoc">Encapsulates the complete system state (Devices, Servers) and polymorphic Metrics for a simulation ru...</div><div class="ttdef"><b>Definition</b> <a href="mmkp_8hpp_source.html#l00928">mmkp.hpp:928</a></div></div>
+<div class="ttc" id="astructmetrics_1_1Result_html_a1e52f445dfc9a5fd13b646c74bf909c8"><div class="ttname"><a href="structmetrics_1_1Result.html#a1e52f445dfc9a5fd13b646c74bf909c8">metrics::Result::devices</a></div><div class="ttdeci">core::Devices devices</div><div class="ttdoc">Vector of all IoT devices in the simulation.</div><div class="ttdef"><b>Definition</b> <a href="mmkp_8hpp_source.html#l00929">mmkp.hpp:929</a></div></div>
+<div class="ttc" id="astructmetrics_1_1Result_html_a37d89aae373480d3f0148a4cf201f49d"><div class="ttname"><a href="structmetrics_1_1Result.html#a37d89aae373480d3f0148a4cf201f49d">metrics::Result::servers</a></div><div class="ttdeci">core::Servers servers</div><div class="ttdoc">Vector of all Edge and Cloud servers in the simulation.</div><div class="ttdef"><b>Definition</b> <a href="mmkp_8hpp_source.html#l00930">mmkp.hpp:930</a></div></div>
+<div class="ttc" id="astructmetrics_1_1Result_html_afde5ec716c4e2962845c63c7e720b92f"><div class="ttname"><a href="structmetrics_1_1Result.html#afde5ec716c4e2962845c63c7e720b92f">metrics::Result::stats</a></div><div class="ttdeci">std::shared_ptr&lt; Metrics &gt; stats</div><div class="ttdoc">Polymorphic pointer to the run's metrics tracker.</div><div class="ttdef"><b>Definition</b> <a href="mmkp_8hpp_source.html#l00931">mmkp.hpp:931</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="exact_8hpp.html">exact.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
 </body>
 </html>

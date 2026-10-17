@@ -1,31 +1,31 @@
-\doxysection{randomness Namespace Reference}
+\doxysubsection{randomness Namespace Reference}
 \hypertarget{namespacerandomness}{}\label{namespacerandomness}\index{randomness@{randomness}}
 
 
 Mersenne Twister ({\ttfamily std\+::mt19937}) random number generation and permutation utilities.  
 
 
-\doxysubsubsection*{Functions}
+\doxysubsubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 std\+::mt19937 \& \mbox{\hyperlink{namespacerandomness_ad50649872f82d27dda5ca55791ceb9e0}{get\+\_\+engine}} ()
 \begin{DoxyCompactList}\small\item\em Provides a singleton instance of a pseudo-\/random number engine. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\T \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{random\+\_\+number}} (T min, T max)
-\begin{DoxyCompactList}\small\item\em Generates a uniform random number within a specified inclusive interval \$\mbox{[} $\text$\{min\}, $\text$\{max\}\mbox{]}\$. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Generates a uniform random number within a specified inclusive interval {\ttfamily \mbox{[}min, max\mbox{]}}. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\T \mbox{\hyperlink{namespacerandomness_a360a8ddfb219fda12b41b721b6c72a64}{random\+\_\+number}} (T min, T max, std\+::vector$<$ T $>$ \&exclude)
-\begin{DoxyCompactList}\small\item\em Generates a random number within \$\mbox{[} $\text$\{min\}, $\text$\{max\}\mbox{]}\$, excluding values present in {\ttfamily exclude}. \end{DoxyCompactList}\item 
-{\footnotesize template$<$\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{typename}} \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{T}} $>$ }\\std\+::vector$<$ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{T}} $>$ \mbox{\hyperlink{namespacerandomness_a071f542899eccfe2da500e2a96764f24}{shuffled\+\_\+range}} (\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{T}} \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{min}}, \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{T}} \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{max}})
-\begin{DoxyCompactList}\small\item\em Creates a randomly shuffled vector containing all integers in the inclusive range \$\mbox{[} $\text$\{min\}, $\text$\{max\}\mbox{]}\$. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Generates a random number within {\ttfamily \mbox{[}min, max\mbox{]}}, excluding values present in {\ttfamily exclude}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{typename}} T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacerandomness_a071f542899eccfe2da500e2a96764f24}{shuffled\+\_\+range}} (T \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{min}}, T \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{max}})
+\begin{DoxyCompactList}\small\item\em Creates a randomly shuffled vector containing all integers in the inclusive range {\ttfamily \mbox{[}min, max\mbox{]}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\doxysubsubsection{Detailed Description}
 Mersenne Twister ({\ttfamily std\+::mt19937}) random number generation and permutation utilities. 
 
-\doxysubsection{Function Documentation}
+\doxysubsubsection{Function Documentation}
 \Hypertarget{namespacerandomness_ad50649872f82d27dda5ca55791ceb9e0}\label{namespacerandomness_ad50649872f82d27dda5ca55791ceb9e0} 
 \index{randomness@{randomness}!get\_engine@{get\_engine}}
 \index{get\_engine@{get\_engine}!randomness@{randomness}}
-\doxysubsubsection{\texorpdfstring{get\_engine()}{get\_engine()}}
+\doxyparagraph{\texorpdfstring{get\_engine()}{get\_engine()}}
 {\footnotesize\ttfamily std\+::mt19937 \& randomness\+::get\+\_\+engine (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -35,16 +35,28 @@ Provides a singleton instance of a pseudo-\/random number engine.
 Returns a reference to a static {\ttfamily std\+::mt19937} engine seeded once via {\ttfamily std\+::random\+\_\+device}. \begin{DoxyReturn}{Returns}
 A reference to the static {\ttfamily std\+::mt19937} random engine. 
 \end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{tools_8hpp_source_l00268}{268}} of file \mbox{\hyperlink{tools_8hpp_source}{tools.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{tools_8hpp_source_l00283}{random\+\_\+number()}}.
+
+
+
+Referenced by \mbox{\hyperlink{tools_8hpp_source_l00283}{random\+\_\+number()}}, \mbox{\hyperlink{tools_8hpp_source_l00309}{random\+\_\+number()}}, and \mbox{\hyperlink{tools_8hpp_source_l00348}{shuffled\+\_\+range()}}.
+
 \Hypertarget{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}\label{namespacerandomness_aee037ebfa8460e466aa341cae2869a79} 
 \index{randomness@{randomness}!random\_number@{random\_number}}
 \index{random\_number@{random\_number}!randomness@{randomness}}
-\doxysubsubsection{\texorpdfstring{random\_number()}{random\_number()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\doxyparagraph{\texorpdfstring{random\_number()}{random\_number()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 T randomness\+::random\+\_\+number (\begin{DoxyParamCaption}\item[{T}]{min,  }\item[{T}]{max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Generates a uniform random number within a specified inclusive interval \$\mbox{[} $\text$\{min\}, $\text$\{max\}\mbox{]}\$. 
+Generates a uniform random number within a specified inclusive interval {\ttfamily \mbox{[}min, max\mbox{]}}. 
 
 
 \begin{DoxyTemplParams}{Template Parameters}
@@ -59,23 +71,35 @@ Generates a uniform random number within a specified inclusive interval \$\mbox{
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-A uniformly distributed random number within \$\mbox{[} $\text$\{min\}, $\text$\{max\}\mbox{]}\$. 
+A uniformly distributed random number within {\ttfamily \mbox{[}min, max\mbox{]}}. 
 \end{DoxyReturn}
 
 \begin{DoxyExceptions}{Exceptions}
 {\em std\+::invalid\+\_\+argument} & If {\ttfamily min \texorpdfstring{$>$}{>} max}. \\
 \hline
 \end{DoxyExceptions}
+
+
+Definition at line \mbox{\hyperlink{tools_8hpp_source_l00283}{283}} of file \mbox{\hyperlink{tools_8hpp_source}{tools.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{tools_8hpp_source_l00268}{get\+\_\+engine()}}, and \mbox{\hyperlink{tools_8hpp_source_l00283}{random\+\_\+number()}}.
+
+
+
+Referenced by \mbox{\hyperlink{metaheuristic_8hpp_source_l00054}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::apply\+\_\+neighbor()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00267}{data\+::generate\+::devices()}}, \mbox{\hyperlink{tools_8hpp_source_l00268}{get\+\_\+engine()}}, \mbox{\hyperlink{heuristic_8hpp_source_l00114}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+random()}}, \mbox{\hyperlink{heuristic_8hpp_source_l00150}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+random\+\_\+fallback()}}, \mbox{\hyperlink{tools_8hpp_source_l00283}{random\+\_\+number()}}, \mbox{\hyperlink{tools_8hpp_source_l00309}{random\+\_\+number()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00319}{data\+::generate\+::servers()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00205}{data\+::generate\+::services()}}, \mbox{\hyperlink{tools_8hpp_source_l00348}{shuffled\+\_\+range()}}, and \mbox{\hyperlink{metaheuristic_8hpp_source_l00145}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::simulated\+\_\+annealing()}}.
+
 \Hypertarget{namespacerandomness_a360a8ddfb219fda12b41b721b6c72a64}\label{namespacerandomness_a360a8ddfb219fda12b41b721b6c72a64} 
 \index{randomness@{randomness}!random\_number@{random\_number}}
 \index{random\_number@{random\_number}!randomness@{randomness}}
-\doxysubsubsection{\texorpdfstring{random\_number()}{random\_number()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\doxyparagraph{\texorpdfstring{random\_number()}{random\_number()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 T randomness\+::random\+\_\+number (\begin{DoxyParamCaption}\item[{T}]{min,  }\item[{T}]{max,  }\item[{std\+::vector$<$ T $>$ \&}]{exclude }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Generates a random number within \$\mbox{[} $\text$\{min\}, $\text$\{max\}\mbox{]}\$, excluding values present in {\ttfamily exclude}. 
+Generates a random number within {\ttfamily \mbox{[}min, max\mbox{]}}, excluding values present in {\ttfamily exclude}. 
 
 The generated number is automatically appended to {\ttfamily exclude} to prevent future duplicates. 
 \begin{DoxyTemplParams}{Template Parameters}
@@ -92,23 +116,31 @@ The generated number is automatically appended to {\ttfamily exclude} to prevent
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-A random number within \$\mbox{[} $\text$\{min\}, $\text$\{max\}\mbox{]}\$ not previously in {\ttfamily exclude}. 
+A random number within {\ttfamily \mbox{[}min, max\mbox{]}} not previously in {\ttfamily exclude}. 
 \end{DoxyReturn}
 
 \begin{DoxyExceptions}{Exceptions}
 {\em std\+::invalid\+\_\+argument} & If {\ttfamily min \texorpdfstring{$>$}{>} max}, or if all possible integral values in the range are already excluded. \\
 \hline
 \end{DoxyExceptions}
+
+
+Definition at line \mbox{\hyperlink{tools_8hpp_source_l00309}{309}} of file \mbox{\hyperlink{tools_8hpp_source}{tools.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{tools_8hpp_source_l00268}{get\+\_\+engine()}}, and \mbox{\hyperlink{tools_8hpp_source_l00283}{random\+\_\+number()}}.
+
 \Hypertarget{namespacerandomness_a071f542899eccfe2da500e2a96764f24}\label{namespacerandomness_a071f542899eccfe2da500e2a96764f24} 
 \index{randomness@{randomness}!shuffled\_range@{shuffled\_range}}
 \index{shuffled\_range@{shuffled\_range}!randomness@{randomness}}
-\doxysubsubsection{\texorpdfstring{shuffled\_range()}{shuffled\_range()}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{typename}} \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{T}} $>$ \\
-std\+::vector$<$ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{T}} $>$ randomness\+::shuffled\+\_\+range (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{T}}}]{min,  }\item[{\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{T}}}]{max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\doxyparagraph{\texorpdfstring{shuffled\_range()}{shuffled\_range()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{typename}} T $>$ \\
+std\+::vector$<$ T $>$ randomness\+::shuffled\+\_\+range (\begin{DoxyParamCaption}\item[{T}]{min,  }\item[{T}]{max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Creates a randomly shuffled vector containing all integers in the inclusive range \$\mbox{[} $\text$\{min\}, $\text$\{max\}\mbox{]}\$. 
+Creates a randomly shuffled vector containing all integers in the inclusive range {\ttfamily \mbox{[}min, max\mbox{]}}. 
 
 
 \begin{DoxyTemplParams}{Template Parameters}
@@ -130,3 +162,11 @@ A randomly shuffled {\ttfamily std\+::vector\texorpdfstring{$<$}{<}T\texorpdfstr
 {\em std\+::invalid\+\_\+argument} & If {\ttfamily min \texorpdfstring{$>$}{>} max}. \\
 \hline
 \end{DoxyExceptions}
+
+
+Definition at line \mbox{\hyperlink{tools_8hpp_source_l00348}{348}} of file \mbox{\hyperlink{tools_8hpp_source}{tools.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{tools_8hpp_source_l00268}{get\+\_\+engine()}}, and \mbox{\hyperlink{tools_8hpp_source_l00283}{random\+\_\+number()}}.
+

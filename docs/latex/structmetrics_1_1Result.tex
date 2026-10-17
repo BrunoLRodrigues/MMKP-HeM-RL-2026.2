@@ -1,4 +1,4 @@
-\doxysection{metrics\+::Result Struct Reference}
+\doxysubsection{metrics\+::Result Struct Reference}
 \hypertarget{structmetrics_1_1Result}{}\label{structmetrics_1_1Result}\index{metrics::Result@{metrics::Result}}
 
 
@@ -9,18 +9,28 @@ Encapsulates the complete system state ({\ttfamily Devices}, {\ttfamily Servers}
 
 {\ttfamily \#include $<$mmkp.\+hpp$>$}
 
-\doxysubsubsection*{Public Member Functions}
+
+
+Collaboration diagram for metrics\+::Result\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structmetrics_1_1Result__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{structmetrics_1_1Result_a8b665faf116eb8ea2d6ae73325148e1d}{Result}} (\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} d, \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} s)
 \begin{DoxyCompactList}\small\item\em Constructs a {\ttfamily \doxylink{structmetrics_1_1Result}{Result}} state from pre-\/loaded devices and servers vectors. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structmetrics_1_1Result_a9d307096eecb93041812c0059da7ad7d}{Result}} (const \mbox{\hyperlink{structmetrics_1_1Result}{Result}} \&other)
 \begin{DoxyCompactList}\small\item\em Deep-\/copy constructor cloning both entities and the polymorphic {\ttfamily stats} pointer. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structmetrics_1_1Result_aadd048e0edb53dcd001df0674f09a764}{Result}} (int num\+\_\+devices, int num\+\_\+services, int num\+\_\+ec, int num\+\_\+cc)
+\mbox{\hyperlink{structmetrics_1_1Result_a3c6f8a546a17136a424b701d46fdb5b1}{Result}} (int num\+\_\+devices, int num\+\_\+services, int num\+\_\+ec, int num\+\_\+cc, bool fixed\+\_\+penalty=true)
 \begin{DoxyCompactList}\small\item\em Loads (or generates) an instance with the specified dimensions and initializes base metrics. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structmetrics_1_1Result}{Result}} \& \mbox{\hyperlink{structmetrics_1_1Result_a496ee70904cbef9bf8a9e6b07f133085}{operator=}} (const \mbox{\hyperlink{structmetrics_1_1Result}{Result}} \&other)
 \begin{DoxyCompactList}\small\item\em Deep-\/copy assignment operator cloning the polymorphic {\ttfamily stats} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Public Attributes}
+\doxysubsubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} \mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}}
@@ -31,14 +41,18 @@ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}} $
 \begin{DoxyCompactList}\small\item\em Polymorphic pointer to the run\textquotesingle{}s metrics tracker. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\doxysubsubsection{Detailed Description}
 Encapsulates the complete system state ({\ttfamily Devices}, {\ttfamily Servers}) and polymorphic {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} for a simulation run. 
 
-\doxysubsection{Constructor \& Destructor Documentation}
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00928}{928}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
 \Hypertarget{structmetrics_1_1Result_a8b665faf116eb8ea2d6ae73325148e1d}\label{structmetrics_1_1Result_a8b665faf116eb8ea2d6ae73325148e1d} 
 \index{metrics::Result@{metrics::Result}!Result@{Result}}
 \index{Result@{Result}!metrics::Result@{metrics::Result}}
-\doxysubsubsection{\texorpdfstring{Result()}{Result()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+\doxyparagraph{\texorpdfstring{Result()}{Result()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
 {\footnotesize\ttfamily metrics\+::\+Result\+::\+Result (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}}}]{d,  }\item[{\mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}}}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -52,10 +66,14 @@ Constructs a {\ttfamily \doxylink{structmetrics_1_1Result}{Result}} state from p
 {\em s} & Vector of servers. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00938}{938}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
 \Hypertarget{structmetrics_1_1Result_a9d307096eecb93041812c0059da7ad7d}\label{structmetrics_1_1Result_a9d307096eecb93041812c0059da7ad7d} 
 \index{metrics::Result@{metrics::Result}!Result@{Result}}
 \index{Result@{Result}!metrics::Result@{metrics::Result}}
-\doxysubsubsection{\texorpdfstring{Result()}{Result()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+\doxyparagraph{\texorpdfstring{Result()}{Result()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
 {\footnotesize\ttfamily metrics\+::\+Result\+::\+Result (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structmetrics_1_1Result}{Result}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -67,11 +85,19 @@ Deep-\/copy constructor cloning both entities and the polymorphic {\ttfamily sta
 {\em other} & Source {\ttfamily \doxylink{structmetrics_1_1Result}{Result}} instance to copy. \\
 \hline
 \end{DoxyParams}
-\Hypertarget{structmetrics_1_1Result_aadd048e0edb53dcd001df0674f09a764}\label{structmetrics_1_1Result_aadd048e0edb53dcd001df0674f09a764} 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00945}{945}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l00931}{stats}}.
+
+\Hypertarget{structmetrics_1_1Result_a3c6f8a546a17136a424b701d46fdb5b1}\label{structmetrics_1_1Result_a3c6f8a546a17136a424b701d46fdb5b1} 
 \index{metrics::Result@{metrics::Result}!Result@{Result}}
 \index{Result@{Result}!metrics::Result@{metrics::Result}}
-\doxysubsubsection{\texorpdfstring{Result()}{Result()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
-{\footnotesize\ttfamily metrics\+::\+Result\+::\+Result (\begin{DoxyParamCaption}\item[{int}]{num\+\_\+devices,  }\item[{int}]{num\+\_\+services,  }\item[{int}]{num\+\_\+ec,  }\item[{int}]{num\+\_\+cc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\doxyparagraph{\texorpdfstring{Result()}{Result()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily metrics\+::\+Result\+::\+Result (\begin{DoxyParamCaption}\item[{int}]{num\+\_\+devices,  }\item[{int}]{num\+\_\+services,  }\item[{int}]{num\+\_\+ec,  }\item[{int}]{num\+\_\+cc,  }\item[{bool}]{fixed\+\_\+penalty = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -87,14 +113,24 @@ Loads (or generates) an instance with the specified dimensions and initializes b
 \hline
 {\em num\+\_\+cc} & Number of Cloud Computing servers. \\
 \hline
+{\em fixed\+\_\+penalty} & Whether the penalty (cost) of each device is fixed or can vary. \\
+\hline
 \end{DoxyParams}
 
 
-\doxysubsection{Member Function Documentation}
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00960}{960}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l00929}{devices}}, \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aab50339a10e1de285ac99d4c3990b8693}{metrics\+::\+NONE}}, \mbox{\hyperlink{mmkp_8hpp_source_l00930}{servers}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00931}{stats}}.
+
+
+
+\doxysubsubsection{Member Function Documentation}
 \Hypertarget{structmetrics_1_1Result_a496ee70904cbef9bf8a9e6b07f133085}\label{structmetrics_1_1Result_a496ee70904cbef9bf8a9e6b07f133085} 
 \index{metrics::Result@{metrics::Result}!operator=@{operator=}}
 \index{operator=@{operator=}!metrics::Result@{metrics::Result}}
-\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+\doxyparagraph{\texorpdfstring{operator=()}{operator=()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{structmetrics_1_1Result}{Result}} \& metrics\+::\+Result\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structmetrics_1_1Result}{Result}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -111,36 +147,68 @@ Reference to {\ttfamily \texorpdfstring{$\ast$}{*}this}.
 \end{DoxyReturn}
 
 
-\doxysubsection{Member Data Documentation}
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00986}{986}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l00929}{devices}}, \mbox{\hyperlink{mmkp_8hpp_source_l00930}{servers}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00931}{stats}}.
+
+
+
+\doxysubsubsection{Member Data Documentation}
 \Hypertarget{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}\label{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8} 
 \index{metrics::Result@{metrics::Result}!devices@{devices}}
 \index{devices@{devices}!metrics::Result@{metrics::Result}}
-\doxysubsubsection{\texorpdfstring{devices}{devices}}
+\doxyparagraph{\texorpdfstring{devices}{devices}}
 {\footnotesize\ttfamily \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} metrics\+::\+Result\+::devices}
 
 
 
 Vector of all IoT devices in the simulation. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00929}{929}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{metaheuristic_8hpp_source_l00221}{metaheuristic\+::boot()}}, \mbox{\hyperlink{mmkp_8hpp_source_l01001}{metrics\+::calculate\+\_\+metrics()}}, \mbox{\hyperlink{heuristic_8hpp_source_l00032}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+cost\+\_\+benefit()}}, \mbox{\hyperlink{heuristic_8hpp_source_l00114}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+random()}}, \mbox{\hyperlink{heuristic_8hpp_source_l00150}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+random\+\_\+fallback()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00986}{operator=()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00960}{Result()}}, \mbox{\hyperlink{metaheuristic_8hpp_source_l00145}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::simulated\+\_\+annealing()}}, and \mbox{\hyperlink{exact_8hpp_source_l00041}{exact\+::anonymous\+\_\+namespace\{exact.\+hpp\}\+::solver\+\_\+maximum\+\_\+cost()}}.
+
 \Hypertarget{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}\label{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d} 
 \index{metrics::Result@{metrics::Result}!servers@{servers}}
 \index{servers@{servers}!metrics::Result@{metrics::Result}}
-\doxysubsubsection{\texorpdfstring{servers}{servers}}
+\doxyparagraph{\texorpdfstring{servers}{servers}}
 {\footnotesize\ttfamily \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} metrics\+::\+Result\+::servers}
 
 
 
 Vector of all Edge and Cloud servers in the simulation. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00930}{930}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{metaheuristic_8hpp_source_l00221}{metaheuristic\+::boot()}}, \mbox{\hyperlink{mmkp_8hpp_source_l01001}{metrics\+::calculate\+\_\+metrics()}}, \mbox{\hyperlink{heuristic_8hpp_source_l00032}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+cost\+\_\+benefit()}}, \mbox{\hyperlink{heuristic_8hpp_source_l00114}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+random()}}, \mbox{\hyperlink{heuristic_8hpp_source_l00150}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+random\+\_\+fallback()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00986}{operator=()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00960}{Result()}}, \mbox{\hyperlink{mmkp_8hpp_source_l01263}{metrics\+::save\+\_\+results()}}, \mbox{\hyperlink{metaheuristic_8hpp_source_l00145}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::simulated\+\_\+annealing()}}, and \mbox{\hyperlink{exact_8hpp_source_l00041}{exact\+::anonymous\+\_\+namespace\{exact.\+hpp\}\+::solver\+\_\+maximum\+\_\+cost()}}.
+
 \Hypertarget{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}\label{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f} 
 \index{metrics::Result@{metrics::Result}!stats@{stats}}
 \index{stats@{stats}!metrics::Result@{metrics::Result}}
-\doxysubsubsection{\texorpdfstring{stats}{stats}}
+\doxyparagraph{\texorpdfstring{stats}{stats}}
 {\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}}$>$ metrics\+::\+Result\+::stats}
 
 
 
 Polymorphic pointer to the run\textquotesingle{}s metrics tracker. 
+
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00931}{931}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{heuristic_8hpp_source_l00196}{heuristic\+::boot()}}, \mbox{\hyperlink{metaheuristic_8hpp_source_l00221}{metaheuristic\+::boot()}}, \mbox{\hyperlink{exact_8hpp_source_l00172}{exact\+::boot()}}, \mbox{\hyperlink{mmkp_8hpp_source_l01001}{metrics\+::calculate\+\_\+metrics()}}, \mbox{\hyperlink{heuristic_8hpp_source_l00032}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+cost\+\_\+benefit()}}, \mbox{\hyperlink{heuristic_8hpp_source_l00114}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+random()}}, \mbox{\hyperlink{heuristic_8hpp_source_l00150}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+random\+\_\+fallback()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00986}{operator=()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00945}{Result()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00960}{Result()}}, \mbox{\hyperlink{main_8cpp_source_l00043}{run\+\_\+simulation()}}, \mbox{\hyperlink{mmkp_8hpp_source_l01263}{metrics\+::save\+\_\+results()}}, \mbox{\hyperlink{metaheuristic_8hpp_source_l00145}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::simulated\+\_\+annealing()}}, and \mbox{\hyperlink{exact_8hpp_source_l00041}{exact\+::anonymous\+\_\+namespace\{exact.\+hpp\}\+::solver\+\_\+maximum\+\_\+cost()}}.
 
 
 

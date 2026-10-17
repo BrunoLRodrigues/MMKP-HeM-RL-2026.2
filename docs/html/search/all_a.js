@@ -8,10 +8,8 @@ var searchData=
   ['id_5fpair_5fvector_5',['id_pair_vector',['../mmkp_8hpp.html#a6101f686aa3d1d29e76f7158cb8c347c',1,'mmkp.hpp']]],
   ['ii_5fpair_6',['ii_pair',['../mmkp_8hpp.html#a24ea7b5663260ad00fc65ed519bbf8b1',1,'mmkp.hpp']]],
   ['ii_5fpair_5fvector_7',['ii_pair_vector',['../mmkp_8hpp.html#a79e98970e41b731003aca29a0f415712',1,'mmkp.hpp']]],
-  ['implementados_8',['🧠 Algoritmos Implementados',['../md_README_8pt-BR.html#autotoc_md17',1,'']]],
-  ['implemented_20algorithms_9',['🧠 Implemented Algorithms',['../index.html#autotoc_md7',1,'']]],
-  ['in_20iot_20ec_20cc_20networks_10',['MMKP Resource Allocation in IoT-EC-CC Networks',['../index.html',1,'']]],
-  ['inputs_11',['inputs',['../structmetrics_1_1Metrics_1_1Inputs.html',1,'metrics::Metrics::Inputs'],['../structmetrics_1_1Metrics.html#a75174af17b3795ba7f58d792872a6a47',1,'metrics::Metrics::inputs']]],
-  ['iot_20ec_20cc_12',['Alocação de Recursos MMKP em Redes IoT-EC-CC',['../md_README_8pt-BR.html',1,'']]],
-  ['iot_20ec_20cc_20networks_13',['MMKP Resource Allocation in IoT-EC-CC Networks',['../index.html',1,'']]]
+  ['implemented_20algorithms_8',['🧠 Implemented Algorithms',['../index.html#autotoc_md7',1,'']]],
+  ['in_20iot_20ec_20cc_20networks_9',['MMKP Resource Allocation in IoT-EC-CC Networks',['../index.html',1,'']]],
+  ['inputs_10',['inputs',['../structmetrics_1_1Metrics_1_1Inputs.html',1,'metrics::Metrics::Inputs'],['../structmetrics_1_1Metrics.html#a75174af17b3795ba7f58d792872a6a47',1,'metrics::Metrics::inputs']]],
+  ['iot_20ec_20cc_20networks_11',['MMKP Resource Allocation in IoT-EC-CC Networks',['../index.html',1,'']]]
 ];

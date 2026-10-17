@@ -1,204 +1,260 @@
-\doxysection{metaheuristic.\+hpp}
+\doxysubsection{metaheuristic.\+hpp}
 \hypertarget{metaheuristic_8hpp_source}{}\label{metaheuristic_8hpp_source}\index{include/metaheuristic.hpp@{include/metaheuristic.hpp}}
 \mbox{\hyperlink{metaheuristic_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ }
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00009\ }
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{mmkp_8hpp}{mmkp.hpp}}"{}}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{heuristic_8hpp}{heuristic.hpp}}"{}}}
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tools_8hpp}{tools.hpp}}"{}}}
-\DoxyCodeLine{00013\ }
-\DoxyCodeLine{00021\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacemetaheuristic}{metaheuristic}}\ \{}
-\DoxyCodeLine{00022\ }
-\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{namespace\ }\{}
-\DoxyCodeLine{00024\ }
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a55eda76f1c1e58ce4654833f7dee433e}{LOOP}}\ =\ 10;}
-\DoxyCodeLine{00029\ }
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{Move}}\ \{}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ valid\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ }
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ device\_id\ =\ -\/1;\ \ \ \ \ \ }
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ old\_server\_id\ =\ -\/1;\ \ }
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ new\_server\_id\ =\ -\/1;\ \ }
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ swapped\_id\ =\ -\/1;\ \ \ \ \ }
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ delta\_cost\ =\ 0.0;\ }
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{Move}}\ \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a3043acb2774dc482b46e7ffc19f672a6}{apply\_neighbor}}(\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core::Devices}}\&\ devices,\ \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core::Servers}}\&\ servers,\ \textcolor{keywordtype}{int}\ tries\ =\ 10)\ \{}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{Move}}\ move;}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ max\_dev\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(devices.size()\ -\/\ 1);}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ max\_srv\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(servers.size()\ -\/\ 1);}
-\DoxyCodeLine{00058\ }
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a2dd3cf37f72efcb8f34a41da3d645195}{device\_id}}\ =\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{randomness::random\_number<int>}}(1,\ max\_dev);}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Device}{core::Device}}\&\ device\ =\ devices[move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a2dd3cf37f72efcb8f34a41da3d645195}{device\_id}}];}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a2e1a13cf2f73202c82e153bf934a7504}{old\_server\_id}}\ =\ device.\mbox{\hyperlink{structcore_1_1Device_ae7592c793ae91f1c8b6c0d2b0fcc3538}{server\_id}};}
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ 0;}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (count\ <\ tries)\ \{}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ (!device.\mbox{\hyperlink{structcore_1_1Device_a835d0367af9fbc3419f6fb8a114760e3}{served}}\ \&\&\ count\ ==\ tries\ -\/\ 1)\ }
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?\ max\_srv\ }
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{randomness::random\_number<int>}}(1,\ max\_srv);}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ ==\ device.\mbox{\hyperlink{structcore_1_1Device_ae7592c793ae91f1c8b6c0d2b0fcc3538}{server\_id}})\ \textcolor{keywordflow}{continue};}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ count++;}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Server}{core::Server}}\&\ new\_server\ =\ servers[i];}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (new\_server.\mbox{\hyperlink{structcore_1_1Server_aee0071cd3e71c36a8861fbd98fad8a16}{can\_serve}}(device))\ \{}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (device.\mbox{\hyperlink{structcore_1_1Device_a835d0367af9fbc3419f6fb8a114760e3}{served}})\ \{}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ servers[move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a2e1a13cf2f73202c82e153bf934a7504}{old\_server\_id}}].rmv\_service(device);}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a49188b9acdae0cf23ef0ed8f78523bbc}{delta\_cost}}\ =\ 0.0;}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a49188b9acdae0cf23ef0ed8f78523bbc}{delta\_cost}}\ =\ -\/device.\mbox{\hyperlink{structcore_1_1Device_abcd568ad40b2da1bf96e020eb373f395}{cost}};}
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ new\_server.\mbox{\hyperlink{structcore_1_1Server_a537a5e6b913db9ff0e0b1de584067990}{add\_service}}(device);}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a683a781992b5a1bd4b97a5cfa54cd49b}{new\_server\_id}}\ =\ i;}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a59271873794f9f29d116f9f1e1a11bde}{valid}}\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ move;}
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00088\ }
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!device.\mbox{\hyperlink{structcore_1_1Device_a835d0367af9fbc3419f6fb8a114760e3}{served}})\ \{}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ t\ =\ 0;\ t\ <\ tries;\ t++)\ \{}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ cand\_id\ =\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{randomness::random\_number<int>}}(1,\ max\_dev);}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Device}{core::Device}}\&\ cand\ =\ devices[cand\_id];}
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!cand.\mbox{\hyperlink{structcore_1_1Device_a835d0367af9fbc3419f6fb8a114760e3}{served}})\ \textcolor{keywordflow}{continue};}
-\DoxyCodeLine{00094\ }
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ srv\_id\ =\ cand.\mbox{\hyperlink{structcore_1_1Device_ae7592c793ae91f1c8b6c0d2b0fcc3538}{server\_id}};}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Server}{core::Server}}\&\ target\_server\ =\ servers[srv\_id];}
-\DoxyCodeLine{00097\ }
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ target\_server.\mbox{\hyperlink{structcore_1_1Server_ad13b43798af6d07b70393d3b7239d780}{rmv\_service}}(cand);}
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (target\_server.\mbox{\hyperlink{structcore_1_1Server_aee0071cd3e71c36a8861fbd98fad8a16}{can\_serve}}(device))\ \{}
-\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ target\_server.\mbox{\hyperlink{structcore_1_1Server_a537a5e6b913db9ff0e0b1de584067990}{add\_service}}(device);}
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a683a781992b5a1bd4b97a5cfa54cd49b}{new\_server\_id}}\ =\ srv\_id;}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a98079a7df7f8023523804ee79d5fe62e}{swapped\_id}}\ =\ cand\_id;}
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a49188b9acdae0cf23ef0ed8f78523bbc}{delta\_cost}}\ =\ cand.\mbox{\hyperlink{structcore_1_1Device_abcd568ad40b2da1bf96e020eb373f395}{cost}}\ -\/\ device.\mbox{\hyperlink{structcore_1_1Device_abcd568ad40b2da1bf96e020eb373f395}{cost}};}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a59271873794f9f29d116f9f1e1a11bde}{valid}}\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ move;}
-\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ target\_server.\mbox{\hyperlink{structcore_1_1Server_a537a5e6b913db9ff0e0b1de584067990}{add\_service}}(cand);}
-\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00110\ }
-\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ move;\ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00113\ \ \ \ \ }
-\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a8a942dd816ecc741137762ec82b563a0}{revert\_neighbor}}(\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core::Devices}}\&\ devices,\ \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core::Servers}}\&\ servers,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{Move}}\&\ move)\ \{}
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Device}{core::Device}}\&\ device\ =\ devices[move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a2dd3cf37f72efcb8f34a41da3d645195}{device\_id}}];}
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a683a781992b5a1bd4b97a5cfa54cd49b}{new\_server\_id}}\ !=\ -\/1)\ \{}
-\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ servers[move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a683a781992b5a1bd4b97a5cfa54cd49b}{new\_server\_id}}].rmv\_service(device);}
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a98079a7df7f8023523804ee79d5fe62e}{swapped\_id}}\ !=\ -\/1)\ \{}
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ servers[move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a683a781992b5a1bd4b97a5cfa54cd49b}{new\_server\_id}}].add\_service(devices[move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a98079a7df7f8023523804ee79d5fe62e}{swapped\_id}}]);}
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a2e1a13cf2f73202c82e153bf934a7504}{old\_server\_id}}\ !=\ -\/1)\ \{}
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ servers[move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a2e1a13cf2f73202c82e153bf934a7504}{old\_server\_id}}].add\_service(device);}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00135\ }
-\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a6297cb9a818da42479ae99fcb13ed8cf}{simulated\_annealing}}(\mbox{\hyperlink{structmetrics_1_1Result}{metrics::Result}}\&\ state)\ \{}
-\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ metrics\_ptr\ =\ std::dynamic\_pointer\_cast<metrics::MetaHeuristicMetrics>(state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}});}
-\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!metrics\_ptr)\ \{}
-\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Invalid\ metrics\ type\ for\ heuristic\ solver.\(\backslash\)n"{}};}
-\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00151\ }
-\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core::Devices}}\ best\_devices\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}};}
-\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core::Servers}}\ best\_servers\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}};}
-\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ best\_cost\ =\ metrics\_ptr-\/>outputs.total\_penalty\_cost;}
-\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ current\_cost\ =\ best\_cost;}
-\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_best\_synced\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ T\ =\ metrics\_ptr-\/>temperature;}
-\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ alpha\ =\ metrics\_ptr-\/>alpha;}
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ start\_chrono\ =\ std::chrono::high\_resolution\_clock::now();}
-\DoxyCodeLine{00163\ }
-\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (T\ >\ 1e-\/3)\ \{}
-\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a55eda76f1c1e58ce4654833f7dee433e}{LOOP}};\ i++)\ \{\ }
-\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{Move}}\ move\ =\ \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a3043acb2774dc482b46e7ffc19f672a6}{apply\_neighbor}}(state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}},\ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}});}
-\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a59271873794f9f29d116f9f1e1a11bde}{valid}})\ \textcolor{keywordflow}{continue};}
-\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ neighbor\_cost\ =\ current\_cost\ +\ move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a49188b9acdae0cf23ef0ed8f78523bbc}{delta\_cost}};}
-\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ delta\ =\ neighbor\_cost\ -\/\ current\_cost;}
-\DoxyCodeLine{00171\ }
-\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (delta\ <\ 0.0\ ||\ (\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{randomness::random\_number}}(0.0,\ 1.0)\ <\ std::exp(-\/delta\ /\ T)))\ \{}
-\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (delta\ >\ 0.0\ \&\&\ !is\_best\_synced)\ \{}
-\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a8a942dd816ecc741137762ec82b563a0}{revert\_neighbor}}(state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}},\ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}},\ move);}
-\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ best\_devices\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}};}
-\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ best\_servers\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}};}
-\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ is\_best\_synced\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a98079a7df7f8023523804ee79d5fe62e}{swapped\_id}}\ !=\ -\/1)\ \{}
-\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}}[move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a683a781992b5a1bd4b97a5cfa54cd49b}{new\_server\_id}}].rmv\_service(state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}}[move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a98079a7df7f8023523804ee79d5fe62e}{swapped\_id}}]);}
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a2e1a13cf2f73202c82e153bf934a7504}{old\_server\_id}}\ !=\ -\/1)\ \{}
-\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}}[move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a2e1a13cf2f73202c82e153bf934a7504}{old\_server\_id}}].rmv\_service(state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}}[move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a2dd3cf37f72efcb8f34a41da3d645195}{device\_id}}]);}
-\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a683a781992b5a1bd4b97a5cfa54cd49b}{new\_server\_id}}\ !=\ -\/1)\ \{}
-\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}}[move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a683a781992b5a1bd4b97a5cfa54cd49b}{new\_server\_id}}].add\_service(state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}}[move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a2dd3cf37f72efcb8f34a41da3d645195}{device\_id}}]);}
-\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00188\ }
-\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ current\_cost\ =\ neighbor\_cost;}
-\DoxyCodeLine{00190\ }
-\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (current\_cost\ <\ best\_cost\ -\/\ \mbox{\hyperlink{tools_8hpp_acca3350a20fd52e319b79444c3137ee7}{ZERO}})\ \{}
-\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i\ =\ 0;}
-\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ best\_cost\ =\ current\_cost;}
-\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ is\_best\_synced\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a8a942dd816ecc741137762ec82b563a0}{revert\_neighbor}}(state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}},\ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}},\ move);}
-\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ T\ *=\ alpha;}
-\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_best\_synced)\ \{}
-\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}}\ =\ std::move(best\_devices);}
-\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}}\ =\ std::move(best\_servers);}
-\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00207\ }
-\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ end\_chrono\ =\ std::chrono::high\_resolution\_clock::now();}
-\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ metrics\_ptr-\/>outputs.execution\_time\ +=\ std::chrono::duration<double>(end\_chrono\ -\/\ start\_chrono).count();}
-\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \}\ }
-\DoxyCodeLine{00211\ \ \ \ \ \}}
-\DoxyCodeLine{00212\ }
-\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacemetaheuristic_a048f6eef02905cc9184c197939c3209a}{boot}}(\mbox{\hyperlink{structmetrics_1_1Result}{metrics::Result}}\&\ state)\ \{\ }
-\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}})\ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00223\ }
-\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ metrics\_ptr\ =\ std::dynamic\_pointer\_cast<metrics::MetaHeuristicMetrics>(state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}});}
-\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!metrics\_ptr)\ \{}
-\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Invalid\ metrics\ type\ for\ meta-\/heuristic\ solver.\(\backslash\)n"{}};}
-\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00229\ }
-\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Result}{metrics::Result}}\ initial\_state\ =\ state;}
-\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ initial\_state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}\ =\ std::make\_shared<metrics::HeuristicMetrics>(}
-\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ metrics\_ptr-\/>heuristic,\ }
-\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ metrics\_ptr-\/>run\_id,\ }
-\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}}
-\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ );}
-\DoxyCodeLine{00236\ }
-\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceheuristic_a49f05c0252bd2ad23bf788bdf45e79cc}{heuristic::boot}}(initial\_state);}
-\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacemetrics_a49133a7a2d416aca63d85f80f34bd14c}{metrics::calculate\_metrics}}(initial\_state);}
-\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (metrics\_ptr-\/>heuristic\ !=\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11abe0511aca70b810b2ed30f6c24c4a620}{metrics::Algorithm::greedy\_cost\_benefit}}\ ||\ metrics\_ptr-\/>run\_id\ ==\ 1)\ \{}
-\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacemetrics_a14d064c3f29627f9a59a04d5784c10f5}{metrics::save\_results}}(initial\_state,\ \textcolor{keyword}{false});}
-\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00242\ }
-\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}}\ =\ initial\_state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}};}
-\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}}\ =\ initial\_state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}};}
-\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ metrics\_ptr-\/>inputs\ =\ initial\_state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}-\/>inputs;}
-\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ metrics\_ptr-\/>outputs\ =\ initial\_state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}-\/>outputs;}
-\DoxyCodeLine{00247\ }
-\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (metrics\_ptr-\/>algorithm\ ==\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11a557e0f060742f44e69f44502ad2f3d71}{metrics::Algorithm::simulated\_annealing}})\ \{}
-\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ simulated\_annealing(state);}
-\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Unknown\ metaheuristic\ algorithm\ type.\(\backslash\)n"{}};}
-\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00253\ \ \ \ \ \}}
-\DoxyCodeLine{00254\ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ metaheuristic.hpp}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Meta-\/heuristic\ optimization\ algorithms\ and\ neighborhood\ operators\ for\ MMKP.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00004}00004\ \textcolor{comment}{\ *\ @details\ Implements\ Simulated\ Annealing\ (SA)\ with\ incremental\ delta\ evaluation\ and}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00005}00005\ \textcolor{comment}{\ *\ shift/insert/swap\ neighborhood\ moves\ to\ refine\ initial\ constructive\ heuristic\ solutions.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00006}00006\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00008}00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{mmkp_8hpp}{mmkp.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{heuristic_8hpp}{heuristic.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tools_8hpp}{tools.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00013}00013\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00014}00014\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00015}\mbox{\hyperlink{namespacemetaheuristic}{00015}}\ \textcolor{comment}{\ *\ @namespace\ metaheuristic}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00016}00016\ \textcolor{comment}{\ *\ @brief\ Encapsulates\ meta-\/heuristic\ algorithms\ for\ network\ resource\ allocation.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00017}00017\ \textcolor{comment}{\ *\ @details\ Provides\ trajectory-\/based\ optimization\ techniques,\ specifically\ Simulated\ Annealing,\ }}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00018}00018\ \textcolor{comment}{\ *\ to\ iteratively\ improve\ initial\ heuristic\ solutions\ by\ exploring\ shift,\ insertion,\ and\ }}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00019}00019\ \textcolor{comment}{\ *\ 1-\/for-\/1\ swap\ neighborhood\ structures.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00020}00020\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00021}00021\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacemetaheuristic}{metaheuristic}}\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00023}\mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03}{00023}}\ \ \ \ \ \textcolor{keyword}{namespace\ }\{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00024}00024\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00025}00025\ \textcolor{comment}{\ \ \ \ \ \ \ \ /**}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00026}00026\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @brief\ Number\ of\ inner-\/loop\ iterations\ (Markov\ chain\ length)\ executed\ per\ temperature\ level.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00027}00027\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00028}\mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a55eda76f1c1e58ce4654833f7dee433e}{00028}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a55eda76f1c1e58ce4654833f7dee433e}{LOOP}}\ =\ 10;}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00029}00029\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00030}00030\ \textcolor{comment}{\ \ \ \ \ \ \ \ /**}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00031}00031\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @struct\ Move}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00032}00032\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @brief\ Represents\ a\ reversible\ state\ transition\ within\ the\ neighborhood\ search.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00033}00033\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00034}\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{00034}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{Move}}\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00035}\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a59271873794f9f29d116f9f1e1a11bde}{00035}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ valid\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \textcolor{comment}{///<\ @brief\ Indicates\ if\ a\ feasible\ move\ was\ found\ and\ applied.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00036}\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a2dd3cf37f72efcb8f34a41da3d645195}{00036}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ device\_id\ =\ -\/1;\ \ \ \ \ \ \textcolor{comment}{///<\ @brief\ ID\ of\ the\ primary\ device\ involved\ in\ the\ move.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00037}\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a2e1a13cf2f73202c82e153bf934a7504}{00037}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ old\_server\_id\ =\ -\/1;\ \ \textcolor{comment}{///<\ @brief\ Original\ server\ ID\ of\ the\ primary\ device\ (`-\/1`\ if\ previously\ unserved).}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00038}\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a683a781992b5a1bd4b97a5cfa54cd49b}{00038}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ new\_server\_id\ =\ -\/1;\ \ \textcolor{comment}{///<\ @brief\ Target\ server\ ID\ where\ the\ primary\ device\ was\ allocated.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00039}\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a98079a7df7f8023523804ee79d5fe62e}{00039}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ swapped\_id\ =\ -\/1;\ \ \ \ \ \textcolor{comment}{///<\ @brief\ ID\ of\ the\ secondary\ device\ evicted\ in\ a\ swap\ (`-\/1`\ if\ not\ a\ swap).}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00040}\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a49188b9acdae0cf23ef0ed8f78523bbc}{00040}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ delta\_cost\ =\ 0.0;\ \textcolor{comment}{///<\ @brief\ Net\ change\ in\ total\ penalty\ cost\ resulting\ from\ the\ move.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00042}00042\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00043}00043\ \textcolor{comment}{\ \ \ \ \ \ \ \ /**}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00044}00044\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @brief\ Applies\ a\ shift,\ insert,\ or\ swap\ neighborhood\ move\ to\ the\ current\ state.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00045}00045\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @details\ Selects\ a\ random\ device\ and\ attempts\ to\ allocate\ or\ shift\ it\ across\ random\ }}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00046}00046\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ servers\ (including\ a\ fallback\ check\ on\ the\ last\ server\ for\ unserved\ devices).\ If\ direct\ }}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00047}00047\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ allocation\ fails\ for\ an\ unserved\ device,\ attempts\ a\ 1-\/for-\/1\ swap\ with\ a\ currently\ served\ device.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00048}00048\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ }}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00049}00049\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @param\ devices\ The\ global\ state\ vector\ of\ devices.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00050}00050\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @param\ servers\ The\ global\ state\ vector\ of\ servers.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00051}00051\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @param\ tries\ The\ maximum\ number\ of\ random\ candidate\ attempts.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00052}00052\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @return\ Move\ A\ structure\ containing\ the\ applied\ transition\ details\ and\ cost\ variation.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00053}00053\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00054}\mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a3043acb2774dc482b46e7ffc19f672a6}{00054}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{Move}}\ \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a3043acb2774dc482b46e7ffc19f672a6}{apply\_neighbor}}(\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core::Devices}}\&\ devices,\ \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core::Servers}}\&\ servers,\ \textcolor{keywordtype}{int}\ tries\ =\ 10)\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{Move}}\ move;}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ max\_dev\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(devices.size()\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ max\_srv\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(servers.size()\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a2dd3cf37f72efcb8f34a41da3d645195}{device\_id}}\ =\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{randomness::random\_number<int>}}(1,\ max\_dev);}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Device}{core::Device}}\&\ device\ =\ devices[move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a2dd3cf37f72efcb8f34a41da3d645195}{device\_id}}];}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a2e1a13cf2f73202c82e153bf934a7504}{old\_server\_id}}\ =\ device.\mbox{\hyperlink{structcore_1_1Device_ae7592c793ae91f1c8b6c0d2b0fcc3538}{server\_id}};}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (count\ <\ tries)\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ (!device.\mbox{\hyperlink{structcore_1_1Device_a835d0367af9fbc3419f6fb8a114760e3}{served}}\ \&\&\ count\ ==\ tries\ -\/\ 1)\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?\ max\_srv\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{randomness::random\_number<int>}}(1,\ max\_srv);}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ ==\ device.\mbox{\hyperlink{structcore_1_1Device_ae7592c793ae91f1c8b6c0d2b0fcc3538}{server\_id}})\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ count++;}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Server}{core::Server}}\&\ new\_server\ =\ servers[i];}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (new\_server.\mbox{\hyperlink{structcore_1_1Server_aee0071cd3e71c36a8861fbd98fad8a16}{can\_serve}}(device))\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (device.\mbox{\hyperlink{structcore_1_1Device_a835d0367af9fbc3419f6fb8a114760e3}{served}})\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ servers[move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a2e1a13cf2f73202c82e153bf934a7504}{old\_server\_id}}].rmv\_service(device);}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a49188b9acdae0cf23ef0ed8f78523bbc}{delta\_cost}}\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a49188b9acdae0cf23ef0ed8f78523bbc}{delta\_cost}}\ =\ -\/device.\mbox{\hyperlink{structcore_1_1Device_abcd568ad40b2da1bf96e020eb373f395}{cost}};}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ new\_server.\mbox{\hyperlink{structcore_1_1Server_a537a5e6b913db9ff0e0b1de584067990}{add\_service}}(device);}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a683a781992b5a1bd4b97a5cfa54cd49b}{new\_server\_id}}\ =\ i;}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a59271873794f9f29d116f9f1e1a11bde}{valid}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ move;}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!device.\mbox{\hyperlink{structcore_1_1Device_a835d0367af9fbc3419f6fb8a114760e3}{served}})\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ t\ =\ 0;\ t\ <\ tries;\ t++)\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ cand\_id\ =\ \mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{randomness::random\_number<int>}}(1,\ max\_dev);}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Device}{core::Device}}\&\ cand\ =\ devices[cand\_id];}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!cand.\mbox{\hyperlink{structcore_1_1Device_a835d0367af9fbc3419f6fb8a114760e3}{served}})\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ srv\_id\ =\ cand.\mbox{\hyperlink{structcore_1_1Device_ae7592c793ae91f1c8b6c0d2b0fcc3538}{server\_id}};}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Server}{core::Server}}\&\ target\_server\ =\ servers[srv\_id];}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ target\_server.\mbox{\hyperlink{structcore_1_1Server_ad13b43798af6d07b70393d3b7239d780}{rmv\_service}}(cand);}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (target\_server.\mbox{\hyperlink{structcore_1_1Server_aee0071cd3e71c36a8861fbd98fad8a16}{can\_serve}}(device))\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ target\_server.\mbox{\hyperlink{structcore_1_1Server_a537a5e6b913db9ff0e0b1de584067990}{add\_service}}(device);}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a683a781992b5a1bd4b97a5cfa54cd49b}{new\_server\_id}}\ =\ srv\_id;}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a98079a7df7f8023523804ee79d5fe62e}{swapped\_id}}\ =\ cand\_id;}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a49188b9acdae0cf23ef0ed8f78523bbc}{delta\_cost}}\ =\ cand.\mbox{\hyperlink{structcore_1_1Device_abcd568ad40b2da1bf96e020eb373f395}{cost}}\ -\/\ device.\mbox{\hyperlink{structcore_1_1Device_abcd568ad40b2da1bf96e020eb373f395}{cost}};}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a59271873794f9f29d116f9f1e1a11bde}{valid}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ move;}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ target\_server.\mbox{\hyperlink{structcore_1_1Server_a537a5e6b913db9ff0e0b1de584067990}{add\_service}}(cand);}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ move;\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00113}00113\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00114}00114\ \textcolor{comment}{\ \ \ \ \ \ \ \ /**}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00115}00115\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @brief\ Reverts\ a\ previously\ applied\ neighborhood\ move\ in\ \(\backslash\)f\$O(\(\backslash\)log\ N)\(\backslash\)f\$\ time.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00116}00116\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @details\ Restores\ the\ exact\ server\ allocations\ and\ resource\ supplies\ prior\ to\ \`{}apply\_neighbor`.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00117}00117\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ }}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00118}00118\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @param\ devices\ The\ global\ state\ vector\ of\ devices.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00119}00119\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @param\ servers\ The\ global\ state\ vector\ of\ servers.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00120}00120\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @param\ move\ The\ \`{}Move`\ structure\ containing\ the\ transition\ details\ to\ undo.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00121}00121\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00122}\mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a8a942dd816ecc741137762ec82b563a0}{00122}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a8a942dd816ecc741137762ec82b563a0}{revert\_neighbor}}(\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core::Devices}}\&\ devices,\ \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core::Servers}}\&\ servers,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{Move}}\&\ move)\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcore_1_1Device}{core::Device}}\&\ device\ =\ devices[move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a2dd3cf37f72efcb8f34a41da3d645195}{device\_id}}];}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a683a781992b5a1bd4b97a5cfa54cd49b}{new\_server\_id}}\ !=\ -\/1)\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ servers[move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a683a781992b5a1bd4b97a5cfa54cd49b}{new\_server\_id}}].rmv\_service(device);}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a98079a7df7f8023523804ee79d5fe62e}{swapped\_id}}\ !=\ -\/1)\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ servers[move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a683a781992b5a1bd4b97a5cfa54cd49b}{new\_server\_id}}].add\_service(devices[move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a98079a7df7f8023523804ee79d5fe62e}{swapped\_id}}]);}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a2e1a13cf2f73202c82e153bf934a7504}{old\_server\_id}}\ !=\ -\/1)\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ servers[move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a2e1a13cf2f73202c82e153bf934a7504}{old\_server\_id}}].add\_service(device);}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00135}00135\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00136}00136\ \textcolor{comment}{\ \ \ \ \ \ \ \ /**}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00137}00137\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @brief\ Executes\ the\ Simulated\ Annealing\ (SA)\ optimization\ algorithm.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00138}00138\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @details\ Iteratively\ explores\ the\ solution\ space\ by\ applying\ random\ neighborhood\ moves.\ }}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00139}00139\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ Accepts\ worsening\ moves\ according\ to\ the\ Metropolis\ criterion\ \(\backslash\)f\$\(\backslash\)exp(-\/\(\backslash\)Delta\ /\ T)\(\backslash\)f\$\ }}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00140}00140\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ to\ escape\ local\ optima,\ cooling\ down\ geometrically\ via\ factor\ \(\backslash\)f\$\(\backslash\)alpha\(\backslash\)f\$\ until\ \(\backslash\)f\$T\ \(\backslash\)le\ 10\string^\{-\/3\}\(\backslash\)f\$.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00141}00141\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ Uses\ lazy\ synchronization\ for\ tracking\ the\ best-\/found\ state.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00142}00142\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ }}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00143}00143\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ @param\ state\ The\ unified\ simulation\ state\ containing\ devices,\ servers,\ and\ metrics.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00144}00144\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00145}\mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a6297cb9a818da42479ae99fcb13ed8cf}{00145}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a6297cb9a818da42479ae99fcb13ed8cf}{simulated\_annealing}}(\mbox{\hyperlink{structmetrics_1_1Result}{metrics::Result}}\&\ state)\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ metrics\_ptr\ =\ std::dynamic\_pointer\_cast<metrics::MetaHeuristicMetrics>(state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}});}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!metrics\_ptr)\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Invalid\ metrics\ type\ for\ heuristic\ solver.\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core::Devices}}\ best\_devices\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}};}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core::Servers}}\ best\_servers\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}};}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ best\_cost\ =\ metrics\_ptr-\/>outputs.total\_penalty\_cost;}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ current\_cost\ =\ best\_cost;}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_best\_synced\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ T\ =\ metrics\_ptr-\/>temperature;}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ alpha\ =\ metrics\_ptr-\/>alpha;}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ start\_chrono\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (T\ >\ 1e-\/3)\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a55eda76f1c1e58ce4654833f7dee433e}{LOOP}};\ i++)\ \{\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{Move}}\ move\ =\ \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a3043acb2774dc482b46e7ffc19f672a6}{apply\_neighbor}}(state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}},\ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}});}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a59271873794f9f29d116f9f1e1a11bde}{valid}})\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ neighbor\_cost\ =\ current\_cost\ +\ move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a49188b9acdae0cf23ef0ed8f78523bbc}{delta\_cost}};}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ delta\ =\ neighbor\_cost\ -\/\ current\_cost;}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (delta\ <\ 0.0\ ||\ (\mbox{\hyperlink{namespacerandomness_aee037ebfa8460e466aa341cae2869a79}{randomness::random\_number}}(0.0,\ 1.0)\ <\ std::exp(-\/delta\ /\ T)))\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (delta\ >\ 0.0\ \&\&\ !is\_best\_synced)\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a8a942dd816ecc741137762ec82b563a0}{revert\_neighbor}}(state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}},\ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}},\ move);}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ best\_devices\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}};}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ best\_servers\ =\ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}};}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ is\_best\_synced\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a98079a7df7f8023523804ee79d5fe62e}{swapped\_id}}\ !=\ -\/1)\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}}[move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a683a781992b5a1bd4b97a5cfa54cd49b}{new\_server\_id}}].rmv\_service(state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}}[move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a98079a7df7f8023523804ee79d5fe62e}{swapped\_id}}]);}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a2e1a13cf2f73202c82e153bf934a7504}{old\_server\_id}}\ !=\ -\/1)\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}}[move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a2e1a13cf2f73202c82e153bf934a7504}{old\_server\_id}}].rmv\_service(state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}}[move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a2dd3cf37f72efcb8f34a41da3d645195}{device\_id}}]);}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a683a781992b5a1bd4b97a5cfa54cd49b}{new\_server\_id}}\ !=\ -\/1)\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}}[move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a683a781992b5a1bd4b97a5cfa54cd49b}{new\_server\_id}}].add\_service(state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}}[move.\mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move_a2dd3cf37f72efcb8f34a41da3d645195}{device\_id}}]);}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ current\_cost\ =\ neighbor\_cost;}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00190}00190\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (current\_cost\ <\ best\_cost\ -\/\ \mbox{\hyperlink{tools_8hpp_acca3350a20fd52e319b79444c3137ee7}{ZERO}})\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ best\_cost\ =\ current\_cost;}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ is\_best\_synced\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a8a942dd816ecc741137762ec82b563a0}{revert\_neighbor}}(state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}},\ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}},\ move);}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ T\ *=\ alpha;}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_best\_synced)\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}}\ =\ std::move(best\_devices);}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}}\ =\ std::move(best\_servers);}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00207}00207\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ end\_chrono\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ metrics\_ptr-\/>outputs.execution\_time\ +=\ std::chrono::duration<double>(end\_chrono\ -\/\ start\_chrono).count();}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00210}00210\ \ \ \ \ \ \ \ \ \}\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00211}00211\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00212}00212\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00213}00213\ \textcolor{comment}{\ \ \ \ /**}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00214}00214\ \textcolor{comment}{\ \ \ \ \ *\ @brief\ Initializes\ and\ launches\ the\ selected\ meta-\/heuristic\ algorithm.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00215}00215\ \textcolor{comment}{\ \ \ \ \ *\ @details\ Generates\ an\ initial\ solution\ using\ the\ configured\ constructive\ base\ heuristic,\ }}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00216}00216\ \textcolor{comment}{\ \ \ \ \ *\ records\ its\ standalone\ metrics\ in\ the\ heuristic\ results\ directory,\ and\ then\ executes\ }}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00217}00217\ \textcolor{comment}{\ \ \ \ \ *\ the\ meta-\/heuristic\ optimization\ over\ the\ resulting\ state.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00218}00218\ \textcolor{comment}{\ \ \ \ \ *\ }}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00219}00219\ \textcolor{comment}{\ \ \ \ \ *\ @param\ state\ The\ unified\ simulation\ state\ to\ be\ optimized.}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00220}00220\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00221}\mbox{\hyperlink{namespacemetaheuristic_a048f6eef02905cc9184c197939c3209a}{00221}}\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacemetaheuristic_a048f6eef02905cc9184c197939c3209a}{boot}}(\mbox{\hyperlink{structmetrics_1_1Result}{metrics::Result}}\&\ state)\ \{\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00222}00222\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00223}00223\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00224}00224\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ metrics\_ptr\ =\ std::dynamic\_pointer\_cast<metrics::MetaHeuristicMetrics>(state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}});}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00225}00225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!metrics\_ptr)\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Invalid\ metrics\ type\ for\ meta-\/heuristic\ solver.\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00228}00228\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00229}00229\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00230}00230\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmetrics_1_1Result}{metrics::Result}}\ initial\_state\ =\ state;}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00231}00231\ \ \ \ \ \ \ \ \ initial\_state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}\ =\ std::make\_shared<metrics::HeuristicMetrics>(}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ metrics\_ptr-\/>heuristic,\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ metrics\_ptr-\/>run\_id,\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00235}00235\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00236}00236\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00237}00237\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceheuristic_a49f05c0252bd2ad23bf788bdf45e79cc}{heuristic::boot}}(initial\_state);}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00238}00238\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacemetrics_a49133a7a2d416aca63d85f80f34bd14c}{metrics::calculate\_metrics}}(initial\_state);}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00239}00239\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (metrics\_ptr-\/>heuristic\ !=\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11abe0511aca70b810b2ed30f6c24c4a620}{metrics::Algorithm::greedy\_cost\_benefit}}\ ||\ metrics\_ptr-\/>run\_id\ ==\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacemetrics_a14d064c3f29627f9a59a04d5784c10f5}{metrics::save\_results}}(initial\_state,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00241}00241\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00242}00242\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00243}00243\ \ \ \ \ \ \ \ \ state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}}\ =\ initial\_state.\mbox{\hyperlink{structmetrics_1_1Result_a1e52f445dfc9a5fd13b646c74bf909c8}{devices}};}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00244}00244\ \ \ \ \ \ \ \ \ state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}}\ =\ initial\_state.\mbox{\hyperlink{structmetrics_1_1Result_a37d89aae373480d3f0148a4cf201f49d}{servers}};}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00245}00245\ \ \ \ \ \ \ \ \ metrics\_ptr-\/>inputs\ =\ initial\_state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}-\/>inputs;}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00246}00246\ \ \ \ \ \ \ \ \ metrics\_ptr-\/>outputs\ =\ initial\_state.\mbox{\hyperlink{structmetrics_1_1Result_afde5ec716c4e2962845c63c7e720b92f}{stats}}-\/>outputs;}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00247}00247\ }
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00248}00248\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (metrics\_ptr-\/>algorithm\ ==\ \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11a557e0f060742f44e69f44502ad2f3d71}{metrics::Algorithm::simulated\_annealing}})\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ simulated\_annealing(state);}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00250}00250\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Unknown\ metaheuristic\ algorithm\ type.\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00252}00252\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00253}00253\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metaheuristic_8hpp_source_l00254}00254\ \}}
 
 \end{DoxyCode}

@@ -1,41 +1,41 @@
-\doxysection{data\+::generate Namespace Reference}
+\doxysubsection{data\+::generate Namespace Reference}
 \hypertarget{namespacedata_1_1generate}{}\label{namespacedata_1_1generate}\index{data::generate@{data::generate}}
 
 
-Generates synthetic datasets for services, IoT devices, and EC/\+CC servers when files are absent.  
+Generates or updates synthetic datasets for services, IoT devices, and EC/\+CC servers.  
 
 
-\doxysubsubsection*{Functions}
+\doxysubsubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{namespacedata_1_1generate_a8cf334007dfe6c39270237e4b5e1df96}{services}} (const int num\+\_\+services=10)
+std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{namespacedata_1_1generate_a6c60a34a447b946d2ac51f1b055189db}{services}} (const int num\+\_\+services=10, bool fixed\+\_\+penalty=true)
 \begin{DoxyCompactList}\small\item\em Generates or loads network service requirement templates. \end{DoxyCompactList}\item 
-std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{namespacedata_1_1generate_af6567b345dff3a26eabcad5abd28fcdb}{devices}} (const int length, const int num\+\_\+services=10)
+std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{namespacedata_1_1generate_a77ee30fbb09d00be8392d88310fbe2bd}{devices}} (const int length, const int num\+\_\+services=10, bool fixed\+\_\+penalty=true)
 \begin{DoxyCompactList}\small\item\em Generates or loads device request data representing IoT network demands. \end{DoxyCompactList}\item 
 std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{namespacedata_1_1generate_a406f9158cb3dc3b05a461bc10038fae1}{servers}} (const int ec\+\_\+length=99, const int cc\+\_\+length=1)
 \begin{DoxyCompactList}\small\item\em Generates or loads server infrastructure data for Edge and Cloud nodes. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Variables}
+\doxysubsubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 const std\+::filesystem\+::path \mbox{\hyperlink{namespacedata_1_1generate_a75e853eaa2e0c225aad26cf3607b53f8}{DATA\+\_\+\+PATH}} = std\+::filesystem\+::current\+\_\+path() / "{}data"{}
 \begin{DoxyCompactList}\small\item\em Path pointing to the root {\ttfamily data/} directory. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
-Generates synthetic datasets for services, IoT devices, and EC/\+CC servers when files are absent. 
+\doxysubsubsection{Detailed Description}
+Generates or updates synthetic datasets for services, IoT devices, and EC/\+CC servers. 
 
-\doxysubsection{Function Documentation}
-\Hypertarget{namespacedata_1_1generate_af6567b345dff3a26eabcad5abd28fcdb}\label{namespacedata_1_1generate_af6567b345dff3a26eabcad5abd28fcdb} 
+\doxysubsubsection{Function Documentation}
+\Hypertarget{namespacedata_1_1generate_a77ee30fbb09d00be8392d88310fbe2bd}\label{namespacedata_1_1generate_a77ee30fbb09d00be8392d88310fbe2bd} 
 \index{data::generate@{data::generate}!devices@{devices}}
 \index{devices@{devices}!data::generate@{data::generate}}
-\doxysubsubsection{\texorpdfstring{devices()}{devices()}}
-{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ data\+::generate\+::devices (\begin{DoxyParamCaption}\item[{const int}]{length,  }\item[{const int}]{num\+\_\+services = {\ttfamily 10} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\doxyparagraph{\texorpdfstring{devices()}{devices()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ data\+::generate\+::devices (\begin{DoxyParamCaption}\item[{const int}]{length,  }\item[{const int}]{num\+\_\+services = {\ttfamily 10},  }\item[{bool}]{fixed\+\_\+penalty = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
 Generates or loads device request data representing IoT network demands. 
 
-Uniformly samples service requirement profiles from the services dataset and assigns them to each device instance. Saves the output to {\ttfamily data/devices/\+Devices\+\_\+\texorpdfstring{$<$}{<}length\texorpdfstring{$>$}{>}.txt}.
+Uniformly samples service requirement profiles from the services dataset and assigns them to each device instance in {\ttfamily data/devices/\+Devices\+\_\+\texorpdfstring{$<$}{<}length\texorpdfstring{$>$}{>}.txt}. If the file already exists, synchronizes each device\textquotesingle{}s penalty cost ({\ttfamily COST}) with its corresponding service template.
 
 
 \begin{DoxyParams}{Parameters}
@@ -43,21 +43,35 @@ Uniformly samples service requirement profiles from the services dataset and ass
 \hline
 {\em num\+\_\+services} & The number of underlying service templates to sample from. \\
 \hline
+{\em fixed\+\_\+penalty} & Whether the penalty (cost) of each device is fixed ({\ttfamily 1.\+0}) or variable. \\
+\hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A 2D string vector representing the devices dataset. 
 \end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00267}{267}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l00193}{DATA\+\_\+\+PATH}}, \mbox{\hyperlink{mmkp_8hpp_source_l00267}{devices()}}, \mbox{\hyperlink{tools_8hpp_source_l00283}{randomness\+::random\+\_\+number()}}, \mbox{\hyperlink{tools_8hpp_source_l00052}{file\+\_\+manager\+::csv\+::read()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00205}{services()}}, \mbox{\hyperlink{tools_8hpp_source_l00193}{convert\+::to\+\_\+string()}}, and \mbox{\hyperlink{tools_8hpp_source_l00085}{file\+\_\+manager\+::csv\+::write()}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00267}{devices()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00371}{data\+::load\+::devices()}}.
+
 \Hypertarget{namespacedata_1_1generate_a406f9158cb3dc3b05a461bc10038fae1}\label{namespacedata_1_1generate_a406f9158cb3dc3b05a461bc10038fae1} 
 \index{data::generate@{data::generate}!servers@{servers}}
 \index{servers@{servers}!data::generate@{data::generate}}
-\doxysubsubsection{\texorpdfstring{servers()}{servers()}}
+\doxyparagraph{\texorpdfstring{servers()}{servers()}}
 {\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ data\+::generate\+::servers (\begin{DoxyParamCaption}\item[{const int}]{ec\+\_\+length = {\ttfamily 99},  }\item[{const int}]{cc\+\_\+length = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
 Generates or loads server infrastructure data for Edge and Cloud nodes. 
 
-Creates capacity profiles for {\ttfamily ec\+\_\+length} Edge servers (`\textquotesingle{}E'{\ttfamily ) and}cc\+\_\+length{\ttfamily  Cloud servers (}\textquotesingle{}C\textquotesingle{}{\ttfamily ), saving the table to}data/servers/servers\+\_\+{\ttfamily \texorpdfstring{$<$}{<}ec\texorpdfstring{$>$}{>}}\+\_\+$<$cc$>$.\+txt\`{}.
+Creates capacity profiles for {\ttfamily ec\+\_\+length} Edge servers (`\textquotesingle{}E'{\ttfamily ) and}cc\+\_\+length{\ttfamily  Cloud servers (}\textquotesingle{}C\textquotesingle{}{\ttfamily ), saving the table to}data/servers/servers\+\_\+$<$ec$>$\+\_\+$<$cc$>$.\+txt\`{}.
 
 
 \begin{DoxyParams}{Parameters}
@@ -69,36 +83,70 @@ Creates capacity profiles for {\ttfamily ec\+\_\+length} Edge servers (`\textquo
 \begin{DoxyReturn}{Returns}
 A 2D string vector representing the servers dataset. 
 \end{DoxyReturn}
-\Hypertarget{namespacedata_1_1generate_a8cf334007dfe6c39270237e4b5e1df96}\label{namespacedata_1_1generate_a8cf334007dfe6c39270237e4b5e1df96} 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00319}{319}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l00193}{DATA\+\_\+\+PATH}}, \mbox{\hyperlink{tools_8hpp_source_l00038}{DECIMAL\+\_\+\+PLACES}}, \mbox{\hyperlink{tools_8hpp_source_l00283}{randomness\+::random\+\_\+number()}}, \mbox{\hyperlink{tools_8hpp_source_l00052}{file\+\_\+manager\+::csv\+::read()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00319}{servers()}}, \mbox{\hyperlink{tools_8hpp_source_l00193}{convert\+::to\+\_\+string()}}, and \mbox{\hyperlink{tools_8hpp_source_l00085}{file\+\_\+manager\+::csv\+::write()}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00409}{data\+::load\+::servers()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00319}{servers()}}.
+
+\Hypertarget{namespacedata_1_1generate_a6c60a34a447b946d2ac51f1b055189db}\label{namespacedata_1_1generate_a6c60a34a447b946d2ac51f1b055189db} 
 \index{data::generate@{data::generate}!services@{services}}
 \index{services@{services}!data::generate@{data::generate}}
-\doxysubsubsection{\texorpdfstring{services()}{services()}}
-{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ data\+::generate\+::services (\begin{DoxyParamCaption}\item[{const int}]{num\+\_\+services = {\ttfamily 10} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\doxyparagraph{\texorpdfstring{services()}{services()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ data\+::generate\+::services (\begin{DoxyParamCaption}\item[{const int}]{num\+\_\+services = {\ttfamily 10},  }\item[{bool}]{fixed\+\_\+penalty = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
 Generates or loads network service requirement templates. 
 
-Creates random service profiles with varying task counts, memory, storage, and processing demands. Persists the resulting table to {\ttfamily data/\+Services.\+txt} for reproducibility.
+Creates random service profiles with varying task counts, memory, storage, and processing demands, persisting them to {\ttfamily data/\+Services.\+txt}. If the file already exists, reloads the profiles and updates their penalty costs ({\ttfamily COST}) according to {\ttfamily fixed\+\_\+penalty}.
 
 
 \begin{DoxyParams}{Parameters}
 {\em num\+\_\+services} & The total number of distinct service profiles to generate. \\
 \hline
+{\em fixed\+\_\+penalty} & If {\ttfamily true}, assigns a unit penalty cost ({\ttfamily 1.\+0}); if {\ttfamily false}, generates task-\/proportional random penalty costs. \\
+\hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-A 2D string vector containing the generated or loaded services dataset. 
+A 2D string vector containing the generated or updated services dataset. 
 \end{DoxyReturn}
 
 
-\doxysubsection{Variable Documentation}
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00205}{205}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l00193}{DATA\+\_\+\+PATH}}, \mbox{\hyperlink{tools_8hpp_source_l00038}{DECIMAL\+\_\+\+PLACES}}, \mbox{\hyperlink{tools_8hpp_source_l00283}{randomness\+::random\+\_\+number()}}, \mbox{\hyperlink{tools_8hpp_source_l00052}{file\+\_\+manager\+::csv\+::read()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00205}{services()}}, \mbox{\hyperlink{tools_8hpp_source_l00193}{convert\+::to\+\_\+string()}}, \mbox{\hyperlink{tools_8hpp_source_l00085}{file\+\_\+manager\+::csv\+::write()}}, and \mbox{\hyperlink{tools_8hpp_source_l00033}{ZERO}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00267}{devices()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00205}{services()}}.
+
+
+
+\doxysubsubsection{Variable Documentation}
 \Hypertarget{namespacedata_1_1generate_a75e853eaa2e0c225aad26cf3607b53f8}\label{namespacedata_1_1generate_a75e853eaa2e0c225aad26cf3607b53f8} 
 \index{data::generate@{data::generate}!DATA\_PATH@{DATA\_PATH}}
 \index{DATA\_PATH@{DATA\_PATH}!data::generate@{data::generate}}
-\doxysubsubsection{\texorpdfstring{DATA\_PATH}{DATA\_PATH}}
+\doxyparagraph{\texorpdfstring{DATA\_PATH}{DATA\_PATH}}
 {\footnotesize\ttfamily const std\+::filesystem\+::path data\+::generate\+::\+DATA\+\_\+\+PATH = std\+::filesystem\+::current\+\_\+path() / "{}data"{}}
 
 
 
 Path pointing to the root {\ttfamily data/} directory. 
+
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00193}{193}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00267}{devices()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00319}{servers()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00205}{services()}}.
 

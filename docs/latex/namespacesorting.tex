@@ -1,16 +1,16 @@
-\doxysection{sorting Namespace Reference}
+\doxysubsection{sorting Namespace Reference}
 \hypertarget{namespacesorting}{}\label{namespacesorting}\index{sorting@{sorting}}
 
 
 Generic index-\/based sorting utilities for ordering 1-\/indexed entity vectors by member attributes.  
 
 
-\doxysubsubsection*{Namespaces}
+\doxysubsubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
 namespace \mbox{\hyperlink{namespacesorting_1_1details}{details}}
 \begin{DoxyCompactList}\small\item\em Internal implementation helpers for pointer-\/to-\/member index sorting. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Functions}
+\doxysubsubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 {\footnotesize template$<$bool Ascending, typename T , typename Attribute\+Type , Attribute\+Type T\+::\texorpdfstring{$\ast$}{*} Attribute\+Ptr$>$ }\\std\+::vector$<$ int $>$ \mbox{\hyperlink{namespacesorting_a7d794c04fb04c9db129b2b3236f83223}{sort\+\_\+entities}} (const std\+::vector$<$ T $>$ \&entities)
@@ -19,14 +19,14 @@ namespace \mbox{\hyperlink{namespacesorting_1_1details}{details}}
 \begin{DoxyCompactList}\small\item\em Sorts a specific subset of entity indices by a struct/class member attribute. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\doxysubsubsection{Detailed Description}
 Generic index-\/based sorting utilities for ordering 1-\/indexed entity vectors by member attributes. 
 
-\doxysubsection{Function Documentation}
+\doxysubsubsection{Function Documentation}
 \Hypertarget{namespacesorting_a7d794c04fb04c9db129b2b3236f83223}\label{namespacesorting_a7d794c04fb04c9db129b2b3236f83223} 
 \index{sorting@{sorting}!sort\_entities@{sort\_entities}}
 \index{sort\_entities@{sort\_entities}!sorting@{sorting}}
-\doxysubsubsection{\texorpdfstring{sort\_entities()}{sort\_entities()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\doxyparagraph{\texorpdfstring{sort\_entities()}{sort\_entities()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$bool Ascending, typename T , typename Attribute\+Type , Attribute\+Type T\+::\texorpdfstring{$\ast$}{*} Attribute\+Ptr$>$ \\
 std\+::vector$<$ int $>$ sorting\+::sort\+\_\+entities (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{entities }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
@@ -53,10 +53,22 @@ Does not mutate the original {\ttfamily entities} vector. Assumes 1-\/based inde
 \begin{DoxyReturn}{Returns}
 A new {\ttfamily std\+::vector\texorpdfstring{$<$}{<}int\texorpdfstring{$>$}{>}} containing the sorted 1-\/based indices. 
 \end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{tools_8hpp_source_l00410}{410}} of file \mbox{\hyperlink{tools_8hpp_source}{tools.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{tools_8hpp_source_l00410}{sort\+\_\+entities()}}.
+
+
+
+Referenced by \mbox{\hyperlink{tools_8hpp_source_l00410}{sort\+\_\+entities()}}, and \mbox{\hyperlink{tools_8hpp_source_l00429}{sort\+\_\+entities()}}.
+
 \Hypertarget{namespacesorting_a009d8d26a17114c1b6731643c8dce782}\label{namespacesorting_a009d8d26a17114c1b6731643c8dce782} 
 \index{sorting@{sorting}!sort\_entities@{sort\_entities}}
 \index{sort\_entities@{sort\_entities}!sorting@{sorting}}
-\doxysubsubsection{\texorpdfstring{sort\_entities()}{sort\_entities()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\doxyparagraph{\texorpdfstring{sort\_entities()}{sort\_entities()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$bool Ascending, typename T , typename Attribute\+Type , Attribute\+Type T\+::\texorpdfstring{$\ast$}{*} Attribute\+Ptr$>$ \\
 std\+::vector$<$ int $>$ sorting\+::sort\+\_\+entities (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{entities,  }\item[{const std\+::vector$<$ int $>$ \&}]{indices\+\_\+to\+\_\+sort }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
@@ -85,3 +97,11 @@ Sorts a specific subset of entity indices by a struct/class member attribute.
 \begin{DoxyReturn}{Returns}
 A new {\ttfamily std\+::vector\texorpdfstring{$<$}{<}int\texorpdfstring{$>$}{>}} containing the sorted subset indices. 
 \end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{tools_8hpp_source_l00429}{429}} of file \mbox{\hyperlink{tools_8hpp_source}{tools.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{tools_8hpp_source_l00410}{sort\+\_\+entities()}}.
+

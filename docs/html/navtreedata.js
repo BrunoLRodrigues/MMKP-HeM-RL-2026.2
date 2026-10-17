@@ -25,15 +25,16 @@
 var NAVTREE =
 [
   [ "MMKP Resource Allocation in IoT-EC-CC Networks", "index.html", [
-    [ "Project Structure", "index.html#autotoc_md2", null ],
-    [ "Prerequisites", "index.html#autotoc_md3", null ],
-    [ "How to Compile and Run", "index.html#autotoc_md4", [
+    [ "📁 Project Structure", "index.html#autotoc_md2", null ],
+    [ "⚙️ Prerequisites", "index.html#autotoc_md3", null ],
+    [ "🚀 How to Compile and Run", "index.html#autotoc_md4", [
       [ "Option 1: Using <tt>build.sh</tt> (Recommended)", "index.html#autotoc_md5", null ],
       [ "Option 2: Using CMake", "index.html#autotoc_md6", null ]
     ] ],
-    [ "Implemented Algorithms", "index.html#autotoc_md7", null ],
-    [ "Simulation Parameters", "index.html#autotoc_md8", null ],
-    [ "Documentation (Doxygen)", "index.html#autotoc_md9", null ],
+    [ "🧠 Implemented Algorithms", "index.html#autotoc_md7", null ],
+    [ "🔧 Simulation Parameters", "index.html#autotoc_md8", null ],
+    [ "📊 Simulation Results (<tt>results/</tt>)", "index.html#autotoc_md9", null ],
+    [ "📚 Documentation (Doxygen)", "index.html#autotoc_md10", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -69,7 +70,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"structcore_1_1Supply.html#a4ef05c3bf7a61c45d9e7583b0d134925"
+"structcore_1_1Supply.html#a482b2bff59f121cf5a3ecd74948717a0"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

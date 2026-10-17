@@ -1,11 +1,11 @@
-\doxysection{convert Namespace Reference}
+\doxysubsection{convert Namespace Reference}
 \hypertarget{namespaceconvert}{}\label{namespaceconvert}\index{convert@{convert}}
 
 
 Short namespace alias for {\ttfamily \doxylink{namespacefile__manager_1_1csv}{file\+\_\+manager\+::csv}}.  
 
 
-\doxysubsubsection*{Functions}
+\doxysubsubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 {\footnotesize template$<$typename T $>$ }\\std\+::string \mbox{\hyperlink{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}{to\+\_\+string}} (const T \&value, int precision=\mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\+\_\+\+PLACES}})
@@ -18,16 +18,16 @@ std\+::string \mbox{\hyperlink{namespaceconvert_a58f9ce99c0ce086862a328dbead787f
 \begin{DoxyCompactList}\small\item\em Converts a {\ttfamily std\+::set} of primitive types to a bracketed array string representation. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\doxysubsubsection{Detailed Description}
 Short namespace alias for {\ttfamily \doxylink{namespacefile__manager_1_1csv}{file\+\_\+manager\+::csv}}. 
 
 String conversion and formatting utilities for numbers, percentages, vectors, and sets. 
 
-\doxysubsection{Function Documentation}
+\doxysubsubsection{Function Documentation}
 \Hypertarget{namespaceconvert_a7a5be89d85cfeacfaeffd02106bba210}\label{namespaceconvert_a7a5be89d85cfeacfaeffd02106bba210} 
 \index{convert@{convert}!set\_to\_string@{set\_to\_string}}
 \index{set\_to\_string@{set\_to\_string}!convert@{convert}}
-\doxysubsubsection{\texorpdfstring{set\_to\_string()}{set\_to\_string()}}
+\doxyparagraph{\texorpdfstring{set\_to\_string()}{set\_to\_string()}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 std\+::string convert\+::set\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{const std\+::set$<$ T $>$ \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
@@ -48,17 +48,25 @@ Converts a {\ttfamily std\+::set} of primitive types to a bracketed array string
 \begin{DoxyReturn}{Returns}
 A string formatted as {\ttfamily "{}\mbox{[}e1,e2,...\mbox{]}"{}}. 
 \end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{tools_8hpp_source_l00243}{243}} of file \mbox{\hyperlink{tools_8hpp_source}{tools.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l01095}{display\+::show\+\_\+server()}}.
+
 \Hypertarget{namespaceconvert_a58f9ce99c0ce086862a328dbead787f5}\label{namespaceconvert_a58f9ce99c0ce086862a328dbead787f5} 
 \index{convert@{convert}!to\_percentage\_string@{to\_percentage\_string}}
 \index{to\_percentage\_string@{to\_percentage\_string}!convert@{convert}}
-\doxysubsubsection{\texorpdfstring{to\_percentage\_string()}{to\_percentage\_string()}}
+\doxyparagraph{\texorpdfstring{to\_percentage\_string()}{to\_percentage\_string()}}
 {\footnotesize\ttfamily std\+::string convert\+::to\+\_\+percentage\+\_\+string (\begin{DoxyParamCaption}\item[{double}]{numerator,  }\item[{double}]{denominator,  }\item[{int}]{precision = {\ttfamily \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\+\_\+\+PLACES}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
 Calculates a percentage and converts it to a formatted string. 
 
-Computes \$( $\text$\{numerator\} / $\text$\{denominator\}) $\times$ 100.\+0\$ and formats it to {\ttfamily precision} decimal places. Safely returns {\ttfamily 0.\+0} when {\ttfamily denominator == 0.\+0}. 
+Computes {\ttfamily (numerator / denominator) \texorpdfstring{$\ast$}{*} 100.\+0} and formats it to {\ttfamily precision} decimal places. Safely returns {\ttfamily 0.\+0} when {\ttfamily denominator == 0.\+0}. 
 \begin{DoxyParams}{Parameters}
 {\em numerator} & The value representing the part of the total. \\
 \hline
@@ -70,10 +78,22 @@ Computes \$( $\text$\{numerator\} / $\text$\{denominator\}) $\times$ 100.\+0\$ a
 \begin{DoxyReturn}{Returns}
 A string representation of the calculated percentage. 
 \end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{tools_8hpp_source_l00210}{210}} of file \mbox{\hyperlink{tools_8hpp_source}{tools.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{tools_8hpp_source_l00193}{to\+\_\+string()}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00629}{metrics\+::\+Metrics\+::build\+\_\+metrics()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00756}{metrics\+::\+Exact\+Metrics\+::build\+\_\+metrics()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l01242}{display\+::show\+\_\+servers\+\_\+usage()}}.
+
 \Hypertarget{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e}\label{namespaceconvert_a147ebbfc40408a6ba75b3bab4b368e7e} 
 \index{convert@{convert}!to\_string@{to\_string}}
 \index{to\_string@{to\_string}!convert@{convert}}
-\doxysubsubsection{\texorpdfstring{to\_string()}{to\_string()}}
+\doxyparagraph{\texorpdfstring{to\_string()}{to\_string()}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 std\+::string convert\+::to\+\_\+string (\begin{DoxyParamCaption}\item[{const T \&}]{value,  }\item[{int}]{precision = {\ttfamily \mbox{\hyperlink{tools_8hpp_af5c296dd72b5e135f446be8000800727}{DECIMAL\+\_\+\+PLACES}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
@@ -96,10 +116,18 @@ Uses {\ttfamily std\+::ostringstream} for conversion, applying fixed-\/point not
 \begin{DoxyReturn}{Returns}
 A formatted string representation of {\ttfamily value}. 
 \end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{tools_8hpp_source_l00193}{193}} of file \mbox{\hyperlink{tools_8hpp_source}{tools.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00629}{metrics\+::\+Metrics\+::build\+\_\+metrics()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00756}{metrics\+::\+Exact\+Metrics\+::build\+\_\+metrics()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00890}{metrics\+::\+Meta\+Heuristic\+Metrics\+::build\+\_\+metrics()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00669}{metrics\+::\+Metrics\+::data()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00780}{metrics\+::\+Exact\+Metrics\+::data()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00915}{metrics\+::\+Meta\+Heuristic\+Metrics\+::data()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00267}{data\+::generate\+::devices()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00319}{data\+::generate\+::servers()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00205}{data\+::generate\+::services()}}, and \mbox{\hyperlink{tools_8hpp_source_l00210}{to\+\_\+percentage\+\_\+string()}}.
+
 \Hypertarget{namespaceconvert_a7be8805a91cdd6ed61d3b26533d5deed}\label{namespaceconvert_a7be8805a91cdd6ed61d3b26533d5deed} 
 \index{convert@{convert}!vector\_to\_string@{vector\_to\_string}}
 \index{vector\_to\_string@{vector\_to\_string}!convert@{convert}}
-\doxysubsubsection{\texorpdfstring{vector\_to\_string()}{vector\_to\_string()}}
+\doxyparagraph{\texorpdfstring{vector\_to\_string()}{vector\_to\_string()}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 std\+::string convert\+::vector\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
@@ -120,3 +148,7 @@ Converts a vector of primitive types to a bracketed array string representation.
 \begin{DoxyReturn}{Returns}
 A string formatted as {\ttfamily "{}\mbox{[}e1,e2,...\mbox{]}"{}}. 
 \end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{tools_8hpp_source_l00225}{225}} of file \mbox{\hyperlink{tools_8hpp_source}{tools.\+hpp}}.
+

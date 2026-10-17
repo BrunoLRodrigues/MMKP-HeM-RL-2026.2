@@ -1,37 +1,37 @@
-\doxysection{exact Namespace Reference}
+\doxysubsection{exact Namespace Reference}
 \hypertarget{namespaceexact}{}\label{namespaceexact}\index{exact@{exact}}
 
 
 Contains mathematical programming models for exact optimization.  
 
 
-\doxysubsubsection*{Namespaces}
+\doxysubsubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
 namespace \mbox{\hyperlink{namespaceexact_1_1anonymous__namespace_02exact_8hpp_03}{anonymous\+\_\+namespace\{exact.\+hpp\}}}
 \end{DoxyCompactItemize}
-\doxysubsubsection*{Typedefs}
+\doxysubsubsubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
 using \mbox{\hyperlink{namespaceexact_a4ba342845801f3cf0d7fcd8d496504d9}{Num\+Var2D}} = Ilo\+Array$<$ Ilo\+Num\+Var\+Array $>$
 \begin{DoxyCompactList}\small\item\em Type alias for a 2D matrix of CPLEX decision variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Functions}
+\doxysubsubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{namespaceexact_a6aacffeeb6699d2f7d822d8d0866edbc}{boot}} (\mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}} \&state, int time\+\_\+limit\+\_\+sec=3600)
 \begin{DoxyCompactList}\small\item\em Bootstraps and executes the configured exact mathematical model. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\doxysubsubsection{Detailed Description}
 Contains mathematical programming models for exact optimization. 
 
 Utilizes the IBM ILOG CPLEX optimizer to solve the network resource allocation problem to optimality or within a specified time limit, providing an exact baseline by maximizing avoided non-\/service penalties. 
 
-\doxysubsection{Typedef Documentation}
+\doxysubsubsection{Typedef Documentation}
 \Hypertarget{namespaceexact_a4ba342845801f3cf0d7fcd8d496504d9}\label{namespaceexact_a4ba342845801f3cf0d7fcd8d496504d9} 
 \index{exact@{exact}!NumVar2D@{NumVar2D}}
 \index{NumVar2D@{NumVar2D}!exact@{exact}}
-\doxysubsubsection{\texorpdfstring{NumVar2D}{NumVar2D}}
+\doxyparagraph{\texorpdfstring{NumVar2D}{NumVar2D}}
 {\footnotesize\ttfamily using \mbox{\hyperlink{namespaceexact_a4ba342845801f3cf0d7fcd8d496504d9}{exact\+::\+Num\+Var2D}} = typedef Ilo\+Array$<$Ilo\+Num\+Var\+Array$>$}
 
 
@@ -40,11 +40,15 @@ Type alias for a 2D matrix of CPLEX decision variables.
 
 
 
-\doxysubsection{Function Documentation}
+Definition at line \mbox{\hyperlink{exact_8hpp_source_l00027}{27}} of file \mbox{\hyperlink{exact_8hpp_source}{exact.\+hpp}}.
+
+
+
+\doxysubsubsection{Function Documentation}
 \Hypertarget{namespaceexact_a6aacffeeb6699d2f7d822d8d0866edbc}\label{namespaceexact_a6aacffeeb6699d2f7d822d8d0866edbc} 
 \index{exact@{exact}!boot@{boot}}
 \index{boot@{boot}!exact@{exact}}
-\doxysubsubsection{\texorpdfstring{boot()}{boot()}}
+\doxyparagraph{\texorpdfstring{boot()}{boot()}}
 {\footnotesize\ttfamily void exact\+::boot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}} \&}]{state,  }\item[{int}]{time\+\_\+limit\+\_\+sec = {\ttfamily 3600} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -60,3 +64,15 @@ Reads the specified algorithm identifier from {\ttfamily state.\+stats} and disp
 {\em time\+\_\+limit\+\_\+sec} & The maximum execution time allowed for the exact solver in seconds. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{exact_8hpp_source_l00172}{172}} of file \mbox{\hyperlink{exact_8hpp_source}{exact.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11ae6bb6feafcc4de7705a8fe1782af973e}{metrics\+::solver\+\_\+maximum\+\_\+cost}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00931}{metrics\+::\+Result\+::stats}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_source_l00043}{run\+\_\+simulation()}}.
+

@@ -1,11 +1,11 @@
-\doxysection{metrics Namespace Reference}
+\doxysubsection{metrics Namespace Reference}
 \hypertarget{namespacemetrics}{}\label{namespacemetrics}\index{metrics@{metrics}}
 
 
 Provides structures and routines for tracking, formatting, and persisting simulation metrics.  
 
 
-\doxysubsubsection*{Classes}
+\doxysubsubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structmetrics_1_1ExactMetrics}{Exact\+Metrics}}
@@ -20,7 +20,7 @@ struct \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}}
 \begin{DoxyCompactList}\small\item\em Polymorphic base structure for tracking, calculating, and saving simulation metrics. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structmetrics_1_1Result}{Result}}
 \begin{DoxyCompactList}\small\item\em Encapsulates the complete system state ({\ttfamily Devices}, {\ttfamily Servers}) and polymorphic {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} for a simulation run. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Enumerations}
+\doxysubsubsubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
 enum class \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}} \{ \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aab50339a10e1de285ac99d4c3990b8693}{NONE}}
@@ -39,7 +39,7 @@ enum class \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{
 , \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11a557e0f060742f44e69f44502ad2f3d71}{simulated\+\_\+annealing}}
  \}
 \begin{DoxyCompactList}\small\item\em Identifies the specific optimization algorithm used in a simulation run. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Functions}
+\doxysubsubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 std\+::string \mbox{\hyperlink{namespacemetrics_a5bb0d7248ebf1214b792666f43dc57a5}{to\+\_\+string}} (\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}} paradigm)
@@ -50,21 +50,21 @@ void \mbox{\hyperlink{namespacemetrics_a49133a7a2d416aca63d85f80f34bd14c}{calcul
 \begin{DoxyCompactList}\small\item\em Computes the final simulation metrics based on the current device-\/to-\/server allocations. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespacemetrics_a14d064c3f29627f9a59a04d5784c10f5}{save\+\_\+results}} (const \mbox{\hyperlink{structmetrics_1_1Result}{Result}} \&state, bool show\+\_\+servers\+\_\+usage=false)
 \begin{DoxyCompactList}\small\item\em Saves the final calculated metrics and ASCII summary tables to the file system. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Variables}
+\doxysubsubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 const std\+::filesystem\+::path \mbox{\hyperlink{namespacemetrics_a7f26a4cc7d54ffeeccdb8002576777cc}{RESULTS\+\_\+\+PATH}} = std\+::filesystem\+::current\+\_\+path() / "{}results"{}
 \begin{DoxyCompactList}\small\item\em Path pointing to the root {\ttfamily results/} directory. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\doxysubsubsection{Detailed Description}
 Provides structures and routines for tracking, formatting, and persisting simulation metrics. 
 
-\doxysubsection{Enumeration Type Documentation}
+\doxysubsubsection{Enumeration Type Documentation}
 \Hypertarget{namespacemetrics_a52f859a07d748c00c090a31bea367c11}\label{namespacemetrics_a52f859a07d748c00c090a31bea367c11} 
 \index{metrics@{metrics}!Algorithm@{Algorithm}}
 \index{Algorithm@{Algorithm}!metrics@{metrics}}
-\doxysubsubsection{\texorpdfstring{Algorithm}{Algorithm}}
+\doxyparagraph{\texorpdfstring{Algorithm}{Algorithm}}
 {\footnotesize\ttfamily enum class \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{metrics\+::\+Algorithm}}\hspace{0.3cm}{\ttfamily [strong]}}
 
 
@@ -97,10 +97,14 @@ simulated\+\_\+annealing&Simulated Annealing meta-\/heuristic. \\
 \hline
 
 \end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00480}{480}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
 \Hypertarget{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}\label{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a} 
 \index{metrics@{metrics}!Paradigm@{Paradigm}}
 \index{Paradigm@{Paradigm}!metrics@{metrics}}
-\doxysubsubsection{\texorpdfstring{Paradigm}{Paradigm}}
+\doxyparagraph{\texorpdfstring{Paradigm}{Paradigm}}
 {\footnotesize\ttfamily enum class \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{metrics\+::\+Paradigm}}\hspace{0.3cm}{\ttfamily [strong]}}
 
 
@@ -127,11 +131,15 @@ METAHEURISTIC&Meta-\/heuristic optimization algorithms. \\
 \end{DoxyEnumFields}
 
 
-\doxysubsection{Function Documentation}
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00455}{455}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+\doxysubsubsection{Function Documentation}
 \Hypertarget{namespacemetrics_a49133a7a2d416aca63d85f80f34bd14c}\label{namespacemetrics_a49133a7a2d416aca63d85f80f34bd14c} 
 \index{metrics@{metrics}!calculate\_metrics@{calculate\_metrics}}
 \index{calculate\_metrics@{calculate\_metrics}!metrics@{metrics}}
-\doxysubsubsection{\texorpdfstring{calculate\_metrics()}{calculate\_metrics()}}
+\doxyparagraph{\texorpdfstring{calculate\_metrics()}{calculate\_metrics()}}
 {\footnotesize\ttfamily void metrics\+::calculate\+\_\+metrics (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmetrics_1_1Result}{Result}} \&}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -143,10 +151,22 @@ Computes the final simulation metrics based on the current device-\/to-\/server 
 {\em state} & The simulation result structure holding {\ttfamily devices}, {\ttfamily servers}, and {\ttfamily stats}. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l01001}{1001}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l00929}{metrics\+::\+Result\+::devices}}, \mbox{\hyperlink{mmkp_8hpp_source_l00930}{metrics\+::\+Result\+::servers}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00931}{metrics\+::\+Result\+::stats}}.
+
+
+
+Referenced by \mbox{\hyperlink{metaheuristic_8hpp_source_l00221}{metaheuristic\+::boot()}}, and \mbox{\hyperlink{main_8cpp_source_l00043}{run\+\_\+simulation()}}.
+
 \Hypertarget{namespacemetrics_a14d064c3f29627f9a59a04d5784c10f5}\label{namespacemetrics_a14d064c3f29627f9a59a04d5784c10f5} 
 \index{metrics@{metrics}!save\_results@{save\_results}}
 \index{save\_results@{save\_results}!metrics@{metrics}}
-\doxysubsubsection{\texorpdfstring{save\_results()}{save\_results()}}
+\doxyparagraph{\texorpdfstring{save\_results()}{save\_results()}}
 {\footnotesize\ttfamily void metrics\+::save\+\_\+results (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structmetrics_1_1Result}{Result}} \&}]{state,  }\item[{bool}]{show\+\_\+servers\+\_\+usage = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -160,10 +180,22 @@ Saves the final calculated metrics and ASCII summary tables to the file system.
 {\em show\+\_\+servers\+\_\+usage} & Flag to indicate if individual server resource usage should be printed. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l01263}{1263}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l00930}{metrics\+::\+Result\+::servers}}, \mbox{\hyperlink{mmkp_8hpp_source_l01217}{display\+::show\+\_\+metrics()}}, \mbox{\hyperlink{mmkp_8hpp_source_l01242}{display\+::show\+\_\+servers\+\_\+usage()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00931}{metrics\+::\+Result\+::stats}}.
+
+
+
+Referenced by \mbox{\hyperlink{metaheuristic_8hpp_source_l00221}{metaheuristic\+::boot()}}, and \mbox{\hyperlink{main_8cpp_source_l00043}{run\+\_\+simulation()}}.
+
 \Hypertarget{namespacemetrics_ab2f73cbbbd68c8c1493b792911a49ce0}\label{namespacemetrics_ab2f73cbbbd68c8c1493b792911a49ce0} 
 \index{metrics@{metrics}!to\_string@{to\_string}}
 \index{to\_string@{to\_string}!metrics@{metrics}}
-\doxysubsubsection{\texorpdfstring{to\_string()}{to\_string()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\doxyparagraph{\texorpdfstring{to\_string()}{to\_string()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily std\+::string metrics\+::to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}}}]{algorithm }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -178,10 +210,18 @@ Converts an {\ttfamily Algorithm} enum value to its standardized string identifi
 \begin{DoxyReturn}{Returns}
 String representation of the algorithm. 
 \end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00494}{494}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11abe0511aca70b810b2ed30f6c24c4a620}{greedy\+\_\+cost\+\_\+benefit}}, \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11aa845e2c8be77bb480b9bea73ff528829}{greedy\+\_\+random}}, \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11a0327841700a466600166ed61b1b18200}{greedy\+\_\+random\+\_\+fallback}}, \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11a557e0f060742f44e69f44502ad2f3d71}{simulated\+\_\+annealing}}, and \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11ae6bb6feafcc4de7705a8fe1782af973e}{solver\+\_\+maximum\+\_\+cost}}.
+
 \Hypertarget{namespacemetrics_a5bb0d7248ebf1214b792666f43dc57a5}\label{namespacemetrics_a5bb0d7248ebf1214b792666f43dc57a5} 
 \index{metrics@{metrics}!to\_string@{to\_string}}
 \index{to\_string@{to\_string}!metrics@{metrics}}
-\doxysubsubsection{\texorpdfstring{to\_string()}{to\_string()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\doxyparagraph{\texorpdfstring{to\_string()}{to\_string()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily std\+::string metrics\+::to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}}}]{paradigm }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -198,14 +238,34 @@ String representation of the paradigm.
 \end{DoxyReturn}
 
 
-\doxysubsection{Variable Documentation}
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00467}{467}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aac41e056424136b6e8c4e23dd6326efa1}{EXACT}}, \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aa589ab27e5d5232a3590c042c0dbe7818}{HEURISTIC}}, and \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aa1ef7e0df1cd1fdd87ecf432332cd8343}{METAHEURISTIC}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00890}{metrics\+::\+Meta\+Heuristic\+Metrics\+::build\+\_\+metrics()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00669}{metrics\+::\+Metrics\+::data()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00915}{metrics\+::\+Meta\+Heuristic\+Metrics\+::data()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00621}{metrics\+::\+Metrics\+::get\+\_\+base\+\_\+directory\+\_\+path()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00692}{metrics\+::\+Metrics\+::save\+\_\+to\+\_\+file()}}.
+
+
+
+\doxysubsubsection{Variable Documentation}
 \Hypertarget{namespacemetrics_a7f26a4cc7d54ffeeccdb8002576777cc}\label{namespacemetrics_a7f26a4cc7d54ffeeccdb8002576777cc} 
 \index{metrics@{metrics}!RESULTS\_PATH@{RESULTS\_PATH}}
 \index{RESULTS\_PATH@{RESULTS\_PATH}!metrics@{metrics}}
-\doxysubsubsection{\texorpdfstring{RESULTS\_PATH}{RESULTS\_PATH}}
+\doxyparagraph{\texorpdfstring{RESULTS\_PATH}{RESULTS\_PATH}}
 {\footnotesize\ttfamily const std\+::filesystem\+::path metrics\+::\+RESULTS\+\_\+\+PATH = std\+::filesystem\+::current\+\_\+path() / "{}results"{}}
 
 
 
 Path pointing to the root {\ttfamily results/} directory. 
+
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00449}{449}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00621}{metrics\+::\+Metrics\+::get\+\_\+base\+\_\+directory\+\_\+path()}}.
 

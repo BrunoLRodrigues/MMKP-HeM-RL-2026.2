@@ -1,4 +1,4 @@
-\doxysection{metrics\+::Metrics\+::Outputs Struct Reference}
+\doxysubsection{metrics\+::Metrics\+::Outputs Struct Reference}
 \hypertarget{structmetrics_1_1Metrics_1_1Outputs}{}\label{structmetrics_1_1Metrics_1_1Outputs}\index{metrics::Metrics::Outputs@{metrics::Metrics::Outputs}}
 
 
@@ -9,12 +9,12 @@ Captures the resulting performance and resource utilization metrics after alloca
 
 {\ttfamily \#include $<$mmkp.\+hpp$>$}
 
-\doxysubsubsection*{Public Member Functions}
+\doxysubsubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs}{Outputs}} \& \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a8690a985d2d7fc727fed427554b73ad5}{operator=}} (const \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs}{Outputs}} \&other)=default
 \end{DoxyCompactItemize}
-\doxysubsubsection*{Public Attributes}
+\doxysubsubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 double \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a368fc6ce81f784f3b6b8a75c2c0acb80}{execution\+\_\+time}} = 0.\+0
@@ -35,98 +35,166 @@ double \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs_a4e1167a2019ff1105f6
 \begin{DoxyCompactList}\small\item\em Total penalty cost of all unserved devices. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\doxysubsubsection{Detailed Description}
 Captures the resulting performance and resource utilization metrics after allocation. 
 
-\doxysubsection{Member Function Documentation}
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00543}{543}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+\doxysubsubsection{Member Function Documentation}
 \Hypertarget{structmetrics_1_1Metrics_1_1Outputs_a8690a985d2d7fc727fed427554b73ad5}\label{structmetrics_1_1Metrics_1_1Outputs_a8690a985d2d7fc727fed427554b73ad5} 
 \index{metrics::Metrics::Outputs@{metrics::Metrics::Outputs}!operator=@{operator=}}
 \index{operator=@{operator=}!metrics::Metrics::Outputs@{metrics::Metrics::Outputs}}
-\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+\doxyparagraph{\texorpdfstring{operator=()}{operator=()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs}{Outputs}} \& metrics\+::\+Metrics\+::\+Outputs\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs}{Outputs}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
 
 
 
-\doxysubsection{Member Data Documentation}
+\doxysubsubsection{Member Data Documentation}
 \Hypertarget{structmetrics_1_1Metrics_1_1Outputs_a63504efebf41100542416f616af0feb8}\label{structmetrics_1_1Metrics_1_1Outputs_a63504efebf41100542416f616af0feb8} 
 \index{metrics::Metrics::Outputs@{metrics::Metrics::Outputs}!devices\_served\_cc\_count@{devices\_served\_cc\_count}}
 \index{devices\_served\_cc\_count@{devices\_served\_cc\_count}!metrics::Metrics::Outputs@{metrics::Metrics::Outputs}}
-\doxysubsubsection{\texorpdfstring{devices\_served\_cc\_count}{devices\_served\_cc\_count}}
+\doxyparagraph{\texorpdfstring{devices\_served\_cc\_count}{devices\_served\_cc\_count}}
 {\footnotesize\ttfamily int metrics\+::\+Metrics\+::\+Outputs\+::devices\+\_\+served\+\_\+cc\+\_\+count = 0}
 
 
 
 Number of devices served by Cloud (CC) servers. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00547}{547}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00629}{metrics\+::\+Metrics\+::build\+\_\+metrics()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00669}{metrics\+::\+Metrics\+::data()}}.
+
 \Hypertarget{structmetrics_1_1Metrics_1_1Outputs_a9f2be9a1ce7348e932fd051127e1b9a2}\label{structmetrics_1_1Metrics_1_1Outputs_a9f2be9a1ce7348e932fd051127e1b9a2} 
 \index{metrics::Metrics::Outputs@{metrics::Metrics::Outputs}!devices\_served\_count@{devices\_served\_count}}
 \index{devices\_served\_count@{devices\_served\_count}!metrics::Metrics::Outputs@{metrics::Metrics::Outputs}}
-\doxysubsubsection{\texorpdfstring{devices\_served\_count}{devices\_served\_count}}
+\doxyparagraph{\texorpdfstring{devices\_served\_count}{devices\_served\_count}}
 {\footnotesize\ttfamily int metrics\+::\+Metrics\+::\+Outputs\+::devices\+\_\+served\+\_\+count = 0}
 
 
 
 Total number of served devices. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00545}{545}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00629}{metrics\+::\+Metrics\+::build\+\_\+metrics()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00669}{metrics\+::\+Metrics\+::data()}}.
+
 \Hypertarget{structmetrics_1_1Metrics_1_1Outputs_a285b2ef7b968ded5eb87885ddc3fa66f}\label{structmetrics_1_1Metrics_1_1Outputs_a285b2ef7b968ded5eb87885ddc3fa66f} 
 \index{metrics::Metrics::Outputs@{metrics::Metrics::Outputs}!devices\_served\_ec\_count@{devices\_served\_ec\_count}}
 \index{devices\_served\_ec\_count@{devices\_served\_ec\_count}!metrics::Metrics::Outputs@{metrics::Metrics::Outputs}}
-\doxysubsubsection{\texorpdfstring{devices\_served\_ec\_count}{devices\_served\_ec\_count}}
+\doxyparagraph{\texorpdfstring{devices\_served\_ec\_count}{devices\_served\_ec\_count}}
 {\footnotesize\ttfamily int metrics\+::\+Metrics\+::\+Outputs\+::devices\+\_\+served\+\_\+ec\+\_\+count = 0}
 
 
 
 Number of devices served by Edge (EC) servers. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00546}{546}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00629}{metrics\+::\+Metrics\+::build\+\_\+metrics()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00669}{metrics\+::\+Metrics\+::data()}}.
+
 \Hypertarget{structmetrics_1_1Metrics_1_1Outputs_a368fc6ce81f784f3b6b8a75c2c0acb80}\label{structmetrics_1_1Metrics_1_1Outputs_a368fc6ce81f784f3b6b8a75c2c0acb80} 
 \index{metrics::Metrics::Outputs@{metrics::Metrics::Outputs}!execution\_time@{execution\_time}}
 \index{execution\_time@{execution\_time}!metrics::Metrics::Outputs@{metrics::Metrics::Outputs}}
-\doxysubsubsection{\texorpdfstring{execution\_time}{execution\_time}}
+\doxyparagraph{\texorpdfstring{execution\_time}{execution\_time}}
 {\footnotesize\ttfamily double metrics\+::\+Metrics\+::\+Outputs\+::execution\+\_\+time = 0.\+0}
 
 
 
 Total algorithm runtime in seconds. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00544}{544}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00629}{metrics\+::\+Metrics\+::build\+\_\+metrics()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00669}{metrics\+::\+Metrics\+::data()}}.
+
 \Hypertarget{structmetrics_1_1Metrics_1_1Outputs_a03382964d564523b53111a2e2b15ec98}\label{structmetrics_1_1Metrics_1_1Outputs_a03382964d564523b53111a2e2b15ec98} 
 \index{metrics::Metrics::Outputs@{metrics::Metrics::Outputs}!servers\_used\_cc\_count@{servers\_used\_cc\_count}}
 \index{servers\_used\_cc\_count@{servers\_used\_cc\_count}!metrics::Metrics::Outputs@{metrics::Metrics::Outputs}}
-\doxysubsubsection{\texorpdfstring{servers\_used\_cc\_count}{servers\_used\_cc\_count}}
+\doxyparagraph{\texorpdfstring{servers\_used\_cc\_count}{servers\_used\_cc\_count}}
 {\footnotesize\ttfamily int metrics\+::\+Metrics\+::\+Outputs\+::servers\+\_\+used\+\_\+cc\+\_\+count = 0}
 
 
 
 Number of active Cloud (CC) servers. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00550}{550}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00629}{metrics\+::\+Metrics\+::build\+\_\+metrics()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00669}{metrics\+::\+Metrics\+::data()}}.
+
 \Hypertarget{structmetrics_1_1Metrics_1_1Outputs_a2d986cff5ef07331c9d0d7614b6887ee}\label{structmetrics_1_1Metrics_1_1Outputs_a2d986cff5ef07331c9d0d7614b6887ee} 
 \index{metrics::Metrics::Outputs@{metrics::Metrics::Outputs}!servers\_used\_count@{servers\_used\_count}}
 \index{servers\_used\_count@{servers\_used\_count}!metrics::Metrics::Outputs@{metrics::Metrics::Outputs}}
-\doxysubsubsection{\texorpdfstring{servers\_used\_count}{servers\_used\_count}}
+\doxyparagraph{\texorpdfstring{servers\_used\_count}{servers\_used\_count}}
 {\footnotesize\ttfamily int metrics\+::\+Metrics\+::\+Outputs\+::servers\+\_\+used\+\_\+count = 0}
 
 
 
 Total number of active servers hosting at least one device. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00548}{548}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00629}{metrics\+::\+Metrics\+::build\+\_\+metrics()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00669}{metrics\+::\+Metrics\+::data()}}.
+
 \Hypertarget{structmetrics_1_1Metrics_1_1Outputs_a199faec6d0b8a5aa706bef1f88ab96ca}\label{structmetrics_1_1Metrics_1_1Outputs_a199faec6d0b8a5aa706bef1f88ab96ca} 
 \index{metrics::Metrics::Outputs@{metrics::Metrics::Outputs}!servers\_used\_ec\_count@{servers\_used\_ec\_count}}
 \index{servers\_used\_ec\_count@{servers\_used\_ec\_count}!metrics::Metrics::Outputs@{metrics::Metrics::Outputs}}
-\doxysubsubsection{\texorpdfstring{servers\_used\_ec\_count}{servers\_used\_ec\_count}}
+\doxyparagraph{\texorpdfstring{servers\_used\_ec\_count}{servers\_used\_ec\_count}}
 {\footnotesize\ttfamily int metrics\+::\+Metrics\+::\+Outputs\+::servers\+\_\+used\+\_\+ec\+\_\+count = 0}
 
 
 
 Number of active Edge (EC) servers. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00549}{549}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00629}{metrics\+::\+Metrics\+::build\+\_\+metrics()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00669}{metrics\+::\+Metrics\+::data()}}.
+
 \Hypertarget{structmetrics_1_1Metrics_1_1Outputs_a4e1167a2019ff1105f6b3c7a4b24fd78}\label{structmetrics_1_1Metrics_1_1Outputs_a4e1167a2019ff1105f6b3c7a4b24fd78} 
 \index{metrics::Metrics::Outputs@{metrics::Metrics::Outputs}!total\_penalty\_cost@{total\_penalty\_cost}}
 \index{total\_penalty\_cost@{total\_penalty\_cost}!metrics::Metrics::Outputs@{metrics::Metrics::Outputs}}
-\doxysubsubsection{\texorpdfstring{total\_penalty\_cost}{total\_penalty\_cost}}
+\doxyparagraph{\texorpdfstring{total\_penalty\_cost}{total\_penalty\_cost}}
 {\footnotesize\ttfamily double metrics\+::\+Metrics\+::\+Outputs\+::total\+\_\+penalty\+\_\+cost = 0.\+0}
 
 
 
 Total penalty cost of all unserved devices. 
+
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00551}{551}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00629}{metrics\+::\+Metrics\+::build\+\_\+metrics()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00669}{metrics\+::\+Metrics\+::data()}}.
 
 
 

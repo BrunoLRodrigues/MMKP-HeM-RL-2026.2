@@ -21,6 +21,7 @@ constexpr int MAX_RUNS = 50;              ///< @brief Number of independent runs
 constexpr double CPLEX_TIME_LIMIT = 3600; ///< @brief Time limit in seconds for the CPLEX exact solver.
 constexpr double TEMPERATURE = 50.0;      ///< @brief Initial temperature for Simulated Annealing.
 constexpr double ALPHA = 0.9999;          ///< @brief Geometric cooling factor for Simulated Annealing.
+constexpr bool FIXED_PENALTY = false;     ///< @brief Whether the penalty (cost) of each device is fixed or can vary.
 
 /**
  * @brief Executes a specific algorithm configuration for the network resource allocation simulation.
@@ -105,7 +106,7 @@ void run_simulation(const metrics::Result& base, int option, int run_id) {
  */
 int main() {
     for (int devices_length = DEVICES_START; devices_length <= DEVICES_END; devices_length += DEVICES_STEP) {
-        metrics::Result base_state(devices_length, SERVICES, EC_LENGTH, CC_LENGTH);
+        metrics::Result base_state(devices_length, SERVICES, EC_LENGTH, CC_LENGTH, FIXED_PENALTY);
 
         for (int run = 1; run <= MAX_RUNS; run++) {
             for (int option = 0; option <= 3; option++) {

@@ -1,4 +1,4 @@
-\doxysection{include/metaheuristic.hpp File Reference}
+\doxysubsection{include/metaheuristic.hpp File Reference}
 \hypertarget{metaheuristic_8hpp}{}\label{metaheuristic_8hpp}\index{include/metaheuristic.hpp@{include/metaheuristic.hpp}}
 
 
@@ -22,37 +22,40 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \includegraphics[width=223pt]{metaheuristic_8hpp__dep__incl}
 \end{center}
 \end{figure}
-\doxysubsubsection*{Classes}
+\doxysubsubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::\+Move}}
 \begin{DoxyCompactList}\small\item\em Represents a reversible state transition within the neighborhood search. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Namespaces}
+\doxysubsubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
 namespace \mbox{\hyperlink{namespacemetaheuristic}{metaheuristic}}
 \begin{DoxyCompactList}\small\item\em Encapsulates meta-\/heuristic algorithms for network resource allocation. \end{DoxyCompactList}\item 
 namespace \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}}}
 \end{DoxyCompactItemize}
-\doxysubsubsection*{Functions}
+\doxysubsubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{Move}} \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a3043acb2774dc482b46e7ffc19f672a6}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::apply\+\_\+neighbor}} (\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} \&devices, \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} \&servers, int tries=10)
 \begin{DoxyCompactList}\small\item\em Applies a shift, insert, or swap neighborhood move to the current state. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a8a942dd816ecc741137762ec82b563a0}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::revert\+\_\+neighbor}} (\mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} \&devices, \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} \&servers, const \mbox{\hyperlink{structmetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_1_1Move}{Move}} \&move)
-\begin{DoxyCompactList}\small\item\em Reverts a previously applied neighborhood move in \$O( $\log$ N)\$ time. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Reverts a previously applied neighborhood move in $O(\log N)$ time. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a6297cb9a818da42479ae99fcb13ed8cf}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::simulated\+\_\+annealing}} (\mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}} \&state)
 \begin{DoxyCompactList}\small\item\em Executes the Simulated Annealing (SA) optimization algorithm. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespacemetaheuristic_a048f6eef02905cc9184c197939c3209a}{metaheuristic\+::boot}} (\mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}} \&state)
 \begin{DoxyCompactList}\small\item\em Initializes and launches the selected meta-\/heuristic algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Variables}
+\doxysubsubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 constexpr int \mbox{\hyperlink{namespacemetaheuristic_1_1anonymous__namespace_02metaheuristic_8hpp_03_a55eda76f1c1e58ce4654833f7dee433e}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::\+LOOP}} = 10
 \begin{DoxyCompactList}\small\item\em Number of inner-\/loop iterations (Markov chain length) executed per temperature level. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\doxysubsubsection{Detailed Description}
 Meta-\/heuristic optimization algorithms and neighborhood operators for MMKP. 
 
 Implements Simulated Annealing (SA) with incremental delta evaluation and shift/insert/swap neighborhood moves to refine initial constructive heuristic solutions. 
+
+Definition in file \mbox{\hyperlink{metaheuristic_8hpp_source}{metaheuristic.\+hpp}}.
+

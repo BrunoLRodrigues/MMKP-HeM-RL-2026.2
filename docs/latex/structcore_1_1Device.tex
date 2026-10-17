@@ -1,4 +1,4 @@
-\doxysection{core\+::Device Struct Reference}
+\doxysubsection{core\+::Device Struct Reference}
 \hypertarget{structcore_1_1Device}{}\label{structcore_1_1Device}\index{core::Device@{core::Device}}
 
 
@@ -9,14 +9,14 @@ Represents an IoT device requesting computational resources for a specific servi
 
 {\ttfamily \#include $<$mmkp.\+hpp$>$}
 
-\doxysubsubsection*{Public Member Functions}
+\doxysubsubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{structcore_1_1Device_a00b0a1ee58f48471ab0b80d92a639c14}{Device}} ()
 \begin{DoxyCompactList}\small\item\em Default constructor initializing an empty/placeholder device. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structcore_1_1Device_a4912c64725d31feb93465a55d332a408}{Device}} (int id\+\_\+, double cost\+\_\+, double cpu\+\_\+, double mem\+\_\+, double sto\+\_\+, int tasks\+\_\+, int service\+\_\+)
 \begin{DoxyCompactList}\small\item\em Parameterized constructor initializing a device with specific resource demands. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Public Attributes}
+\doxysubsubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 int \mbox{\hyperlink{structcore_1_1Device_ac83e97cbd9fa5273e048d20efd117c78}{id}}
@@ -39,24 +39,32 @@ int \mbox{\hyperlink{structcore_1_1Device_ae7592c793ae91f1c8b6c0d2b0fcc3538}{ser
 \begin{DoxyCompactList}\small\item\em ID of the server hosting this device ({\ttfamily -\/1} if unserved). \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\doxysubsubsection{Detailed Description}
 Represents an IoT device requesting computational resources for a specific service. 
 
-\doxysubsection{Constructor \& Destructor Documentation}
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00034}{34}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
 \Hypertarget{structcore_1_1Device_a00b0a1ee58f48471ab0b80d92a639c14}\label{structcore_1_1Device_a00b0a1ee58f48471ab0b80d92a639c14} 
 \index{core::Device@{core::Device}!Device@{Device}}
 \index{Device@{Device}!core::Device@{core::Device}}
-\doxysubsubsection{\texorpdfstring{Device()}{Device()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\doxyparagraph{\texorpdfstring{Device()}{Device()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily core\+::\+Device\+::\+Device (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
 Default constructor initializing an empty/placeholder device. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00048}{48}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
 \Hypertarget{structcore_1_1Device_a4912c64725d31feb93465a55d332a408}\label{structcore_1_1Device_a4912c64725d31feb93465a55d332a408} 
 \index{core::Device@{core::Device}!Device@{Device}}
 \index{Device@{Device}!core::Device@{core::Device}}
-\doxysubsubsection{\texorpdfstring{Device()}{Device()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\doxyparagraph{\texorpdfstring{Device()}{Device()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily core\+::\+Device\+::\+Device (\begin{DoxyParamCaption}\item[{int}]{id\+\_\+,  }\item[{double}]{cost\+\_\+,  }\item[{double}]{cpu\+\_\+,  }\item[{double}]{mem\+\_\+,  }\item[{double}]{sto\+\_\+,  }\item[{int}]{tasks\+\_\+,  }\item[{int}]{service\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -82,96 +90,172 @@ Parameterized constructor initializing a device with specific resource demands.
 \end{DoxyParams}
 
 
-\doxysubsection{Member Data Documentation}
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00060}{60}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+\doxysubsubsection{Member Data Documentation}
 \Hypertarget{structcore_1_1Device_abcd568ad40b2da1bf96e020eb373f395}\label{structcore_1_1Device_abcd568ad40b2da1bf96e020eb373f395} 
 \index{core::Device@{core::Device}!cost@{cost}}
 \index{cost@{cost}!core::Device@{core::Device}}
-\doxysubsubsection{\texorpdfstring{cost}{cost}}
+\doxyparagraph{\texorpdfstring{cost}{cost}}
 {\footnotesize\ttfamily double core\+::\+Device\+::cost}
 
 
 
 SLA penalty cost incurred if the device is not served. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00036}{36}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00143}{core\+::\+Server\+::add\+\_\+service()}}, \mbox{\hyperlink{metaheuristic_8hpp_source_l00054}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::apply\+\_\+neighbor()}}, \mbox{\hyperlink{heuristic_8hpp_source_l00032}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+cost\+\_\+benefit()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00163}{core\+::\+Server\+::rmv\+\_\+service()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l01061}{display\+::show\+\_\+device()}}.
+
 \Hypertarget{structcore_1_1Device_ac8f4ac74433e443f9a0144118539cc3d}\label{structcore_1_1Device_ac8f4ac74433e443f9a0144118539cc3d} 
 \index{core::Device@{core::Device}!cpu@{cpu}}
 \index{cpu@{cpu}!core::Device@{core::Device}}
-\doxysubsubsection{\texorpdfstring{cpu}{cpu}}
+\doxyparagraph{\texorpdfstring{cpu}{cpu}}
 {\footnotesize\ttfamily double core\+::\+Device\+::cpu}
 
 
 
 Required processing capacity (CPU). 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00037}{37}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00143}{core\+::\+Server\+::add\+\_\+service()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00130}{core\+::\+Server\+::can\+\_\+serve()}}, \mbox{\hyperlink{heuristic_8hpp_source_l00032}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+cost\+\_\+benefit()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00163}{core\+::\+Server\+::rmv\+\_\+service()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l01061}{display\+::show\+\_\+device()}}.
+
 \Hypertarget{structcore_1_1Device_ac83e97cbd9fa5273e048d20efd117c78}\label{structcore_1_1Device_ac83e97cbd9fa5273e048d20efd117c78} 
 \index{core::Device@{core::Device}!id@{id}}
 \index{id@{id}!core::Device@{core::Device}}
-\doxysubsubsection{\texorpdfstring{id}{id}}
+\doxyparagraph{\texorpdfstring{id}{id}}
 {\footnotesize\ttfamily int core\+::\+Device\+::id}
 
 
 
 Unique 1-\/based identifier of the device. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00035}{35}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00143}{core\+::\+Server\+::add\+\_\+service()}}, \mbox{\hyperlink{heuristic_8hpp_source_l00032}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+cost\+\_\+benefit()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00163}{core\+::\+Server\+::rmv\+\_\+service()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l01061}{display\+::show\+\_\+device()}}.
+
 \Hypertarget{structcore_1_1Device_ab995063705eec1a4eeafcff73b32a7c7}\label{structcore_1_1Device_ab995063705eec1a4eeafcff73b32a7c7} 
 \index{core::Device@{core::Device}!mem@{mem}}
 \index{mem@{mem}!core::Device@{core::Device}}
-\doxysubsubsection{\texorpdfstring{mem}{mem}}
+\doxyparagraph{\texorpdfstring{mem}{mem}}
 {\footnotesize\ttfamily double core\+::\+Device\+::mem}
 
 
 
 Required memory capacity (MEM). 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00038}{38}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00143}{core\+::\+Server\+::add\+\_\+service()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00130}{core\+::\+Server\+::can\+\_\+serve()}}, \mbox{\hyperlink{heuristic_8hpp_source_l00032}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+cost\+\_\+benefit()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00163}{core\+::\+Server\+::rmv\+\_\+service()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l01061}{display\+::show\+\_\+device()}}.
+
 \Hypertarget{structcore_1_1Device_a835d0367af9fbc3419f6fb8a114760e3}\label{structcore_1_1Device_a835d0367af9fbc3419f6fb8a114760e3} 
 \index{core::Device@{core::Device}!served@{served}}
 \index{served@{served}!core::Device@{core::Device}}
-\doxysubsubsection{\texorpdfstring{served}{served}}
+\doxyparagraph{\texorpdfstring{served}{served}}
 {\footnotesize\ttfamily bool core\+::\+Device\+::served = false}
 
 
 
 Flag indicating whether the device is currently allocated to a server. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00042}{42}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00143}{core\+::\+Server\+::add\+\_\+service()}}, \mbox{\hyperlink{metaheuristic_8hpp_source_l00054}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::apply\+\_\+neighbor()}}, \mbox{\hyperlink{heuristic_8hpp_source_l00032}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+cost\+\_\+benefit()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00163}{core\+::\+Server\+::rmv\+\_\+service()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l01061}{display\+::show\+\_\+device()}}.
+
 \Hypertarget{structcore_1_1Device_ae7592c793ae91f1c8b6c0d2b0fcc3538}\label{structcore_1_1Device_ae7592c793ae91f1c8b6c0d2b0fcc3538} 
 \index{core::Device@{core::Device}!server\_id@{server\_id}}
 \index{server\_id@{server\_id}!core::Device@{core::Device}}
-\doxysubsubsection{\texorpdfstring{server\_id}{server\_id}}
+\doxyparagraph{\texorpdfstring{server\_id}{server\_id}}
 {\footnotesize\ttfamily int core\+::\+Device\+::server\+\_\+id = -\/1}
 
 
 
 ID of the server hosting this device ({\ttfamily -\/1} if unserved). 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00043}{43}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00143}{core\+::\+Server\+::add\+\_\+service()}}, \mbox{\hyperlink{metaheuristic_8hpp_source_l00054}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::apply\+\_\+neighbor()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00163}{core\+::\+Server\+::rmv\+\_\+service()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l01061}{display\+::show\+\_\+device()}}.
+
 \Hypertarget{structcore_1_1Device_a26fe603e39b21b481582171766b30ab5}\label{structcore_1_1Device_a26fe603e39b21b481582171766b30ab5} 
 \index{core::Device@{core::Device}!service@{service}}
 \index{service@{service}!core::Device@{core::Device}}
-\doxysubsubsection{\texorpdfstring{service}{service}}
+\doxyparagraph{\texorpdfstring{service}{service}}
 {\footnotesize\ttfamily int core\+::\+Device\+::service}
 
 
 
 Identifier of the service template assigned to this device. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00041}{41}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l01061}{display\+::show\+\_\+device()}}.
+
 \Hypertarget{structcore_1_1Device_a5b35cbc18886c7fbcc22912e64e014d1}\label{structcore_1_1Device_a5b35cbc18886c7fbcc22912e64e014d1} 
 \index{core::Device@{core::Device}!sto@{sto}}
 \index{sto@{sto}!core::Device@{core::Device}}
-\doxysubsubsection{\texorpdfstring{sto}{sto}}
+\doxyparagraph{\texorpdfstring{sto}{sto}}
 {\footnotesize\ttfamily double core\+::\+Device\+::sto}
 
 
 
 Required storage capacity (STO). 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00039}{39}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00143}{core\+::\+Server\+::add\+\_\+service()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00130}{core\+::\+Server\+::can\+\_\+serve()}}, \mbox{\hyperlink{heuristic_8hpp_source_l00032}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+cost\+\_\+benefit()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00163}{core\+::\+Server\+::rmv\+\_\+service()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l01061}{display\+::show\+\_\+device()}}.
+
 \Hypertarget{structcore_1_1Device_a08dbaad39cf536ab7baa6923664f3a26}\label{structcore_1_1Device_a08dbaad39cf536ab7baa6923664f3a26} 
 \index{core::Device@{core::Device}!tasks@{tasks}}
 \index{tasks@{tasks}!core::Device@{core::Device}}
-\doxysubsubsection{\texorpdfstring{tasks}{tasks}}
+\doxyparagraph{\texorpdfstring{tasks}{tasks}}
 {\footnotesize\ttfamily int core\+::\+Device\+::tasks}
 
 
 
 Number of atomic tasks composing the requested service. 
+
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00040}{40}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l01061}{display\+::show\+\_\+device()}}.
 
 
 

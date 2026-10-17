@@ -201,7 +201,7 @@ namespace convert {
 
     /**
      * @brief Calculates a percentage and converts it to a formatted string.
-     * @details Computes $(\f$\text\f${numerator} / \f$\text\f${denominator}) \f$\times\f$ 100.0$ and formats it to `precision` decimal places. Safely returns `0.0` when `denominator == 0.0`.
+     * @details Computes `(numerator / denominator) * 100.0` and formats it to `precision` decimal places. Safely returns `0.0` when `denominator == 0.0`.
      * @param numerator The value representing the part of the total.
      * @param denominator The value representing the total.
      * @param precision The number of decimal places for the resulting percentage string.
@@ -272,11 +272,11 @@ namespace randomness {
     }
 
     /**
-     * @brief Generates a uniform random number within a specified inclusive interval $[\f$\text\f${min}, \f$\text\f${max}]$.
+     * @brief Generates a uniform random number within a specified inclusive interval `[min, max]`.
      * @tparam T The numeric type (must satisfy `std::is_arithmetic_v<T>`).
      * @param min The lower bound of the interval (inclusive).
      * @param max The upper bound of the interval (inclusive).
-     * @return A uniformly distributed random number within $[\f$\text\f${min}, \f$\text\f${max}]$.
+     * @return A uniformly distributed random number within `[min, max]`.
      * @throws std::invalid_argument If `min > max`.
      */
     template<typename T>
@@ -296,13 +296,13 @@ namespace randomness {
     }
 
     /**
-     * @brief Generates a random number within $[\f$\text\f${min}, \f$\text\f${max}]$, excluding values present in `exclude`.
+     * @brief Generates a random number within `[min, max]`, excluding values present in `exclude`.
      * @details The generated number is automatically appended to `exclude` to prevent future duplicates.
      * @tparam T The numeric type (must satisfy `std::is_arithmetic_v<T>`).
      * @param min The lower bound of the interval (inclusive).
      * @param max The upper bound of the interval (inclusive).
      * @param exclude A reference to a vector containing values to be excluded.
-     * @return A random number within $[\f$\text\f${min}, \f$\text\f${max}]$ not previously in `exclude`.
+     * @return A random number within `[min, max]` not previously in `exclude`.
      * @throws std::invalid_argument If `min > max`, or if all possible integral values in the range are already excluded.
      */
     template<typename T>
@@ -337,7 +337,7 @@ namespace randomness {
     }
 
     /**
-     * @brief Creates a randomly shuffled vector containing all integers in the inclusive range $[\f$\text\f${min}, \f$\text\f${max}]$.
+     * @brief Creates a randomly shuffled vector containing all integers in the inclusive range `[min, max]`.
      * @tparam T The integral type for the range.
      * @param min The lower bound of the range (inclusive).
      * @param max The upper bound of the range (inclusive).

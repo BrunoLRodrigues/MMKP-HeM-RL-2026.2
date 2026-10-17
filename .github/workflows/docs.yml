@@ -2,7 +2,7 @@ name: Deploy Doxygen Documentation
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, master ]
   workflow_dispatch:
 
 permissions:
@@ -31,11 +31,25 @@ jobs:
 
       - name: Generate HTML and PDF documentation
         run: |
+          # Remove os badges remotos do README.md antes do Doxygen para não quebrar o LaTeX
           sed -i '/img.shields.io/d' README.md
-          sed -i 's/\$\\ge 3.10\$/\>= 3.10/g' README.md
 
+          # Gera docs/html e docs/latex
           doxygen docs/Doxyfile
-          make -C docs/latex
+
+          # Remove comandos de emojis (\UTF{...}) dos arquivos .tex gerados
+          sed -i 's/\\UTF{[0-9A-Fa-f]*}//g' docs/latex/*.tex || true
+
+          # Compila o PDF em modo non-stop (3 passadas + índice para sumário e referências completas)
+          cd docs/latex
+          pdflatex -interaction=nonstopmode refman.tex || true
+          makeindex refman.idx || true
+          pdflatex -interaction=nonstopmode refman.tex || true
+          pdflatex -interaction=nonstopmode refman.tex || true
+          cd ../..
+
+          # Verifica se o PDF foi realmente gerado e copia para a pasta HTML
+          test -f docs/latex/refman.pdf
           cp docs/latex/refman.pdf docs/html/MMKP_Documentation.pdf
 
       - name: Setup Pages

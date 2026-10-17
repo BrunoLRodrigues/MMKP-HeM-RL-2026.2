@@ -1,4 +1,4 @@
-\doxysection{src/main.cpp File Reference}
+\doxysubsection{src/main.cpp File Reference}
 \hypertarget{main_8cpp}{}\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
 
 
@@ -16,14 +16,14 @@ Include dependency graph for main.\+cpp\+:\nopagebreak
 \includegraphics[width=350pt]{main_8cpp__incl}
 \end{center}
 \end{figure}
-\doxysubsubsection*{Functions}
+\doxysubsubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{main_8cpp_ac2e90b5f462e53a2ae61c61d92846023}{run\+\_\+simulation}} (const \mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}} \&base, int option, int run\+\_\+id)
 \begin{DoxyCompactList}\small\item\em Executes a specific algorithm configuration for the network resource allocation simulation. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
 \begin{DoxyCompactList}\small\item\em Main entry point for the network resource allocation simulation benchmark. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Variables}
+\doxysubsubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 constexpr int \mbox{\hyperlink{main_8cpp_a97af17a128538a7283ef3d4243fe4c9f}{SERVICES}} = 100
@@ -45,19 +45,25 @@ constexpr double \mbox{\hyperlink{main_8cpp_aee3b0bf3c221f2b523053029839c7265}{C
 constexpr double \mbox{\hyperlink{main_8cpp_a6ee0d833caf468544d3742ba723e4bcf}{TEMPERATURE}} = 50.\+0
 \begin{DoxyCompactList}\small\item\em Initial temperature for Simulated Annealing. \end{DoxyCompactList}\item 
 constexpr double \mbox{\hyperlink{main_8cpp_ac8d8134e0885e1c88485a079ad5d638c}{ALPHA}} = 0.\+9999
-\begin{DoxyCompactList}\small\item\em Geometric cooling factor for Simulated Annealing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Geometric cooling factor for Simulated Annealing. \end{DoxyCompactList}\item 
+constexpr bool \mbox{\hyperlink{main_8cpp_abe93e9a692a8e515cac8c530b0259ea9}{FIXED\+\_\+\+PENALTY}} = false
+\begin{DoxyCompactList}\small\item\em Whether the penalty (cost) of each device is fixed or can vary. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\doxysubsubsection{Detailed Description}
 Entry point and benchmark runner for the MMKP Io\+T-\/\+EC-\/\+CC resource allocation simulator. 
 
 Defines the experimental parameters (scaling of IoT devices, server counts, CPLEX time limit, and Simulated Annealing cooling schedule) and orchestrates the execution across Exact, Heuristic, and Meta-\/heuristic paradigms. 
 
-\doxysubsection{Function Documentation}
+Definition in file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+\doxysubsubsection{Function Documentation}
 \Hypertarget{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
 \index{main.cpp@{main.cpp}!main@{main}}
 \index{main@{main}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{main()}{main()}}
+\doxyparagraph{\texorpdfstring{main()}{main()}}
 {\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
@@ -69,10 +75,18 @@ Iterates over the configured range of device counts and independent runs, execut
 \begin{DoxyReturn}{Returns}
 int Exit status code ({\ttfamily 0} on normal termination). 
 \end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00107}{107}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+References \mbox{\hyperlink{main_8cpp_source_l00019}{CC\+\_\+\+LENGTH}}, \mbox{\hyperlink{main_8cpp_source_l00017}{DEVICES\+\_\+\+END}}, \mbox{\hyperlink{main_8cpp_source_l00015}{DEVICES\+\_\+\+START}}, \mbox{\hyperlink{main_8cpp_source_l00016}{DEVICES\+\_\+\+STEP}}, \mbox{\hyperlink{main_8cpp_source_l00018}{EC\+\_\+\+LENGTH}}, \mbox{\hyperlink{main_8cpp_source_l00024}{FIXED\+\_\+\+PENALTY}}, \mbox{\hyperlink{main_8cpp_source_l00020}{MAX\+\_\+\+RUNS}}, \mbox{\hyperlink{main_8cpp_source_l00043}{run\+\_\+simulation()}}, and \mbox{\hyperlink{main_8cpp_source_l00014}{SERVICES}}.
+
 \Hypertarget{main_8cpp_ac2e90b5f462e53a2ae61c61d92846023}\label{main_8cpp_ac2e90b5f462e53a2ae61c61d92846023} 
 \index{main.cpp@{main.cpp}!run\_simulation@{run\_simulation}}
 \index{run\_simulation@{run\_simulation}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{run\_simulation()}{run\_simulation()}}
+\doxyparagraph{\texorpdfstring{run\_simulation()}{run\_simulation()}}
 {\footnotesize\ttfamily void run\+\_\+simulation (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}} \&}]{base,  }\item[{int}]{option,  }\item[{int}]{run\+\_\+id }\end{DoxyParamCaption})}
 
 
@@ -101,104 +115,214 @@ Instantiates the appropriate metrics tracker based on the selected option, dispa
 \end{DoxyParams}
 
 
-\doxysubsection{Variable Documentation}
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00043}{43}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+References \mbox{\hyperlink{main_8cpp_source_l00023}{ALPHA}}, \mbox{\hyperlink{heuristic_8hpp_source_l00196}{heuristic\+::boot()}}, \mbox{\hyperlink{metaheuristic_8hpp_source_l00221}{metaheuristic\+::boot()}}, \mbox{\hyperlink{exact_8hpp_source_l00172}{exact\+::boot()}}, \mbox{\hyperlink{mmkp_8hpp_source_l01001}{metrics\+::calculate\+\_\+metrics()}}, \mbox{\hyperlink{main_8cpp_source_l00021}{CPLEX\+\_\+\+TIME\+\_\+\+LIMIT}}, \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aac41e056424136b6e8c4e23dd6326efa1}{metrics\+::\+EXACT}}, \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11abe0511aca70b810b2ed30f6c24c4a620}{metrics\+::greedy\+\_\+cost\+\_\+benefit}}, \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11aa845e2c8be77bb480b9bea73ff528829}{metrics\+::greedy\+\_\+random}}, \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11a0327841700a466600166ed61b1b18200}{metrics\+::greedy\+\_\+random\+\_\+fallback}}, \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aa589ab27e5d5232a3590c042c0dbe7818}{metrics\+::\+HEURISTIC}}, \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aa1ef7e0df1cd1fdd87ecf432332cd8343}{metrics\+::\+METAHEURISTIC}}, \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aab50339a10e1de285ac99d4c3990b8693}{metrics\+::\+NONE}}, \mbox{\hyperlink{mmkp_8hpp_source_l01263}{metrics\+::save\+\_\+results()}}, \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11a557e0f060742f44e69f44502ad2f3d71}{metrics\+::simulated\+\_\+annealing}}, \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11ae6bb6feafcc4de7705a8fe1782af973e}{metrics\+::solver\+\_\+maximum\+\_\+cost}}, \mbox{\hyperlink{mmkp_8hpp_source_l00931}{metrics\+::\+Result\+::stats}}, and \mbox{\hyperlink{main_8cpp_source_l00022}{TEMPERATURE}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_source_l00107}{main()}}.
+
+
+
+\doxysubsubsection{Variable Documentation}
 \Hypertarget{main_8cpp_ac8d8134e0885e1c88485a079ad5d638c}\label{main_8cpp_ac8d8134e0885e1c88485a079ad5d638c} 
 \index{main.cpp@{main.cpp}!ALPHA@{ALPHA}}
 \index{ALPHA@{ALPHA}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{ALPHA}{ALPHA}}
+\doxyparagraph{\texorpdfstring{ALPHA}{ALPHA}}
 {\footnotesize\ttfamily constexpr double ALPHA = 0.\+9999\hspace{0.3cm}{\ttfamily [constexpr]}}
 
 
 
 Geometric cooling factor for Simulated Annealing. 
 
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_source_l00043}{run\+\_\+simulation()}}.
+
 \Hypertarget{main_8cpp_ac9605b81b1ba727a64be5293e7e6830d}\label{main_8cpp_ac9605b81b1ba727a64be5293e7e6830d} 
 \index{main.cpp@{main.cpp}!CC\_LENGTH@{CC\_LENGTH}}
 \index{CC\_LENGTH@{CC\_LENGTH}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{CC\_LENGTH}{CC\_LENGTH}}
+\doxyparagraph{\texorpdfstring{CC\_LENGTH}{CC\_LENGTH}}
 {\footnotesize\ttfamily constexpr int CC\+\_\+\+LENGTH = 1\hspace{0.3cm}{\ttfamily [constexpr]}}
 
 
 
 Total number of Cloud Computing (CC) servers available. 
 
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00019}{19}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_source_l00107}{main()}}.
+
 \Hypertarget{main_8cpp_aee3b0bf3c221f2b523053029839c7265}\label{main_8cpp_aee3b0bf3c221f2b523053029839c7265} 
 \index{main.cpp@{main.cpp}!CPLEX\_TIME\_LIMIT@{CPLEX\_TIME\_LIMIT}}
 \index{CPLEX\_TIME\_LIMIT@{CPLEX\_TIME\_LIMIT}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{CPLEX\_TIME\_LIMIT}{CPLEX\_TIME\_LIMIT}}
+\doxyparagraph{\texorpdfstring{CPLEX\_TIME\_LIMIT}{CPLEX\_TIME\_LIMIT}}
 {\footnotesize\ttfamily constexpr double CPLEX\+\_\+\+TIME\+\_\+\+LIMIT = 3600\hspace{0.3cm}{\ttfamily [constexpr]}}
 
 
 
 Time limit in seconds for the CPLEX exact solver. 
 
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00021}{21}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_source_l00043}{run\+\_\+simulation()}}.
+
 \Hypertarget{main_8cpp_aab824fb582166fcccb57753d354abeae}\label{main_8cpp_aab824fb582166fcccb57753d354abeae} 
 \index{main.cpp@{main.cpp}!DEVICES\_END@{DEVICES\_END}}
 \index{DEVICES\_END@{DEVICES\_END}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{DEVICES\_END}{DEVICES\_END}}
+\doxyparagraph{\texorpdfstring{DEVICES\_END}{DEVICES\_END}}
 {\footnotesize\ttfamily constexpr int DEVICES\+\_\+\+END = 20000\hspace{0.3cm}{\ttfamily [constexpr]}}
 
 
 
 Maximum number of IoT devices in the scaling benchmark. 
 
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00017}{17}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_source_l00107}{main()}}.
+
 \Hypertarget{main_8cpp_a388d4bbd8ca214abdbc3a5e4e7cfc30d}\label{main_8cpp_a388d4bbd8ca214abdbc3a5e4e7cfc30d} 
 \index{main.cpp@{main.cpp}!DEVICES\_START@{DEVICES\_START}}
 \index{DEVICES\_START@{DEVICES\_START}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{DEVICES\_START}{DEVICES\_START}}
+\doxyparagraph{\texorpdfstring{DEVICES\_START}{DEVICES\_START}}
 {\footnotesize\ttfamily constexpr int DEVICES\+\_\+\+START = 10000\hspace{0.3cm}{\ttfamily [constexpr]}}
 
 
 
 Initial number of IoT devices in the scaling benchmark. 
 
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00015}{15}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_source_l00107}{main()}}.
+
 \Hypertarget{main_8cpp_a09403595097b1f51af63092dd418f351}\label{main_8cpp_a09403595097b1f51af63092dd418f351} 
 \index{main.cpp@{main.cpp}!DEVICES\_STEP@{DEVICES\_STEP}}
 \index{DEVICES\_STEP@{DEVICES\_STEP}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{DEVICES\_STEP}{DEVICES\_STEP}}
+\doxyparagraph{\texorpdfstring{DEVICES\_STEP}{DEVICES\_STEP}}
 {\footnotesize\ttfamily constexpr int DEVICES\+\_\+\+STEP = 1000\hspace{0.3cm}{\ttfamily [constexpr]}}
 
 
 
 Increment step for the number of IoT devices per batch. 
 
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_source_l00107}{main()}}.
+
 \Hypertarget{main_8cpp_a182bbb04b1b749e22fcf1db5320565bf}\label{main_8cpp_a182bbb04b1b749e22fcf1db5320565bf} 
 \index{main.cpp@{main.cpp}!EC\_LENGTH@{EC\_LENGTH}}
 \index{EC\_LENGTH@{EC\_LENGTH}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{EC\_LENGTH}{EC\_LENGTH}}
+\doxyparagraph{\texorpdfstring{EC\_LENGTH}{EC\_LENGTH}}
 {\footnotesize\ttfamily constexpr int EC\+\_\+\+LENGTH = 499\hspace{0.3cm}{\ttfamily [constexpr]}}
 
 
 
 Total number of Edge Computing (EC) servers available. 
 
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00018}{18}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_source_l00107}{main()}}.
+
+\Hypertarget{main_8cpp_abe93e9a692a8e515cac8c530b0259ea9}\label{main_8cpp_abe93e9a692a8e515cac8c530b0259ea9} 
+\index{main.cpp@{main.cpp}!FIXED\_PENALTY@{FIXED\_PENALTY}}
+\index{FIXED\_PENALTY@{FIXED\_PENALTY}!main.cpp@{main.cpp}}
+\doxyparagraph{\texorpdfstring{FIXED\_PENALTY}{FIXED\_PENALTY}}
+{\footnotesize\ttfamily constexpr bool FIXED\+\_\+\+PENALTY = false\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Whether the penalty (cost) of each device is fixed or can vary. 
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_source_l00107}{main()}}.
+
 \Hypertarget{main_8cpp_a4dd65ede7d682789089fe5b304cb91cd}\label{main_8cpp_a4dd65ede7d682789089fe5b304cb91cd} 
 \index{main.cpp@{main.cpp}!MAX\_RUNS@{MAX\_RUNS}}
 \index{MAX\_RUNS@{MAX\_RUNS}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{MAX\_RUNS}{MAX\_RUNS}}
+\doxyparagraph{\texorpdfstring{MAX\_RUNS}{MAX\_RUNS}}
 {\footnotesize\ttfamily constexpr int MAX\+\_\+\+RUNS = 50\hspace{0.3cm}{\ttfamily [constexpr]}}
 
 
 
 Number of independent runs per instance configuration. 
 
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_source_l00107}{main()}}.
+
 \Hypertarget{main_8cpp_a97af17a128538a7283ef3d4243fe4c9f}\label{main_8cpp_a97af17a128538a7283ef3d4243fe4c9f} 
 \index{main.cpp@{main.cpp}!SERVICES@{SERVICES}}
 \index{SERVICES@{SERVICES}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{SERVICES}{SERVICES}}
+\doxyparagraph{\texorpdfstring{SERVICES}{SERVICES}}
 {\footnotesize\ttfamily constexpr int SERVICES = 100\hspace{0.3cm}{\ttfamily [constexpr]}}
 
 
 
 Total number of distinct service profiles generated. 
 
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00014}{14}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_source_l00107}{main()}}.
+
 \Hypertarget{main_8cpp_a6ee0d833caf468544d3742ba723e4bcf}\label{main_8cpp_a6ee0d833caf468544d3742ba723e4bcf} 
 \index{main.cpp@{main.cpp}!TEMPERATURE@{TEMPERATURE}}
 \index{TEMPERATURE@{TEMPERATURE}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{TEMPERATURE}{TEMPERATURE}}
+\doxyparagraph{\texorpdfstring{TEMPERATURE}{TEMPERATURE}}
 {\footnotesize\ttfamily constexpr double TEMPERATURE = 50.\+0\hspace{0.3cm}{\ttfamily [constexpr]}}
 
 
 
 Initial temperature for Simulated Annealing. 
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_source_l00043}{run\+\_\+simulation()}}.
 

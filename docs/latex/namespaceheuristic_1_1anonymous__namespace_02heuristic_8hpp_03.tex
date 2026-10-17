@@ -1,6 +1,6 @@
-\doxysection{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\} Namespace Reference}
+\doxysubsection{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\} Namespace Reference}
 \hypertarget{namespaceheuristic_1_1anonymous__namespace_02heuristic_8hpp_03}{}\label{namespaceheuristic_1_1anonymous__namespace_02heuristic_8hpp_03}\index{heuristic::anonymous\_namespace\lcurly{}heuristic.hpp\rcurly{}@{heuristic::anonymous\_namespace\lcurly{}heuristic.hpp\rcurly{}}}
-\doxysubsubsection*{Functions}
+\doxysubsubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{namespaceheuristic_1_1anonymous__namespace_02heuristic_8hpp_03_ac5d67e28eb3779f6cea40564f8e57667}{greedy\+\_\+cost\+\_\+benefit}} (\mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}} \&state)
@@ -11,11 +11,11 @@ void \mbox{\hyperlink{namespaceheuristic_1_1anonymous__namespace_02heuristic_8hp
 \begin{DoxyCompactList}\small\item\em Executes a two-\/stage random fallback resource allocation. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Function Documentation}
+\doxysubsubsection{Function Documentation}
 \Hypertarget{namespaceheuristic_1_1anonymous__namespace_02heuristic_8hpp_03_ac5d67e28eb3779f6cea40564f8e57667}\label{namespaceheuristic_1_1anonymous__namespace_02heuristic_8hpp_03_ac5d67e28eb3779f6cea40564f8e57667} 
 \index{heuristic::anonymous\_namespace\lcurly{}heuristic.hpp\rcurly{}@{heuristic::anonymous\_namespace\lcurly{}heuristic.hpp\rcurly{}}!greedy\_cost\_benefit@{greedy\_cost\_benefit}}
 \index{greedy\_cost\_benefit@{greedy\_cost\_benefit}!heuristic::anonymous\_namespace\lcurly{}heuristic.hpp\rcurly{}@{heuristic::anonymous\_namespace\lcurly{}heuristic.hpp\rcurly{}}}
-\doxysubsubsection{\texorpdfstring{greedy\_cost\_benefit()}{greedy\_cost\_benefit()}}
+\doxyparagraph{\texorpdfstring{greedy\_cost\_benefit()}{greedy\_cost\_benefit()}}
 {\footnotesize\ttfamily void heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+cost\+\_\+benefit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}} \&}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -29,10 +29,22 @@ Normalizes device resource demands against total system capacity to compute a mu
 {\em state} & The unified simulation result state containing devices, servers, and metrics. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{heuristic_8hpp_source_l00032}{32}} of file \mbox{\hyperlink{heuristic_8hpp_source}{heuristic.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l00143}{core\+::\+Server\+::add\+\_\+service()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00130}{core\+::\+Server\+::can\+\_\+serve()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00036}{core\+::\+Device\+::cost}}, \mbox{\hyperlink{mmkp_8hpp_source_l00037}{core\+::\+Device\+::cpu}}, \mbox{\hyperlink{mmkp_8hpp_source_l00075}{core\+::\+Supply\+::cpu}}, \mbox{\hyperlink{mmkp_8hpp_source_l00104}{core\+::\+Server\+::cpu}}, \mbox{\hyperlink{mmkp_8hpp_source_l00929}{metrics\+::\+Result\+::devices}}, \mbox{\hyperlink{heuristic_8hpp_source_l00032}{greedy\+\_\+cost\+\_\+benefit()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00035}{core\+::\+Device\+::id}}, \mbox{\hyperlink{mmkp_8hpp_source_l00038}{core\+::\+Device\+::mem}}, \mbox{\hyperlink{mmkp_8hpp_source_l00076}{core\+::\+Supply\+::mem}}, \mbox{\hyperlink{mmkp_8hpp_source_l00105}{core\+::\+Server\+::mem}}, \mbox{\hyperlink{mmkp_8hpp_source_l00042}{core\+::\+Device\+::served}}, \mbox{\hyperlink{mmkp_8hpp_source_l00930}{metrics\+::\+Result\+::servers}}, \mbox{\hyperlink{mmkp_8hpp_source_l00931}{metrics\+::\+Result\+::stats}}, \mbox{\hyperlink{mmkp_8hpp_source_l00039}{core\+::\+Device\+::sto}}, \mbox{\hyperlink{mmkp_8hpp_source_l00077}{core\+::\+Supply\+::sto}}, \mbox{\hyperlink{mmkp_8hpp_source_l00106}{core\+::\+Server\+::sto}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00107}{core\+::\+Server\+::supply}}.
+
+
+
+Referenced by \mbox{\hyperlink{heuristic_8hpp_source_l00032}{greedy\+\_\+cost\+\_\+benefit()}}.
+
 \Hypertarget{namespaceheuristic_1_1anonymous__namespace_02heuristic_8hpp_03_a73948f6480b8b285f07088a2b20c28be}\label{namespaceheuristic_1_1anonymous__namespace_02heuristic_8hpp_03_a73948f6480b8b285f07088a2b20c28be} 
 \index{heuristic::anonymous\_namespace\lcurly{}heuristic.hpp\rcurly{}@{heuristic::anonymous\_namespace\lcurly{}heuristic.hpp\rcurly{}}!greedy\_random@{greedy\_random}}
 \index{greedy\_random@{greedy\_random}!heuristic::anonymous\_namespace\lcurly{}heuristic.hpp\rcurly{}@{heuristic::anonymous\_namespace\lcurly{}heuristic.hpp\rcurly{}}}
-\doxysubsubsection{\texorpdfstring{greedy\_random()}{greedy\_random()}}
+\doxyparagraph{\texorpdfstring{greedy\_random()}{greedy\_random()}}
 {\footnotesize\ttfamily void heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+random (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}} \&}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -46,10 +58,22 @@ Iterates through all devices and attempts to assign each one to a single uniform
 {\em state} & The unified simulation result state containing devices, servers, and metrics. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{heuristic_8hpp_source_l00114}{114}} of file \mbox{\hyperlink{heuristic_8hpp_source}{heuristic.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l00929}{metrics\+::\+Result\+::devices}}, \mbox{\hyperlink{heuristic_8hpp_source_l00114}{greedy\+\_\+random()}}, \mbox{\hyperlink{tools_8hpp_source_l00283}{randomness\+::random\+\_\+number()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00930}{metrics\+::\+Result\+::servers}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00931}{metrics\+::\+Result\+::stats}}.
+
+
+
+Referenced by \mbox{\hyperlink{heuristic_8hpp_source_l00114}{greedy\+\_\+random()}}.
+
 \Hypertarget{namespaceheuristic_1_1anonymous__namespace_02heuristic_8hpp_03_a00e404acd74a838e4016f8a63c639672}\label{namespaceheuristic_1_1anonymous__namespace_02heuristic_8hpp_03_a00e404acd74a838e4016f8a63c639672} 
 \index{heuristic::anonymous\_namespace\lcurly{}heuristic.hpp\rcurly{}@{heuristic::anonymous\_namespace\lcurly{}heuristic.hpp\rcurly{}}!greedy\_random\_fallback@{greedy\_random\_fallback}}
 \index{greedy\_random\_fallback@{greedy\_random\_fallback}!heuristic::anonymous\_namespace\lcurly{}heuristic.hpp\rcurly{}@{heuristic::anonymous\_namespace\lcurly{}heuristic.hpp\rcurly{}}}
-\doxysubsubsection{\texorpdfstring{greedy\_random\_fallback()}{greedy\_random\_fallback()}}
+\doxyparagraph{\texorpdfstring{greedy\_random\_fallback()}{greedy\_random\_fallback()}}
 {\footnotesize\ttfamily void heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+random\+\_\+fallback (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmetrics_1_1Result}{metrics\+::\+Result}} \&}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -63,3 +87,15 @@ Attempts to assign each device to a randomly selected Edge (EC) server first. If
 {\em state} & The unified simulation result state containing devices, servers, and metrics. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{heuristic_8hpp_source_l00150}{150}} of file \mbox{\hyperlink{heuristic_8hpp_source}{heuristic.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l00929}{metrics\+::\+Result\+::devices}}, \mbox{\hyperlink{heuristic_8hpp_source_l00150}{greedy\+\_\+random\+\_\+fallback()}}, \mbox{\hyperlink{tools_8hpp_source_l00283}{randomness\+::random\+\_\+number()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00930}{metrics\+::\+Result\+::servers}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00931}{metrics\+::\+Result\+::stats}}.
+
+
+
+Referenced by \mbox{\hyperlink{heuristic_8hpp_source_l00150}{greedy\+\_\+random\+\_\+fallback()}}.
+

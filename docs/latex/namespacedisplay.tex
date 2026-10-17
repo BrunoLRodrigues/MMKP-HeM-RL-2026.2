@@ -1,16 +1,16 @@
-\doxysection{display Namespace Reference}
+\doxysubsection{display Namespace Reference}
 \hypertarget{namespacedisplay}{}\label{namespacedisplay}\index{display@{display}}
 
 
 Utility namespace for formatting and printing entities and ASCII metric tables to console or files.  
 
 
-\doxysubsubsection*{Namespaces}
+\doxysubsubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
 namespace \mbox{\hyperlink{namespacedisplay_1_1details}{details}}
 \begin{DoxyCompactList}\small\item\em Internal helper routines for rendering ASCII box-\/drawing tables. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Functions}
+\doxysubsubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{namespacedisplay_a48688ce51b12e703f0eba7b25b2b15de}{show\+\_\+device}} (const \mbox{\hyperlink{structcore_1_1Device}{core\+::\+Device}} \&device)
@@ -29,14 +29,14 @@ void \mbox{\hyperlink{namespacedisplay_a5a95b172c89cdb8957c4ce2fbe61ae15}{show\+
 \begin{DoxyCompactList}\small\item\em Prints a summary table of server resource utilization percentages. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\doxysubsubsection{Detailed Description}
 Utility namespace for formatting and printing entities and ASCII metric tables to console or files. 
 
-\doxysubsection{Function Documentation}
+\doxysubsubsection{Function Documentation}
 \Hypertarget{namespacedisplay_a48688ce51b12e703f0eba7b25b2b15de}\label{namespacedisplay_a48688ce51b12e703f0eba7b25b2b15de} 
 \index{display@{display}!show\_device@{show\_device}}
 \index{show\_device@{show\_device}!display@{display}}
-\doxysubsubsection{\texorpdfstring{show\_device()}{show\_device()}}
+\doxyparagraph{\texorpdfstring{show\_device()}{show\_device()}}
 {\footnotesize\ttfamily void display\+::show\+\_\+device (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcore_1_1Device}{core\+::\+Device}} \&}]{device }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -48,10 +48,22 @@ Displays detailed information of a single device to standard output.
 {\em device} & The device instance to display. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l01061}{1061}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l00036}{core\+::\+Device\+::cost}}, \mbox{\hyperlink{mmkp_8hpp_source_l00037}{core\+::\+Device\+::cpu}}, \mbox{\hyperlink{mmkp_8hpp_source_l00035}{core\+::\+Device\+::id}}, \mbox{\hyperlink{mmkp_8hpp_source_l00038}{core\+::\+Device\+::mem}}, \mbox{\hyperlink{mmkp_8hpp_source_l00042}{core\+::\+Device\+::served}}, \mbox{\hyperlink{mmkp_8hpp_source_l00043}{core\+::\+Device\+::server\+\_\+id}}, \mbox{\hyperlink{mmkp_8hpp_source_l00041}{core\+::\+Device\+::service}}, \mbox{\hyperlink{mmkp_8hpp_source_l00039}{core\+::\+Device\+::sto}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00040}{core\+::\+Device\+::tasks}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l01083}{show\+\_\+devices()}}.
+
 \Hypertarget{namespacedisplay_ae8cf71158bd852e9ec3ecf62e3775753}\label{namespacedisplay_ae8cf71158bd852e9ec3ecf62e3775753} 
 \index{display@{display}!show\_devices@{show\_devices}}
 \index{show\_devices@{show\_devices}!display@{display}}
-\doxysubsubsection{\texorpdfstring{show\_devices()}{show\_devices()}}
+\doxyparagraph{\texorpdfstring{show\_devices()}{show\_devices()}}
 {\footnotesize\ttfamily void display\+::show\+\_\+devices (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacecore_a815afea905ea8843f0cc85cb4590a3dc}{core\+::\+Devices}} \&}]{devices }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -63,10 +75,18 @@ Displays detailed information for all devices in the vector.
 {\em devices} & The vector of devices to display. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l01083}{1083}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l01061}{show\+\_\+device()}}.
+
 \Hypertarget{namespacedisplay_afca8be8f3244589f3f4078a9e4306b20}\label{namespacedisplay_afca8be8f3244589f3f4078a9e4306b20} 
 \index{display@{display}!show\_metrics@{show\_metrics}}
 \index{show\_metrics@{show\_metrics}!display@{display}}
-\doxysubsubsection{\texorpdfstring{show\_metrics()}{show\_metrics()}}
+\doxyparagraph{\texorpdfstring{show\_metrics()}{show\_metrics()}}
 {\footnotesize\ttfamily void display\+::show\+\_\+metrics (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structmetrics_1_1Metrics}{metrics\+::\+Metrics}} $>$ \&}]{ptr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -78,10 +98,22 @@ Displays the metrics table on the console and appends it to a drawing file.
 {\em ptr} & Shared pointer to the simulation metrics instance. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l01217}{1217}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l01184}{show\+\_\+metrics\+\_\+console\+\_\+or\+\_\+file()}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l01263}{metrics\+::save\+\_\+results()}}.
+
 \Hypertarget{namespacedisplay_a62e56a84fce178ee2f40199f196a7ce9}\label{namespacedisplay_a62e56a84fce178ee2f40199f196a7ce9} 
 \index{display@{display}!show\_metrics\_console\_or\_file@{show\_metrics\_console\_or\_file}}
 \index{show\_metrics\_console\_or\_file@{show\_metrics\_console\_or\_file}!display@{display}}
-\doxysubsubsection{\texorpdfstring{show\_metrics\_console\_or\_file()}{show\_metrics\_console\_or\_file()}}
+\doxyparagraph{\texorpdfstring{show\_metrics\_console\_or\_file()}{show\_metrics\_console\_or\_file()}}
 {\footnotesize\ttfamily void display\+::show\+\_\+metrics\+\_\+console\+\_\+or\+\_\+file (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structmetrics_1_1Metrics}{metrics\+::\+Metrics}} \&}]{metrics,  }\item[{std\+::ostream \&}]{out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -95,10 +127,22 @@ Formats and writes the complete simulation metrics table to an output stream.
 {\em out} & The target output stream. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l01184}{1184}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l01152}{display\+::details\+::print\+\_\+header()}}, \mbox{\hyperlink{mmkp_8hpp_source_l01160}{display\+::details\+::print\+\_\+middle()}}, \mbox{\hyperlink{mmkp_8hpp_source_l01142}{display\+::details\+::print\+\_\+row()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l01170}{display\+::details\+::print\+\_\+title()}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l01217}{show\+\_\+metrics()}}.
+
 \Hypertarget{namespacedisplay_ad1ad930094e2b754d6f2df967dad099e}\label{namespacedisplay_ad1ad930094e2b754d6f2df967dad099e} 
 \index{display@{display}!show\_server@{show\_server}}
 \index{show\_server@{show\_server}!display@{display}}
-\doxysubsubsection{\texorpdfstring{show\_server()}{show\_server()}}
+\doxyparagraph{\texorpdfstring{show\_server()}{show\_server()}}
 {\footnotesize\ttfamily void display\+::show\+\_\+server (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcore_1_1Server}{core\+::\+Server}} \&}]{server }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -110,10 +154,22 @@ Displays capacity and current demand of a single server.
 {\em server} & The server instance to display. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l01095}{1095}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l00075}{core\+::\+Supply\+::cpu}}, \mbox{\hyperlink{mmkp_8hpp_source_l00104}{core\+::\+Server\+::cpu}}, \mbox{\hyperlink{mmkp_8hpp_source_l00079}{core\+::\+Supply\+::devices}}, \mbox{\hyperlink{mmkp_8hpp_source_l00102}{core\+::\+Server\+::id}}, \mbox{\hyperlink{mmkp_8hpp_source_l00076}{core\+::\+Supply\+::mem}}, \mbox{\hyperlink{mmkp_8hpp_source_l00105}{core\+::\+Server\+::mem}}, \mbox{\hyperlink{tools_8hpp_source_l00243}{convert\+::set\+\_\+to\+\_\+string()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00077}{core\+::\+Supply\+::sto}}, \mbox{\hyperlink{mmkp_8hpp_source_l00106}{core\+::\+Server\+::sto}}, \mbox{\hyperlink{mmkp_8hpp_source_l00107}{core\+::\+Server\+::supply}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00103}{core\+::\+Server\+::type}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l01120}{show\+\_\+servers()}}.
+
 \Hypertarget{namespacedisplay_a337aacbd09f97bc5f8a0a381fe2743fb}\label{namespacedisplay_a337aacbd09f97bc5f8a0a381fe2743fb} 
 \index{display@{display}!show\_servers@{show\_servers}}
 \index{show\_servers@{show\_servers}!display@{display}}
-\doxysubsubsection{\texorpdfstring{show\_servers()}{show\_servers()}}
+\doxyparagraph{\texorpdfstring{show\_servers()}{show\_servers()}}
 {\footnotesize\ttfamily void display\+::show\+\_\+servers (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} \&}]{servers }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -125,10 +181,18 @@ Displays capacity and demand information for all servers.
 {\em servers} & The vector of servers to display. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l01120}{1120}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l01095}{show\+\_\+server()}}.
+
 \Hypertarget{namespacedisplay_a5a95b172c89cdb8957c4ce2fbe61ae15}\label{namespacedisplay_a5a95b172c89cdb8957c4ce2fbe61ae15} 
 \index{display@{display}!show\_servers\_usage@{show\_servers\_usage}}
 \index{show\_servers\_usage@{show\_servers\_usage}!display@{display}}
-\doxysubsubsection{\texorpdfstring{show\_servers\_usage()}{show\_servers\_usage()}}
+\doxyparagraph{\texorpdfstring{show\_servers\_usage()}{show\_servers\_usage()}}
 {\footnotesize\ttfamily void display\+::show\+\_\+servers\+\_\+usage (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacecore_ac53c64bc23d713f5e94e801d40e34803}{core\+::\+Servers}} \&}]{servers }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -140,3 +204,15 @@ Prints a summary table of server resource utilization percentages.
 {\em servers} & The vector of servers to summarize. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l01242}{1242}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{tools_8hpp_source_l00210}{convert\+::to\+\_\+percentage\+\_\+string()}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l01263}{metrics\+::save\+\_\+results()}}.
+

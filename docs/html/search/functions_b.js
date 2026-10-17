@@ -4,7 +4,7 @@ var searchData=
   ['save_5fto_5ffile_1',['save_to_file',['../structmetrics_1_1Metrics.html#a282b4959f016cb954aeea5a71c829032',1,'metrics::Metrics']]],
   ['server_2',['server',['../structcore_1_1Server.html#a24891c28e8cfad802737d177259f0599',1,'core::Server::Server()'],['../structcore_1_1Server.html#a0820e531fd1a95de62dff7eab0958d53',1,'core::Server::Server(int id_, char type_, double cpu_, double mem_, double sto_)']]],
   ['servers_3',['servers',['../namespacedata_1_1generate.html#a406f9158cb3dc3b05a461bc10038fae1',1,'data::generate::servers()'],['../namespacedata_1_1load.html#ac246a8e8d760e5209660fe9bdbce70ba',1,'data::load::servers()']]],
-  ['services_4',['services',['../namespacedata_1_1generate.html#a8cf334007dfe6c39270237e4b5e1df96',1,'data::generate']]],
+  ['services_4',['services',['../namespacedata_1_1generate.html#a6c60a34a447b946d2ac51f1b055189db',1,'data::generate']]],
   ['set_5fto_5fstring_5',['set_to_string',['../namespaceconvert.html#a7a5be89d85cfeacfaeffd02106bba210',1,'convert']]],
   ['show_5fdevice_6',['show_device',['../namespacedisplay.html#a48688ce51b12e703f0eba7b25b2b15de',1,'display']]],
   ['show_5fdevices_7',['show_devices',['../namespacedisplay.html#ae8cf71158bd852e9ec3ecf62e3775753',1,'display']]],

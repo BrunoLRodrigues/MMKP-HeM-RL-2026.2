@@ -1,4 +1,4 @@
-\doxysection{core\+::Server Struct Reference}
+\doxysubsection{core\+::Server Struct Reference}
 \hypertarget{structcore_1_1Server}{}\label{structcore_1_1Server}\index{core::Server@{core::Server}}
 
 
@@ -11,14 +11,15 @@ Represents an Edge Computing (EC) or Cloud Computing (CC) server node.
 
 
 
-Collaboration diagram for core\+::Server\+:\nopagebreak
+Collaboration diagram for core\+::Server\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=157pt]{structcore_1_1Server__coll__graph}
+\includegraphics[width=168pt]{structcore_1_1Server__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsubsection*{Public Member Functions}
+\doxysubsubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{structcore_1_1Server_a24891c28e8cfad802737d177259f0599}{Server}} ()
@@ -31,7 +32,7 @@ bool \mbox{\hyperlink{structcore_1_1Server_a537a5e6b913db9ff0e0b1de584067990}{ad
 \begin{DoxyCompactList}\small\item\em Allocates a device to this server and updates consumed resources. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{structcore_1_1Server_ad13b43798af6d07b70393d3b7239d780}{rmv\+\_\+service}} (\mbox{\hyperlink{structcore_1_1Device}{Device}} \&device)
 \begin{DoxyCompactList}\small\item\em Removes a device from this server and releases its consumed resources. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Public Attributes}
+\doxysubsubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 int \mbox{\hyperlink{structcore_1_1Server_a0c946ea419d875d81dc5e66ca27c3d6f}{id}}
@@ -48,24 +49,32 @@ double \mbox{\hyperlink{structcore_1_1Server_a4e5ec779ca60973f6fa974a9ca3917ee}{
 \begin{DoxyCompactList}\small\item\em Current resource utilization and set of allocated devices. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\doxysubsubsection{Detailed Description}
 Represents an Edge Computing (EC) or Cloud Computing (CC) server node. 
 
-\doxysubsection{Constructor \& Destructor Documentation}
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00101}{101}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
 \Hypertarget{structcore_1_1Server_a24891c28e8cfad802737d177259f0599}\label{structcore_1_1Server_a24891c28e8cfad802737d177259f0599} 
 \index{core::Server@{core::Server}!Server@{Server}}
 \index{Server@{Server}!core::Server@{core::Server}}
-\doxysubsubsection{\texorpdfstring{Server()}{Server()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\doxyparagraph{\texorpdfstring{Server()}{Server()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily core\+::\+Server\+::\+Server (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
 Default constructor initializing an empty/placeholder server. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00112}{112}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
 \Hypertarget{structcore_1_1Server_a0820e531fd1a95de62dff7eab0958d53}\label{structcore_1_1Server_a0820e531fd1a95de62dff7eab0958d53} 
 \index{core::Server@{core::Server}!Server@{Server}}
 \index{Server@{Server}!core::Server@{core::Server}}
-\doxysubsubsection{\texorpdfstring{Server()}{Server()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\doxyparagraph{\texorpdfstring{Server()}{Server()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily core\+::\+Server\+::\+Server (\begin{DoxyParamCaption}\item[{int}]{id\+\_\+,  }\item[{char}]{type\+\_\+,  }\item[{double}]{cpu\+\_\+,  }\item[{double}]{mem\+\_\+,  }\item[{double}]{sto\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -87,11 +96,15 @@ Parameterized constructor initializing a server with given capacities.
 \end{DoxyParams}
 
 
-\doxysubsection{Member Function Documentation}
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00122}{122}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+\doxysubsubsection{Member Function Documentation}
 \Hypertarget{structcore_1_1Server_a537a5e6b913db9ff0e0b1de584067990}\label{structcore_1_1Server_a537a5e6b913db9ff0e0b1de584067990} 
 \index{core::Server@{core::Server}!add\_service@{add\_service}}
 \index{add\_service@{add\_service}!core::Server@{core::Server}}
-\doxysubsubsection{\texorpdfstring{add\_service()}{add\_service()}}
+\doxyparagraph{\texorpdfstring{add\_service()}{add\_service()}}
 {\footnotesize\ttfamily bool core\+::\+Server\+::add\+\_\+service (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structcore_1_1Device}{Device}} \&}]{device }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -106,10 +119,22 @@ Allocates a device to this server and updates consumed resources.
 \begin{DoxyReturn}{Returns}
 {\ttfamily true} if the device was successfully added; {\ttfamily false} if it was already present. 
 \end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00143}{143}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l00036}{core\+::\+Device\+::cost}}, \mbox{\hyperlink{mmkp_8hpp_source_l00074}{core\+::\+Supply\+::cost}}, \mbox{\hyperlink{mmkp_8hpp_source_l00037}{core\+::\+Device\+::cpu}}, \mbox{\hyperlink{mmkp_8hpp_source_l00075}{core\+::\+Supply\+::cpu}}, \mbox{\hyperlink{mmkp_8hpp_source_l00079}{core\+::\+Supply\+::devices}}, \mbox{\hyperlink{mmkp_8hpp_source_l00035}{core\+::\+Device\+::id}}, \mbox{\hyperlink{mmkp_8hpp_source_l00102}{id}}, \mbox{\hyperlink{mmkp_8hpp_source_l00038}{core\+::\+Device\+::mem}}, \mbox{\hyperlink{mmkp_8hpp_source_l00076}{core\+::\+Supply\+::mem}}, \mbox{\hyperlink{mmkp_8hpp_source_l00042}{core\+::\+Device\+::served}}, \mbox{\hyperlink{mmkp_8hpp_source_l00043}{core\+::\+Device\+::server\+\_\+id}}, \mbox{\hyperlink{mmkp_8hpp_source_l00039}{core\+::\+Device\+::sto}}, \mbox{\hyperlink{mmkp_8hpp_source_l00077}{core\+::\+Supply\+::sto}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00107}{supply}}.
+
+
+
+Referenced by \mbox{\hyperlink{metaheuristic_8hpp_source_l00054}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::apply\+\_\+neighbor()}}, and \mbox{\hyperlink{heuristic_8hpp_source_l00032}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+cost\+\_\+benefit()}}.
+
 \Hypertarget{structcore_1_1Server_aee0071cd3e71c36a8861fbd98fad8a16}\label{structcore_1_1Server_aee0071cd3e71c36a8861fbd98fad8a16} 
 \index{core::Server@{core::Server}!can\_serve@{can\_serve}}
 \index{can\_serve@{can\_serve}!core::Server@{core::Server}}
-\doxysubsubsection{\texorpdfstring{can\_serve()}{can\_serve()}}
+\doxyparagraph{\texorpdfstring{can\_serve()}{can\_serve()}}
 {\footnotesize\ttfamily bool core\+::\+Server\+::can\+\_\+serve (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcore_1_1Device}{Device}} \&}]{device }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -124,10 +149,22 @@ Checks if the server has enough residual capacity to serve a given device.
 \begin{DoxyReturn}{Returns}
 {\ttfamily true} if residual CPU, MEM, and STO capacities are sufficient; {\ttfamily false} otherwise. 
 \end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00130}{130}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l00037}{core\+::\+Device\+::cpu}}, \mbox{\hyperlink{mmkp_8hpp_source_l00075}{core\+::\+Supply\+::cpu}}, \mbox{\hyperlink{mmkp_8hpp_source_l00104}{cpu}}, \mbox{\hyperlink{mmkp_8hpp_source_l00038}{core\+::\+Device\+::mem}}, \mbox{\hyperlink{mmkp_8hpp_source_l00076}{core\+::\+Supply\+::mem}}, \mbox{\hyperlink{mmkp_8hpp_source_l00105}{mem}}, \mbox{\hyperlink{mmkp_8hpp_source_l00039}{core\+::\+Device\+::sto}}, \mbox{\hyperlink{mmkp_8hpp_source_l00077}{core\+::\+Supply\+::sto}}, \mbox{\hyperlink{mmkp_8hpp_source_l00106}{sto}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00107}{supply}}.
+
+
+
+Referenced by \mbox{\hyperlink{metaheuristic_8hpp_source_l00054}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::apply\+\_\+neighbor()}}, and \mbox{\hyperlink{heuristic_8hpp_source_l00032}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+cost\+\_\+benefit()}}.
+
 \Hypertarget{structcore_1_1Server_ad13b43798af6d07b70393d3b7239d780}\label{structcore_1_1Server_ad13b43798af6d07b70393d3b7239d780} 
 \index{core::Server@{core::Server}!rmv\_service@{rmv\_service}}
 \index{rmv\_service@{rmv\_service}!core::Server@{core::Server}}
-\doxysubsubsection{\texorpdfstring{rmv\_service()}{rmv\_service()}}
+\doxyparagraph{\texorpdfstring{rmv\_service()}{rmv\_service()}}
 {\footnotesize\ttfamily bool core\+::\+Server\+::rmv\+\_\+service (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structcore_1_1Device}{Device}} \&}]{device }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -144,66 +181,126 @@ Removes a device from this server and releases its consumed resources.
 \end{DoxyReturn}
 
 
-\doxysubsection{Member Data Documentation}
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00163}{163}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l00036}{core\+::\+Device\+::cost}}, \mbox{\hyperlink{mmkp_8hpp_source_l00074}{core\+::\+Supply\+::cost}}, \mbox{\hyperlink{mmkp_8hpp_source_l00037}{core\+::\+Device\+::cpu}}, \mbox{\hyperlink{mmkp_8hpp_source_l00075}{core\+::\+Supply\+::cpu}}, \mbox{\hyperlink{mmkp_8hpp_source_l00079}{core\+::\+Supply\+::devices}}, \mbox{\hyperlink{mmkp_8hpp_source_l00035}{core\+::\+Device\+::id}}, \mbox{\hyperlink{mmkp_8hpp_source_l00038}{core\+::\+Device\+::mem}}, \mbox{\hyperlink{mmkp_8hpp_source_l00076}{core\+::\+Supply\+::mem}}, \mbox{\hyperlink{mmkp_8hpp_source_l00042}{core\+::\+Device\+::served}}, \mbox{\hyperlink{mmkp_8hpp_source_l00043}{core\+::\+Device\+::server\+\_\+id}}, \mbox{\hyperlink{mmkp_8hpp_source_l00039}{core\+::\+Device\+::sto}}, \mbox{\hyperlink{mmkp_8hpp_source_l00077}{core\+::\+Supply\+::sto}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00107}{supply}}.
+
+
+
+Referenced by \mbox{\hyperlink{metaheuristic_8hpp_source_l00054}{metaheuristic\+::anonymous\+\_\+namespace\{metaheuristic.\+hpp\}\+::apply\+\_\+neighbor()}}.
+
+
+
+\doxysubsubsection{Member Data Documentation}
 \Hypertarget{structcore_1_1Server_aeec37b8c331e9a588304329940ce2bba}\label{structcore_1_1Server_aeec37b8c331e9a588304329940ce2bba} 
 \index{core::Server@{core::Server}!cpu@{cpu}}
 \index{cpu@{cpu}!core::Server@{core::Server}}
-\doxysubsubsection{\texorpdfstring{cpu}{cpu}}
+\doxyparagraph{\texorpdfstring{cpu}{cpu}}
 {\footnotesize\ttfamily double core\+::\+Server\+::cpu}
 
 
 
 Maximum total CPU capacity of the server. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00104}{104}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00130}{can\+\_\+serve()}}, \mbox{\hyperlink{heuristic_8hpp_source_l00032}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+cost\+\_\+benefit()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l01095}{display\+::show\+\_\+server()}}.
+
 \Hypertarget{structcore_1_1Server_a0c946ea419d875d81dc5e66ca27c3d6f}\label{structcore_1_1Server_a0c946ea419d875d81dc5e66ca27c3d6f} 
 \index{core::Server@{core::Server}!id@{id}}
 \index{id@{id}!core::Server@{core::Server}}
-\doxysubsubsection{\texorpdfstring{id}{id}}
+\doxyparagraph{\texorpdfstring{id}{id}}
 {\footnotesize\ttfamily int core\+::\+Server\+::id}
 
 
 
 Unique 1-\/based identifier of the server. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00102}{102}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00143}{add\+\_\+service()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l01095}{display\+::show\+\_\+server()}}.
+
 \Hypertarget{structcore_1_1Server_ae5e9db950a7b35a9c1045cd6096051b2}\label{structcore_1_1Server_ae5e9db950a7b35a9c1045cd6096051b2} 
 \index{core::Server@{core::Server}!mem@{mem}}
 \index{mem@{mem}!core::Server@{core::Server}}
-\doxysubsubsection{\texorpdfstring{mem}{mem}}
+\doxyparagraph{\texorpdfstring{mem}{mem}}
 {\footnotesize\ttfamily double core\+::\+Server\+::mem}
 
 
 
 Maximum total memory capacity of the server. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00105}{105}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00130}{can\+\_\+serve()}}, \mbox{\hyperlink{heuristic_8hpp_source_l00032}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+cost\+\_\+benefit()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l01095}{display\+::show\+\_\+server()}}.
+
 \Hypertarget{structcore_1_1Server_a4e5ec779ca60973f6fa974a9ca3917ee}\label{structcore_1_1Server_a4e5ec779ca60973f6fa974a9ca3917ee} 
 \index{core::Server@{core::Server}!sto@{sto}}
 \index{sto@{sto}!core::Server@{core::Server}}
-\doxysubsubsection{\texorpdfstring{sto}{sto}}
+\doxyparagraph{\texorpdfstring{sto}{sto}}
 {\footnotesize\ttfamily double core\+::\+Server\+::sto}
 
 
 
 Maximum total storage capacity of the server. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00106}{106}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00130}{can\+\_\+serve()}}, \mbox{\hyperlink{heuristic_8hpp_source_l00032}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+cost\+\_\+benefit()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l01095}{display\+::show\+\_\+server()}}.
+
 \Hypertarget{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6}\label{structcore_1_1Server_a6c05676ed5441830bda3c80ef78e7cc6} 
 \index{core::Server@{core::Server}!supply@{supply}}
 \index{supply@{supply}!core::Server@{core::Server}}
-\doxysubsubsection{\texorpdfstring{supply}{supply}}
+\doxyparagraph{\texorpdfstring{supply}{supply}}
 {\footnotesize\ttfamily \mbox{\hyperlink{structcore_1_1Supply}{Supply}} core\+::\+Server\+::supply}
 
 
 
 Current resource utilization and set of allocated devices. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00107}{107}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00143}{add\+\_\+service()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00130}{can\+\_\+serve()}}, \mbox{\hyperlink{heuristic_8hpp_source_l00032}{heuristic\+::anonymous\+\_\+namespace\{heuristic.\+hpp\}\+::greedy\+\_\+cost\+\_\+benefit()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00163}{rmv\+\_\+service()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l01095}{display\+::show\+\_\+server()}}.
+
 \Hypertarget{structcore_1_1Server_a4309664304c6f6df68e8f1841d2649e3}\label{structcore_1_1Server_a4309664304c6f6df68e8f1841d2649e3} 
 \index{core::Server@{core::Server}!type@{type}}
 \index{type@{type}!core::Server@{core::Server}}
-\doxysubsubsection{\texorpdfstring{type}{type}}
+\doxyparagraph{\texorpdfstring{type}{type}}
 {\footnotesize\ttfamily char core\+::\+Server\+::type}
 
 
 
 \doxylink{structcore_1_1Server}{Server} tier type (`\textquotesingle{}E'{\ttfamily for Edge,}\textquotesingle{}C\textquotesingle{}\`{} for Cloud). 
+
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00103}{103}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l01095}{display\+::show\+\_\+server()}}.
 
 
 

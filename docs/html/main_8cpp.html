@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -28,8 +32,9 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">MMKP Resource Allocation in IoT-EC-CC Networks
+   <div id="projectname">MMKP Resource Allocation in IoT-EC-CC Networks<span id="projectnumber">&#160;1.0.0</span>
    </div>
+   <div id="projectbrief">Exact, Heuristic, and Meta-heuristic solvers for MMKP in Edge-Cloud environments</div>
   </td>
  </tr>
  </tbody>
@@ -53,6 +58,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('main_8cpp.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -74,11 +96,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#func-members">Functions</a> &#124;
@@ -156,7 +173,9 @@ Include dependency graph for main.cpp:</div>
 <area shape="poly" title=" " alt="" coords="956,106,913,145,909,141,952,102"/>
 </map>
 </div>
-</div><table class="memberdecls">
+</div>
+<p><a href="main_8cpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ac2e90b5f462e53a2ae61c61d92846023" id="r_ac2e90b5f462e53a2ae61c61d92846023"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ac2e90b5f462e53a2ae61c61d92846023">run_simulation</a> (const <a class="el" href="structmetrics_1_1Result.html">metrics::Result</a> &amp;base, int option, int run_id)</td></tr>
@@ -198,10 +217,15 @@ Variables</h2></td></tr>
 <tr class="memitem:ac8d8134e0885e1c88485a079ad5d638c" id="r_ac8d8134e0885e1c88485a079ad5d638c"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ac8d8134e0885e1c88485a079ad5d638c">ALPHA</a> = 0.9999</td></tr>
 <tr class="memdesc:ac8d8134e0885e1c88485a079ad5d638c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Geometric cooling factor for Simulated Annealing.  <br /></td></tr>
 <tr class="separator:ac8d8134e0885e1c88485a079ad5d638c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe93e9a692a8e515cac8c530b0259ea9" id="r_abe93e9a692a8e515cac8c530b0259ea9"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#abe93e9a692a8e515cac8c530b0259ea9">FIXED_PENALTY</a> = false</td></tr>
+<tr class="memdesc:abe93e9a692a8e515cac8c530b0259ea9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the penalty (cost) of each device is fixed or can vary.  <br /></td></tr>
+<tr class="separator:abe93e9a692a8e515cac8c530b0259ea9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Entry point and benchmark runner for the MMKP IoT-EC-CC resource allocation simulator. </p>
 <p>Defines the experimental parameters (scaling of IoT devices, server counts, CPLEX time limit, and Simulated Annealing cooling schedule) and orchestrates the execution across Exact, Heuristic, and Meta-heuristic paradigms. </p>
+
+<p class="definition">Definition in file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="ae66f6b31b5ad750f1fe042a706a4e3d4" name="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae66f6b31b5ad750f1fe042a706a4e3d4">&#9670;&#160;</a></span>main()</h2>
@@ -221,6 +245,10 @@ Variables</h2></td></tr>
 <p>Main entry point for the network resource allocation simulation benchmark. </p>
 <p>Iterates over the configured range of device counts and independent runs, executing deterministic algorithms once per instance and stochastic algorithms across all runs.</p>
 <dl class="section return"><dt>Returns</dt><dd>int Exit status code (<code>0</code> on normal termination). </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00107">107</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="main_8cpp_source.html#l00019">CC_LENGTH</a>, <a class="el" href="main_8cpp_source.html#l00017">DEVICES_END</a>, <a class="el" href="main_8cpp_source.html#l00015">DEVICES_START</a>, <a class="el" href="main_8cpp_source.html#l00016">DEVICES_STEP</a>, <a class="el" href="main_8cpp_source.html#l00018">EC_LENGTH</a>, <a class="el" href="main_8cpp_source.html#l00024">FIXED_PENALTY</a>, <a class="el" href="main_8cpp_source.html#l00020">MAX_RUNS</a>, <a class="el" href="main_8cpp_source.html#l00043">run_simulation()</a>, and <a class="el" href="main_8cpp_source.html#l00014">SERVICES</a>.</p>
 
 </div>
 </div>
@@ -276,6 +304,12 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00043">43</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="main_8cpp_source.html#l00023">ALPHA</a>, <a class="el" href="heuristic_8hpp_source.html#l00196">heuristic::boot()</a>, <a class="el" href="metaheuristic_8hpp_source.html#l00221">metaheuristic::boot()</a>, <a class="el" href="exact_8hpp_source.html#l00172">exact::boot()</a>, <a class="el" href="mmkp_8hpp_source.html#l01001">metrics::calculate_metrics()</a>, <a class="el" href="main_8cpp_source.html#l00021">CPLEX_TIME_LIMIT</a>, <a class="el" href="namespacemetrics.html#a3a65ee5495efeddec00733a74a3e639aac41e056424136b6e8c4e23dd6326efa1">metrics::EXACT</a>, <a class="el" href="namespacemetrics.html#a52f859a07d748c00c090a31bea367c11abe0511aca70b810b2ed30f6c24c4a620">metrics::greedy_cost_benefit</a>, <a class="el" href="namespacemetrics.html#a52f859a07d748c00c090a31bea367c11aa845e2c8be77bb480b9bea73ff528829">metrics::greedy_random</a>, <a class="el" href="namespacemetrics.html#a52f859a07d748c00c090a31bea367c11a0327841700a466600166ed61b1b18200">metrics::greedy_random_fallback</a>, <a class="el" href="namespacemetrics.html#a3a65ee5495efeddec00733a74a3e639aa589ab27e5d5232a3590c042c0dbe7818">metrics::HEURISTIC</a>, <a class="el" href="namespacemetrics.html#a3a65ee5495efeddec00733a74a3e639aa1ef7e0df1cd1fdd87ecf432332cd8343">metrics::METAHEURISTIC</a>, <a class="el" href="namespacemetrics.html#a3a65ee5495efeddec00733a74a3e639aab50339a10e1de285ac99d4c3990b8693">metrics::NONE</a>, <a class="el" href="mmkp_8hpp_source.html#l01263">metrics::save_results()</a>, <a class="el" href="namespacemetrics.html#a52f859a07d748c00c090a31bea367c11a557e0f060742f44e69f44502ad2f3d71">metrics::simulated_annealing</a>, <a class="el" href="namespacemetrics.html#a52f859a07d748c00c090a31bea367c11ae6bb6feafcc4de7705a8fe1782af973e">metrics::solver_maximum_cost</a>, <a class="el" href="mmkp_8hpp_source.html#l00931">metrics::Result::stats</a>, and <a class="el" href="main_8cpp_source.html#l00022">TEMPERATURE</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00107">main()</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
@@ -301,6 +335,10 @@ Variables</h2></td></tr>
 
 <p>Geometric cooling factor for Simulated Annealing. </p>
 
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00023">23</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00043">run_simulation()</a>.</p>
+
 </div>
 </div>
 <a id="ac9605b81b1ba727a64be5293e7e6830d" name="ac9605b81b1ba727a64be5293e7e6830d"></a>
@@ -324,6 +362,10 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Total number of Cloud Computing (CC) servers available. </p>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00019">19</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00107">main()</a>.</p>
 
 </div>
 </div>
@@ -349,6 +391,10 @@ Variables</h2></td></tr>
 
 <p>Time limit in seconds for the CPLEX exact solver. </p>
 
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00021">21</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00043">run_simulation()</a>.</p>
+
 </div>
 </div>
 <a id="aab824fb582166fcccb57753d354abeae" name="aab824fb582166fcccb57753d354abeae"></a>
@@ -372,6 +418,10 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Maximum number of IoT devices in the scaling benchmark. </p>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00017">17</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00107">main()</a>.</p>
 
 </div>
 </div>
@@ -397,6 +447,10 @@ Variables</h2></td></tr>
 
 <p>Initial number of IoT devices in the scaling benchmark. </p>
 
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00015">15</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00107">main()</a>.</p>
+
 </div>
 </div>
 <a id="a09403595097b1f51af63092dd418f351" name="a09403595097b1f51af63092dd418f351"></a>
@@ -420,6 +474,10 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Increment step for the number of IoT devices per batch. </p>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00016">16</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00107">main()</a>.</p>
 
 </div>
 </div>
@@ -445,6 +503,38 @@ Variables</h2></td></tr>
 
 <p>Total number of Edge Computing (EC) servers available. </p>
 
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00018">18</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00107">main()</a>.</p>
+
+</div>
+</div>
+<a id="abe93e9a692a8e515cac8c530b0259ea9" name="abe93e9a692a8e515cac8c530b0259ea9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe93e9a692a8e515cac8c530b0259ea9">&#9670;&#160;</a></span>FIXED_PENALTY</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool FIXED_PENALTY = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether the penalty (cost) of each device is fixed or can vary. </p>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00024">24</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00107">main()</a>.</p>
+
 </div>
 </div>
 <a id="a4dd65ede7d682789089fe5b304cb91cd" name="a4dd65ede7d682789089fe5b304cb91cd"></a>
@@ -468,6 +558,10 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Number of independent runs per instance configuration. </p>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00020">20</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00107">main()</a>.</p>
 
 </div>
 </div>
@@ -493,6 +587,10 @@ Variables</h2></td></tr>
 
 <p>Total number of distinct service profiles generated. </p>
 
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00014">14</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00107">main()</a>.</p>
+
 </div>
 </div>
 <a id="a6ee0d833caf468544d3742ba723e4bcf" name="a6ee0d833caf468544d3742ba723e4bcf"></a>
@@ -517,12 +615,20 @@ Variables</h2></td></tr>
 
 <p>Initial temperature for Simulated Annealing. </p>
 
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00022">22</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00043">run_simulation()</a>.</p>
+
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="main_8cpp.html">main.cpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
 </body>
 </html>

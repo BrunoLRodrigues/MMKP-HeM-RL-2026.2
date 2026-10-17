@@ -1,4 +1,4 @@
-\doxysection{metrics\+::Exact\+Metrics Struct Reference}
+\doxysubsection{metrics\+::Exact\+Metrics Struct Reference}
 \hypertarget{structmetrics_1_1ExactMetrics}{}\label{structmetrics_1_1ExactMetrics}\index{metrics::ExactMetrics@{metrics::ExactMetrics}}
 
 
@@ -20,14 +20,15 @@ Inheritance diagram for metrics\+::Exact\+Metrics\+:\nopagebreak
 \end{figure}
 
 
-Collaboration diagram for metrics\+::Exact\+Metrics\+:\nopagebreak
+Collaboration diagram for metrics\+::Exact\+Metrics\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{structmetrics_1_1ExactMetrics__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsubsection*{Public Member Functions}
+\doxysubsubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{structmetrics_1_1ExactMetrics_ab4ee7c136b53c95d87c2987bebf573ee}{Exact\+Metrics}} (\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}} algorithm\+\_\+name\+\_\+, int run\+\_\+id\+\_\+, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}} $>$ \&base)
@@ -43,25 +44,12 @@ std\+::vector$<$ \mbox{\hyperlink{structmetrics_1_1MetricEntry}{Metric\+Entry}} 
 std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{structmetrics_1_1ExactMetrics_a93043f660ea769becfd8105eea97860c}{get\+\_\+header}} () const override
 \begin{DoxyCompactList}\small\item\em Appends exact solver column headers ({\ttfamily Status}, {\ttfamily Obj\+\_\+\+Function}, {\ttfamily Gap}) to the CSV header. \end{DoxyCompactList}\item 
 std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{structmetrics_1_1ExactMetrics_aa164372f0ec3c9680644b3d2f55117a7}{data}} () const override
-\begin{DoxyCompactList}\small\item\em Appends exact solver values to the CSV row data. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{structmetrics_1_1Metrics}{metrics\+::\+Metrics}}}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\hyperlink{structmetrics_1_1Metrics_a9217a58687ba34ac1761400e68e740f4}{Metrics}} (\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}} paradigm\+\_\+, \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}} algorithm\+\_\+name\+\_\+, int \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\+\_\+id}})
-\begin{DoxyCompactList}\small\item\em Constructs a {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} object with paradigm, algorithm, and run ID. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structmetrics_1_1Metrics_a834a73372dabe9703229d24b046a2887}{Metrics}} (\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}} paradigm\+\_\+, \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}} algorithm\+\_\+name\+\_\+, int \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\+\_\+id}}, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}} $>$ \&base)
-\begin{DoxyCompactList}\small\item\em Constructs a {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} object copying input dimensions from a base instance. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structmetrics_1_1Metrics_a0240efd0553a3ae4803fbd8e281dae90}{Metrics}} (\mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}} paradigm\+\_\+, \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}} algorithm\+\_\+name\+\_\+, int \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\+\_\+id}}, int d, int s\+\_\+ec, int s\+\_\+cc)
-\begin{DoxyCompactList}\small\item\em Constructs a {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} object with explicit instance counts. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structmetrics_1_1Metrics_aea7719ee4b9b57770c7180a32673b732}{Metrics}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}} $>$ \&base, int \mbox{\hyperlink{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}{run\+\_\+id}})
-\begin{DoxyCompactList}\small\item\em Copy-\/like constructor initializing from an existing {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} pointer and updating {\ttfamily run\+\_\+id}. \end{DoxyCompactList}\item 
-virtual \mbox{\hyperlink{structmetrics_1_1Metrics_aea82b1fb1a350ce2ea39b8d0c504e124}{\texorpdfstring{$\sim$}{\string~}\+Metrics}} ()=default
-\begin{DoxyCompactList}\small\item\em Virtual destructor for safe polymorphic cleanup. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Appends exact solver values to the CSV row data. \end{DoxyCompactList}\item 
 virtual std\+::filesystem\+::path \mbox{\hyperlink{structmetrics_1_1Metrics_a3d3c87cc48e752bab4238d3686fcf8f8}{get\+\_\+base\+\_\+directory\+\_\+path}} () const
 \begin{DoxyCompactList}\small\item\em Returns the output directory path corresponding to the current paradigm. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{structmetrics_1_1Metrics_a282b4959f016cb954aeea5a71c829032}{save\+\_\+to\+\_\+file}} () const
 \begin{DoxyCompactList}\small\item\em Appends the current simulation metrics row to the corresponding algorithm CSV file. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Public Attributes}
+\doxysubsubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 std\+::string \mbox{\hyperlink{structmetrics_1_1ExactMetrics_ab0a45d632c0895b48baa6a39d63457b0}{status}} = "{}Unknown"{}
@@ -69,10 +57,7 @@ std\+::string \mbox{\hyperlink{structmetrics_1_1ExactMetrics_ab0a45d632c0895b48b
 double \mbox{\hyperlink{structmetrics_1_1ExactMetrics_aa7ed241daacefcfe777d52b97e4c361c}{objective\+\_\+function}} = 0.\+0
 \begin{DoxyCompactList}\small\item\em Objective function value achieved by the solver. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{structmetrics_1_1ExactMetrics_a4994502ed671d0335ece2816db855fad}{gap}} = 1.\+0
-\begin{DoxyCompactList}\small\item\em Relative MIP optimality gap. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{structmetrics_1_1Metrics}{metrics\+::\+Metrics}}}
-\begin{DoxyCompactItemize}
-\item 
+\begin{DoxyCompactList}\small\item\em Relative MIP optimality gap. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}} \mbox{\hyperlink{structmetrics_1_1Metrics_a3826511b1490b1dc00db005abde1ec40}{paradigm}} = \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aab50339a10e1de285ac99d4c3990b8693}{Paradigm\+::\+NONE}}
 \begin{DoxyCompactList}\small\item\em Optimization paradigm of the current run. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}} \mbox{\hyperlink{structmetrics_1_1Metrics_a833606cb55a8544ef0154c0c7fa0e44f}{algorithm}} = \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11ab50339a10e1de285ac99d4c3990b8693}{Algorithm\+::\+NONE}}
@@ -85,14 +70,18 @@ struct \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs}{metrics\+::\+Metric
 \begin{DoxyCompactList}\small\item\em Simulation output metrics. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\doxysubsubsection{Detailed Description}
 Extends {\ttfamily \doxylink{structmetrics_1_1Metrics}{Metrics}} to include CPLEX solver status, objective value, and MIP optimality gap. 
 
-\doxysubsection{Constructor \& Destructor Documentation}
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00709}{709}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
 \Hypertarget{structmetrics_1_1ExactMetrics_ab4ee7c136b53c95d87c2987bebf573ee}\label{structmetrics_1_1ExactMetrics_ab4ee7c136b53c95d87c2987bebf573ee} 
 \index{metrics::ExactMetrics@{metrics::ExactMetrics}!ExactMetrics@{ExactMetrics}}
 \index{ExactMetrics@{ExactMetrics}!metrics::ExactMetrics@{metrics::ExactMetrics}}
-\doxysubsubsection{\texorpdfstring{ExactMetrics()}{ExactMetrics()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+\doxyparagraph{\texorpdfstring{ExactMetrics()}{ExactMetrics()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
 {\footnotesize\ttfamily metrics\+::\+Exact\+Metrics\+::\+Exact\+Metrics (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}}}]{algorithm\+\_\+name\+\_\+,  }\item[{int}]{run\+\_\+id\+\_\+,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}} $>$ \&}]{base }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -108,10 +97,18 @@ Constructs an {\ttfamily \doxylink{structmetrics_1_1ExactMetrics}{Exact\+Metrics
 {\em base} & Base metrics pointer containing input parameters. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00720}{720}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}{metrics\+::\+Metrics\+::inputs}}.
+
 \Hypertarget{structmetrics_1_1ExactMetrics_adde2ad7ff074ac71b7cd717b3229280d}\label{structmetrics_1_1ExactMetrics_adde2ad7ff074ac71b7cd717b3229280d} 
 \index{metrics::ExactMetrics@{metrics::ExactMetrics}!ExactMetrics@{ExactMetrics}}
 \index{ExactMetrics@{ExactMetrics}!metrics::ExactMetrics@{metrics::ExactMetrics}}
-\doxysubsubsection{\texorpdfstring{ExactMetrics()}{ExactMetrics()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+\doxyparagraph{\texorpdfstring{ExactMetrics()}{ExactMetrics()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
 {\footnotesize\ttfamily metrics\+::\+Exact\+Metrics\+::\+Exact\+Metrics (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}}}]{algorithm\+\_\+name\+\_\+,  }\item[{int}]{run\+\_\+id,  }\item[{int}]{d,  }\item[{int}]{s\+\_\+ec,  }\item[{int}]{s\+\_\+cc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -131,10 +128,14 @@ Constructs an {\ttfamily \doxylink{structmetrics_1_1ExactMetrics}{Exact\+Metrics
 {\em s\+\_\+cc} & Cloud server count. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00733}{733}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
 \Hypertarget{structmetrics_1_1ExactMetrics_a42dc3e312c1b2ccded95b993ba27cdb2}\label{structmetrics_1_1ExactMetrics_a42dc3e312c1b2ccded95b993ba27cdb2} 
 \index{metrics::ExactMetrics@{metrics::ExactMetrics}!ExactMetrics@{ExactMetrics}}
 \index{ExactMetrics@{ExactMetrics}!metrics::ExactMetrics@{metrics::ExactMetrics}}
-\doxysubsubsection{\texorpdfstring{ExactMetrics()}{ExactMetrics()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+\doxyparagraph{\texorpdfstring{ExactMetrics()}{ExactMetrics()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
 {\footnotesize\ttfamily metrics\+::\+Exact\+Metrics\+::\+Exact\+Metrics (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}} $>$ \&}]{base,  }\item[{int}]{run\+\_\+id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -150,11 +151,15 @@ Constructs an {\ttfamily \doxylink{structmetrics_1_1ExactMetrics}{Exact\+Metrics
 \end{DoxyParams}
 
 
-\doxysubsection{Member Function Documentation}
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00741}{741}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+\doxysubsubsection{Member Function Documentation}
 \Hypertarget{structmetrics_1_1ExactMetrics_ae99cb9c2fa55d61fae9fa870c8241727}\label{structmetrics_1_1ExactMetrics_ae99cb9c2fa55d61fae9fa870c8241727} 
 \index{metrics::ExactMetrics@{metrics::ExactMetrics}!build\_metrics@{build\_metrics}}
 \index{build\_metrics@{build\_metrics}!metrics::ExactMetrics@{metrics::ExactMetrics}}
-\doxysubsubsection{\texorpdfstring{build\_metrics()}{build\_metrics()}}
+\doxyparagraph{\texorpdfstring{build\_metrics()}{build\_metrics()}}
 {\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{structmetrics_1_1MetricEntry}{Metric\+Entry}} $>$ metrics\+::\+Exact\+Metrics\+::build\+\_\+metrics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
@@ -168,10 +173,18 @@ Vector of {\ttfamily \doxylink{structmetrics_1_1MetricEntry}{Metric\+Entry}} rec
 
 Reimplemented from \mbox{\hyperlink{structmetrics_1_1Metrics_af63915d0c63b05e31be006320ce706a6}{metrics\+::\+Metrics}}.
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00756}{756}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l00629}{metrics\+::\+Metrics\+::build\+\_\+metrics()}}, \mbox{\hyperlink{tools_8hpp_source_l00038}{DECIMAL\+\_\+\+PLACES}}, \mbox{\hyperlink{mmkp_8hpp_source_l00712}{gap}}, \mbox{\hyperlink{mmkp_8hpp_source_l00711}{objective\+\_\+function}}, \mbox{\hyperlink{mmkp_8hpp_source_l00710}{status}}, \mbox{\hyperlink{tools_8hpp_source_l00210}{convert\+::to\+\_\+percentage\+\_\+string()}}, and \mbox{\hyperlink{tools_8hpp_source_l00193}{convert\+::to\+\_\+string()}}.
+
 \Hypertarget{structmetrics_1_1ExactMetrics_ab1058b8e443a2c28e86128afb7d253ff}\label{structmetrics_1_1ExactMetrics_ab1058b8e443a2c28e86128afb7d253ff} 
 \index{metrics::ExactMetrics@{metrics::ExactMetrics}!clone@{clone}}
 \index{clone@{clone}!metrics::ExactMetrics@{metrics::ExactMetrics}}
-\doxysubsubsection{\texorpdfstring{clone()}{clone()}}
+\doxyparagraph{\texorpdfstring{clone()}{clone()}}
 {\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structmetrics_1_1Metrics}{Metrics}} $>$ metrics\+::\+Exact\+Metrics\+::clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
@@ -185,10 +198,14 @@ Shared pointer to the cloned {\ttfamily \doxylink{structmetrics_1_1ExactMetrics}
 
 Reimplemented from \mbox{\hyperlink{structmetrics_1_1Metrics_a838af45542e979996137bbcb3dffac8b}{metrics\+::\+Metrics}}.
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00748}{748}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
 \Hypertarget{structmetrics_1_1ExactMetrics_aa164372f0ec3c9680644b3d2f55117a7}\label{structmetrics_1_1ExactMetrics_aa164372f0ec3c9680644b3d2f55117a7} 
 \index{metrics::ExactMetrics@{metrics::ExactMetrics}!data@{data}}
 \index{data@{data}!metrics::ExactMetrics@{metrics::ExactMetrics}}
-\doxysubsubsection{\texorpdfstring{data()}{data()}}
+\doxyparagraph{\texorpdfstring{data()}{data()}}
 {\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ metrics\+::\+Exact\+Metrics\+::data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
@@ -202,10 +219,43 @@ Vector of formatted string values.
 
 Reimplemented from \mbox{\hyperlink{structmetrics_1_1Metrics_aae2f001dafac22ff14300767311562b8}{metrics\+::\+Metrics}}.
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00780}{780}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l00669}{metrics\+::\+Metrics\+::data()}}, \mbox{\hyperlink{tools_8hpp_source_l00038}{DECIMAL\+\_\+\+PLACES}}, \mbox{\hyperlink{mmkp_8hpp_source_l00712}{gap}}, \mbox{\hyperlink{mmkp_8hpp_source_l00711}{objective\+\_\+function}}, \mbox{\hyperlink{mmkp_8hpp_source_l00710}{status}}, and \mbox{\hyperlink{tools_8hpp_source_l00193}{convert\+::to\+\_\+string()}}.
+
+\Hypertarget{structmetrics_1_1Metrics_a3d3c87cc48e752bab4238d3686fcf8f8}\label{structmetrics_1_1Metrics_a3d3c87cc48e752bab4238d3686fcf8f8} 
+\index{metrics::ExactMetrics@{metrics::ExactMetrics}!get\_base\_directory\_path@{get\_base\_directory\_path}}
+\index{get\_base\_directory\_path@{get\_base\_directory\_path}!metrics::ExactMetrics@{metrics::ExactMetrics}}
+\doxyparagraph{\texorpdfstring{get\_base\_directory\_path()}{get\_base\_directory\_path()}}
+{\footnotesize\ttfamily virtual std\+::filesystem\+::path metrics\+::\+Metrics\+::get\+\_\+base\+\_\+directory\+\_\+path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Returns the output directory path corresponding to the current paradigm. 
+
+\begin{DoxyReturn}{Returns}
+Filesystem path {\ttfamily results/\texorpdfstring{$<$}{<}PARADIGM\texorpdfstring{$>$}{>}}. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00621}{621}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l00449}{metrics\+::\+RESULTS\+\_\+\+PATH}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00467}{metrics\+::to\+\_\+string()}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00692}{metrics\+::\+Metrics\+::save\+\_\+to\+\_\+file()}}.
+
 \Hypertarget{structmetrics_1_1ExactMetrics_a93043f660ea769becfd8105eea97860c}\label{structmetrics_1_1ExactMetrics_a93043f660ea769becfd8105eea97860c} 
 \index{metrics::ExactMetrics@{metrics::ExactMetrics}!get\_header@{get\_header}}
 \index{get\_header@{get\_header}!metrics::ExactMetrics@{metrics::ExactMetrics}}
-\doxysubsubsection{\texorpdfstring{get\_header()}{get\_header()}}
+\doxyparagraph{\texorpdfstring{get\_header()}{get\_header()}}
 {\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ metrics\+::\+Exact\+Metrics\+::get\+\_\+header (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
@@ -221,36 +271,168 @@ Reimplemented from \mbox{\hyperlink{structmetrics_1_1Metrics_aa0f8b0b47c23913a43
 
 
 
-\doxysubsection{Member Data Documentation}
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00768}{768}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{mmkp_8hpp_source_l00657}{metrics\+::\+Metrics\+::get\+\_\+header()}}.
+
+\Hypertarget{structmetrics_1_1Metrics_a282b4959f016cb954aeea5a71c829032}\label{structmetrics_1_1Metrics_a282b4959f016cb954aeea5a71c829032} 
+\index{metrics::ExactMetrics@{metrics::ExactMetrics}!save\_to\_file@{save\_to\_file}}
+\index{save\_to\_file@{save\_to\_file}!metrics::ExactMetrics@{metrics::ExactMetrics}}
+\doxyparagraph{\texorpdfstring{save\_to\_file()}{save\_to\_file()}}
+{\footnotesize\ttfamily void metrics\+::\+Metrics\+::save\+\_\+to\+\_\+file (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}
+
+
+
+Appends the current simulation metrics row to the corresponding algorithm CSV file. 
+
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00692}{692}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+References \mbox{\hyperlink{tools_8hpp_source_l00118}{file\+\_\+manager\+::csv\+::append()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00669}{metrics\+::\+Metrics\+::data()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00621}{metrics\+::\+Metrics\+::get\+\_\+base\+\_\+directory\+\_\+path()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00657}{metrics\+::\+Metrics\+::get\+\_\+header()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00467}{metrics\+::to\+\_\+string()}}.
+
+
+
+\doxysubsubsection{Member Data Documentation}
+\Hypertarget{structmetrics_1_1Metrics_a833606cb55a8544ef0154c0c7fa0e44f}\label{structmetrics_1_1Metrics_a833606cb55a8544ef0154c0c7fa0e44f} 
+\index{metrics::ExactMetrics@{metrics::ExactMetrics}!algorithm@{algorithm}}
+\index{algorithm@{algorithm}!metrics::ExactMetrics@{metrics::ExactMetrics}}
+\doxyparagraph{\texorpdfstring{algorithm}{algorithm}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11}{Algorithm}} metrics\+::\+Metrics\+::algorithm = \mbox{\hyperlink{namespacemetrics_a52f859a07d748c00c090a31bea367c11ab50339a10e1de285ac99d4c3990b8693}{Algorithm\+::\+NONE}}\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Algorithm executed in the current run. 
+
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00523}{523}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00890}{metrics\+::\+Meta\+Heuristic\+Metrics\+::build\+\_\+metrics()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00669}{metrics\+::\+Metrics\+::data()}}.
+
 \Hypertarget{structmetrics_1_1ExactMetrics_a4994502ed671d0335ece2816db855fad}\label{structmetrics_1_1ExactMetrics_a4994502ed671d0335ece2816db855fad} 
 \index{metrics::ExactMetrics@{metrics::ExactMetrics}!gap@{gap}}
 \index{gap@{gap}!metrics::ExactMetrics@{metrics::ExactMetrics}}
-\doxysubsubsection{\texorpdfstring{gap}{gap}}
+\doxyparagraph{\texorpdfstring{gap}{gap}}
 {\footnotesize\ttfamily double metrics\+::\+Exact\+Metrics\+::gap = 1.\+0}
 
 
 
 Relative MIP optimality gap. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00712}{712}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00756}{build\+\_\+metrics()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00780}{data()}}.
+
+\Hypertarget{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47}\label{structmetrics_1_1Metrics_a75174af17b3795ba7f58d792872a6a47} 
+\index{metrics::ExactMetrics@{metrics::ExactMetrics}!inputs@{inputs}}
+\index{inputs@{inputs}!metrics::ExactMetrics@{metrics::ExactMetrics}}
+\doxyparagraph{\texorpdfstring{inputs}{inputs}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Inputs}{metrics\+::\+Metrics\+::\+Inputs}} metrics\+::\+Metrics\+::inputs\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Instance input parameters. 
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00629}{metrics\+::\+Metrics\+::build\+\_\+metrics()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00669}{metrics\+::\+Metrics\+::data()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00720}{Exact\+Metrics()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00800}{metrics\+::\+Heuristic\+Metrics\+::\+Heuristic\+Metrics()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00851}{metrics\+::\+Meta\+Heuristic\+Metrics\+::\+Meta\+Heuristic\+Metrics()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00594}{metrics\+::\+Metrics\+::\+Metrics()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00572}{metrics\+::\+Metrics\+::\+Metrics()}}.
+
 \Hypertarget{structmetrics_1_1ExactMetrics_aa7ed241daacefcfe777d52b97e4c361c}\label{structmetrics_1_1ExactMetrics_aa7ed241daacefcfe777d52b97e4c361c} 
 \index{metrics::ExactMetrics@{metrics::ExactMetrics}!objective\_function@{objective\_function}}
 \index{objective\_function@{objective\_function}!metrics::ExactMetrics@{metrics::ExactMetrics}}
-\doxysubsubsection{\texorpdfstring{objective\_function}{objective\_function}}
+\doxyparagraph{\texorpdfstring{objective\_function}{objective\_function}}
 {\footnotesize\ttfamily double metrics\+::\+Exact\+Metrics\+::objective\+\_\+function = 0.\+0}
 
 
 
 Objective function value achieved by the solver. 
 
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00711}{711}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00756}{build\+\_\+metrics()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00780}{data()}}.
+
+\Hypertarget{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61}\label{structmetrics_1_1Metrics_ab7ed674919819ab3b2e2f575d7919b61} 
+\index{metrics::ExactMetrics@{metrics::ExactMetrics}!outputs@{outputs}}
+\index{outputs@{outputs}!metrics::ExactMetrics@{metrics::ExactMetrics}}
+\doxyparagraph{\texorpdfstring{outputs}{outputs}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structmetrics_1_1Metrics_1_1Outputs}{metrics\+::\+Metrics\+::\+Outputs}} metrics\+::\+Metrics\+::outputs\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Simulation output metrics. 
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00629}{metrics\+::\+Metrics\+::build\+\_\+metrics()}}, \mbox{\hyperlink{mmkp_8hpp_source_l00669}{metrics\+::\+Metrics\+::data()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00594}{metrics\+::\+Metrics\+::\+Metrics()}}.
+
+\Hypertarget{structmetrics_1_1Metrics_a3826511b1490b1dc00db005abde1ec40}\label{structmetrics_1_1Metrics_a3826511b1490b1dc00db005abde1ec40} 
+\index{metrics::ExactMetrics@{metrics::ExactMetrics}!paradigm@{paradigm}}
+\index{paradigm@{paradigm}!metrics::ExactMetrics@{metrics::ExactMetrics}}
+\doxyparagraph{\texorpdfstring{paradigm}{paradigm}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639a}{Paradigm}} metrics\+::\+Metrics\+::paradigm = \mbox{\hyperlink{namespacemetrics_a3a65ee5495efeddec00733a74a3e639aab50339a10e1de285ac99d4c3990b8693}{Paradigm\+::\+NONE}}\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Optimization paradigm of the current run. 
+
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00522}{522}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00669}{metrics\+::\+Metrics\+::data()}}.
+
+\Hypertarget{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8}\label{structmetrics_1_1Metrics_ad8482215a3e6fda00f5cdef4ea725ab8} 
+\index{metrics::ExactMetrics@{metrics::ExactMetrics}!run\_id@{run\_id}}
+\index{run\_id@{run\_id}!metrics::ExactMetrics@{metrics::ExactMetrics}}
+\doxyparagraph{\texorpdfstring{run\_id}{run\_id}}
+{\footnotesize\ttfamily int metrics\+::\+Metrics\+::run\+\_\+id = 0\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Execution run identifier (1-\/indexed). 
+
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00524}{524}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00669}{metrics\+::\+Metrics\+::data()}}.
+
 \Hypertarget{structmetrics_1_1ExactMetrics_ab0a45d632c0895b48baa6a39d63457b0}\label{structmetrics_1_1ExactMetrics_ab0a45d632c0895b48baa6a39d63457b0} 
 \index{metrics::ExactMetrics@{metrics::ExactMetrics}!status@{status}}
 \index{status@{status}!metrics::ExactMetrics@{metrics::ExactMetrics}}
-\doxysubsubsection{\texorpdfstring{status}{status}}
+\doxyparagraph{\texorpdfstring{status}{status}}
 {\footnotesize\ttfamily std\+::string metrics\+::\+Exact\+Metrics\+::status = "{}Unknown"{}}
 
 
 
 Termination status reported by CPLEX (e.\+g., {\ttfamily "{}\+Optimal"{}}). 
+
+
+
+Definition at line \mbox{\hyperlink{mmkp_8hpp_source_l00710}{710}} of file \mbox{\hyperlink{mmkp_8hpp_source}{mmkp.\+hpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{mmkp_8hpp_source_l00756}{build\+\_\+metrics()}}, and \mbox{\hyperlink{mmkp_8hpp_source_l00780}{data()}}.
 
 
 
