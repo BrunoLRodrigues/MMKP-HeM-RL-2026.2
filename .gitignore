@@ -10,3 +10,6 @@ CMakeFiles/
 .vscode/
 .DS_Store
 *:Zone.Identifier
+
+# EN: Drawing text files / PT: Arquivos de texto de desenho
+*drawing.txt
