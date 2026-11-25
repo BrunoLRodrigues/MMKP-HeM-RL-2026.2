@@ -1,8 +1,9 @@
 /**
  * @file metaheuristic.hpp
  * @brief Meta-heuristic optimization algorithms and neighborhood operators for MMKP.
- * @details Implements Simulated Annealing (SA) with incremental delta evaluation and
- * shift/insert/swap neighborhood moves to refine initial constructive heuristic solutions.
+ * @details Implements Simulated Annealing (SA) and time-constrained Simulated Annealing (TSA)
+ * with incremental delta evaluation and shift/insert/swap neighborhood moves to refine
+ * initial constructive heuristic solutions.
  */
 
 #pragma once
@@ -14,8 +15,8 @@
 /**
  * @namespace metaheuristic
  * @brief Encapsulates meta-heuristic algorithms for network resource allocation.
- * @details Provides trajectory-based optimization techniques, specifically Simulated Annealing, 
- * to iteratively improve initial heuristic solutions by exploring shift, insertion, and 
+ * @details Provides trajectory-based optimization techniques, specifically Simulated Annealing,
+ * to iteratively improve initial heuristic solutions by exploring shift, insertion, and
  * 1-for-1 swap neighborhood structures.
  */
 namespace metaheuristic {
@@ -26,6 +27,11 @@ namespace metaheuristic {
          * @brief Number of inner-loop iterations (Markov chain length) executed per temperature level.
          */
         constexpr int LOOP = 10;
+
+        /**
+         * @brief Default execution time budget in seconds for time-constrained Simulated Annealing.
+         */
+        constexpr double TIME_LIMIT = 1.0 - ZERO;
 
         /**
          * @struct Move
@@ -42,10 +48,10 @@ namespace metaheuristic {
 
         /**
          * @brief Applies a shift, insert, or swap neighborhood move to the current state.
-         * @details Selects a random device and attempts to allocate or shift it across random 
-         * servers (including a fallback check on the last server for unserved devices). If direct 
+         * @details Selects a random device and attempts to allocate or shift it across random
+         * servers (including a fallback check on the last server for unserved devices). If direct
          * allocation fails for an unserved device, attempts a 1-for-1 swap with a currently served device.
-         * 
+         *
          * @param devices The global state vector of devices.
          * @param servers The global state vector of servers.
          * @param tries The maximum number of random candidate attempts.
@@ -188,7 +194,7 @@ namespace metaheuristic {
 
                         current_cost = neighbor_cost;
 
-                        if (current_cost < best_cost - ZERO) {
+                        if (current_cost < best_cost - 1e-9) {
                             i = 0;
                             best_cost = current_cost;
                             is_best_synced = false;
@@ -208,17 +214,120 @@ namespace metaheuristic {
             auto end_chrono = std::chrono::high_resolution_clock::now();
             metrics_ptr->outputs.execution_time += std::chrono::duration<double>(end_chrono - start_chrono).count();
         } 
+
+        /**
+         * @brief Executes the Simulated Annealing (SA) optimization algorithm with a strict execution time constraint.
+         * @details Iteratively explores the solution space by applying random neighborhood moves.
+         * Accepts worsening moves according to the Metropolis criterion \f$\exp(-\Delta / T)\f$
+         * to escape local optima, cooling down geometrically via factor \f$\alpha\f$ until \f$T \le 10^{-3}\f$.
+         * Constrains execution to a remaining time limit (`TIME_LIMIT` minus prior heuristic execution time)
+         * using lazy synchronization to track the best-found state.
+         *
+         * @param state The unified simulation state containing devices, servers, and metrics.
+         */
+        inline void timed_simulated_annealing(metrics::Result& state) {
+            auto metrics_ptr = std::dynamic_pointer_cast<metrics::MetaHeuristicMetrics>(state.stats);
+            if (!metrics_ptr) {
+                std::cerr << "Error: Invalid metrics type for heuristic solver.\n";
+                return;
+            }
+
+            core::Devices best_devices = state.devices;
+            core::Servers best_servers = state.servers;
+            
+            double best_cost = metrics_ptr->outputs.total_penalty_cost;
+            double current_cost = best_cost;
+            bool is_best_synced = true;
+            
+            double T = metrics_ptr->temperature;
+            double alpha = metrics_ptr->alpha;
+            
+            const double time_limit = TIME_LIMIT - state.stats->outputs.execution_time;
+            
+            bool time_out = false;
+            double elapsed_time;
+            auto current_chrono = std::chrono::high_resolution_clock::now();
+            
+            auto start_chrono = std::chrono::high_resolution_clock::now();
+            
+            while (T > 1e-3) {
+                current_chrono = std::chrono::high_resolution_clock::now();
+                elapsed_time = std::chrono::duration<double>(current_chrono - start_chrono).count();
+                if (elapsed_time >= time_limit) {
+                    time_out = true;
+                    break; 
+                }
+                for (int i = 0; i < LOOP; i++) { 
+                    Move move = apply_neighbor(state.devices, state.servers);
+                    if (!move.valid) continue;
+                    
+                    double neighbor_cost = current_cost + move.delta_cost;
+                    double delta = neighbor_cost - current_cost;
+
+                    if (delta < 0.0 || (randomness::random_number(0.0, 1.0) < std::exp(-delta / T))) {
+                        if (delta > 0.0 && !is_best_synced) {
+                            revert_neighbor(state.devices, state.servers, move);
+                            best_devices = state.devices;
+                            best_servers = state.servers;
+                            is_best_synced = true;
+                            if (move.swapped_id != -1) {
+                                state.servers[move.new_server_id].rmv_service(state.devices[move.swapped_id]);
+                            }
+                            if (move.old_server_id != -1) {
+                                state.servers[move.old_server_id].rmv_service(state.devices[move.device_id]);
+                            }
+                            if (move.new_server_id != -1) {
+                                state.servers[move.new_server_id].add_service(state.devices[move.device_id]);
+                            }
+                        }
+
+                        current_cost = neighbor_cost;
+
+                        if (current_cost < best_cost - 1e-9) {
+                            current_chrono = std::chrono::high_resolution_clock::now();
+                            elapsed_time = std::chrono::duration<double>(current_chrono - start_chrono).count();
+                            if (elapsed_time >= time_limit) {
+                                T = 0.0;
+                                time_out = true;
+                                break;
+                            }
+
+                            i = 0;
+                            best_cost = current_cost;
+                            is_best_synced = false;
+                        }
+                    } else {
+                        revert_neighbor(state.devices, state.servers, move);
+                    }
+                }
+                T *= alpha;
+            }
+            
+            if (is_best_synced) {
+                state.devices = std::move(best_devices);
+                state.servers = std::move(best_servers);
+            }
+
+            auto end_chrono = std::chrono::high_resolution_clock::now();
+            elapsed_time = std::chrono::duration<double>(end_chrono - start_chrono).count();
+            if (!time_out && elapsed_time <= time_limit) {
+                metrics_ptr->outputs.execution_time += elapsed_time;
+            } else {
+                metrics_ptr->outputs.execution_time = TIME_LIMIT;
+            }
+        }
     }
 
     /**
      * @brief Initializes and launches the selected meta-heuristic algorithm.
-     * @details Generates an initial solution using the configured constructive base heuristic, 
-     * records its standalone metrics in the heuristic results directory, and then executes 
-     * the meta-heuristic optimization over the resulting state.
-     * 
+     * @details Generates an initial solution using the configured constructive base heuristic when
+     * `started` is `false`, records standalone heuristic metrics when applicable, and executes
+     * the meta-heuristic optimization over `state`.
+     *
      * @param state The unified simulation state to be optimized.
+     * @param started Flag indicating whether `state` already holds a pre-computed initial solution.
      */
-    inline void boot(metrics::Result& state) { 
+    inline void boot(metrics::Result& state, bool started = false) { 
         if (!state.stats) return;
 
         auto metrics_ptr = std::dynamic_pointer_cast<metrics::MetaHeuristicMetrics>(state.stats);
@@ -228,25 +337,29 @@ namespace metaheuristic {
         }
 
         metrics::Result initial_state = state;
-        initial_state.stats = std::make_shared<metrics::HeuristicMetrics>(
-            metrics_ptr->heuristic, 
-            metrics_ptr->run_id, 
-            state.stats
-        );
+        if (!started) {
+            initial_state.stats = std::make_shared<metrics::HeuristicMetrics>(
+                metrics_ptr->heuristic, 
+                metrics_ptr->run_id, 
+                state.stats
+            );
+    
+            heuristic::boot(initial_state);
+            metrics::calculate_metrics(initial_state);
+            if (data::generate::is_training_mode() || metrics_ptr->heuristic != metrics::Algorithm::greedy_cost_benefit || metrics_ptr->run_id == 1) {
+                metrics::save_results(initial_state, false);
+            }
 
-        heuristic::boot(initial_state);
-        metrics::calculate_metrics(initial_state);
-        if (metrics_ptr->heuristic != metrics::Algorithm::greedy_cost_benefit || metrics_ptr->run_id == 1) {
-            metrics::save_results(initial_state, false);
+            state.devices = initial_state.devices;
+            state.servers = initial_state.servers;
+            metrics_ptr->inputs = initial_state.stats->inputs;
+            metrics_ptr->outputs = initial_state.stats->outputs;
         }
-
-        state.devices = initial_state.devices;
-        state.servers = initial_state.servers;
-        metrics_ptr->inputs = initial_state.stats->inputs;
-        metrics_ptr->outputs = initial_state.stats->outputs;
 
         if (metrics_ptr->algorithm == metrics::Algorithm::simulated_annealing) {
             simulated_annealing(state);
+        } else if (metrics_ptr->algorithm == metrics::Algorithm::timed_simulated_annealing) {
+            timed_simulated_annealing(state);
         } else {
             std::cerr << "Error: Unknown metaheuristic algorithm type.\n";
         }

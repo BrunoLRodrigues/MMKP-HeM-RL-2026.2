@@ -186,101 +186,149 @@ namespace core {
  * @brief Generates or updates synthetic datasets for services, IoT devices, and EC/CC servers.
  */
 namespace data::generate {
+/**
+     * @brief Provides a singleton flag indicating whether the simulator is running in RL training mode.
+     * @return Reference to the static boolean training mode flag.
+     */
+    inline bool& is_training_mode() {
+        static bool training = false;
+        return training;
+    }
 
     /**
-     * @brief Path pointing to the root `data/` directory.
+     * @brief Counts existing episode directories in `data/training` and returns the next available episode index.
+     * @return Next 1-based episode identifier.
      */
-    const std::filesystem::path DATA_PATH = std::filesystem::current_path() / "data";
+    inline int get_next_episode_number() {
+        std::filesystem::path training_dir = std::filesystem::current_path() / "data" / "training";
+        
+        if (!std::filesystem::exists(training_dir)) {
+            return 1;
+        }
+
+        int count = 0;
+        for (const auto& entry : std::filesystem::directory_iterator(training_dir)) {
+            if (entry.is_directory()) {
+                count++;
+            }
+        }
+
+        int next_ep = count + 1;
+        while (std::filesystem::exists(training_dir / ("episode_" + std::to_string(next_ep)))) {
+            next_ep++;
+        }
+        
+        return next_ep;
+    }
+
+    /**
+     * @brief Retrieves or updates the active training episode identifier.
+     * @return Reference to the static episode number.
+     */
+    inline int& current_episode() {
+        static int episode = get_next_episode_number();
+        return episode;
+    }
+
+    /**
+     * @brief Resolves the active training episode ID.
+     * @details If `requested_episode > 0` and its directory exists in `data/training/episode_<id>`,
+     * selects that episode. Otherwise, assigns the next available episode number via `get_next_episode_number()`.
+     * 
+     * @param requested_episode Target episode ID (`<= 0` forces creation with the next iterator).
+     * @return The resolved 1-based episode identifier.
+     */
+    inline int resolve_episode(int requested_episode = 0) {
+        if (requested_episode > 0) {
+            current_episode() = requested_episode;
+        } else {
+            current_episode() = get_next_episode_number();
+        }
+        return current_episode();
+    }
+
+    /**
+     * @brief Resolves the root data directory path based on the current execution mode.
+     * @return Filesystem path pointing to `data/training/episode_<X>` in training mode, or `data` otherwise.
+     */
+    inline std::filesystem::path get_data_path() {
+        auto base = std::filesystem::current_path() / "data";
+        if (is_training_mode()) {
+            return base / "training" / ("episode_" + std::to_string(current_episode()));
+        }
+        return base;
+    }
 
     /**
      * @brief Generates or loads network service requirement templates.
      * @details Creates random service profiles with varying task counts, memory, storage, 
-     * and processing demands, persisting them to `data/Services.txt`. If the file already exists, 
-     * reloads the profiles and updates their penalty costs (`COST`) according to `fixed_penalty`.
+     * and processing demands, persisting them to `Services.txt` inside the resolved data path.
      * 
      * @param num_services The total number of distinct service profiles to generate.
-     * @param fixed_penalty If `true`, assigns a unit penalty cost (`1.0`); if `false`, generates task-proportional random penalty costs.
-     * @return A 2D string vector containing the generated or updated services dataset.
+     * @return A 2D string vector containing the generated or loaded services dataset.
      */
-    inline std::vector<std::vector<std::string>> services(const int num_services = 10, bool fixed_penalty = true) {
-        std::filesystem::path service_path = DATA_PATH / "Services.txt";
+    inline std::vector<std::vector<std::string>> services(const int num_services = 100) {
+        std::filesystem::path service_path = get_data_path() / "Services.txt";
         
         if (std::filesystem::exists(service_path)) {
-            auto loaded = csv::read(service_path.string(), ';').value_or(std::vector<std::vector<std::string>>{});
-
-            if (loaded.size() > 1) {
-                for (size_t i = 1; i < loaded.size(); i++) {
-                    int tsk = std::stoi(loaded[i][5]);
-                    double cos = 1.0;
-                    if (!fixed_penalty) {
-                        for (int j = 0; j < tsk; j++) {
-                            cos += randomness::random_number(ZERO, 2.5);
-                        }
-                    }
-                    loaded[i][1] = convert::to_string(cos, DECIMAL_PLACES);
-                }
-                csv::write(service_path.string(), loaded, ';');
-            }
-            return loaded;
+            return csv::read(service_path.string(), ';').value_or(std::vector<std::vector<std::string>>{});
         }
 
-        std::vector<std::vector<std::string>> services;
-        services.push_back({"#", "COST", "CPU", "MEM", "STO", "TSK"});
+        std::vector<std::vector<std::string>> services_data;
+        services_data.push_back({"#", "COST", "CPU", "MEM", "STO", "TSK"});
 
         for (int i = 1; i <= num_services; i++) {
             int tsk = randomness::random_number(1, 4);
-            double cpu = 0.0, mem = 0.0, sto = 0.0, cos = 1.0;
+            double cpu = 0.0, mem = 0.0, sto = 0.0, cost = 1.0;
 
             for (int j = 0; j < tsk; j++) {
-                if (!fixed_penalty) {
-                    cos += randomness::random_number(ZERO, 2.5);
-                }
                 cpu += randomness::random_number(ZERO, 2.5);
                 mem += randomness::random_number(ZERO, 2.5);
                 sto += randomness::random_number(ZERO, 15.0);
+                cost += randomness::random_number(ZERO, 2.5);
             }
             
-            services.push_back({
-                convert::to_string(i), convert::to_string(cos, DECIMAL_PLACES),
+            services_data.push_back({
+                convert::to_string(i), convert::to_string(cost, DECIMAL_PLACES),
                 convert::to_string(cpu, DECIMAL_PLACES), convert::to_string(mem, DECIMAL_PLACES), convert::to_string(sto, DECIMAL_PLACES),
                 convert::to_string(tsk)
             });
         }
-
-        if (!csv::write(service_path.string(), services, ';')) {
+        
+        if (!csv::write(service_path.string(), services_data, ';')) {
             return {};
         }
-        return services;
+
+        return services_data;
     }
 
     /**
      * @brief Generates or loads device request data representing IoT network demands.
      * @details Uniformly samples service requirement profiles from the services dataset 
-     * and assigns them to each device instance in `data/devices/Devices_<length>.txt`. If the file 
-     * already exists, synchronizes each device's penalty cost (`COST`) with its corresponding service template.
+     * and assigns them to each device instance (`data/training/episode_<X>/Devices.txt` in training mode,
+     * or `data/devices/Devices_<length>.txt` in benchmark mode).
      * 
-     * @param length The total number of devices to generate.
+     * @param length The total number of devices to generate if the file does not exist.
      * @param num_services The number of underlying service templates to sample from.
      * @param fixed_penalty Whether the penalty (cost) of each device is fixed (`1.0`) or variable.
      * @return A 2D string vector representing the devices dataset.
      */
-    inline std::vector<std::vector<std::string>> devices(const int length, const int num_services = 10, bool fixed_penalty = true) {
-        std::filesystem::path device_file_path = DATA_PATH / "devices" / ("Devices_" + std::to_string(length) + ".txt");
+    inline std::vector<std::vector<std::string>> devices(const int length, const int num_services = 100, bool fixed_penalty = true) {
+        std::filesystem::path data_path = get_data_path();
+        std::filesystem::path device_file_path = is_training_mode() ? (data_path / "Devices.txt") : (data_path / "devices" / ("Devices_" + std::to_string(length) + ".txt"));
         
-        std::vector<std::vector<std::string>> data_services = services(num_services, fixed_penalty);
-        if (data_services.size() <= 1) return {};
+        std::vector<std::vector<std::string>> services_data = services(num_services);
+        if (services_data.size() <= 1) return {};
 
         if (std::filesystem::exists(device_file_path)) {
             auto loaded = csv::read(device_file_path.string(), ';').value_or(std::vector<std::vector<std::string>>{});
-            
-            if (loaded.size() > 1) {
-                for (size_t i = 1; i < loaded.size(); i++) {
-                int svc = std::stoi(loaded[i][6]);
-                loaded[i][1] = data_services.at(svc).at(1);
-            }
-            csv::write(device_file_path.string(), loaded, ';');
-            }
 
+            if (fixed_penalty) {
+                for (size_t i = 1; i < loaded.size(); i++) {
+                    loaded[i][1] = convert::to_string(1.0, DECIMAL_PLACES);
+                }
+            }
+            
             return loaded;
         }
 
@@ -288,7 +336,7 @@ namespace data::generate {
         devices.push_back({"#", "COST", "CPU", "MEM", "STO", "TSK", "SVC"});
         
         for (int i = 1; i <= length; i++) {
-            const auto& source_service_row = data_services.at(randomness::random_number(1, static_cast<int>(data_services.size()) - 1));
+            const auto& source_service_row = services_data.at(randomness::random_number(1, static_cast<int>(services_data.size()) - 1));
 
             devices.push_back({
                 convert::to_string(i),    // # 
@@ -304,20 +352,30 @@ namespace data::generate {
         if (!csv::write(device_file_path.string(), devices, ';')) {
             return {};
         }
+
+        if (fixed_penalty) {
+            for (size_t i = 1; i < devices.size(); i++) {
+                devices[i][1] = convert::to_string(1.0, DECIMAL_PLACES);
+            }
+        }
+                
         return devices;
     }
 
     /**
      * @brief Generates or loads server infrastructure data for Edge and Cloud nodes.
      * @details Creates capacity profiles for `ec_length` Edge servers (`'E'`) and `cc_length`
-     * Cloud servers (`'C'`), saving the table to `data/servers/servers_<ec>_<cc>.txt`.
+     * Cloud servers (`'C'`), saving to `data/training/episode_<X>/Servers.txt` in training mode
+     * or `data/servers/Servers_<ec>_<cc>.txt` in benchmark mode.
      * 
      * @param ec_length The number of Edge Computing servers to generate.
      * @param cc_length The number of Cloud Computing servers to generate.
      * @return A 2D string vector representing the servers dataset.
      */
-    inline std::vector<std::vector<std::string>> servers(const int ec_length = 99, const int cc_length = 1) {
-        std::filesystem::path server_file_path = DATA_PATH / "servers" / ("servers_" + std::to_string(ec_length) + "_" + std::to_string(cc_length) + ".txt");
+    inline std::vector<std::vector<std::string>> servers(const int ec_length = 499, const int cc_length = 1) {
+        std::filesystem::path data_path = get_data_path();
+        std::filesystem::path server_file_path = is_training_mode() ? (data_path / "Servers.txt") : (data_path / "servers" / ("Servers_" + std::to_string(ec_length) + "_" + std::to_string(cc_length) + ".txt"));
+
         if (std::filesystem::exists(server_file_path)) {
             return csv::read(server_file_path.string(), ';').value_or(std::vector<std::vector<std::string>>{});
         }
@@ -340,11 +398,11 @@ namespace data::generate {
             }
 
             servers.push_back({
-                    convert::to_string(it),        // IDX  
-                    (it <= ec_length) ? "E" : "C", // TYPE
-                    convert::to_string(cpu, DECIMAL_PLACES),       // CPU   
-                    convert::to_string(mem, DECIMAL_PLACES),       // MEM 
-                    convert::to_string(sto, DECIMAL_PLACES)        // STO
+                    convert::to_string(it),                  // IDX  
+                    (it <= ec_length) ? "E" : "C",           // TYPE
+                    convert::to_string(cpu, DECIMAL_PLACES), // CPU   
+                    convert::to_string(mem, DECIMAL_PLACES), // MEM 
+                    convert::to_string(sto, DECIMAL_PLACES)  // STO
                 });
         }
 
@@ -368,7 +426,7 @@ namespace data::load {
      * @param fixed_penalty Whether the penalty (cost) of each device is fixed or can vary. Defaults to true.
      * @return A 1-indexed `core::Devices` vector containing the parsed device instances.
      */
-    inline core::Devices devices(const int length, const int num_services = 10, bool fixed_penalty = true) {
+    inline core::Devices devices(const int length, const int num_services = 100, bool fixed_penalty = true) {
         std::vector<std::vector<std::string>> load_devices = data::generate::devices(length, num_services, fixed_penalty);
         if (load_devices.size() <= 1) {
             std::cerr << "Error: Device data file not found or is empty.\n";
@@ -406,7 +464,7 @@ namespace data::load {
      * @param cc The number of Cloud Computing (CC) servers to load.
      * @return A 1-indexed `core::Servers` vector containing both EC and CC server instances.
      */
-    inline core::Servers servers(const int ec = 99, const int cc = 1) {
+    inline core::Servers servers(const int ec = 499, const int cc = 1) {
         std::vector<std::vector<std::string>> load_servers = data::generate::servers(ec, cc);
         if (load_servers.size() <= 1) {
             std::cerr << "Error: Server data file(s) not found or are empty.\n";
@@ -443,6 +501,7 @@ namespace data::load {
  */
 namespace metrics {
 
+    
     /**
      * @brief Path pointing to the root `results/` directory.
      */
@@ -478,12 +537,14 @@ namespace metrics {
      * @brief Identifies the specific optimization algorithm used in a simulation run.
      */
     enum class Algorithm {
-        NONE,                   ///< @brief Uninitialized algorithm.
-        solver_maximum_cost,    ///< @brief Exact ILP solver maximizing avoided penalty cost.
-        greedy_cost_benefit,    ///< @brief Deterministic surrogate cost-benefit greedy heuristic.
-        greedy_random,          ///< @brief Single-stage uniform random greedy heuristic.
-        greedy_random_fallback, ///< @brief Two-stage Edge-first random greedy heuristic with Cloud fallback.
-        simulated_annealing     ///< @brief Simulated Annealing meta-heuristic.
+        NONE,                       ///< @brief Uninitialized algorithm.
+        solver_maximum_cost,        ///< @brief Exact ILP solver maximizing avoided penalty cost.
+        greedy_cost_benefit,        ///< @brief Deterministic surrogate cost-benefit greedy heuristic.
+        greedy_random,              ///< @brief Single-stage uniform random greedy heuristic.
+        greedy_random_fallback,     ///< @brief Two-stage Edge-first random greedy heuristic with Cloud fallback.
+        balanced_greedy_random,     ///< @brief Balanced 50/50 random greedy allocation between Edge and Cloud servers.
+        simulated_annealing,        ///< @brief Simulated Annealing meta-heuristic.
+        timed_simulated_annealing   ///< @brief Time-constrained Simulated Annealing meta-heuristic.
     };
 
     /**
@@ -493,12 +554,14 @@ namespace metrics {
      */
     inline std::string to_string(Algorithm algorithm) {
         switch (algorithm) {
-            case Algorithm::solver_maximum_cost:    return "SOLVER_MAXIMUM_COST";
-            case Algorithm::greedy_cost_benefit:    return "GREEDY_CB";    
-            case Algorithm::greedy_random:          return "GREEDY_RANDOM";
-            case Algorithm::greedy_random_fallback: return "GREEDY_RANDOM_FALLBACK";
-            case Algorithm::simulated_annealing:    return "SA";
-            default:                                return "NONE";
+            case Algorithm::solver_maximum_cost:        return "SOLVER_MAXIMUM_COST";
+            case Algorithm::greedy_random:              return "GR";
+            case Algorithm::greedy_random_fallback:     return "GRF";
+            case Algorithm::balanced_greedy_random:     return "BGR";
+            case Algorithm::greedy_cost_benefit:        return "GCB";    
+            case Algorithm::simulated_annealing:        return "SA";
+            case Algorithm::timed_simulated_annealing:  return "TSA";
+            default:                                    return "NONE";
         }
     }
 
@@ -615,10 +678,13 @@ namespace metrics {
         }
 
         /**
-         * @brief Returns the output directory path corresponding to the current paradigm.
-         * @return Filesystem path `results/<PARADIGM>`.
+         * @brief Returns the output directory path corresponding to the active training episode.
+         * @return Filesystem path `results/training/episode_<X>/` in training mode.
          */
         virtual std::filesystem::path get_base_directory_path() const {
+            if (data::generate::is_training_mode()) {
+                return RESULTS_PATH / "training" / ("episode_" + std::to_string(data::generate::current_episode()));
+            }
             return RESULTS_PATH / to_string(this->paradigm);
         }
 
@@ -687,19 +753,9 @@ namespace metrics {
         }
 
         /**
-         * @brief Appends the current simulation metrics row to the corresponding algorithm CSV file.
+         * @brief Appends the simulation metrics row to the grouped category file (`heuristics.txt` or `metaheuristics.txt`).
          */
-        inline void save_to_file() const {
-            std::filesystem::path dir_path = this->get_base_directory_path();
-            std::filesystem::path result_path = dir_path / (to_string(this->algorithm) + ".txt");
-            
-            std::vector<std::vector<std::string>> content;
-            if (!std::filesystem::exists(result_path)) {
-                content.push_back(this->get_header());
-            }
-            content.push_back(this->data());
-            file_manager::csv::append(result_path.string(), content, ';');
-        }
+        inline void save_to_file() const;
     };
 
     /**
@@ -838,6 +894,7 @@ namespace metrics {
         Algorithm heuristic = Algorithm::NONE; ///< @brief Constructive heuristic used to generate the initial solution.
         double temperature = 0.0;              ///< @brief Initial temperature \f$T_0\f$ for Simulated Annealing.
         double alpha = 0.0;                    ///< @brief Cooling rate factor \f$\alpha\f$ for Simulated Annealing.
+        std::string model_type = "NONE";       ///< @brief Parameter optimized by the RL agent ("T", "\alpha", or "T\alpha").
 
         /**
          * @brief Constructs a `MetaHeuristicMetrics` object copying inputs from a base instance.
@@ -847,9 +904,10 @@ namespace metrics {
          * @param temperature_ Initial temperature \f$T_0\f$.
          * @param alpha_ Geometric cooling factor \f$\alpha\f$.
          * @param heuristic_ Initial constructive heuristic algorithm.
+         * @param model_type_ Type of meta-heuristic model.
          */
-        MetaHeuristicMetrics(Algorithm algorithm_name_, int run_id_, const std::shared_ptr<Metrics>& base, double temperature_, double alpha_, Algorithm heuristic_) 
-            : Metrics(Paradigm::METAHEURISTIC, algorithm_name_, run_id_, base), temperature(temperature_), alpha(alpha_), heuristic(heuristic_) {
+        MetaHeuristicMetrics(Algorithm algorithm_name_, int run_id_, const std::shared_ptr<Metrics>& base, double temperature_, double alpha_, Algorithm heuristic_, const std::string& model_type_ = "NONE") 
+            : Metrics(Paradigm::METAHEURISTIC, algorithm_name_, run_id_, base), temperature(temperature_), alpha(alpha_), heuristic(heuristic_), model_type(model_type_) {
                 if (base) inputs = base->inputs;
             }
 
@@ -863,9 +921,10 @@ namespace metrics {
          * @param temperature_ Initial temperature \f$T_0\f$.
          * @param alpha_ Geometric cooling factor \f$\alpha\f$.
          * @param heuristic_ Initial constructive heuristic algorithm.
+         * @param model_type_ Type of meta-heuristic model.
          */
-        MetaHeuristicMetrics(Algorithm algorithm_name_, int run_id, int d, int s_ec, int s_cc, double temperature_, double alpha_, Algorithm heuristic_) :
-            Metrics(Paradigm::METAHEURISTIC, algorithm_name_, run_id, d, s_ec, s_cc), temperature(temperature_), alpha(alpha_), heuristic(heuristic_) {}
+        MetaHeuristicMetrics(Algorithm algorithm_name_, int run_id, int d, int s_ec, int s_cc, double temperature_, double alpha_, Algorithm heuristic_, const std::string& model_type_ = "NONE") :
+            Metrics(Paradigm::METAHEURISTIC, algorithm_name_, run_id, d, s_ec, s_cc), temperature(temperature_), alpha(alpha_), heuristic(heuristic_), model_type(model_type_) {}
         
         /**
          * @brief Constructs a `MetaHeuristicMetrics` object from a base pointer and run ID.
@@ -921,6 +980,43 @@ namespace metrics {
         }
     };
 
+    inline void Metrics::save_to_file() const {
+        std::filesystem::path dir_path = this->get_base_directory_path();
+        std::filesystem::create_directories(dir_path);
+
+        std::string filename;
+        if (paradigm == Paradigm::HEURISTIC) {
+            filename = "heuristics.txt";
+        } else if (paradigm == Paradigm::METAHEURISTIC) {
+            filename = "metaheuristics.txt";
+        } else {
+            filename = to_string(this->algorithm) + ".txt";
+        }
+
+        std::filesystem::path result_path = dir_path / filename;
+
+        std::vector<std::vector<std::string>> content;
+        if (!std::filesystem::exists(result_path)) {
+            auto h = this->get_header();
+            if (paradigm == Paradigm::METAHEURISTIC) {
+                h.push_back("Model_Type");
+            }
+            content.push_back(h);
+        }
+
+        auto row = this->data();
+        if (paradigm == Paradigm::METAHEURISTIC) {
+            if (auto meta_ptr = dynamic_cast<const MetaHeuristicMetrics*>(this)) {
+                row.push_back(meta_ptr->model_type);
+            } else {
+                row.push_back(to_string(this->algorithm));
+            }
+        }
+        content.push_back(row);
+
+        file_manager::csv::append(result_path.string(), content, ';');
+    }
+
     /**
      * @struct Result
      * @brief Encapsulates the complete system state (`Devices`, `Servers`) and polymorphic `Metrics` for a simulation run.
@@ -967,9 +1063,16 @@ namespace metrics {
 
             stats = std::make_shared<Metrics>(Paradigm::NONE, Algorithm::NONE, 0);
             
+            int actual_ec = 0;
+            int actual_cc = 0;
+            for (size_t s = 1; s < this->servers.size(); ++s) {
+                if (this->servers[s].type == 'E') actual_ec++;
+                else if (this->servers[s].type == 'C') actual_cc++;
+            }
+
             stats->inputs.devices_count = static_cast<int>(this->devices.size()) - 1;
-            stats->inputs.servers_ec_count = num_ec;
-            stats->inputs.servers_cc_count = num_cc;
+            stats->inputs.servers_ec_count = actual_ec;
+            stats->inputs.servers_cc_count = actual_cc;
             
             double total_cost = 0.0;
             for (size_t d = 1; d < this->devices.size(); ++d) {
@@ -1046,6 +1149,91 @@ namespace metrics {
      * @param show_servers_usage Flag to indicate if individual server resource usage should be printed.
      */
     inline void save_results(const Result& state, bool show_servers_usage = false);
+
+    /**
+     * @brief Prints the RL state representation of the current instance to standard output.
+     * @param state The initialized simulation state containing loaded devices and servers.
+     */
+    inline void print_rl_state(const Result& state);
+
+    /**
+     * @brief Computes scale-invariant statistical features of the instance for the RL state vector.
+     * @details Extracts normalized ratios of total resource demands to Edge, Cloud, and overall System capacities.
+     * Also computes coefficients of variation (std/mean) to capture device demand and cost heterogeneity.
+     * 
+     * @param state The initialized simulation state containing loaded devices and servers.
+     * @return A `std::vector<double>` containing the 16 dimensionless state features.
+     */
+    inline std::vector<double> calculate_rl_state(const Result& state) {
+        const Metrics& metrics = *state.stats;
+        const size_t devices_size = metrics.inputs.devices_count;
+        const size_t ec_size = metrics.inputs.servers_ec_count;
+        const size_t cc_size = metrics.inputs.servers_cc_count;
+        const size_t ts_size = ec_size + cc_size;
+
+        double sum_d_cpu = 0.0, sum_d_mem = 0.0, sum_d_sto = 0.0, sum_d_cost = 0.0;
+        for (size_t d = 1; d < state.devices.size(); ++d) {
+            sum_d_cpu  += state.devices[d].cpu;
+            sum_d_mem  += state.devices[d].mem;
+            sum_d_sto  += state.devices[d].sto;
+            sum_d_cost += state.devices[d].cost;
+        }
+
+        double mean_d_cpu  = sum_d_cpu / devices_size;
+        double mean_d_mem  = sum_d_mem / devices_size;
+        double mean_d_sto  = sum_d_sto / devices_size;
+        double mean_d_cost = sum_d_cost / devices_size;
+
+        double var_d_cpu = 0.0, var_d_mem = 0.0, var_d_sto = 0.0, var_d_cost = 0.0;
+        for (size_t d = 1; d < state.devices.size(); ++d) {
+            var_d_cpu  += (state.devices[d].cpu - mean_d_cpu) * (state.devices[d].cpu - mean_d_cpu);
+            var_d_mem  += (state.devices[d].mem - mean_d_mem) * (state.devices[d].mem - mean_d_mem);
+            var_d_sto  += (state.devices[d].sto - mean_d_sto) * (state.devices[d].sto - mean_d_sto);
+            var_d_cost += (state.devices[d].cost - mean_d_cost) * (state.devices[d].cost - mean_d_cost);
+        }
+
+        double cv_d_cpu  = (mean_d_cpu > ZERO)  ? std::sqrt(var_d_cpu / devices_size) / mean_d_cpu   : 0.0;
+        double cv_d_mem  = (mean_d_mem > ZERO)  ? std::sqrt(var_d_mem / devices_size) / mean_d_mem   : 0.0;
+        double cv_d_sto  = (mean_d_sto > ZERO)  ? std::sqrt(var_d_sto / devices_size) / mean_d_sto   : 0.0;
+        double cv_d_cost = (mean_d_cost > ZERO) ? std::sqrt(var_d_cost / devices_size) / mean_d_cost : 0.0;
+
+        double sum_ec_cpu = 0.0, sum_ec_mem = 0.0, sum_ec_sto = 0.0;
+        double sum_cc_cpu = 0.0, sum_cc_mem = 0.0, sum_cc_sto = 0.0;
+        for (size_t s = 1; s < state.servers.size(); ++s) {
+            if (state.servers[s].type == 'E') {
+                sum_ec_cpu += state.servers[s].cpu;
+                sum_ec_mem += state.servers[s].mem;
+                sum_ec_sto += state.servers[s].sto;
+            } else {
+                sum_cc_cpu += state.servers[s].cpu;
+                sum_cc_mem += state.servers[s].mem;
+                sum_cc_sto += state.servers[s].sto;
+            }
+        }
+        double sum_ts_cpu = sum_ec_cpu + sum_cc_cpu, sum_ts_mem = sum_ec_mem + sum_cc_mem, sum_ts_sto = sum_ec_sto + sum_cc_sto;
+
+        double ratio_de_cpu = (sum_ec_cpu > ZERO) ? (sum_d_cpu / sum_ec_cpu) : 0.0;
+        double ratio_de_mem = (sum_ec_mem > ZERO) ? (sum_d_mem / sum_ec_mem) : 0.0;
+        double ratio_de_sto = (sum_ec_sto > ZERO) ? (sum_d_sto / sum_ec_sto) : 0.0;
+        double ratio_de_dps = (ec_size > 0) ? static_cast<double>(devices_size) / static_cast<double>(ec_size) : 0.0;
+        
+        double ratio_dc_cpu = (sum_cc_cpu > ZERO) ? (sum_d_cpu / sum_cc_cpu) : 0.0;
+        double ratio_dc_mem = (sum_cc_mem > ZERO) ? (sum_d_mem / sum_cc_mem) : 0.0;
+        double ratio_dc_sto = (sum_cc_sto > ZERO) ? (sum_d_sto / sum_cc_sto) : 0.0;
+        double ratio_dc_dps = (cc_size > 0) ? static_cast<double>(devices_size) / static_cast<double>(cc_size) : 0.0;
+        
+        double ratio_ds_cpu = (sum_ts_cpu > ZERO) ? (sum_d_cpu / sum_ts_cpu) : 0.0;
+        double ratio_ds_mem = (sum_ts_mem > ZERO) ? (sum_d_mem / sum_ts_mem) : 0.0;
+        double ratio_ds_sto = (sum_ts_sto > ZERO) ? (sum_d_sto / sum_ts_sto) : 0.0;
+        double ratio_ds_dps = (ts_size > 0) ? static_cast<double>(devices_size) / static_cast<double>(ts_size) : 0.0;
+
+        return {
+            cv_d_cpu, cv_d_mem, cv_d_sto, cv_d_cost,
+            ratio_de_cpu, ratio_de_mem, ratio_de_sto, ratio_de_dps,
+            ratio_dc_cpu, ratio_dc_mem, ratio_dc_sto, ratio_dc_dps,
+            ratio_ds_cpu, ratio_ds_mem, ratio_ds_sto, ratio_ds_dps
+        };
+    }
 }
 
 /**
@@ -1258,11 +1446,48 @@ namespace display {
         }
         std::cout << "+------------------------------------------------------------+\n\n";
     }
+
+    /**
+     * @brief Formats and prints the RL state feature vector to standard output.
+     * @param state The initialized simulation state.
+     */
+    inline void show_rl_state(const metrics::Result& state) {
+        const auto features = metrics::calculate_rl_state(state);
+        std::cout << "RL_STATE";
+        for (const double val : features) {
+            std::cout << ";" << convert::to_string(val, DECIMAL_PLACES);
+        }
+        std::cout << "\n";
+    }
+
+    /**
+     * @brief Formats and prints the episodic RL result metrics to standard output.
+     * @param ptr Shared pointer to the completed simulation metrics instance.
+     */
+    inline void show_rl_result(const std::shared_ptr<metrics::Metrics>& ptr) {
+        if (!ptr) return;
+        std::cout << "RL_RESULT;"
+                  << convert::to_string(ptr->outputs.total_penalty_cost, DECIMAL_PLACES) << ";"
+                  << convert::to_string(ptr->inputs.max_penalty_cost, DECIMAL_PLACES) << ";"
+                  << convert::to_string(ptr->outputs.execution_time, DECIMAL_PLACES) << "\n";
+    }
 }
 
 inline void metrics::save_results(const Result& state, bool show_servers_usage) {
     if (!state.stats) return;
     state.stats->save_to_file();
+
+    if (data::generate::is_training_mode()) {
+        if (state.stats->paradigm == Paradigm::METAHEURISTIC) {
+            display::show_rl_result(state.stats);
+        }
+        return;
+    }
+
     display::show_metrics(state.stats);
     if (show_servers_usage) display::show_servers_usage(state.servers);
+}
+
+inline void metrics::print_rl_state(const Result& state) {
+    display::show_rl_state(state);
 }

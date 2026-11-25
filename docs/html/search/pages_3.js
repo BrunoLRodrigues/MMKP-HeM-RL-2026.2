@@ -1,5 +1,0 @@
-var searchData=
-[
-  ['in_20iot_20ec_20cc_20networks_0',['MMKP Resource Allocation in IoT-EC-CC Networks',['../index.html',1,'']]],
-  ['iot_20ec_20cc_20networks_1',['MMKP Resource Allocation in IoT-EC-CC Networks',['../index.html',1,'']]]
-];

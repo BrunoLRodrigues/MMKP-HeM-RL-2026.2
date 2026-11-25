@@ -5,6 +5,9 @@ CMakeFiles/
 
 # EN: Doxygen generated output and backup files / PT: Saídas geradas pelo Doxygen e arquivos de backup
 *.bak
+*.tmp
+docs/html/
+docs/latex/
 
 # EN: Local IDE, OS, and WSL metadata / PT: Configurações locais de IDE, SO e WSL
 .vscode/
@@ -13,3 +16,14 @@ CMakeFiles/
 
 # EN: Drawing text files / PT: Arquivos de texto de desenho
 *drawing.txt
+
+# EN: Python and RL artifacts / PT: Artefatos Python e de RL
+.venv/
+rl/venv/
+__pycache__/
+*.pyc
+rl/*.so
+
+# EN: RL training datasets and results / PT: Datasets e resultados de treinamento RL
+data/training/
+results/training/

@@ -23,6 +23,7 @@ CLEAN_DATA=false
 CLEAN_RESULTS=false
 CLEAN_BUILD=false
 GEN_DOCS=false
+JUST_BUILD=false
 
 # =============================================================================
 # EN: Parse command-line arguments
@@ -32,29 +33,29 @@ while [[ "$#" -gt 0 ]]; do
     case $1 in
         -d|--data)    CLEAN_DATA=true ;;
         -r|--results) CLEAN_RESULTS=true ;;
-        -b|--build)   CLEAN_BUILD=true ;;
-        -a|--all)     CLEAN_DATA=true; CLEAN_RESULTS=true; CLEAN_BUILD=true ;;
+        -b|--build)   CLEAN_BUILD=true; JUST_BUILD=true ;;
+        -a|--all)     CLEAN_DATA=true; CLEAN_RESULTS=true; CLEAN_BUILD=true; JUST_BUILD=true ;;
         -doc|--docs)  GEN_DOCS=true ;;
         *) echo "Unknown parameter / Parâmetro desconhecido: $1"; exit 1 ;;
     esac
     shift
 done
 
-# EN: Empty the data/ directory if requested
-# PT: Esvazia o conteúdo dentro da pasta data/ se solicitado
+# EN: Empty the data/ directory if requested (preserving data/training/)
+# PT: Esvazia o conteúdo dentro da pasta data/ se solicitado (preservando data/training/)
 if [ "$CLEAN_DATA" = true ]; then
-    echo "=== [EN] Cleaning data/ directory | [PT] Limpando a pasta data/ ==="
+    echo "=== [EN] Cleaning data/ directory (preserving training/) | [PT] Limpando a pasta data/ (preservando training/) ==="
     if [ -d "data" ]; then
-        find data -mindepth 1 -delete
+        find data -mindepth 1 -maxdepth 1 ! -name 'training' -exec rm -rf {} +
     fi
 fi
 
-# EN: Empty the results/ directory if requested
-# PT: Esvazia o conteúdo dentro da pasta results/ se solicitado
+# EN: Empty the results/ directory if requested (preserving results/training/)
+# PT: Esvazia o conteúdo dentro da pasta results/ se solicitado (preservando results/training/)
 if [ "$CLEAN_RESULTS" = true ]; then
-    echo "=== [EN] Cleaning results/ directory | [PT] Limpando a pasta results/ ==="
+    echo "=== [EN] Cleaning results/ directory (preserving training/) | [PT] Limpando a pasta results/ (preservando training/) ==="
     if [ -d "results" ]; then
-        find results -mindepth 1 -delete
+        find results -mindepth 1 -maxdepth 1 ! -name 'training' -exec rm -rf {} +
     fi
 fi
 
@@ -87,28 +88,44 @@ if [ "$GEN_DOCS" = true ]; then
             cp docs/latex/refman.pdf docs/html/MMKP_Documentation.pdf
         fi
     fi
-    # Encerra o script aqui se nenhuma flag de build/limpeza foi usada junto
-    if [ "$CLEAN_BUILD" = false ] && [ "$CLEAN_DATA" = false ] && [ "$CLEAN_RESULTS" = false ]; then
+
+    if [ "$JUST_BUILD" = false ] && [ "$CLEAN_DATA" = false ] && [ "$CLEAN_RESULTS" = false ]; then
         echo "=== [EN] Documentation generated successfully! | [PT] Documentação gerada com sucesso! ==="
         exit 0
     fi
 fi
 
+# =============================================================================
+# EN: Compile the project
+# PT: Compila o projeto
+# =============================================================================
 echo "=== [EN] Setting up build directory | [PT] Configurando o diretório build ==="
 mkdir -p build
 
-echo "=== [EN] Compiling with G++ (CPLEX + Heuristics) | [PT] Compilando com G++ ==="
-# EN: Direct G++ compilation command with maximum optimization (-O3)
-# PT: Linha de compilação direta do G++ com otimização máxima (-O3)
+echo "=== [EN] Compiling Main Executable | [PT] Compilando o Executável Principal ==="
 /usr/bin/g++ -O3 -std=c++17 -fPIC -fexceptions -DNDEBUG -DIL_STD \
     -I$CPLEX_INCLUDE -I$CONCERT_INCLUDE -Iinclude \
-    src/*.cpp -o build/MMKP_IoT-EC-CC \
+    src/main.cpp -o build/MMKP_IoT-EC-CC \
     -L$CPLEX_LIB -L$CONCERT_LIB \
     -lilocplex -lconcert -lcplex -lm -lpthread -ldl -w
 
-echo "=== [EN] Build succeeded! Running simulation... | [PT] Build concluído! Executando... ==="
-echo "-----------------------------------------------------------------------------------------"
+echo "=== [EN] Compiling Python RL module (mmkp_sim) | [PT] Compilando módulo Python RL ==="
+/usr/bin/g++ -O3 -std=c++17 -fPIC -shared -w -fexceptions \
+    -I$CPLEX_INCLUDE -I$CONCERT_INCLUDE -Iinclude \
+    $(python3 -m pybind11 --includes) \
+    src/bindings.cpp -o rl/mmkp_sim$(python3-config --extension-suffix) \
+    -L$CPLEX_LIB -L$CONCERT_LIB \
+    -lilocplex -lconcert -lcplex -lm -lpthread -ldl
 
-# EN: Run the binary from the project root to preserve relative paths
-# PT: Executa o binário a partir da raiz mantendo os caminhos relativos corretos
+echo "=== [EN] Build successful! | [PT] Build concluído com sucesso! ==="
+
+# EN: If the user passed flags like --build or --all, stop here without running the simulation
+# PT: Se o usuário passou parâmetros como --build ou --all, para aqui sem executar a simulação
+if [ "$JUST_BUILD" = true ]; then
+    exit 0
+fi
+
+# EN: Run the binary from the project root if no specific clean/build flags were used
+# PT: Executa o binário a partir da raiz caso nenhuma flag específica tenha sido usada
+echo "-----------------------------------------------------------------------------------------"
 ./build/MMKP_IoT-EC-CC

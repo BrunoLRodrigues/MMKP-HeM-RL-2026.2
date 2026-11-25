@@ -40,13 +40,16 @@ BUILTIN_STL_SUPPORT    = YES
 #---------------------------------------------------------------------------
 INPUT                  = README.md \
                          include \
-                         src
+                         src \
+                         rl
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *.hpp \
                          *.h \
                          *.cpp \
+                         *.py \
                          *.md
 RECURSIVE              = YES
+EXCLUDE                = rl/venv rl/__pycache__ rl/models
 USE_MDFILE_AS_MAINPAGE = README.md
 
 #---------------------------------------------------------------------------

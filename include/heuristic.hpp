@@ -184,8 +184,54 @@ namespace heuristic {
             auto end_chrono = std::chrono::high_resolution_clock::now();
             metrics_ptr->outputs.execution_time = std::chrono::duration<double>(end_chrono - start_chrono).count();
         }
-    }
 
+        /**
+         * @brief Executes a balanced random resource allocation between Edge and Cloud servers.
+         * @details Iterates through all devices and uses a coin flip (50/50 probability) to 
+         * determine the target tier. Attempts to assign each device to either a randomly selected 
+         * Edge (EC) server or a randomly selected Cloud (CC) server based on the flip. If the 
+         * selected server lacks capacity, the device remains unserved.
+         * 
+         * @param state The unified simulation result state containing devices, servers, and metrics.
+         */
+        inline void balanced_greedy_random(metrics::Result& state) {
+            auto metrics_ptr = std::dynamic_pointer_cast<metrics::HeuristicMetrics>(state.stats);
+            if (!metrics_ptr) {
+                std::cerr << "Error: Invalid metrics type for heuristic solver.\n";
+                return;
+            }
+
+            int ec_count = metrics_ptr->inputs.servers_ec_count;
+            int cc_count = metrics_ptr->inputs.servers_cc_count;
+
+            core::Devices& devices = state.devices;
+            core::Servers& servers = state.servers;
+
+            auto start_chrono = std::chrono::high_resolution_clock::now();
+            
+            for (size_t d = 1; d < devices.size(); d++) {
+                core::Device& device = devices[d];
+
+                bool flip_coin = randomness::random_number<int>(0, 1);
+
+                if (flip_coin == 0) {
+                    int ec_id = randomness::random_number<int>(1, ec_count);
+                    if (servers[ec_id].can_serve(device)) {
+                        servers[ec_id].add_service(device);
+                        continue;
+                    }
+                } else {
+                    int cc_id = randomness::random_number<int>(ec_count + 1, ec_count + cc_count);
+                    if (servers[cc_id].can_serve(device)) {
+                        servers[cc_id].add_service(device);
+                    }
+                }
+            }
+
+            auto end_chrono = std::chrono::high_resolution_clock::now();
+            metrics_ptr->outputs.execution_time = std::chrono::duration<double>(end_chrono - start_chrono).count();
+        }
+    }
     /**
      * @brief Bootstraps and executes the configured constructive heuristic.
      * @details Reads the specified algorithm identifier from `state.stats` and dispatches 
@@ -202,6 +248,8 @@ namespace heuristic {
             greedy_random(state);
         } else if (metrics::Algorithm::greedy_random_fallback == state.stats->algorithm) {
             greedy_random_fallback(state);
+        } else if (metrics::Algorithm::balanced_greedy_random == state.stats->algorithm) {
+            balanced_greedy_random(state);
         } else {
             std::cerr << "Error: Unknown heuristic algorithm type.\n";
         }

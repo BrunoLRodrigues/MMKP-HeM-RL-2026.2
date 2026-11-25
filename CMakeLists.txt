@@ -75,3 +75,18 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE NDEBUG IL_STD)
 # EN: Add optimization (-O3) and compiler flags
 # PT: Adiciona flags de otimização máxima (-O3) e compilação
 target_compile_options(${PROJECT_NAME} PRIVATE -O3 -fPIC -w -fexceptions)
+
+# =============================================================================
+# 5. PYBIND11 MODULE / MÓDULO PYTHON (mmkp_sim)
+# =============================================================================
+execute_process(
+    COMMAND python3 -m pybind11 --cmakedir
+    OUTPUT_VARIABLE pybind11_DIR
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+find_package(pybind11 REQUIRED)
+
+pybind11_add_module(mmkp_sim src/bindings.cpp)
+target_include_directories(mmkp_sim PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include")
+target_compile_options(mmkp_sim PRIVATE -O3 -fPIC -w -fexceptions)
+set_target_properties(mmkp_sim PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/rl")
